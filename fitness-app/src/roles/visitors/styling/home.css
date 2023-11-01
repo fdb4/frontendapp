@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding:0;
+    color: white;
+}
+.image {
+    background-image: url('../assets/home.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+  }
+
+h1{ 
+    color: white;
+}
+.header {
+    margin-left: 0.5em;
+    font-size: 50px;
+    font-family: saira;
+}
+.champion {
+    color: #A16551;
+}
+.features {
+    background-color: white;
+    margin-top: 10%;
+    margin-left: 2em;
+    margin-right: 50%;
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 10px;
+    font-family: saira;
+}
+.items{
+    color:black;
+}
+.info {
+    margin-left: 2em;
+}
+h2 {
+    color: #F83E3E;
+    margin-top: 50px;
+    margin-right: 50%;
+}
+p {
+    margin-top: 50px;
+    margin-right: 60%; 
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+button {
+    margin-top: 50px;
+    font-size: 16px;
+    background-color: white;
+    color:#A16551;
+    padding: 10px;
+}
