@@ -3,7 +3,7 @@ import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
  
 export const Nav = styled.nav`
-  background: #508daf;
+  background: black;
   height: 85px;
   display: flex;
   justify-content: space-between;
@@ -12,18 +12,22 @@ export const Nav = styled.nav`
 `;
  
 export const NavLink = styled(Link)`
-  color: black;
+  color: white;
   display: flex;
   align-items: center;
   text-decoration: none;
   padding: 0 1rem;
   height: 100%;
-  cursor: pointer;
+  cursor: pointer; 
   &.active {
     color: #4d4dff;
   }
 `;
- 
+export const LOGIN = styled(FaBars)`
+  color: red;
+  }
+`;
+
 export const Bars = styled(FaBars)`
   display: none;
   color: #808080;
@@ -42,12 +46,37 @@ export const NavMenu = styled.div`
   display: flex;
   align-items: center;
   margin-right: -24px;
-  /* Second Nav */
-  /* margin-right: 24px; */
-  /* Third Nav */
-  /* width: 100vw;
+  margin-left: auto;
 white-space: nowrap; */
   @media screen and (max-width: 768px) {
     display: none;
   }
+`;
+export const RightAlignedNavMenu = styled(NavMenu)`
+  margin-left: auto; /* Push the NavMenu to the right */
+`;
+
+export const LoginButton = styled(Link)`
+  color: #A16551; /* Set text color to A16551 */
+  background: white; /* Set background color to white */
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 50%;
+  cursor: pointer;
+  &.active {
+    color: #4d4dff;
+  }
+`;
+
+export const Logo = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const LogoImage = styled.img`
+  width: 100px; /* Set the width of your logo */
+  height: 100px; /* Maintain the aspect ratio */
+  margin-right: 10px; /* Add some spacing between the logo and the links */
 `;
