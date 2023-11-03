@@ -1,59 +1,124 @@
 * {
     margin: 0;
-    padding:0;
+    padding: 0;
     color: white;
-}
-.image {
+  }
+  
+  .image {
     background-image: url('../assets/home.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh; 
+    min-height: 100vh;
   }
-
-h1{ 
+  
+  h1 {
     color: white;
-}
-.header {
-    margin-left: 0.5em;
+  }
+  
+  .header {
+    margin-left: 1.5em;
+    margin-right: 2em; 
     font-size: 150%;
     font-family: saira;
-    margin-left: 1em;
-}
-.champion {
+  }
+  
+  .champion {
     color: #A16551;
-}
-.features {
+  }
+  
+  .features {
     background-color: white;
     margin-top: 10%;
     margin-left: 2em;
-    margin-right: 50%;
-    width: 30%;
+    margin-right: 2em; /* Updated margin-right */
+    width: 50%; /* Updated width */
     display: flex;
     justify-content: space-around;
     padding: 40px 10px;
     font-family: saira;
+  }
+  
+  .items {
+    color: black;
+  }
+  
+.items img {
+  width: 50px; /* Adjust the width to your desired size */
+  height: auto; /* Maintain aspect ratio */
 }
-.items{
-    color:black;
-}
-.info {
+  .info {
     margin-left: 2em;
-}
-h2 {
-    color: #F83E3E;
+  }
+  
+  h2 {
     margin-top: 50px;
-    margin-right: 50%;
-}
-p {
+  }
+  
+  p {
     margin-top: 50px;
-    margin-right: 60%; 
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-button {
+  }
+  
+  button {
     margin-top: 50px;
     font-size: 16px;
     background-color: white;
-    color:#A16551;
+    color: #A16551;
     padding: 10px;
-}
+  }
+  
+ /* Your existing CSS styles... */
+
+.footer {
+    position: fixed;
+    color: white;
+    width: 100%;
+    background-color: black;
+    min-height: 150px; /* Adjusted min-height */
+    bottom: 0;
+    display: flex;
+    
+  }
+/* Your existing CSS styles... */
+
+/* Your existing CSS styles... */
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+ /* Your existing CSS styles... */
+
+/* Your existing CSS styles... */
+
+/* Your existing CSS styles... */
+
+/* Your existing CSS styles... */
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    margin-top: 10px;
+  }
+  
+  .footer h2 {
+    margin: 0;
+  }
+  
+  .concerns {
+    display: flex;
+    flex-direction: row; /* Change to column layout */
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .concerns p {
+    margin: 5px 0;
+    padding-right: 100%;
+  }
+  
