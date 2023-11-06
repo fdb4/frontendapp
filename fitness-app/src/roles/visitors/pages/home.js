@@ -4,6 +4,9 @@ import dumbbellImage from "../assets/dumbbell.png";
 import timer from "../assets/timer.png";
 import scheduler from "../assets/schedule.png"
 import facebook from "../assets/facebook.png"
+import linkedin  from "../assets/linkedin.png";
+import instagram from "../assets/instagram.png"
+
 
 function Home() {
   return (
@@ -48,7 +51,9 @@ function Home() {
           <span className="champion">FIRST</span> LESSON?
         </h2>
         <div className="socials">
-          <facebook>{facebook}</facebook>
+          <img src={facebook} alt="Dumbbell" />
+          <img src={linkedin} alt="linkedin" />
+          <img src={instagram} alt="instagram" />
         </div>
         <div className="concerns">
           <p>info@yourdomain.com</p>

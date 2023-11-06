@@ -99,4 +99,14 @@
     margin: 5px 0;
     padding-right: 100%;
   }
-  
+  .socials {
+    display: flex;
+    justify-content:space-between; 
+    gap: 10px; 
+}
+
+.socials img {
+    width: 30px;
+    height: 30px;
+    filter: invert(1); 
+}
