@@ -3,6 +3,7 @@ import "../styling/home.css";
 import dumbbellImage from "../assets/dumbbell.png";
 import timer from "../assets/timer.png";
 import scheduler from "../assets/schedule.png"
+import facebook from "../assets/facebook.png"
 
 function Home() {
   return (
@@ -46,6 +47,9 @@ function Home() {
           READY FOR YOUR <br></br>
           <span className="champion">FIRST</span> LESSON?
         </h2>
+        <div className="socials">
+          <facebook>{facebook}</facebook>
+        </div>
         <div className="concerns">
           <p>info@yourdomain.com</p>
           <p>Privacy Policy</p>
