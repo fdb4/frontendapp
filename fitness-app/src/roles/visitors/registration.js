@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import "../visitors/styling/login.css"
 
-
-const Login = () => {
+const Registration = () => {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
   });
@@ -19,14 +18,24 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your authentication logic here
-    console.log('Logging in with data:', formData);
+    // Add your registration logic here
+    console.log('Registering with data:', formData);
   };
 
   return (
     <div className="body_1">
-      <h1>Login </h1>
+      <h1>Registration</h1>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label>Name </label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div>
           <label>Email </label>
           <input
@@ -47,13 +56,13 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
       </form>
       <p>
-        Don't have an account? <Link to="/registration">Register here</Link>
+        Already have an account? <Link to="/login">Login here</Link>
       </p>
     </div>
   );
 };
 
-export default Login;
+export default Registration;

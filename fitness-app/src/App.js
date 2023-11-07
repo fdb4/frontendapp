@@ -6,7 +6,9 @@ import Home from './roles/visitors/pages/home.js';
 import Services from './roles/visitors/pages/services.js';
 import Coaches from './roles/visitors/pages/coaches.js';
 import About from './roles/visitors/pages/about.js';
-import Login from './roles/visitors/login.js'
+import Login from './roles/visitors/login.js';
+import Registration from './roles/visitors/registration.js';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path='/coaches' element={<Coaches />} />
         <Route path='/about' element={<About />} />
         <Route path='/login' element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
       </Routes> 
     </Router>
   );

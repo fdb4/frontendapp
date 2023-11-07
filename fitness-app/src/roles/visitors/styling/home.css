@@ -70,19 +70,13 @@ p {
 button {
   margin-top: 50px;
   font-size: 16px;
-  background-color: white;
-  color: #a16551;
   padding: 10px;
   margin-bottom: 60px;
 }
 
-/* Your existing CSS styles... */
-
 .footer {
-  color: white;
   width: 100%;
-  background-color: black;
-  min-height: 150px; /* Adjusted min-height */
+  min-height: 150px;
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -96,15 +90,18 @@ button {
 }
 
 .concerns {
+  background-color: black;
   display: flex;
-  flex-direction: row; /* Change to column layout */
+  flex-direction: row; 
   align-items: flex-start;
   text-align: left;
 }
 
 .concerns p {
+  
   margin: 5px 0;
   padding-right: 100%;
+  color:#a16551;
 }
 .socials {
   display: flex;
