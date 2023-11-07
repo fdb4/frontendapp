@@ -8,8 +8,9 @@
     background-image: url('../assets/home.jpg');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
+    font-family: 'Crimson Text', serif;
+    padding: 20px;
+    text-align: center;
   }
   
   h1 {
@@ -37,6 +38,7 @@
     justify-content: space-around;
     padding: 40px 10px;
     font-family: saira;
+    border-radius: 50px;
   }
   
   .items {
