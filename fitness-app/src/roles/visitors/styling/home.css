@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+/* Your CSS file or global CSS */
+.invert-logo {
+  filter: invert(1);
+  height: 80px;
+}
+
+.image {
+  background-image: url("../assets/home.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: "Crimson Text", serif;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: white;
+}
+
+.header {
+  margin-left: 1.5em;
+  margin-right: 2em;
+  font-size: 150%;
+  font-family: saira;
+}
+
+.champion {
+  color: #a16551;
+}
+
+.features {
+  background-color: #a16551;
+  margin-top: 10%;
+  margin-left: 2em;
+  margin-right: 2em; /* Updated margin-right */
+  width: 40%; /* Updated width */
+  display: flex;
+  justify-content: space-around;
+  padding: 40px 10px;
+  font-family: saira;
+  border-radius: 50px;
+}
+
+.items {
+  color: black;
+}
+
+.items img {
+  width: 50px; /* Adjust the width to your desired size */
+  height: auto; /* Maintain aspect ratio */
+}
+.info {
+  margin-left: 2em;
+}
+
+h2 {
+  margin-top: 50px;
+}
+
+p {
+  margin-top: 50px;
+  width: 40%;
+}
+
+button {
+  margin-top: 50px;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 60px;
+}
+
+.footer {
+  width: 100%;
+  min-height: 150px;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.footer h2 {
+  margin: 0;
+}
+
+.concerns {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.concerns p {
+  margin: 5px 0;
+  padding-right: 100%;
+  color: #a16551;
+}
+.socials {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.socials img {
+  width: 30px;
+  height: 30px;
+  filter: invert(1);
+}

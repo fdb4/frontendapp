@@ -1,0 +1,39 @@
+/* about.css */
+
+.body {
+  text-align: center;
+  padding: 20px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center; /* Center the header elements */
+  flex-direction: column; /* Align header elements vertically */
+  align-items: center; /* Center the header elements horizontally */
+}
+
+h1 {
+  color: #ffffff;
+}
+
+#para {
+  color: #a16551;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.team-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the team members horizontally */
+  gap: 20px;
+}
+
+.team {
+  width: calc(33.33% - 20px);
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-radius: 5px;
+}
