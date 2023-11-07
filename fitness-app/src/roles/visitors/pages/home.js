@@ -41,7 +41,7 @@ function Home() {
           feugiat aliquet iaculis justo cum, at magnis scelerisque etiam eros
           sodales, pellentesqu
         </p>
-        <button onClick={() => (window.location.href = 'https://www.youtube.com')}>
+        <button onClick={() => (window.location.href = '/registration')}>
           SIGN UP
         </button>
       </div>
