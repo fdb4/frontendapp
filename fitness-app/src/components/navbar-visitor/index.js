@@ -16,7 +16,7 @@ const Navbar = () => {
     <>
       <Nav>
         <Logo>
-          <LogoImage src="{logo}" alt="Your Logo" />
+          <LogoImage src={logo} alt="Your Logo"  className="invert-logo"/>
         </Logo>
         <Bars onClick={toggleMenu} />
         <NavMenu showMenu={showMenu}>

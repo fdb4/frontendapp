@@ -3,6 +3,12 @@
     padding: 0;
     color: white;
   }
+  /* Your CSS file or global CSS */
+.invert-logo {
+  filter: invert(1);
+  height: 80px;
+}
+
   
   .image {
     background-image: url('../assets/home.jpg');
