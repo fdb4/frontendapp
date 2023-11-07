@@ -10,7 +10,8 @@ export const Nav = styled.nav`
   padding: 0.2rem calc((100vw - 1000px) / 2);
   z-index: 12;
 `;
- 
+
+
 export const NavLink = styled(Link)`
   color: white;
   display: flex;
@@ -18,13 +19,9 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   padding: 0 1rem;
   height: 100%;
-  cursor: pointer; 
+  cursor: pointer;
   &.active {
     color: #4d4dff;
-  }
-`;
-export const LOGIN = styled(FaBars)`
-  color: red;
   }
 `;
 
@@ -41,24 +38,25 @@ export const Bars = styled(FaBars)`
     cursor: pointer;
   }
 `;
- 
+
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: -24px;
-  margin-left: auto;
-white-space: nowrap; */
   @media screen and (max-width: 768px) {
-    display: none;
+    display: ${(props) => (props.showMenu ? "flex" : "none")};
+    flex-direction: column;
+    position: absolute;
+    top: 85px;
+    left: 0;
+    width: 100%;
+    background: black;
+    transition: all 0.3s ease;
   }
-`;
-export const RightAlignedNavMenu = styled(NavMenu)`
-  margin-left: auto; /* Push the NavMenu to the right */
 `;
 
 export const LoginButton = styled(Link)`
-  color: #A16551; /* Set text color to A16551 */
-  background: white; /* Set background color to white */
+  color: #A16551;
+  background: white;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -76,7 +74,17 @@ export const Logo = styled.div`
 `;
 
 export const LogoImage = styled.img`
-  width: 100px; /* Set the width of your logo */
-  height: 100px; /* Maintain the aspect ratio */
-  margin-right: 10px; /* Add some spacing between the logo and the links */
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+`;
+
+export const HamburgerMenu = styled.div`
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
 `;
