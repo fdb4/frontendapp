@@ -6,6 +6,7 @@ import Home from './roles/visitors/pages/home.js';
 import Services from './roles/visitors/pages/services.js';
 import Coaches from './roles/visitors/pages/coaches.js';
 import About from './roles/visitors/pages/about.js';
+import Login from './roles/visitors/login.js'
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Route path='/services' element={<Services />} />
         <Route path='/coaches' element={<Coaches />} />
         <Route path='/about' element={<About />} />
-      </Routes>
+        <Route path='/login' element={<Login />} />
+      </Routes> 
     </Router>
   );
 }
