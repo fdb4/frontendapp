@@ -27,7 +27,7 @@
   .paragraphs-container p {
     flex-grow: 1;
   }
-  
+
   .item {
     border: 1px solid #A16551;
     padding: 20px;
@@ -116,4 +116,12 @@
 }
 .socials { 
     margin:5px;
+}
+
+.socials img:hover {
+  background-color:rgb(0, 255, 153);
+}
+
+.concerns p:hover {
+  text-decoration: underline;
 }
