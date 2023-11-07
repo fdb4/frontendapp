@@ -92,16 +92,15 @@ button {
 .concerns {
   background-color: black;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   align-items: flex-start;
   text-align: left;
 }
 
 .concerns p {
-  
   margin: 5px 0;
   padding-right: 100%;
-  color:#a16551;
+  color: #a16551;
 }
 .socials {
   display: flex;

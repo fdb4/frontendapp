@@ -21,8 +21,9 @@ function Services() {
             to keep track of your workouts and log them and many more.
           </p>
           <p>
-            Make sure to stay hydrated and well-nutritioned. After all, we don't want you to be
-            malnourished when you use up all your energy at the gym.
+            Make sure to stay hydrated and well-nutritioned. After all, we don't
+            want you to be malnourished when you use up all your energy at the
+            gym.
           </p>
         </div>
       </div>
@@ -45,7 +46,11 @@ function Services() {
           start working out with a professional.
         </p>
         <h2>Hire Coaches</h2>
-        <img className="images" src={image_2} alt="Gym folks posing for a picture" />
+        <img
+          className="images"
+          src={image_2}
+          alt="Gym folks posing for a picture"
+        />
       </div>
       <div className="footer">
         <h2>

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -19,7 +19,7 @@ const Registration = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add your registration logic here
-    console.log('Registering with data:', formData);
+    console.log("Registering with data:", formData);
   };
 
   return (

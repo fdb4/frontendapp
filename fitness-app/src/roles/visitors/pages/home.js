@@ -2,11 +2,10 @@ import React from "react";
 import "../styling/home.css";
 import dumbbellImage from "../assets/dumbbell.png";
 import timer from "../assets/timer.png";
-import scheduler from "../assets/schedule.png"
-import facebook from "../assets/facebook.png"
-import linkedin  from "../assets/linkedin.png";
-import instagram from "../assets/instagram.png"
-
+import scheduler from "../assets/schedule.png";
+import facebook from "../assets/facebook.png";
+import linkedin from "../assets/linkedin.png";
+import instagram from "../assets/instagram.png";
 
 function Home() {
   return (
@@ -22,11 +21,11 @@ function Home() {
           <div className="items">Workout</div>
         </div>
         <div className="items">
-          <img src= {timer} alt="Timer" />
+          <img src={timer} alt="Timer" />
           <div className="items">Progress</div>
         </div>
         <div className="items">
-          <img src= {scheduler} alt="Your Image" />
+          <img src={scheduler} alt="Your Image" />
           <div className="items">Lessons</div>
         </div>
       </div>
@@ -41,7 +40,7 @@ function Home() {
           feugiat aliquet iaculis justo cum, at magnis scelerisque etiam eros
           sodales, pellentesqu
         </p>
-        <button onClick={() => (window.location.href = '/registration')}>
+        <button onClick={() => (window.location.href = "/registration")}>
           SIGN UP
         </button>
       </div>

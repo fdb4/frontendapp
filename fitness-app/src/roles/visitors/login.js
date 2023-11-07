@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import "../visitors/styling/login.css"
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../visitors/styling/login.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -20,7 +19,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add your authentication logic here
-    console.log('Logging in with data:', formData);
+    console.log("Logging in with data:", formData);
   };
 
   return (
