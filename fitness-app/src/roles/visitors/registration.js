@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import './registration.css'
 
 const Registration = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    fName: "",
+    lName: "",
     email: "",
     password: "",
   });
@@ -23,44 +25,56 @@ const Registration = () => {
   };
 
   return (
-    <div className="body_1">
-      <h1>Registration</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name </label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Email </label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Password </label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
-      <p>
-        Already have an account? <Link to="/login">Login here</Link>
-      </p>
+    <div className="registration-page">
+      <div className="registration-modal">
+        <h1>Registration</h1>
+        <form onSubmit={handleSubmit} className="registration-form">
+          <div>
+            <label>First Name </label>
+            <input
+              type="text"
+              name="fName"
+              value={formData.fName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Last Name </label>
+            <input
+              type="text"
+              name="lName"
+              value={formData.lName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Email </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Password </label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Sign Up</button>
+        </form>
+        <p>
+          Already have an account? <Link to="/login">Login here</Link>
+        </p>
+      </div>
     </div>
   );
 };
