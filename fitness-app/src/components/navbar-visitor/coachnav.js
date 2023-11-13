@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../roles/visitors/assets/logo.png";
 
-const ClientNavbar = () => {
+const CoachNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -35,6 +35,9 @@ const ClientNavbar = () => {
           <NavLink to="/clientcoaches" activeStyle>
             COACHES
           </NavLink>
+          <NavLink to="/clients" activeStyle>
+            CLIENTS
+          </NavLink>
           <NavLink to="/settings" activeStyle>
             SETTINGS
           </NavLink>
@@ -47,4 +50,4 @@ const ClientNavbar = () => {
   );
 };
 
-export default ClientNavbar;
+export default CoachNavbar;
