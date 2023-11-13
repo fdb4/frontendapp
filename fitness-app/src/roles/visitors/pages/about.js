@@ -3,10 +3,12 @@ import "../styling/about.css";
 import facebook from "../assets/facebook.png"
 import linkedin  from "../assets/linkedin.png";
 import instagram from "../assets/instagram.png"
+import VistorNavbar from "../../../components/navbar-visitor/vistornav.js";
 
 function About() {
   return (
     <div className="body">
+      <VistorNavbar />
       <div className="header-container">
         <h1>Meet Our Team of Creators, Designers, and Problem Solvers</h1>
         <p id="para">

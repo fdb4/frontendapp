@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../visitors/styling/login.css";
+import Navbar from '../../components/navbar-visitor/vistornav.js';
+import { Nav } from "../../components/navbar-visitor/NavbarElements";
+import VistorNavbar from "../../components/navbar-visitor/vistornav.js";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -24,6 +27,7 @@ const Login = () => {
 
   return (
     <div className="body_1">
+      <VistorNavbar />
       <h1>Login </h1>
       <form onSubmit={handleSubmit}>
         <div>

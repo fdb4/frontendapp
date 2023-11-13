@@ -5,10 +5,12 @@ import image_2 from "../assets/image_2.jpg";
 import facebook from "../assets/facebook.png";
 import linkedin from "../assets/linkedin.png";
 import instagram from "../assets/instagram.png";
+import VistorNavbar from "../../../components/navbar-visitor/vistornav.js";
 
 function Services() {
   return (
     <div className="body">
+      <VistorNavbar />
       <div className="title-container">
         <h1 className="title">SERVICES</h1>
       </div>

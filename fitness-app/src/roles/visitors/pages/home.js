@@ -6,10 +6,12 @@ import scheduler from "../assets/schedule.png";
 import facebook from "../assets/facebook.png";
 import linkedin from "../assets/linkedin.png";
 import instagram from "../assets/instagram.png";
+import VistorNavbar from "../../../components/navbar-visitor/vistornav.js";
 
 function Home() {
   return (
     <div className="image">
+      <VistorNavbar />
       <div className="header">
         <h1>
           WORKOUT LIKE <br />A <span className="champion">CHAMPION</span>

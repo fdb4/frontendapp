@@ -5,10 +5,12 @@ import trainer from "../assets/trainer.jpg";
 import facebook from "../assets/facebook.png";
 import linkedin from "../assets/linkedin.png";
 import instagram from "../assets/instagram.png";
+import VistorNavbar from "../../../components/navbar-visitor/vistornav.js";
 
 function Coaches() {
   return (
     <div className="body_1">
+      <VistorNavbar />
       <div className="header_1">
         <h2 className="coaches">Coaches</h2>
         <h1>Train with Experts</h1>
