@@ -23,7 +23,7 @@ const Login = () => {
   
     try {
       // Send POST request to the backend with JSON data
-      const response = await axios.post("http://127.0.0.1:5000/docs/login", formData, {
+      const response = await axios.post("http://127.0.0.1:5000/login", formData, {
         headers: {
           'Content-Type': 'application/json',
         },
