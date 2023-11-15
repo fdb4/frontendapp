@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../visitors/styling/login.css";
-import Navbar from '../../components/navbar-visitor/vistornav.js';
-import { Nav } from "../../components/navbar-visitor/NavbarElements";
 import VistorNavbar from "../../components/navbar-visitor/vistornav.js";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -23,6 +23,19 @@ const Login = () => {
     e.preventDefault();
     // Add your authentication logic here
     console.log("Logging in with data:", formData);
+
+    // Assume successful login for demonstration purposes
+    // In a real application, you would perform authentication and handle success/failure accordingly
+    // For now, we'll simulate a successful login
+    const isLoginSuccessful = true;
+
+    if (isLoginSuccessful) {
+      // Call the onLogin prop to update the App state
+      onLogin();
+
+      // Redirect to the protected route
+      navigate('/clienthome');
+    }
   };
 
   return (
