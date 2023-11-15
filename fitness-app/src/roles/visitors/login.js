@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios"; // Import Axios
-
+import axios from "axios";
 import "./login.css";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,7 +19,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       // Send POST request to the backend with JSON data
       const response = await axios.post("http://127.0.0.1:5000/login", formData, {
@@ -28,15 +27,19 @@ const Login = () => {
           'Content-Type': 'application/json',
         },
       });
-  
+
       // Handle the response, such as storing tokens or updating UI
       console.log("Login successful:", response.data);
+
+      // Call the onLogin prop to update the application state in the parent component
+      onLogin();
+
     } catch (error) {
       // Handle errors, such as displaying error messages
       console.error("Error during login:", error);
     }
   };
-  
+
   return (
     <div className="login-page">
       <div className="login-modal">
