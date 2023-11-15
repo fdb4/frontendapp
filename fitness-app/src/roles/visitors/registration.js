@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import './registration.css'
+
+const API_URL = 'http://127.0.0.1:5000';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -18,11 +22,41 @@ const Registration = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your registration logic here
-    console.log("Registering with data:", formData);
-  };
+    
+    if(!formData.fName || !formData.lName || !formData.email || !formData.password) {
+
+      console.error("All fields are required.");
+      return;
+    }
+
+    try {
+
+      const comm = await axios.post(`${API_URL}/signup`, formData);
+      console.log("Registering with data:", formData);
+      console.log("Response:", comm.data);
+
+      navigate(`${API_URL}/login`);
+    }
+    catch(error) {
+
+      if(error.response) {
+
+        console.error("Error response:", error.response.data);
+      }
+      else if(error.request) {
+
+        console.error("No response:", error.request);
+      }
+      else {
+
+        console.error("Error", error.message);
+      }
+    }
+  }
 
   return (
     <div className="registration-page">
