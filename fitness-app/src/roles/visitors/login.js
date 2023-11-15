@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../visitors/styling/login.css";
+import axios from "axios"; // Import Axios
+
+import "./login.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -16,41 +18,56 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your authentication logic here
-    console.log("Logging in with data:", formData);
+  
+    try {
+      // Send POST request to the backend with JSON data
+      const response = await axios.post("http://127.0.0.1:5000/login", formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      // Handle the response, such as storing tokens or updating UI
+      console.log("Login successful:", response.data);
+    } catch (error) {
+      // Handle errors, such as displaying error messages
+      console.error("Error during login:", error);
+    }
   };
-
+  
   return (
-    <div className="body_1">
-      <h1>Login </h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email </label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Password </label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      <p>
-        Don't have an account? <Link to="/registration">Register here</Link>
-      </p>
+    <div className="login-page">
+      <div className="login-modal">
+        <h1>Login </h1>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div>
+            <label>Email </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Password </label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        <p>
+          Don't have an account? <Link to="/registration">Register here</Link>
+        </p>
+      </div>
     </div>
   );
 };
