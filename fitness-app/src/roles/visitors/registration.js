@@ -8,8 +8,8 @@ const API_URL = 'http://127.0.0.1:5000';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
-    fName: "",
-    lName: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
   });
@@ -27,7 +27,7 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if(!formData.fName || !formData.lName || !formData.email || !formData.password) {
+    if(!formData.firstname || !formData.lastname || !formData.email || !formData.password) {
 
       console.error("All fields are required.");
       return;
@@ -67,8 +67,8 @@ const Registration = () => {
             <label>First Name </label>
             <input
               type="text"
-              name="fName"
-              value={formData.fName}
+              name="firstname"
+              value={formData.firstname}
               onChange={handleChange}
               required
             />
@@ -77,8 +77,8 @@ const Registration = () => {
             <label>Last Name </label>
             <input
               type="text"
-              name="lName"
-              value={formData.lName}
+              name="lastname"
+              value={formData.lastname}
               onChange={handleChange}
               required
             />
