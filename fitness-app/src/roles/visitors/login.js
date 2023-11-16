@@ -11,6 +11,9 @@ const Login = ({ onLogin }) => {
     password: "",
   });
 
+  const [loginError, setLoginError] = useState(null);
+  const [loginSuccess, setLoginSuccess] = useState(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -19,32 +22,56 @@ const Login = ({ onLogin }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your authentication logic here
-    console.log("Logging in with data:", formData);
 
-    // Assume successful login for demonstration purposes
-    // In a real application, you would perform authentication and handle success/failure accordingly
-    // For now, we'll simulate a successful login
-    const isLoginSuccessful = true;
+    try {
+      // Send login credentials to the backend
+      const response = await fetch("http://127.0.0.1:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    if (isLoginSuccessful) {
-      // Call the onLogin prop to update the App state
-      onLogin();
+      // Parse the JSON response
+      const data = await response.json();
 
-      // Redirect to the protected route
-      navigate('/clienthome');
+      if (response.ok) {
+        // Successful login
+        console.log("Login successful:", data);
+
+        // Call the onLogin prop to update the App state
+        onLogin();
+
+        // Set success message
+        setLoginSuccess("Login successful!");
+
+        // Redirect to the protected route
+        navigate('/clienthome');
+      } else {
+        // Login failed
+        console.log("Login failed:", data.error);
+
+        // Set error message
+        setLoginError(data.error);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+
+      // Set generic error message
+      setLoginError("An error occurred during login. Please try again.");
     }
   };
 
   return (
     <div className="body_1">
       <VistorNavbar />
-      <h1>Login </h1>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email </label>
+          <label>Email</label>
           <input
             type="email"
             name="email"
@@ -54,7 +81,7 @@ const Login = ({ onLogin }) => {
           />
         </div>
         <div>
-          <label>Password </label>
+          <label>Password</label>
           <input
             type="password"
             name="password"
@@ -65,6 +92,8 @@ const Login = ({ onLogin }) => {
         </div>
         <button type="submit">Login</button>
       </form>
+      {loginSuccess && <p className="success-message">{loginSuccess}</p>}
+      {loginError && <p className="error-message">{loginError}</p>}
       <p>
         Don't have an account? <Link to="/registration">Register here</Link>
       </p>
