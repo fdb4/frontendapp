@@ -98,5 +98,7 @@
     height: 100vh; /* Adjust this value as needed */
   }
   
-  /* The rest of your styles... */
+.link {
+  color: blue;
+}
   

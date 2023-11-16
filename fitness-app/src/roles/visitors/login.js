@@ -81,7 +81,7 @@ const Login = ({ onLogin }) => {
             <p className={loginMessage.ok ? "success-message" : "error-message"}>{loginMessage}</p>
           )}
           <p>
-            Don't have an account? <Link to="/registration">Register here</Link>
+            Don't have an account? <Link className="link" to="/registration">Register here</Link>
           </p>
         </div>
       </div>
