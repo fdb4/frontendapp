@@ -12,6 +12,7 @@ const Registration = () => {
     lastname: "",
     email: "",
     password: "",
+    userType: ""
   });
 
   const handleChange = (e) => {
@@ -27,19 +28,27 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if(!formData.firstname || !formData.lastname || !formData.email || !formData.password) {
+    if(!formData.firstname || !formData.lastname || !formData.email || !formData.password || !formData.userType) {
 
       console.error("All fields are required.");
       return;
     }
 
+    const type = formData.userType === 'coach' ? 1:0;
+
     try {
 
-      const comm = await axios.post(`${API_URL}/signup`, formData);
-      console.log("Registering with data:", formData);
+      const sendData = {
+
+        ...formData,
+        userType: type,
+      };
+
+      const comm = await axios.post(`${API_URL}/signup`, sendData);
+      console.log("Registering with data:", sendData);
       console.log("Response:", comm.data);
 
-      navigate(`${API_URL}/login`);
+      navigate(`/login`);
     }
     catch(error) {
 
@@ -102,6 +111,19 @@ const Registration = () => {
               onChange={handleChange}
               required
             />
+          </div>
+          <div>
+            <label>User Type </label>
+            <select
+              name="userType"
+              value={formData.userType}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select...</option>
+              <option value="coach">Coach</option>
+              <option value="client">Client</option>
+            </select>
           </div>
           <button type="submit">Sign Up</button>
         </form>
