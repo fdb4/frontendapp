@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../visitors/styling/login.css";
+import "./login.css";
 import VistorNavbar from "../../components/navbar-visitor/vistornav.js";
 
 const Login = ({ onLogin }) => {
@@ -67,37 +67,39 @@ const handleSubmit = async (e) => {
 };
 
   return (
-    <div className="body_1">
-      <VistorNavbar />
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      {loginMessage && <p className={loginMessage.ok ? "success-message" : "error-message"}>{loginMessage}</p>}
-      <p>
-        Don't have an account? <Link to="/registration">Register here</Link>
-      </p>
-    </div>
+    <div className="login-page">
+    <VistorNavbar />
+   <div className="login-modal">
+     <h1>Login </h1>
+     <form onSubmit={handleSubmit} className="login-form">
+       <div>
+         <label>Email </label>
+         <input
+           type="email"
+           name="email"
+           value={formData.email}
+           onChange={handleChange}
+           required
+         />
+       </div>
+       <div>
+         <label>Password </label>
+         <input
+           type="password"
+           name="password"
+           value={formData.password}
+           onChange={handleChange}
+           required
+         />
+       </div>
+       <button type="submit">Login</button>
+     </form>
+     {loginMessage && <p className={loginMessage.ok ? "success-message" : "error-message"}>{loginMessage}</p>}
+     <p>
+       Don't have an account? <Link to="/registration">Register here</Link>
+     </p>
+   </div>
+ </div>
   );
 };
 
