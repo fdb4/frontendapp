@@ -33,6 +33,7 @@
 }
 
 .registration-modal .login-link {
+  
   display: block;
   text-align: center;
   margin-top: 20px;
@@ -76,10 +77,12 @@
 }
 
 .registration-form button:hover {
-  background-color: #f54d6e;
+  
+  background-color: rgb(245, 77, 110);
 }
 
 .registration-form .login-link:hover {
+  
   text-decoration: underline;
 }
 
@@ -99,4 +102,23 @@
   border-radius: 4px;
   font-size: 16px;
   color: #333;
+}
+
+.registration-form select {
+
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  boarder: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #333;
+  background-color: white;
+  cursor: pointer;
+}
+
+.registration-form select:focus {
+
+  border-color: rgb(166, 80, 62);
+  outline: none;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
