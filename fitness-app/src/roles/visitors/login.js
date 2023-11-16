@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./login.css";
+import { useAuth } from "../../components/navbar-visitor/auth";
+import VisitorNavbar from "../../components/navbar-visitor/visitornav";
+
 
 const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({
@@ -17,6 +20,8 @@ const Login = ({ onLogin }) => {
     });
   };
 
+  const auth = useAuth()
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,6 +39,8 @@ const Login = ({ onLogin }) => {
       // Call the onLogin prop to update the application state in the parent component
       onLogin();
 
+      auth.login("Client")
+      navigate('/clienthome')
     } catch (error) {
       // Handle errors, such as displaying error messages
       console.error("Error during login:", error);

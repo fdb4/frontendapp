@@ -4,13 +4,16 @@ import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../roles/visitors/assets/logo.png";
+import { useAuth } from "./auth";
 
-const VistorNavbar = () => {
+const ClientNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+
+  const auth = useAuth()
 
   return (
     <>
@@ -20,28 +23,36 @@ const VistorNavbar = () => {
         </Logo>
         <Bars onClick={toggleMenu} />
         <NavMenu showMenu={showMenu}>
-          <NavLink to="/" activeStyle>
+          <NavLink to="/clienthome" activeStyle>
             HOME
           </NavLink>
-          <NavLink to="/services" activeStyle>
-            SERVICES
+          <NavLink to="/dailyactivity" activeStyle>
+            DAILY ACTIVITY
           </NavLink>
-          <NavLink to="/coaches" activeStyle>
+          <NavLink to="/messages" activeStyle>
+            MESSAGES
+          </NavLink>
+          <NavLink to="/workouts" activeStyle>
+            WORKOUTS
+          </NavLink>
+          <NavLink to="/clientcoaches" activeStyle>
             COACHES
           </NavLink>
-          <NavLink to="/about" activeStyle>
-            ABOUT
+          <NavLink to="/settings" activeStyle>
+            SETTINGS
           </NavLink>
-          <LoginButton to="/registration" activeStyle>
-            REGISTRATION
-          </LoginButton>
-          <LoginButton to="/login" activeStyle>
-            LOGIN
+          <LoginButton to="/" activeStyle>
+            LOGOUT
           </LoginButton>
         </NavMenu>
+        {!auth.user === "Client" && (
+          <NavLink to="login" activeStyle>
+            LOGIN
+          </NavLink>
+        )}
       </Nav>
     </>
   );
 };
 
-export default VistorNavbar;
+export default ClientNavbar;

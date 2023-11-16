@@ -21,6 +21,8 @@ import ClientCoaches from "./roles/client/pages/clientcoaches.js";
 import Settings from "./roles/client/pages/settings.js";
 import Clients from "./roles/coach/pages/clients.js";
 import { Link } from "react-router-dom";
+import { AuthProvider } from "./components/navbar-visitor/auth.js";
+import { RequireAuth } from "./components/navbar-visitor/requireauth.js";
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -34,8 +36,8 @@ function App() {
   };
 
   return (
+    <AuthProvider>
     <Router>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
@@ -49,7 +51,7 @@ function App() {
           path="/clienthome"
           element={isLoggedIn ? <ClientHome /> : <Navigate to="/login" />}
         />
-
+        {/* <Route path="/clienthome" element={<RequireAuth><ClientHome /></RequireAuth>} /> */}
         {/* <Route path="/clienthome" element={isLoggedIn ? <ClientHome /> : <Navigate to="/login" />} /> */}
         <Route
           path="/dailyactivity"
@@ -77,6 +79,7 @@ function App() {
         />
       </Routes>
     </Router>
+    </AuthProvider>
   );
 }
 

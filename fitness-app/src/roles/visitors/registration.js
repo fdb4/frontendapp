@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import './registration.css'
+import VisitorNavbar from "../../components/navbar-visitor/visitornav";
 
 const API_URL = 'http://127.0.0.1:5000';
 
@@ -60,6 +61,7 @@ const Registration = () => {
 
   return (
     <div className="registration-page">
+
       <div className="registration-modal">
         <h1>Registration</h1>
         <form onSubmit={handleSubmit} className="registration-form">
