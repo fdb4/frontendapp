@@ -21,85 +21,71 @@ const Login = ({ onLogin }) => {
     });
   };
 
-// ...
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+    try {
+      const response = await fetch("http://127.0.0.1:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-  try {
-    // Send login credentials to the backend
-    const response = await fetch("http://127.0.0.1:5000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+      const data = await response.json();
 
-    // Parse the JSON response
-    const data = await response.json();
-
-    if (response.ok) {
-      // Successful login
-      console.log("Login successful:", data);
-
-      // Call the onLogin prop to update the App state
-      onLogin();
-
-      // Set success message
-      setLoginMessage(data.message);
-
-      // Redirect to the protected route
-      navigate('/clienthome');
-    } else {
-      // Login failed
-      console.log("Login failed:", data.message);
-
-      // Set error message
-      setLoginMessage(data.message);
+      if (response.ok) {
+        onLogin();
+        setLoginMessage(data.message);
+        navigate('/clienthome');
+      } else {
+        setLoginMessage(data.message);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setLoginMessage("An error occurred during login. Please try again.");
     }
-  } catch (error) {
-    console.error("Error during login:", error);
-
-    // Set generic error message
-    setLoginMessage("An error occurred during login. Please try again.");
-  }
-};
+  };
 
   return (
     <div className="login-page">
-    <VistorNavbar />
-   <div className="login-modal">
-     <h1>Login </h1>
-     <form onSubmit={handleSubmit} className="login-form">
-       <div>
-         <label>Email </label>
-         <input
-           type="email"
-           name="email"
-           value={formData.email}
-           onChange={handleChange}
-           required
-         />
-       </div>
-       <div>
-         <label>Password </label>
-         <input
-           type="password"
-           name="password"
-           value={formData.password}
-           onChange={handleChange}
-           required
-         />
-       </div>
-       <button type="submit">Login</button>
-     </form>
-     {loginMessage && <p className={loginMessage.ok ? "success-message" : "error-message"}>{loginMessage}</p>}
-     <p>
-       Don't have an account? <Link to="/registration">Register here</Link>
-     </p>
-   </div>
- </div>
+      <VistorNavbar />
+      <div className="login-container">
+        <div className="login-modal">
+          <h1>Login </h1>
+          <form onSubmit={handleSubmit} className="login-form">
+            <div>
+              <label>Email </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label>Password </label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type="submit">Login</button>
+          </form>
+          {loginMessage && (
+            <p className={loginMessage.ok ? "success-message" : "error-message"}>{loginMessage}</p>
+          )}
+          <p>
+            Don't have an account? <Link to="/registration">Register here</Link>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
