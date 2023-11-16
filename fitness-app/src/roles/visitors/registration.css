@@ -2,10 +2,10 @@
 
 	background-image: url('./assets/background_1.jpg');
 	background-size: cover;
-	display: flex;
+	/* display: flex;
 	justify-content: center;
-	align-items: center;
-	height: 100vh;
+	align-items: center; */
+	height: 120vh;
 }
 
 .registration-modal {

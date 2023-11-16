@@ -61,6 +61,7 @@ const Registration = () => {
   return (
     <div className="registration-page">
        <VistorNavbar />
+       <div className="login-container">
       <div className="registration-modal">
         <h1>Registration</h1>
         <form onSubmit={handleSubmit} className="registration-form">
@@ -109,6 +110,7 @@ const Registration = () => {
         <p>
           Already have an account? <Link to="/login">Login here</Link>
         </p>
+      </div>
       </div>
     </div>
   );
