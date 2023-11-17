@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 import './registration.css'
+import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
+
+
 
 const API_URL = 'http://127.0.0.1:5000';
 
@@ -12,7 +14,6 @@ const Registration = () => {
     lastname: "",
     email: "",
     password: "",
-    userType: ""
   });
 
   const handleChange = (e) => {
@@ -28,47 +29,39 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if(!formData.firstname || !formData.lastname || !formData.email || !formData.password || !formData.userType) {
-
+    if (!formData.firstname || !formData.lastname || !formData.email || !formData.password) {
       console.error("All fields are required.");
       return;
     }
 
-    const type = formData.userType === 'coach' ? 1:0;
-
     try {
+      const response = await fetch(`${API_URL}/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      const sendData = {
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Registering with data:", formData);
+        console.log("Response:", data);
 
-        ...formData,
-        userType: type,
-      };
-
-      const comm = await axios.post(`${API_URL}/signup`, sendData);
-      console.log("Registering with data:", sendData);
-      console.log("Response:", comm.data);
-
-      navigate(`/login`);
-    }
-    catch(error) {
-
-      if(error.response) {
-
-        console.error("Error response:", error.response.data);
+        navigate(`/login`);
+      } else {
+        const errorData = await response.json();
+        console.error("Error response:", errorData);
       }
-      else if(error.request) {
-
-        console.error("No response:", error.request);
-      }
-      else {
-
-        console.error("Error", error.message);
-      }
+    } catch (error) {
+      console.error("Error", error.message);
     }
   }
 
   return (
     <div className="registration-page">
+       <VistorNavbar />
+       <div className="login-container">
       <div className="registration-modal">
         <h1>Registration</h1>
         <form onSubmit={handleSubmit} className="registration-form">
@@ -112,24 +105,12 @@ const Registration = () => {
               required
             />
           </div>
-          <div>
-            <label>User Type </label>
-            <select
-              name="userType"
-              value={formData.userType}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select...</option>
-              <option value="coach">Coach</option>
-              <option value="client">Client</option>
-            </select>
-          </div>
           <button type="submit">Sign Up</button>
         </form>
         <p>
-          Already have an account? <Link to="/login">Login here</Link>
+          Already have an account? <Link className="link" to="/login">Login here</Link>
         </p>
+      </div>
       </div>
     </div>
   );
