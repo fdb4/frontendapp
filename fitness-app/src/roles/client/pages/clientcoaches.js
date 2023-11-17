@@ -5,7 +5,7 @@ import "../styling/clientcoaches.css"; // Import your CSS file for styling
 function ClientCoaches() {
   const [coaches, setCoaches] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [coachesPerPage] = useState(10);
+  const [coachesPerPage] = useState(5);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
@@ -46,9 +46,8 @@ function ClientCoaches() {
   return (
     <div className="body_1">
       <ClientNavbar />
-      <h1>Coaches Page</h1>
+      <h1>COACHES</h1>
 
-      {/* Search form */}
       <div className="search-container">
         <input
           type="text"
@@ -59,37 +58,47 @@ function ClientCoaches() {
         <button onClick={handleSearch}>Search</button>
       </div>
 
-      {/* Display coaches in a table */}
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Rating</th>
-            <th>Experience</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentCoaches.map((coach) => (
-            <tr key={coach.clientID}>
-              <td>{coach.firstname} {coach.lastname}</td>
-              <td>{coach.email}</td>
-              <td>{coach.rating}</td>
-              <td>{coach.experience}</td>
-              <td>{coach.price}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {currentCoaches.map((coach) => (
+        <tr key={coach.clientID}>
+          <div className="profile">
+            <div className="left">
+              <name>
+                {coach.firstname}
+              </name>
+              <name2>
+              {coach.lastname}
+              </name2> 
+              <age>AGE: </age>
+              <price>PRICE: ${coach.price}</price>
+            </div>
+
+            <div className="middle">
+              <h3>DESCRIPTION</h3>
+              {coach.bio}
+            </div>
+
+            <div className="right">
+              <h3>CONTACT</h3>
+              {coach.email} {coach.phone}
+              <button className="view">VIEW PROFILE</button>
+            </div>
+          </div>
+        </tr>
+      ))}
 
       {/* Pagination */}
       <div className="pagination">
-        <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
+        <button
+          onClick={() => paginate(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
           Previous
         </button>
         <span>{`Page ${currentPage} of ${totalPages}`}</span>
-        <button onClick={() => paginate(currentPage + 1)} disabled={indexOfLastCoach >= coaches.length}>
+        <button
+          onClick={() => paginate(currentPage + 1)}
+          disabled={indexOfLastCoach >= coaches.length}
+        >
           Next
         </button>
       </div>
