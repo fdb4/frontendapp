@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ClientNavbar from "../../../components/navbar-visitor/clientnav";
 import "../styling/clientcoaches.css"; // Import your CSS file for styling
+import { Link } from "react-router-dom";
+
+
 
 function ClientCoaches() {
   const [coaches, setCoaches] = useState([]);
@@ -44,9 +47,9 @@ function ClientCoaches() {
       }
 
       // Add search term to the URL if it is present
-      if (searchTerm) {
-        url += `/search/${searchTerm}`;
-      }
+      // if (searchTerm) {
+      //   url += `/search/${searchTerm}`;
+      // }
 
       const response = await fetch(url);
       const data = await response.json();
@@ -64,11 +67,6 @@ function ClientCoaches() {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-  };
-
-  // Search
-  const handleSearch = () => {
-    fetchData();
   };
 
   // Filter functions
@@ -143,7 +141,9 @@ function ClientCoaches() {
                 <contact>CONTACT</contact>
                 <email>Email: {coach.email}</email>
               </div>
-              <button className="view">VIEW PROFILE</button>
+              <Link to={`/coach/${coach.clientID}`} className="view">
+                  VIEW PROFILE
+                </Link>
             </div>
           </div>
         </tr>
