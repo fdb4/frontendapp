@@ -103,3 +103,11 @@
 .link {
   color:blue;
 }
+.roles-container {
+  display: flex;
+  align-items: center;
+}
+
+.roles-container label {
+  margin-right: 10px;
+}
