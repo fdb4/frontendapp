@@ -141,9 +141,7 @@ function ClientCoaches() {
                 <contact>CONTACT</contact>
                 <email>Email: {coach.email}</email>
               </div>
-              <Link to={`/coach/${coach.clientID}`} className="view">
-                  VIEW PROFILE
-                </Link>
+              <Link to={`/coaches/${coach.clientID}`} className="view">VIEW PROFILE</Link>
             </div>
           </div>
         </tr>

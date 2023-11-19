@@ -23,6 +23,7 @@ import Clients from "./roles/coach/pages/clients.js";
 import { Link } from "react-router-dom";
 import { AuthProvider } from "./components/navbar-visitor/auth.js";
 import { RequireAuth } from "./components/navbar-visitor/requireauth.js";
+import CoachProfile from './roles/client/pages/coachprofile.js';
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -51,8 +52,6 @@ function App() {
           path="/clienthome"
           element={isLoggedIn ? <ClientHome /> : <Navigate to="/login" />}
         />
-        {/* <Route path="/clienthome" element={<RequireAuth><ClientHome /></RequireAuth>} /> */}
-        {/* <Route path="/clienthome" element={isLoggedIn ? <ClientHome /> : <Navigate to="/login" />} /> */}
         <Route
           path="/dailyactivity"
           element={isLoggedIn ? <DailyActivity /> : <Navigate to="/login" />}
@@ -68,6 +67,10 @@ function App() {
         <Route
           path="/clientcoaches"
           element={isLoggedIn ? <ClientCoaches /> : <Navigate to="/login" />}
+        />
+        //coach's profile based on id.
+        <Route
+          path="/coaches/:id" element={<CoachProfile />}
         />
         <Route
           path="/settings"
