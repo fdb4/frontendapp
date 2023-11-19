@@ -130,8 +130,11 @@ gym {
   line-height: 100%;
   padding-top:5px;
 }
-town {
+town, email {
   margin:5px 0;
+}
+email {
+  padding-top:5px;
 }
 location, town, state, contact, email {
   color:#000;

@@ -141,7 +141,7 @@ function ClientCoaches() {
             <div className="right">
               <div className="contact">
                 <contact>CONTACT</contact>
-                <email>{coach.email}</email>
+                <email>Email: {coach.email}</email>
               </div>
               <button className="view">VIEW PROFILE</button>
             </div>
