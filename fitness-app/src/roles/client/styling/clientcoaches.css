@@ -49,7 +49,11 @@ label select {
   height: 223px;
   flex-shrink: 0;
   display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  gap: 20px; /* Add equal padding between the divs */
 }
+
+
 .view {
   display: inline-flex;
   padding: 17px 30px;
@@ -59,38 +63,35 @@ label select {
   border-radius: 45px;
   background: #3503fc;
 }
-.left{ 
-    margin-top: 44px;
+.left {
+  margin-top: 44px;
 }
 name {
   color: #000;
   font-family: Saira Condensed;
-  font-size: 55px;
+  font-size: 40px;
   font-style: normal;
   font-weight: 700;
   line-height: 100%; /* 55px */
-  text-transform: uppercase;
   padding-left: 266px;
-  padding-top: 44px;
+  padding-top: 30px;
 }
 name2 {
   color: #000;
   font-family: Saira Condensed;
-  font-size: 55px;
+  font-size: 40px;
   font-style: normal;
   font-weight: 700;
   line-height: 100%; /* 55px */
-  text-transform: uppercase;
   padding-left: 20px;
 }
 age {
   color: #000;
   font-family: Saira Condensed;
-  font-size: 32px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 100%; /* 32px */
-  text-transform: uppercase;
   display: block;
   padding-left: 266px;
   padding-top: 13px;
@@ -98,12 +99,66 @@ age {
 price {
   color: #000;
   font-family: Saira Condensed;
-  font-size: 32px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 100%; /* 32px */
-  text-transform: uppercase;
   display: block;
   padding-left: 266px;
   padding-top: 18px;
+}
+gym {
+  color: #000;
+  font-family: Saira Condensed;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 32px */
+  display: block;
+  padding-left: 266px;
+  padding-top: 18px;
+}
+
+.middle{
+  margin-top: 44px;
+}
+.location {
+  display:flex;
+  flex-direction: column;
+  font-size:20px;
+  font-weight: 700;
+  line-height: 100%;
+  padding-top:5px;
+}
+town {
+  margin:5px 0;
+}
+location, town, state, contact, email {
+  color:#000;
+}
+
+.right{
+  margin-top: 44px;
+  margin-left:36px;
+}
+.contact {
+  display:flex;
+  flex-direction:column;  
+  font-weight:700;
+  font-size:20px;
+  line-height:100%;
+}
+
+
+input[type="text"], option, select {
+  color: #000;
+  font-size: 16px;
+}
+button {
+  display: inline-flex;
+  padding: 10px 30px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #3503fc;
 }
