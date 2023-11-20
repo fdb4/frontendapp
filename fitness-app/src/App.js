@@ -32,8 +32,6 @@ function App() {
     // Perform login logic
     // After successful login, setLoggedIn(true) and navigate to /clienthome
     setLoggedIn(true);
-    // Redirect to /clienthome
-    // navigate('/clienthome');
   };
 
   return (
