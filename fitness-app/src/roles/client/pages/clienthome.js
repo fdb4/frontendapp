@@ -2,7 +2,7 @@ import ClientNavbar from "../../../components/navbar-visitor/clientnav"
 import { Link } from 'react-router-dom';
 import facebook from "../../visitors/assets/facebook.png"
 import instagram from "../../visitors/assets/instagram.png"
-import linkedin from "../../visitors/assets/facebook.png"
+import linkedin from "../../visitors/assets/linkedin.png"
 
 function ClientHome() {
     //Need to Import the UsersName/ID
@@ -32,8 +32,8 @@ function ClientHome() {
             </div>
             <div className="footer">
         <h2>
-          READY FOR YOUR <br></br>
-          <span className="champion">FIRST</span> LESSON?
+          ADD US ON OUR <br></br>
+          <span className="champion">SOCIALS</span>
         </h2>
         <div className="socials">
           <img src={facebook} alt="Dumbbell" />
