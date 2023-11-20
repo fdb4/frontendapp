@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./login.css";
 import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
 import { useAuth } from "../../components/navbar-visitor/auth.js";
@@ -9,6 +9,8 @@ import Cookies from 'js-cookie';
  
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/clienthome"
   const { setAuth } = useAuth()
 
   const [formData, setFormData] = useState({
@@ -51,7 +53,8 @@ const Login = () => {
         const expirationDate = new Date(new Date().getTime() + 15 * 60 * 1000);
         // const expirationDate = new Date(new Date().getTime() + 30 * 1000);
         Cookies.set('accessToken', accessToken, { expires: expirationDate });
-        navigate('/clienthome');
+        navigate(from, { replace: true });
+
       } else {
         setLoginMessage(data.message);
       }
