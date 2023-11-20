@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../roles/visitors/assets/logo.png";
-import { useAuth } from "./auth";
+
 
 const ClientNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -12,8 +12,6 @@ const ClientNavbar = () => {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
-
-  const auth = useAuth()
 
   return (
     <>
@@ -45,11 +43,6 @@ const ClientNavbar = () => {
             LOGOUT
           </LoginButton>
         </NavMenu>
-        {!auth.user === "Client" && (
-          <NavLink to="login" activeStyle>
-            LOGIN
-          </NavLink>
-        )}
       </Nav>
     </>
   );

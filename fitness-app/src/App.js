@@ -52,39 +52,14 @@ function App() {
         <Route path="/messages" element={<RequireAuth><Messages /></RequireAuth>} />
         <Route path="/workouts" element={<RequireAuth><Workouts /></RequireAuth>} />
         <Route path="/clientcoaches" element={<RequireAuth><ClientCoaches /></RequireAuth>} />
-        
-        {/* <Route
-          path="/clienthome"
-          element={isLoggedIn ? <ClientHome /> : <Navigate to="/login" />}
-        />
+
+        //coach's profile based on id.
+        <Route path="/coaches/:id" element={<RequireAuth><CoachProfile /></RequireAuth>}  />
+       
         <Route
-          path="/dailyactivity"
-          element={isLoggedIn ? <DailyActivity /> : <Navigate to="/login" />}
-        />
+          path="/settings" element={<RequireAuth><Settings /></RequireAuth>} />
         <Route
-          path="/messages"
-          element={isLoggedIn ? <Messages /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/workouts"
-          element={isLoggedIn ? <Workouts /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/clientcoaches"
-          element={isLoggedIn ? <ClientCoaches /> : <Navigate to="/login" />}
-        /> */}
-        {/* //coach's profile based on id.
-        <Route
-          path="/coaches/:id" element={<CoachProfile />}
-        />
-        <Route
-          path="/settings"
-          element={isLoggedIn ? <Settings /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/clients"
-          element={isLoggedIn ? <Clients /> : <Navigate to="/login" />}
-        /> */}
+          path="/clients" element={<RequireAuth><Clients /></RequireAuth>} />
       </Routes>
       </AuthProvider>
     </Router>

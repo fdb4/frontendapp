@@ -10,12 +10,10 @@ const RequireAuth = ( {children} ) => {
     let accessToken = ''
     if (Cookies.get('accessToken')) {
         accessToken = Cookies.get('accessToken')
-
+        if (!auth.accessToken) {
+            setAuth({accessToken})
+        }
     }
-    if (!auth.accessToken) {
-        setAuth({accessToken})
-    }
-
     if (!accessToken) {
         return <Navigate to="/login"/>
     }
