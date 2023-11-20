@@ -28,6 +28,18 @@ import RequireAuth from "./components/navbar-visitor/requireauth.js";
 function App() {
   // const [isLoggedIn, setLoggedIn] = useState(false);
 
+  // const handleLogin = () => {
+
+  //   setLoggedIn(true);
+
+  // };
+
+  // const handleLogin = () => {
+  //   Perform login logic
+  //   After successful login, setLoggedIn(true) and navigate to /clienthome
+  //   setLoggedIn(true);
+  // };
+
 
   return (
     <Router>
