@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Nav, NavLink, NavMenu, Bars, LoginButton, Logo, LogoImage, HamburgerMenu } from "./NavbarElements";
 import { FaBars } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../roles/visitors/assets/logo.png";
+import { useAuth } from "./auth";
+import Cookies from 'js-cookie';
+import { useLocation, Navigate } from "react-router-dom"
 
 
 const ClientNavbar = () => {
@@ -12,6 +15,15 @@ const ClientNavbar = () => {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+
+  const { setAuth } = useAuth()
+  const handleLogout = () => {
+    Cookies.remove('accessToken')
+    setAuth({})
+    console.log('Done')
+    Navigate("/")
+  }
+
 
   return (
     <>
@@ -39,7 +51,7 @@ const ClientNavbar = () => {
           <NavLink to="/settings" activeStyle>
             SETTINGS
           </NavLink>
-          <LoginButton to="/" activeStyle>
+          <LoginButton onClick={handleLogout} activeStyle>
             LOGOUT
           </LoginButton>
         </NavMenu>

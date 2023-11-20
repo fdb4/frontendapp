@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../roles/visitors/assets/logo.png";
 import { useAuth } from "./auth";
+import Cookies from 'js-cookie';
+import { useLocation, Navigate } from "react-router-dom"
 
 const CoachNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -13,7 +15,13 @@ const CoachNavbar = () => {
     setShowMenu(!showMenu);
   };
 
-  const auth = useAuth()
+  const { setAuth } = useAuth()
+  const handleLogout = () => {
+    Cookies.remove('accessToken')
+    setAuth({})
+    console.log('Done')
+    Navigate("/")
+  }
 
   return (
     <>
@@ -44,16 +52,10 @@ const CoachNavbar = () => {
           <NavLink to="/settings" activeStyle>
             SETTINGS
           </NavLink>
-          <LoginButton to="/" activeStyle>
+          <LoginButton onclick={handleLogout} activeStyle>
             LOGOUT
           </LoginButton>
         </NavMenu>
-        {!auth.user && (
-          <NavLink to="login" activeStyle>
-            LOGIN
-          </NavLink>
-        )}
-
       </Nav>
     </>
   );

@@ -1,4 +1,3 @@
-import { Nav } from "./NavbarElements";
 import { useLocation, Navigate } from "react-router-dom"
 import { useAuth } from "./auth";
 import Cookies from 'js-cookie';
