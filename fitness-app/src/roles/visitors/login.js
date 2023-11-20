@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
+import { useAuth } from "../../components/navbar-visitor/auth.js";
+import Cookies from 'js-cookie';
 
-const Login = ({ onLogin }) => {
+
+ 
+const Login = () => {
   const navigate = useNavigate();
+  const { setAuth } = useAuth()
 
   const [formData, setFormData] = useState({
     email: "",
@@ -30,14 +35,22 @@ const Login = ({ onLogin }) => {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
-
+      
       if (response.ok) {
-        onLogin();
+        // onLogin();
+        console.log(data)
         setLoginMessage(data.message);
+        const accessToken = data?.access_token;
+        // const roles = data?.roles;
+        setAuth({accessToken})
+        const expirationDate = new Date(new Date().getTime() + 15 * 60 * 1000);
+        // const expirationDate = new Date(new Date().getTime() + 30 * 1000);
+        Cookies.set('accessToken', accessToken, { expires: expirationDate });
         navigate('/clienthome');
       } else {
         setLoginMessage(data.message);

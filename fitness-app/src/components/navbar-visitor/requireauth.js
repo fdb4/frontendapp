@@ -1,10 +1,25 @@
-import { useAuth } from "./auth"
-import { Navigate } from "react-router-dom"
-export const RequireAuth = ({children}) => {
-    const auth = useAuth()
+import { Nav } from "./NavbarElements";
+import { useLocation, Navigate } from "react-router-dom"
+import { useAuth } from "./auth";
+import Cookies from 'js-cookie';
 
-    if(!auth.user === "Client") {
-        return <Navigate to="/login" />
+const RequireAuth = ( {children} ) => {
+    const { auth } = useAuth()
+    const { setAuth } = useAuth()
+    const location = useLocation();
+    let accessToken = ''
+    if (Cookies.get('accessToken')) {
+        accessToken = Cookies.get('accessToken')
+
+    }
+    if (!auth.accessToken) {
+        setAuth({accessToken})
+    }
+
+    if (!accessToken) {
+        return <Navigate to="/login"/>
     }
     return children
 }
+
+export default RequireAuth
