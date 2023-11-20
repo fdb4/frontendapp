@@ -22,65 +22,42 @@ import Settings from "./roles/client/pages/settings.js";
 import Clients from "./roles/coach/pages/clients.js";
 import { Link } from "react-router-dom";
 import { AuthProvider } from "./components/navbar-visitor/auth.js";
-import { RequireAuth } from "./components/navbar-visitor/requireauth.js";
 import CoachProfile from './roles/client/pages/coachprofile.js';
+import RequireAuth from "./components/navbar-visitor/requireauth.js";
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  // const [isLoggedIn, setLoggedIn] = useState(false);
 
-  const handleLogin = () => {
-    // Perform login logic
-    // After successful login, setLoggedIn(true) and navigate to /clienthome
-    setLoggedIn(true);
-  };
 
   return (
-    <AuthProvider>
     <Router>
+      <AuthProvider>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/coaches" element={<Coaches />} />
         <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        {/* <Route path="/login" element={<Login onLogin={handleLogin} />} /> */}
+        <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
 
         {/* Protected Routes */}
-        <Route
-          path="/clienthome"
-          element={isLoggedIn ? <ClientHome /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/dailyactivity"
-          element={isLoggedIn ? <DailyActivity /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/messages"
-          element={isLoggedIn ? <Messages /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/workouts"
-          element={isLoggedIn ? <Workouts /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/clientcoaches"
-          element={isLoggedIn ? <ClientCoaches /> : <Navigate to="/login" />}
-        />
+        <Route path="/clienthome" element={<RequireAuth><ClientHome /></RequireAuth>} />
+        <Route path="/dailyactivity" element={<RequireAuth><DailyActivity /></RequireAuth>} />
+        <Route path="/messages" element={<RequireAuth><Messages /></RequireAuth>} />
+        <Route path="/workouts" element={<RequireAuth><Workouts /></RequireAuth>} />
+        <Route path="/clientcoaches" element={<RequireAuth><ClientCoaches /></RequireAuth>} />
+
         //coach's profile based on id.
+        <Route path="/coaches/:id" element={<RequireAuth><CoachProfile /></RequireAuth>}  />
+       
         <Route
-          path="/coaches/:id" element={<CoachProfile />}
-        />
+          path="/settings" element={<RequireAuth><Settings /></RequireAuth>} />
         <Route
-          path="/settings"
-          element={isLoggedIn ? <Settings /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/clients"
-          element={isLoggedIn ? <Clients /> : <Navigate to="/login" />}
-        />
+          path="/clients" element={<RequireAuth><Clients /></RequireAuth>} />
       </Routes>
+      </AuthProvider>
     </Router>
-    </AuthProvider>
   );
 }
 
