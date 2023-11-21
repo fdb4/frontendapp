@@ -1,0 +1,104 @@
+.login-page {
+	background-image: url('./assets/background_1.jpg');
+	background-size: cover;
+	height: 120vh;
+}
+
+.login-modal {
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	position: relative;
+	z-index: 10;
+}
+
+.login-modal p {
+	color: black;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.login-modal h1 {
+	color: black;
+	margin-bottom: 24px;
+	text-align: center;
+}
+
+.login-modal .login-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: blue;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+}
+
+.login-form label {
+	margin-bottom: 8px;
+	color: #666;
+}
+
+.login-form input {
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+.login-form button {
+  padding: 15px 20px;
+  background-color: rgb(167, 80, 62);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.login-form button:hover {
+  background-color: #000000;
+}
+
+.login-form .login-link:hover {
+  text-decoration: underline;
+}
+
+.login-form label {
+  
+  display: block;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.login-form input {
+  width: calc(100% - 30px);
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust this value as needed */
+  }
+  
+.link {
+  color: blue;
+}
+  

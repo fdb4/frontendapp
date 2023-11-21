@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../roles/visitors/assets/logo.png";
 
-const Navbar = () => {
+const VisitorNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -32,9 +32,9 @@ const Navbar = () => {
           <NavLink to="/about" activeStyle>
             ABOUT
           </NavLink>
-          <LoginButton to="/registration" activeStyle>
+          {/* <LoginButton to="/registration" activeStyle>
             REGISTRATION
-          </LoginButton>
+          </LoginButton> */}
           <LoginButton to="/login" activeStyle>
             LOGIN
           </LoginButton>
@@ -44,4 +44,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default VisitorNavbar;

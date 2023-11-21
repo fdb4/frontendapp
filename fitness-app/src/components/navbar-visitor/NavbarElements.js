@@ -74,17 +74,47 @@ export const Logo = styled.div`
 `;
 
 export const LogoImage = styled.img`
-  width: 100px;
+  width: 150px;
   height: 100px;
   margin-right: 10px;
 `;
 
-export const HamburgerMenu = styled.div`
-  display: none;
-  @media screen and (max-width: 768px) {
-    display: block;
-    color: white;
-    font-size: 1.8rem;
-    cursor: pointer;
+
+export const DropdownMenu = styled.div`
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 10px;
+  display: ${(props) => (props.show ? "block" : "none")};
+`;
+
+
+export const DropdownLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  color: #333;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #f5f5f5;
   }
+
+  img {
+    margin-right: 8px; 
+    max-width:20px;
+    opacity: 0.5;
+    transiton: var(--speed);
+  }
+`;
+
+export const UserProfileImage = styled.img`
+  width: 30px; // Adjust the size as needed
+  height: 30px; // Adjust the size as needed
+  border-radius: 50%;
+  cursor: pointer;
+  filter: invert(100%)
 `;
