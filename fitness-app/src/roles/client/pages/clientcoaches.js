@@ -57,14 +57,17 @@ function ClientCoaches() {
     }
   };
 
+  const paginate = (pageNumber) => {
+    if (pageNumber < 1 || pageNumber > totalPages) {
+      return;
+    }
+    setCurrentPage(pageNumber);
+  };
+
   const indexOfLastCoach = currentPage * coachesPerPage;
   const indexOfFirstCoach = indexOfLastCoach - coachesPerPage;
   const currentCoaches = coaches.slice(indexOfFirstCoach, indexOfLastCoach);
   const totalPages = Math.ceil(coaches.length / coachesPerPage);
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
 
   const handleFilterChange = (selectedFilter) => {
     setFilters({
@@ -84,6 +87,8 @@ function ClientCoaches() {
       value: "",
     });
   };
+
+  const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
     <div className="body_1">
@@ -114,7 +119,6 @@ function ClientCoaches() {
         <button onClick={handleFilter}>Filter</button>
         <button onClick={handleClear}>Clear</button>
       </div>
-
       {currentCoaches.map((coach) => (
         <tr key={coach.clientID}>
           <div className="profile">
@@ -153,10 +157,21 @@ function ClientCoaches() {
         >
           Previous
         </button>
-        <span>{`Page ${currentPage} of ${totalPages}`}</span>
+        <span>
+          Page
+          <input
+            type="number"
+            value={currentPage}
+            onChange={(e) => setCurrentPage(e.target.value)}
+            onBlur={() => paginate(parseInt(currentPage))}
+            min="1"
+            max={totalPages}
+          />
+          of {totalPages}
+        </span>
         <button
           onClick={() => paginate(currentPage + 1)}
-          disabled={indexOfLastCoach >= coaches.length}
+          disabled={currentPage === totalPages}
         >
           Next
         </button>

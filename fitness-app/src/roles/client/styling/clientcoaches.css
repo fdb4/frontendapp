@@ -276,3 +276,7 @@ bio {
   padding-top: 10px;
 }
 
+input {
+  color:black;
+  margin:5px;
+}
