@@ -100,14 +100,85 @@
   font-size: 16px;
   color: #333;
 }
+
 .link {
+
   color:blue;
 }
 .roles-container {
+  
   display: flex;
   align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  gap: 10px;
 }
 
 .roles-container label {
+
+  display: flex;
+  align-items: center;
   margin-right: 10px;
+  font-size: 16px;
+  color: #333;
 }
+
+.roles-container input[type="radio"] {
+
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.roles-container input[type="radio"] {
+  
+  margin-right: 5px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  outline: none;
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.roles-container input[type="radio"]:checked {
+
+  background-color: #f54d6e;
+  border-color: #f54d6e;
+}
+
+.registration-form input {
+ 
+  width: calc(100% - 30px);
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+.registration-form select {
+
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  boarder: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #333;
+  background-color: white;
+  cursor: pointer;
+}
+
+.registration-form select:focus {
+
+  border-color: rgb(166, 80, 62);
+  outline: none;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+

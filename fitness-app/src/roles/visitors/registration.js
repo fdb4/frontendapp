@@ -12,6 +12,7 @@ const Registration = () => {
     lastname: "",
     email: "",
     password: "",
+    userType: ""
   });
 
   const handleChange = (e) => {
@@ -31,11 +32,18 @@ const Registration = () => {
       !formData.firstname ||
       !formData.lastname ||
       !formData.email ||
-      !formData.password
+      !formData.password ||
+      !formData.userType
     ) {
       console.error("All fields are required.");
       return;
     }
+
+    const newData = {
+
+      ...formData,
+      userType: formData.userType === 'coach' ? 1:0
+    };
 
     try {
       const response = await fetch(`${API_URL}/signup`, {
@@ -43,12 +51,12 @@ const Registration = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(newData),
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Registering with data:", formData);
+        console.log("Registering with data:", newData);
         console.log("Response:", data);
 
         navigate(`/login`);
@@ -108,27 +116,25 @@ const Registration = () => {
                 required
               />
             </div>
-            <div className="roles-container">
-              <label>Roles:</label>
-              <label>
-                <input type="radio" name="roles" value="1" required />
-                Coach
-              </label>
-              <label>
-                <input type="radio" name="roles" value="0" required />
-                Client
-              </label>
+            <div>
+              <label>User Type </label>
+              <select
+                name="userType"
+                value={formData.userType}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select...</option>
+                <option value="coach">Coach</option>
+                <option value="client">Client</option>
+              </select>
             </div>
-
             <button type="submit">Sign Up</button>
           </form>
           <p>
-            Already have an account?{" "}
-            <Link className="link" to="/login">
-              Login here
-            </Link>
+            Already have an account? <Link to="/login">Login here</Link>
           </p>
-        </div>
+        </div>      
       </div>
     </div>
   );
