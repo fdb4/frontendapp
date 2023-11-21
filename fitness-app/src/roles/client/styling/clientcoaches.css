@@ -72,29 +72,18 @@ label select {
   margin-top: 44px;
 }
 name {
-  color: #000;
-  font-family: Saira Condensed;
   font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; /* 55px */
-  padding-left: 266px;
+  color:#000;
+
 }
-name2 {
-  color: #000;
-  font-family: Saira Condensed;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; /* 55px */
-  padding-left: 20px;
+name, age, price, gym{ 
+  padding-left:266px;
 }
 age {
-  padding-left: 266px;
   padding-top: 13px;
 }
 
-age, experience, ratings {
+age, experience, ratings, price , gym {
   color: #000;
   font-family: Saira Condensed;
   font-size: 20px;
@@ -103,27 +92,10 @@ age, experience, ratings {
   line-height: 100%; /* 32px */
   display: block;
 }
-price {
-  color: #000;
-  font-family: Saira Condensed;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; /* 32px */
-  display: block;
-  padding-left: 266px;
+price, gym {
   padding-top: 18px;
 }
 gym {
-  color: #000;
-  font-family: Saira Condensed;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; /* 32px */
-  display: block;
-  padding-left: 266px;
-  padding-top: 18px;
   padding-bottom:18px;
 }
 
@@ -180,15 +152,6 @@ button {
   flex-direction: column;
 }
 
-.name, .name2, .age, .price, .gym, .town, .state, .email {
-  color: #000;
-  font-family: "Saira Condensed", sans-serif;
-  font-size: 20px; /* Adjusted font size for better readability */
-  font-weight: 700;
-  line-height: 1.5; /* Adjusted line height for better spacing */
-  padding-top: 10px; /* Adjusted padding for better spacing */
-}
-
 
 @media only screen and (max-width: 768px) {
   .left, .middle, .right {
@@ -197,10 +160,6 @@ button {
   }
 }
 
-
-/* Add your font import here */
-
-/* General styling for text inputs, buttons, and pagination */
 input[type="text"],
 select,
 button {
