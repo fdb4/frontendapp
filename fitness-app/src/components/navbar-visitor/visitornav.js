@@ -32,9 +32,9 @@ const VisitorNavbar = () => {
           <NavLink to="/about" activeStyle>
             ABOUT
           </NavLink>
-          <LoginButton to="/registration" activeStyle>
+          {/* <LoginButton to="/registration" activeStyle>
             REGISTRATION
-          </LoginButton>
+          </LoginButton> */}
           <LoginButton to="/login" activeStyle>
             LOGIN
           </LoginButton>
