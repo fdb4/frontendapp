@@ -51,7 +51,7 @@ label select {
   box-sizing: border-box; /* Added box-sizing to include padding in width */
 }
 
-.view {
+#view, .view {
   display: inline-flex;
   padding: 10px 20px;
   justify-content: center;
@@ -64,7 +64,7 @@ label select {
   margin-top: 10px;
 }
 
-.view:hover {
+#view:hover, .view:hover {
   background-color: #2802c7;
 }
 
@@ -130,11 +130,7 @@ gym {
 .middle{
   margin-top: 44px;
 }
-.middle_2{
-  display:flex;
-  flex-direction: column;
-  margin:5px 0;
-}
+
 .location {
   display:flex;
   flex-direction: column;
@@ -176,7 +172,6 @@ button {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  background: #3503fc;
 }
 
 .left, .middle, .right {
@@ -201,3 +196,83 @@ button {
     padding: 10px; /* Adjusted padding for better spacing on small screens */
   }
 }
+
+
+/* Add your font import here */
+
+/* General styling for text inputs, buttons, and pagination */
+input[type="text"],
+select,
+button {
+  margin-right: 10px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+
+label select {
+  margin-left: 10px;
+}
+
+/* Profile container styling */
+.profile {
+  margin: 20px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* View Profile button styling */
+.view {
+  display: inline-flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+
+/* Sections (Left, Middle, Right) styling */
+.left,
+.middle,
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual element styling */
+.name,
+.age,
+price,
+gym,
+town,
+state,
+email,
+experience,
+ratings,
+bio {
+  color: #000;
+  font-family: "Saira Condensed", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+  padding-top: 10px;
+}
+

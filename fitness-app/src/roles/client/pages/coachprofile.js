@@ -43,8 +43,7 @@ const CoachProfile = () => {
         {coach && (
           <div className="profile_2">
             <div className="left">
-              <name>{coach.firstname}</name>
-              <name2>{coach.lastname}</name2>
+              <name>{coach.firstname} {coach.lastname}</name>
               <age>Age: {coach.age}</age>
               <price>Price: ${coach.price}</price>
               <gym>Gym: {coach.gym}</gym>
@@ -52,11 +51,16 @@ const CoachProfile = () => {
 
             <div className="middle">
               <div className="location">
-                <location>LOCATION</location>
                 <town>Town: {coach.town}</town>
                 <state>State: {coach.state}</state>
               </div>
             </div>
+            
+              <div className="info">
+                <bio>Description: {coach.bio}</bio>
+                <experience>Experience: {coach.experience}</experience>
+                <ratings>Ratings: {coach.rating}</ratings>
+              </div>
 
             <div className="right">
               <div className="contact">
@@ -64,10 +68,10 @@ const CoachProfile = () => {
                 <email>Email: {coach.email}</email>
               </div>
             </div>
-            <div className="actions">
-              <button>
+            <div className="actions_2">
+              <button id="view">
                 <Link to={`/messages`} className="view">
-                  VIEW PROFILE
+                  Send Message
                 </Link>
               </button>
               {/* Add more buttons or actions as needed */}

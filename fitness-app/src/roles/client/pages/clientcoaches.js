@@ -127,7 +127,6 @@ function ClientCoaches() {
 
             <div className="middle">
               <div className="location">
-                <location>LOCATION</location>
                 <town>Town: {coach.town} </town>
                 <state>State: {coach.state}</state>
               </div>
