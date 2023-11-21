@@ -121,8 +121,7 @@ function ClientCoaches() {
         <tr key={coach.clientID}>
           <div className="profile">
             <div className="left">
-              <name>{coach.firstname}</name>
-              <name2>{coach.lastname}</name2>
+              <name>{coach.firstname} {coach.lastname}</name>
               <age>Age: </age>
               <price>Price: ${coach.price}</price>
               <gym>Gym: {coach.gym}</gym>
