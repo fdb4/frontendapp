@@ -76,10 +76,6 @@ const ClientNavbar = () => {
                 <img src={MyProfileIcon} alt="My Profile Icon" />
                 My Profile
               </DropdownLink>
-              <DropdownLink to="/editprofile">
-                <img src={EditProfileIcon} alt="Edit Profile Icon" />
-                Edit Profile
-              </DropdownLink>
               <DropdownLink to="/inbox">
                 <img src={InboxIcon} alt="Inbox Icon" />
                 Inbox
