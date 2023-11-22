@@ -128,23 +128,22 @@
 
 .radio-option {
   display: flex;
-  align-items: center; /* Aligns items vertically */
-  gap: 10px; /* Adds some space between label and radio buttons */
+  align-items: center;
+  gap: 10px;
 }
 
 .radio-group {
   display: flex;
-  gap: 10px; /* Adds some space between Yes and No options */
+  gap: 10px;
 }
 
 .radio-group label {
   display: flex;
-  align-items: center; /* Aligns the text with the radio button */
+  align-items: center;
 }
 
 .radio-group input[type="radio"] {
-  /* Adjustments for radio button size, if needed */
-  width: 18px; /* Or other size */
-  height: 18px; /* Or other size */
+  width: 18px;
+  height: 18px;
 }
 
