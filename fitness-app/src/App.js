@@ -20,6 +20,7 @@ import Workouts from "./roles/client/pages/workouts.js";
 import ClientCoaches from "./roles/client/pages/clientcoaches.js";
 import Settings from "./roles/client/pages/settings.js";
 import Clients from "./roles/coach/pages/clients.js";
+import InitialSurveyPage from "./roles/visitors/initialsurveypage.js"
 import { Link } from "react-router-dom";
 import { AuthProvider } from "./components/navbar-visitor/auth.js";
 import CoachProfile from './roles/client/pages/coachprofile.js';
@@ -59,6 +60,7 @@ function App() {
         <Route path="/messages" element={<RequireAuth><Messages /></RequireAuth>} />
         <Route path="/workouts" element={<RequireAuth><Workouts /></RequireAuth>} />
         <Route path="/clientcoaches" element={<RequireAuth><ClientCoaches /></RequireAuth>} />
+        
 
         //coach's profile based on id.
         <Route path="/coaches/:id" element={<RequireAuth><CoachProfile /></RequireAuth>}  />
@@ -67,6 +69,12 @@ function App() {
           path="/settings" element={<RequireAuth><Settings /></RequireAuth>} />
         <Route
           path="/clients" element={<RequireAuth><Clients /></RequireAuth>} />
+        <Route
+          path="/initialsurveypage" element={<RequireAuth><InitialSurveyPage /></RequireAuth>} /> 
+
+        //Survey Page
+        <Route
+          path="/initialsurveypage" element={<InitialSurveyPage />} />      
       </Routes>
       </AuthProvider>
     </Router>
