@@ -402,6 +402,7 @@ const InitialSurveyPage = () => {
       					/>
       				</label>
       			</div>
+      			<button type="submit" className="submit-button">Submit Survey</button>
       		</form>
       	</div>
       </div>
