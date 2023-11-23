@@ -1,4 +1,4 @@
-import ClientNavbar from "../../../components/navbar-visitor/clientnav"
+import ClientNavbar from "../../../../components/navbar-visitor/clientnav"
 function Settings() {
     return(
         <div className="body_1">
