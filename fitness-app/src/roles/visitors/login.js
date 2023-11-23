@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation()
   const from = location.state?.from?.pathname || "/clienthome"
-  const { setAuth } = useAuth()
+
 
   const [formData, setFormData] = useState({
     email: "",
@@ -47,12 +47,14 @@ const Login = () => {
         // onLogin();
         console.log(data)
         setLoginMessage(data.message);
-        const accessToken = data?.access_token;
-        // const roles = data?.roles;
-        setAuth({accessToken})
-        const expirationDate = new Date(new Date().getTime() + 15 * 60 * 1000);
-        // const expirationDate = new Date(new Date().getTime() + 30 * 1000);
-        Cookies.set('accessToken', accessToken, { expires: expirationDate });
+        const id = data?.clientID;
+        let role = ''
+        if (data?.coachexpID === null) {
+          role = "Client"
+        } else {
+          role = "Coach" }
+        Cookies.set('id', id);
+        Cookies.set('role', role)
         navigate(from, { replace: true });
 
       } else {
