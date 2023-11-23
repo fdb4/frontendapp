@@ -17,7 +17,8 @@ const CoachNavbar = () => {
 
   const { setAuth } = useAuth()
   const handleLogout = () => {
-    Cookies.remove('accessToken')
+    Cookies.remove("id");
+    Cookies.remove("role");
     setAuth({})
     console.log('Done')
     Navigate("/")
