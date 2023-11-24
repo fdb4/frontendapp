@@ -17,12 +17,10 @@ import { useAuth } from "./auth";
 import Cookies from "js-cookie";
 import { useLocation, Navigate } from "react-router-dom";
 import MyProfileIcon from "./icons/account.png";
-import EditProfileIcon from "./icons/user-avatar.png";
 import InboxIcon from "./icons/notification.png";
 import Messages from "./icons/messages.png";
 import SettingsIcon from "./icons/settings.png";
 import LogoutIcon from "./icons/leave.png";
-import Profile from "./icons/profile.jpg"
 
 const ClientNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
