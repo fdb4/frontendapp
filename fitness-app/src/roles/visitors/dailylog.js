@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import './dailylog.css'
 import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
 
 const API_URL = "http://127.0.0.1:5000";
 
 const DailyLog = () => {
+
+	const smiles = ["😟", "😕", "😐", "🙂", "😀"]
 
 	const[formData, setFormData] = useState ({
 
@@ -17,11 +20,11 @@ const DailyLog = () => {
 	});
 
 	const handleChange = (e) => {
-    	const { name, value } = e.target;
-    	setFormData({
-    	  ...formData,
-    	  [name]: value,
-    	});
+    const { name, value } = e.target;
+    setFormData({
+   	  ...formData,
+   	  [name]: value,
+   	});
  	};
 
  	const handleSubmit = async (e) => {
@@ -39,69 +42,90 @@ const DailyLog = () => {
 
  		try {
 
-      		const comm = await axios.post(`${API_URL}/dailylog`, formData);
-      		console.log("Registering with data:", formData);
-      		console.log("Response:", comm.data);
-    	}
-    	catch(error) {
+      const comm = await axios.post(`${API_URL}/dailylog`, formData);
+      console.log("Registering with data:", formData);
+      console.log("Response:", comm.data);
+    }
+    catch(error) {
 
-    		if(error.response) {
+    	if(error.response) {
 
-        		console.error("Error response:", error.response.data);
-      		}
-      		else if(error.request) {
+ 	  		console.error("Error response:", error.response.data);
+     	}
+      else if(error.request) {
 
-        		console.error("No response:", error.request);
-      		}
-      		else {
+      	console.error("No response:", error.request);
+      }
+      else {
 
-        		console.error("Error", error.message);
-      		}
-    	}
+        console.error("Error", error.message);
+      }
+    }
  	};
 
- 	return (
-    	<div className="daily-tracker-page">
-      		<div className="tracker-modal-container">
-        		<div className="tracker-modal">
-          			<h1>Daily Mood Tracker</h1>
-          			<form onSubmit={handleSubmit} className="daily-tracker-form">
-            			<div>
-              				<label>Calorie Intake</label>
-              				<input
-                				type="number"
-                				name="calorieIntake"
-                				value={trackerData.calorieIntake}
-                				onChange={handleChange}
-                				required
-              				/>
-            			</div>
-            			<div>
-              				<label>Water Intake (liters)</label>
-              					<input
-                					type="number"
-                					name="waterIntake"
-                					value={trackerData.waterIntake}
-                					onChange={handleChange}
-                					required
-              					/>
-            			</div>
-            			<div>
-            			  	<label>Mood</label>
-              					<input
-                					type="text"
-                					name="mood"
-                					value={trackerData.mood}
-                					onChange={handleChange}
-                					required
-              					/>
-            			</div>
-            			<button type="submit" className="submit-button">Submit</button>
-          			</form>
-        		</div>
-      		</div>
-    	</div>
-  	);
+	const setSmile = smiles[formData.mood - 1] || smiles[0]
+
+	return (
+    <div className="daily-tracker-page">
+      <VistorNavbar />
+      <div className="tracker-content-container">
+        <div className="tracker-modal">
+          <h1>Daily Log</h1>
+          <form onSubmit={handleSubmit} className="daily-tracker-form">
+            
+            <div className="input-section">
+              <label>Water Intake(mL) </label>
+              <input
+                type="number"
+                name="water"
+                value={formData.water}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="input-section">
+              <label>Calorie Intake </label>
+              <input
+                type="number"
+                name="calorie"
+                value={formData.calorie}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="input-section">
+              <label>Daily Mood </label>
+              <input
+                type="range"
+                className="slider"
+                name="mood"
+                min="1"
+                max="5"
+                value={formData.mood}
+                onChange={handleChange}
+                required
+              />
+              <div className="mood-display">{setSmile}</div>
+            </div>
+            <div className="input-section">
+              <label>Today's Date </label>
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <button type="submit" className="submit-button">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default DailyLog;

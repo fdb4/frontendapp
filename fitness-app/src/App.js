@@ -25,6 +25,7 @@ import { Link } from "react-router-dom";
 import { AuthProvider } from "./components/navbar-visitor/auth.js";
 import CoachProfile from './roles/client/pages/coachprofile.js';
 import RequireAuth from "./components/navbar-visitor/requireauth.js";
+import DailyLog from "./roles/visitors/dailylog.js"
 
 function App() {
   // const [isLoggedIn, setLoggedIn] = useState(false);
@@ -60,6 +61,7 @@ function App() {
         <Route path="/messages" element={<RequireAuth><Messages /></RequireAuth>} />
         <Route path="/workouts" element={<RequireAuth><Workouts /></RequireAuth>} />
         <Route path="/clientcoaches" element={<RequireAuth><ClientCoaches /></RequireAuth>} />
+        <Route path="/dailylog" element={<RequireAuth><DailyLog /></RequireAuth>} />
         
 
         //coach's profile based on id.
