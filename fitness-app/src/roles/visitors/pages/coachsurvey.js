@@ -3,26 +3,17 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import "../styling/initialsurveypage.css";
-import CurrencyInput from 'react-currency-input-field'
-import TextField from '@mui/material/TextField';
-import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-import InputAdornment from '@mui/material/InputAdornment';
+
 
 const API_URL = "http://127.0.0.1:5000";
 
 const CoachSurvey = () => {
-    const [date, setDate] = useState(null);
-    const [price, setPrice] = useState(null);
     const [priceError, setPriceError] = useState("");
+    const [experienceError, setExperienceError] = useState("");
     
-    const handleDateChange = (newValue) => {
-        setDate(newValue);
-    }; 
 
     const [data, setData] = useState({
-        id: '',
+        // id: '',
         price: '',
         experience: '',
         bio: '',
@@ -41,40 +32,25 @@ const CoachSurvey = () => {
 
      const handleSubmit = async (e) => {
     	e.preventDefault();
-        const originalDate = new Date(date);
-        const formattedDate = originalDate.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
-        console.log(formattedDate)
-        setData({
-            ...data,
-            ['experience']: 'hey'
-        })
-        setData({
-            ...data,
-            ['price']: price
-        })
 
-    	if (
-	    //   !data.id ||
-    	  !data.price ||
-	      !data.experience ||
-    	  !data.bio ||
-	      !data.gym ||
-    	  !data.town ||
-	      !data.state) 
-    	{
-            console.log(data)
-     	 console.error("All fields are required.");
-     	 return;
-    	}
+        const isValidPrice = /^\d+(\.\d{2})?$/.test(data.price);
 
-        const priceValue = parseFloat(price);
-        if (isNaN(priceValue) || priceValue < 0) {
-          setPriceError("Please enter a valid positive float for price");
+        if (!isValidPrice || isNaN(data.price) || data.price < 0) {
+          setPriceError('Please enter a valid positive number with up to two decimal places.');
           return;
         } else {
-          setPriceError(null);
+          setPriceError('');
         }
-        console.log(data)
+
+        const isValidExperience = /^\d+$/.test(data.experience);
+
+        if (!isValidExperience|| data.experience <= 0) {
+          setExperienceError('Please enter a valid positive integer.');
+          return;
+        } else {
+          setExperienceError('');
+        }
+
     	try {
       		const comm = await axios.post(`${API_URL}/coachSignUp`, data);
       		console.log("Registering with data:", data);
@@ -98,98 +74,101 @@ const CoachSurvey = () => {
 
     return(
         <div className="initial-survey-page">
+            <br />
             <div className = "survey-modal-container">
                 <div className = "survey-modal">
                     <h1>Coach Initial Survey</h1>
                     <form onSubmit={handleSubmit} className="initial-survey-form">
                         <h2>Extra Information</h2>
                         <div>
-                            <label>Hourly Price: </label>
-                            <TextField
-                                id="price"
-                                variant="filled"
-                                error={Boolean(priceError)}
-                                helperText={priceError || ' '}
-                                required type = "number"
-                                value={price}
-                                onChange={(event) => setPrice(event.target.value)}
-                                sx={{ width: '300px'}}
-                            />                  
-                        </div>
-
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <div>
-                            <label>First Coaching Experience Date:</label>
-                            <DatePicker
-                            renderInput={(props) => (
-                                <TextField
-                                {...props}
-                                InputProps={{ style: { color: 'black' } }} // Set the desired text color
-                                />
-                            )}
-                            value={date}
-                            onChange={handleDateChange}
-                            format="yyyy-MM-dd"
+                        <label>
+                            Hourly Price:
+                            <input
+                            type="number"
+                            name="price"
+                            value={data.price}
+                            onChange={handleChange}
+                            placeholder="0.00"
                             required
                             />
-                        </div>
-                        </LocalizationProvider>
-
-                        <br />
-
-                        <div>
-                        <label>Gym Name</label>
-                        <TextField
-                            variant="outlined"
-                            fullWidth
-                            name="gym"
-                            value={data.gym}
-                            onChange={handleChange}
-                            required
-                        />
+                        </label>  
+                        {priceError && <h9 style={{ color: 'red' }}>{priceError}</h9>}             
                         </div>
 
                         <br />
 
                         <div>
-                        <label>Current Town</label>
-                        <TextField
-                            variant="outlined"
-                            fullWidth
-                            name="town"
-                            value={data.town}
+                        <label>
+                            Years of Experience:
+                            <input
+                            type="number"
+                            name="experience"
+                            value={data.experience}
                             onChange={handleChange}
                             required
-                        />
+                            />
+                        </label>  
+                        {experienceError && <h9 style={{ color: 'red' }}>{experienceError}</h9>}             
+                        </div>
+
+                        <br />
+
+                        <div>
+                        <label>
+                            Gym Name:
+                            <input
+                                type="text"
+                                name="gym"
+                                value={data.gym}
+                                onChange={handleChange}
+                                required
+                            />
+                        </label>
+                        </div>
+
+                        <br />
+
+                        <div>
+                        <label>
+                            Current Town:
+                            <input
+                                type="text"
+                                name="town"
+                                value={data.town}
+                                onChange={handleChange}
+                                required
+                            />
+                        </label>
                         </div>
                         
                         <br />
 
                         <div>
-                        <label>Current State</label>
-                        <TextField
-                            variant="outlined"
-                            fullWidth
-                            name="state"
-                            value={data.state}
-                            onChange={handleChange}
-                            required
-                        />
+                        <label>
+                            Current State:
+                            <input
+                                type="text"
+                                name="state"
+                                value={data.state}
+                                onChange={handleChange}
+                                required
+                            />
+                        </label>
                         </div>
 
                         <br />
 
                         <div>
-                        <label>Bio</label>
-                        <TextareaAutosize
-                            aria-label="bio-input"
-                            minRows={3} // Set the minimum number of rows
-                            placeholder="Enter your bio"
-                            name="bio"
-                            value={data.bio}
-                            onChange={handleChange}
-                            style={{ width: '95%' }}
-                        />
+                        <label>
+                            Bio:
+                            <textarea
+                                placeholder="Enter your bio"
+                                name="bio"
+                                value={data.bio}
+                                onChange={handleChange}
+                                required
+                            />
+                        </label>
                         </div>
                         
                         <button type="submit" className="submit-button">Submit Survey</button>
