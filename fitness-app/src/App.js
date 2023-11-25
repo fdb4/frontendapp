@@ -24,6 +24,7 @@ import { Link } from "react-router-dom";
 import { AuthProvider } from "./components/navbar-visitor/auth.js";
 import CoachProfile from './roles/client/pages/coachprofile.js';
 import RequireAuth from "./components/navbar-visitor/requireauth.js";
+import CoachSurvey from "./roles/visitors/pages/coachsurvey.js";
 
 function App() {
   // const [isLoggedIn, setLoggedIn] = useState(false);
@@ -67,6 +68,9 @@ function App() {
           path="/settings" element={<RequireAuth><Settings /></RequireAuth>} />
         <Route
           path="/clients" element={<RequireAuth><Clients /></RequireAuth>} />
+
+        // survey
+        <Route path="/coachsurvey" element={<RequireAuth><CoachSurvey /></RequireAuth>} />
       </Routes>
       </AuthProvider>
     </Router>
