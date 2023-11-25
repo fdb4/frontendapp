@@ -29,7 +29,7 @@ import Settings from "./roles/client/pages/profile/settings.js";
 
 //import for Coaches login
 import CoachSurvey from "./roles/coach/pages/intialsurvey/coachsurvey.js";
-import Clients from "./roles/coach/pages/clients.js";
+import CoachHome from "./roles/coach/pages/coachhome.js";
 import { AuthProvider } from "./components/navbar-visitor/auth.js";
 import RequireAuth from "./components/navbar-visitor/requireauth.js";
 
@@ -86,7 +86,7 @@ function App() {
 
 
         {/* Protected Routes for coach */}
-        <Route path="/clients" element={<RequireAuth><Clients /></RequireAuth>} />
+        <Route path="/coachhome" element={<RequireAuth><CoachHome/></RequireAuth>} />
 
       </Routes>
       </AuthProvider>

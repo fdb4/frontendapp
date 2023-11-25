@@ -32,7 +32,7 @@ const CoachNavbar = () => {
         </Logo>
         <Bars onClick={toggleMenu} />
         <NavMenu showMenu={showMenu}>
-          <NavLink to="/clienthome" activeStyle>
+          <NavLink to="/coachhome" activeStyle>
             HOME
           </NavLink>
           <NavLink to="/dailyactivity" activeStyle>
