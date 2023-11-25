@@ -39,8 +39,10 @@ function ClientHome() {
                 <Link to='/workouts'>
                 <button to="/workouts">Track my Workout</button>
                 </Link>
-                <Link to="/dailyactivity">
+                <Link to="/dailylog">
                 <button>Daily Log</button>
+                </Link>
+                <Link>
                 <button>Photo Progression</button>
                 </Link>
                 <Link to="/clientcoaches">
