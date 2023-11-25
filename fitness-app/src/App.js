@@ -34,12 +34,8 @@ import RequireAuth from "./components/navbar-visitor/requireauth.js";
 import DailyLog from "./roles/visitors/dailylog.js"
 
 
-
-
-
-import { AuthProvider } from "./components/navbar-visitor/auth.js";
-import CoachProfile from './roles/client/pages/coachprofile.js';
-import RequireAuth from "./components/navbar-visitor/requireauth.js";
+//import CoachProfile from './roles/client/pages/coachprofile.js';
+//import RequireAuth from "./components/navbar-visitor/requireauth.js";
 import CoachSurvey from "./roles/visitors/pages/coachsurvey.js";
 
 
