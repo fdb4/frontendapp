@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ClientNavbar from "../../../components/navbar-visitor/clientnav";
-import "../styling/clientcoaches.css"; // Import your CSS file for styling
+import "../styling/clientcoaches.css";
 import { Link } from "react-router-dom";
-
-
 
 function ClientCoaches() {
   const [coaches, setCoaches] = useState([]);
@@ -17,13 +15,12 @@ function ClientCoaches() {
 
   useEffect(() => {
     fetchData();
-  }, [filters, searchTerm]); // Trigger fetch on filter and search term changes
+  }, [filters, searchTerm]);
 
   const fetchData = async () => {
     try {
       let url = "http://127.0.0.1:5000/coaches";
 
-      // Add filters to the URL if values are selected
       if (filters.type && filters.value) {
         switch (filters.type) {
           case "name":
@@ -38,18 +35,19 @@ function ClientCoaches() {
           case "town":
             url = `http://127.0.0.1:5000/coaches/filter/town/${filters.value}`;
             break;
-          case "stateTown":
-            url = `http://127.0.0.1:5000/coaches/filter/statetown/${filters.value}`;
+          case "experience":
+            url = `http://127.0.0.1:5000/coaches/filter/experience/${filters.value}`;
+            break;
+          case "ratings":
+            url = `http://127.0.0.1:5000/coaches/filter/ratings/${filters.value}`;
+            break;
+          case "price":
+            url = `http://127.0.0.1:5000/coaches/filter/price/${filters.value}`;
             break;
           default:
             break;
         }
       }
-
-      // Add search term to the URL if it is present
-      // if (searchTerm) {
-      //   url += `/search/${searchTerm}`;
-      // }
 
       const response = await fetch(url);
       const data = await response.json();
@@ -59,17 +57,18 @@ function ClientCoaches() {
     }
   };
 
-  // Pagination
+  const paginate = (pageNumber) => {
+    if (pageNumber < 1 || pageNumber > totalPages) {
+      return;
+    }
+    setCurrentPage(pageNumber);
+  };
+
   const indexOfLastCoach = currentPage * coachesPerPage;
   const indexOfFirstCoach = indexOfLastCoach - coachesPerPage;
   const currentCoaches = coaches.slice(indexOfFirstCoach, indexOfLastCoach);
   const totalPages = Math.ceil(coaches.length / coachesPerPage);
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  // Filter functions
   const handleFilterChange = (selectedFilter) => {
     setFilters({
       type: selectedFilter,
@@ -88,6 +87,8 @@ function ClientCoaches() {
       value: "",
     });
   };
+
+  const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
     <div className="body_1">
@@ -111,18 +112,18 @@ function ClientCoaches() {
           <option value="gym">Gym</option>
           <option value="state">State</option>
           <option value="town">Town</option>
-          <option value="stateTown">State & Town</option>
+          <option value="experience">Experience</option>
+          <option value="ratings">Ratings</option>
+          <option value="price">Price</option>
         </select>
         <button onClick={handleFilter}>Filter</button>
         <button onClick={handleClear}>Clear</button>
       </div>
-
       {currentCoaches.map((coach) => (
         <tr key={coach.clientID}>
           <div className="profile">
             <div className="left">
-              <name>{coach.firstname}</name>
-              <name2>{coach.lastname}</name2>
+              <name>{coach.firstname} {coach.lastname}</name>
               <age>Age: </age>
               <price>Price: ${coach.price}</price>
               <gym>Gym: {coach.gym}</gym>
@@ -130,9 +131,12 @@ function ClientCoaches() {
 
             <div className="middle">
               <div className="location">
-                <location>LOCATION</location>
                 <town>Town: {coach.town} </town>
                 <state>State: {coach.state}</state>
+              </div>
+              <div className="middle_2">
+                <experience>Experience: {coach.experience}</experience>
+                <ratings>Ratings: {coach.rating}</ratings>
               </div>
             </div>
 
@@ -153,10 +157,21 @@ function ClientCoaches() {
         >
           Previous
         </button>
-        <span>{`Page ${currentPage} of ${totalPages}`}</span>
+        <span>
+          Page
+          <input
+            type="number"
+            value={currentPage}
+            onChange={(e) => setCurrentPage(e.target.value)}
+            onBlur={() => paginate(parseInt(currentPage))}
+            min="1"
+            max={totalPages}
+          />
+          of {totalPages}
+        </span>
         <button
           onClick={() => paginate(currentPage + 1)}
-          disabled={indexOfLastCoach >= coaches.length}
+          disabled={currentPage === totalPages}
         >
           Next
         </button>

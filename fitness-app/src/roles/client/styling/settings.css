@@ -1,0 +1,36 @@
+  .edit-mode input,
+  .edit-mode select {
+    width: 200px;
+    padding: 5px;
+    margin-top: 5px;
+  }
+  
+  .edit-mode button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+  .delete {
+    background-color:rgb(146, 69, 69);
+  }
+  .delete:hover {
+    background-color: rgba(255, 0, 0, 0.808);
+  }
+  .delete-confirmation-popup {
+    background-color: #000000;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .delete-confirmation-popup p {
+    margin-bottom: 10px;
+    
+  }
+  .delete-confirmation-popup  {
+    background-color: rgb(146, 69, 69);
+  }

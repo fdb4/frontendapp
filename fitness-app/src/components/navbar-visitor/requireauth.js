@@ -6,14 +6,14 @@ const RequireAuth = ( {children} ) => {
     const { auth } = useAuth()
     const { setAuth } = useAuth()
     const location = useLocation();
-    let accessToken = ''
-    if (Cookies.get('accessToken')) {
-        accessToken = Cookies.get('accessToken')
-        if (!auth.accessToken) {
-            setAuth({accessToken})
+    let id = ''
+    if (Cookies.get('id')) {
+        id = Cookies.get('id')
+        if (!auth.id) {
+            setAuth({id})
         }
     }
-    if (!accessToken) {
+    if (!id) {
         return <Navigate to="/login" state={{ from:location }} replace />
     }
     return children
