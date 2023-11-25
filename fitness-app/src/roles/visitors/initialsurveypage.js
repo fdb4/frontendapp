@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import "./initialsurveypage.css";
 import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
 
@@ -13,9 +14,9 @@ const InitialSurveyPage = () => {
 
 		clientID: "",
 		height: "",
-		startweight: "",
+		weight: "",
 		goalweight: "",
-		movementtype: "",
+		movement: "",
 		age: "",
 		gender: "",
 		cycling: "",
@@ -39,11 +40,19 @@ const InitialSurveyPage = () => {
 	const handleSubmit = async (e) => {
     	e.preventDefault();
 
+    	const id = Cookies.get("id");
+
+    	if(!id) {
+
+    		console.error("Client ID is not available...");
+    		return;
+    	}
+
     	if (
 	      !formData.height ||
-    	  !formData.startweight ||
+    	  !formData.weight ||
 	      !formData.goalweight ||
-    	  !formData.movementtype ||
+    	  !formData.movement ||
 	      !formData.age ||
     	  !formData.gender ||
 	      !formData.cycling ||
@@ -59,17 +68,23 @@ const InitialSurveyPage = () => {
      	 return;
     	}
 
+    	const updateData = {
+
+    		...formData,
+    		clientID: id
+    	};
+
     	const type = formData.gender.toLowerCase() === 'male' ? 0:1;
 
     	try {
 
       		const sendData = {
 
-        		...formData,
+        		...updateData,
         		gender: type,
       		};
 
-      		const comm = await axios.post(`${API_URL}/signup`, sendData);
+      		const comm = await axios.post(`${API_URL}/survey`, sendData);
       		console.log("Registering with data:", sendData);
       		console.log("Response:", comm.data);
     	}
@@ -110,61 +125,62 @@ const InitialSurveyPage = () => {
       				/>
       			</div>
       			<div>
-  					<label>Height </label>
-  					<select
-   		 				name="heightSelect"
-    					value={formData.heightSelect}
-    					onChange={handleChange}
-  					>
-    					<option value="">Select height...</option>
-    					<option value="5'0">5'0</option>
-    					<option value="5'1">5'1</option>
-    					<option value="5'2">5'2</option>
-    					<option value="5'3">5'3</option>
-    					<option value="5'4">5'4</option>
-    					<option value="5'5">5'5</option>
-    					<option value="5'6">5'6</option>
-    					<option value="5'7">5'7</option>
-    					<option value="5'8">5'8</option>
-    					<option value="5'9">5'9</option>
-    					<option value="5'10">5'0</option>
-    					<option value="5'11">5'1</option>
-    					<option value="6'0">6'0</option>
-    					<option value="6'1">6'1</option>
-    					<option value="6'2">6'2</option>
-    					<option value="6'3">6'3</option>
-    					<option value="6'4">6'4</option>
-    					<option value="6'5">6'5</option>
-    					<option value="6'6">6'6</option>
-    					<option value="6'7">6'7</option>
-    					<option value="6'8">6'8</option>
-    					<option value="6'9">6'9</option>
-    					<option value="6'10">6'10</option>
-    					<option value="6'11">6'11</option>
-    					<option value="7'0">7'0</option>
-    					<option value="7'1">7'1</option>
-    					<option value="7'2">7'2</option>
-    					<option value="7'3">7'3</option>
-    					<option value="7'4">7'4</option>
-    					<option value="7'5">7'5</option>
-    					<option value="7'6">7'6</option>
-    					<option value="7'7">7'7</option>
-    					<option value="7'8">7'8</option>
-    					<option value="7'9">7'9</option>
-    					<option value="7'10">7'10</option>
-    					<option value="7'11">7'11</option>
-  					</select>
-				</div>
-				<div>
-      				<label>Starting Weight </label>
-      				<input
-      					type="number"
-      					name="startweight"
-      					value={formData.startweight}
-      					onChange={handleChange}
+  						<label>Height </label>
+  							<select
+   		 						name="height"
+    							value={formData.height}
+    							onChange={handleChange}
+    							required
+  							>
+    							<option value="">Select height...</option>
+    							<option value="5'0">5'0</option>
+		    					<option value="5'1">5'1</option>
+    							<option value="5'2">5'2</option>
+    							<option value="5'3">5'3</option>
+    							<option value="5'4">5'4</option>
+		    					<option value="5'5">5'5</option>
+    							<option value="5'6">5'6</option>
+    							<option value="5'7">5'7</option>
+    							<option value="5'8">5'8</option>
+		    					<option value="5'9">5'9</option>
+    							<option value="5'10">5'0</option>
+    							<option value="5'11">5'1</option>
+    							<option value="6'0">6'0</option>
+		    					<option value="6'1">6'1</option>
+    							<option value="6'2">6'2</option>
+    							<option value="6'3">6'3</option>
+    							<option value="6'4">6'4</option>
+		    					<option value="6'5">6'5</option>
+    							<option value="6'6">6'6</option>
+    							<option value="6'7">6'7</option>
+    							<option value="6'8">6'8</option>
+		    					<option value="6'9">6'9</option>
+    							<option value="6'10">6'10</option>
+    							<option value="6'11">6'11</option>
+    							<option value="7'0">7'0</option>
+		    					<option value="7'1">7'1</option>
+    							<option value="7'2">7'2</option>
+    							<option value="7'3">7'3</option>
+    							<option value="7'4">7'4</option>
+		    					<option value="7'5">7'5</option>
+    							<option value="7'6">7'6</option>
+    							<option value="7'7">7'7</option>
+    							<option value="7'8">7'8</option>
+		    					<option value="7'9">7'9</option>
+    							<option value="7'10">7'10</option>
+    							<option value="7'11">7'11</option>
+		  					</select>
+						</div>
+						<div>
+		     			<label>Starting Weight </label>
+    			  	<input
+   							type="number"
+     						name="weight"
+			     			value={formData.weight}
+   							onChange={handleChange}
       					required
-      					step="1"
-      				/>
+			      		step="1"
+     					/>
       			</div>
       			<div>
       				<label>Age </label>
@@ -178,32 +194,47 @@ const InitialSurveyPage = () => {
       				/>
       			</div>
       			<div>
-  					<label>Gender </label>
-  					<select
-   		 				name="gender"
-    					value={formData.gender}
-    					onChange={handleChange}
-  					>
-    					<option value="">Select Gender...</option>
-    					<option value="male">Male</option>
-    					<option value="female">Female</option>
-  					</select>
-				</div>
-				<h2>Workout Info</h2>
-				<div>
-      				<label>Goal Weight </label>
-      				<input
-      					type="number"
-      					name="goalweight"
-      					value={formData.goalweight}
-      					onChange={handleChange}
-      					required
-      					step="1"
-      				/>
-      			</div>
+	  					<label>Gender </label>
+  						<select
+   			 				name="gender"
+    						value={formData.gender}
+    						onChange={handleChange}
+    						required
+  						>
+    						<option value="">Select Gender...</option>
+    						<option value="male">Male</option>
+    						<option value="female">Female</option>
+  						</select>
+						</div>
+					<h2>Workout Info</h2>
+					<div>
+      			<label>Goal Weight </label>
+      			<input
+      				type="number"
+      				name="goalweight"
+      				value={formData.goalweight}
+      				onChange={handleChange}
+     					step="1"
+     				/>
+     			</div>
+     			<div>
+  					<label>Movement Type </label>
+  							<select
+   		 						name="movement"
+    							value={formData.movement}
+    							onChange={handleChange}
+    							required
+  							>
+    							<option value="">Select a Movement Type...</option>
+    							<option value="sedentary">Sedentary</option>
+    							<option value="lightly">Lightly Active</option>
+    							<option value="moderate">Moderately Active</option>
+    							<option value="very">Very Active</option>
+    						</select>
+     			</div>
 				<h3>Workout Interests</h3>
-				<div className="radio-option">
-      				<label>Cycling:</label>
+					<div className="radio-option">
+      			<label>Cycling:</label>
       				<div className="radio-group"> 
       					<label>
       					    Yes 
@@ -228,9 +259,9 @@ const InitialSurveyPage = () => {
       						/>
       					</label>
       				</div>
-      			</div>
-      			<div className="radio-option">
-      				<label>Strength:</label>
+      		</div>
+      		<div className="radio-option">
+      			<label>Strength:</label>
       				<div className="radio-group"> 
       					<label>
       					    Yes 
@@ -255,9 +286,9 @@ const InitialSurveyPage = () => {
       						/>
       					</label>
       				</div>
-      			</div>
-      			<div className="radio-option">
-      				<label>Running:</label>
+      		</div>
+      		<div className="radio-option">
+      			<label>Running:</label>
       				<div className="radio-group"> 
       					<label>
       					    Yes 
@@ -282,9 +313,9 @@ const InitialSurveyPage = () => {
       						/>
       					</label>
       				</div>
-      			</div>
-      			<div className="radio-option">
-      				<label>Sports:</label>
+      		</div>
+      		<div className="radio-option">
+      			<label>Sports:</label>
       				<div className="radio-group"> 
       					<label>
       					    Yes 
@@ -309,9 +340,9 @@ const InitialSurveyPage = () => {
       						/>
       					</label>
       				</div>
-      			</div>
-      			<div className="radio-option">
-      				<label>Yoga:</label>
+      		</div>
+      		<div className="radio-option">
+     				<label>Yoga:</label>
       				<div className="radio-group"> 
       					<label>
       					    Yes 
@@ -336,9 +367,9 @@ const InitialSurveyPage = () => {
       						/>
       					</label>
       				</div>
-      			</div>
-      			<div className="radio-option">
-      				<label>Swimming:</label>
+      		</div>
+      		<div className="radio-option">
+      			<label>Swimming:</label>
       				<div className="radio-group"> 
       					<label>
       					    Yes 
@@ -363,9 +394,9 @@ const InitialSurveyPage = () => {
       						/>
       					</label>
       				</div>
-      			</div>
-      			<div className="radio-option">
-      				<label>Martial Arts:</label>
+      		</div>
+      		<div className="radio-option">
+     				<label>Martial Arts:</label>
       				<div className="radio-group"> 
       					<label>
       					    Yes 
@@ -403,7 +434,7 @@ const InitialSurveyPage = () => {
       				</label>
       			</div>
       			<button type="submit" className="submit-button">Submit Survey</button>
-      		</form>
+     			</form>
       	</div>
       </div>
     </div>

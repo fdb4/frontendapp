@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import './dailylog.css'
 import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
 
@@ -13,10 +14,10 @@ const DailyLog = () => {
 
 	const[formData, setFormData] = useState ({
 
+		clientID: '',
 		calorie: '',
 		water: '',
 		mood: '',
-		date: '',
 	});
 
 	const handleChange = (e) => {
@@ -30,20 +31,27 @@ const DailyLog = () => {
  	const handleSubmit = async (e) => {
  		e.preventDefault();
 
+ 		const id = Cookies.get("id");
+
  		if(
  			!formData.calorie ||
  			!formData.water ||
- 			!formData.mood ||
- 			!formData.date) 
+ 			!formData.mood) 
  		{
  			console.error("All fields are required.");
      		return;
  		}
 
+ 		const sendData = {
+
+    		...formData,
+    		clientID: id
+    };
+
  		try {
 
-      const comm = await axios.post(`${API_URL}/dailylog`, formData);
-      console.log("Registering with data:", formData);
+      const comm = await axios.post(`${API_URL}/dailylog`, sendData);
+      console.log("Registering with data:", sendData);
       console.log("Response:", comm.data);
     }
     catch(error) {
@@ -72,7 +80,6 @@ const DailyLog = () => {
         <div className="tracker-modal">
           <h1>Daily Log</h1>
           <form onSubmit={handleSubmit} className="daily-tracker-form">
-            
             <div className="input-section">
               <label>Water Intake(mL) </label>
               <input
@@ -83,7 +90,6 @@ const DailyLog = () => {
                 required
               />
             </div>
-
             <div className="input-section">
               <label>Calorie Intake </label>
               <input
@@ -94,7 +100,6 @@ const DailyLog = () => {
                 required
               />
             </div>
-
             <div className="input-section">
               <label>Daily Mood </label>
               <input
@@ -109,17 +114,6 @@ const DailyLog = () => {
               />
               <div className="mood-display">{setSmile}</div>
             </div>
-            <div className="input-section">
-              <label>Today's Date </label>
-              <input
-                type="date"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
             <button type="submit" className="submit-button">Submit</button>
           </form>
         </div>
