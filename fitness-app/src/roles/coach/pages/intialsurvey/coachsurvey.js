@@ -52,24 +52,24 @@ const CoachSurvey = () => {
         }
 
     	try {
-      		const comm = await axios.post(`${API_URL}/coachSignUp`, data);
-      		console.log("Registering with data:", data);
-      		console.log("Response:", comm.data);
-    	}
-    	catch(error) {
-      		if(error.response) {
-
-        		console.error("Error response:", error.response.data);
-      		}
-      		else if(error.request) {
-
-        		console.error("No response:", error.request);
-      		}
-      		else {
-
-        		console.error("Error", error.message);
-      		}
-    	}
+            const response = await fetch(`${API_URL}/coachSignUp`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Request failed with status ${response.status}`);
+            }
+    
+            const result = await response.json();
+            console.log("Registering with data:", data);
+            console.log("Response:", result);
+        } catch (error) {
+            console.error("Error", error.message);
+        }
 	};
 
     return(
