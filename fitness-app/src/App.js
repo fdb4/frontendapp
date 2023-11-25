@@ -14,7 +14,7 @@ import Login from "./roles/visitors/login.js";
 import Registration from "./roles/visitors/registration.js";
 
 //imports for clients login
-import ClientSurvey from "./roles/client/pages/initialsurvey/initialsurveypage.js"
+import ClientSurvey from "./roles/client/pages/initialsurvey/clientsurvey.js"
 import ClientHome from "./roles/client/pages/clienthome.js";
 import DailyLog from "./roles/client/pages/dailylog.js";
 import Workouts from "./roles/client/pages/workouts.js";
@@ -28,7 +28,7 @@ import Settings from "./roles/client/pages/profile/settings.js";
 
 
 //import for Coaches login
-import CoachSurvey from "./roles/coach/pages/coachsurvey.js";
+import CoachSurvey from "./roles/coach/pages/intialsurvey/coachsurvey.js";
 import Clients from "./roles/coach/pages/clients.js";
 import { AuthProvider } from "./components/navbar-visitor/auth.js";
 import RequireAuth from "./components/navbar-visitor/requireauth.js";
