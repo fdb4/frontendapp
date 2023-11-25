@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../../styling/MyProfilePage.css";
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav.js";
-import "../../styling/settings.css"
-
+import "../../styling/settings.css";
+import Cookies from "js-cookie";
 
 function DeleteConfirmationPopup({ onCancel, onConfirm }) {
   return (
@@ -21,14 +21,14 @@ function Settings() {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
   useEffect(() => {
-    const clientId = "1";
+    const clientId = Cookies.get('id');
 
-    fetch(`http://127.0.0.1:5000/genInfo/${clientId}`)
+    fetch(`http://127.0.0.1:5000/clients/${clientId}`)
       .then((response) => response.json())
       .then((data) => setClientInfo(data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
-
+  
   const gender = (binaryGender) => {
     return binaryGender === 0 ? "Male" : "Female";
   };

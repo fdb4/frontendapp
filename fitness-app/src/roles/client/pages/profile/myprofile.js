@@ -1,17 +1,19 @@
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav.js";
 import React, { useState, useEffect } from "react";
 import "../../styling/MyProfilePage.css"
+import Cookies from "js-cookie";
+
 const MyProfilePage = () => {
   const [clientInfo, setClientInfo] = useState(null);
 
   useEffect(() => {
-    const clientId = "1";
-
-    fetch(`http://127.0.0.1:5000/genInfo/${clientId}`)
+    const clientId = Cookies.get('id');
+    fetch(`http://127.0.0.1:5000/clients/${clientId}`)
       .then((response) => response.json())
       .then((data) => setClientInfo(data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
+  
 
   const gender = (binaryGender) => {
     return binaryGender === 0 ? "Male" : "Female";
