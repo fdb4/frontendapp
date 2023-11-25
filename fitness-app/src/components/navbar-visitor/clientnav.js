@@ -9,7 +9,7 @@ import {
   LogoImage,
   DropdownLink,
   DropdownMenu,
-  UserProfileImage
+  UserProfileImage,
 } from "./NavbarElements";
 
 import logo from "../../roles/visitors/assets/logo.png";
@@ -52,7 +52,7 @@ const ClientNavbar = () => {
         </Logo>
         <Bars onClick={toggleMenu} />
         <NavMenu showMenu={showMenu}>
-        <NavLink to="/clienthome" activeStyle>
+          <NavLink to="/clienthome" activeStyle>
             Home
           </NavLink>
           <NavLink to="/dailylog" activeStyle>
@@ -64,7 +64,7 @@ const ClientNavbar = () => {
           <NavLink to="/clientcoaches" activeStyle>
             Coaches
           </NavLink>
-          <div style={{ position: "relative"}}>
+          <div style={{ position: "relative" }}>
             <UserProfileImage
               src={MyProfileIcon}
               alt="User Profile"
