@@ -25,6 +25,17 @@ const Registration = () => {
 
   const navigate = useNavigate();
 
+  const hashPassword = async (password) => {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashedPassword = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+
+    return hashedPassword;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -46,6 +57,15 @@ const Registration = () => {
     };
 
     try {
+      // Hash the password before sending it to the server
+      const hashedPassword = await hashPassword(formData.password);
+
+      const newData = {
+        ...formData,
+        password: hashedPassword,
+        userType: formData.userType === 'coach' ? 1 : 0
+      };
+
       const response = await fetch(`${API_URL}/signup`, {
         method: "POST",
         headers: {

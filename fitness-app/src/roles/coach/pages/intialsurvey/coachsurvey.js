@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import "../../../client/pages/initialsurvey/clientsurvey.css";
-
+import CoachNavbar from "../../../../components/navbar-visitor/coachnav.js"
 
 const API_URL = "http://127.0.0.1:5000";
 
@@ -74,6 +74,7 @@ const CoachSurvey = () => {
 
     return(
         <div className="initial-survey-page">
+             <CoachNavbar />
             <br />
             <div className = "survey-modal-container">
                 <div className = "survey-modal">
