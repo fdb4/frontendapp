@@ -1,6 +1,6 @@
 
 .daily-tracker-page {
-  background-image: url('./assets/background_1.jpg');
+  background-image: url('../../visitors/assets/background_1.jpg');
   background-repeat: repeat-y;
   background-size: cover;
   min-height: 100vh;

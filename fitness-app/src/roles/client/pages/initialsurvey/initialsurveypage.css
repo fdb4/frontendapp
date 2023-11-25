@@ -1,8 +1,9 @@
 
 .initial-survey-page {
-    background-image: url('../assets/background_1.jpg');
+    background-image: url('../../../visitors/assets/background_1.jpg');
+    background-repeat: repeat-y;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .survey-modal-container {
@@ -13,7 +14,7 @@
 }
 
 .survey-modal {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.5);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -44,7 +45,7 @@
 .initial-survey-form label {
     display: block;
     margin-bottom: 8px;
-    color: #666;
+    color: black;
 }
 
 .initial-survey-form input, 
@@ -130,11 +131,13 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  width: calc(100%);
 }
 
 .radio-group {
   display: flex;
   gap: 10px;
+  width: calc(100%);
 }
 
 .radio-group label {
@@ -161,3 +164,4 @@
 .initial-survey-form .submit-button:hover {
   background-color: #f54d6e;
 }
+

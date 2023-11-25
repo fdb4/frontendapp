@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import "./initialsurveypage.css";
-import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
+import VistorNavbar from "../../../../components/navbar-visitor/visitornav.js";
 
 const API_URL = "http://127.0.0.1:5000";
 
@@ -241,7 +241,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="cycling"
-      							value="1"
+      							// value="1"
       							value={formData.cycling === "1"}
       							onChange={handleChange}
       							required
@@ -252,7 +252,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="cycling"
-      							value="0"
+      							// value="0"
       							value={formData.cycling === "0"}
       							onChange={handleChange}
       							required
@@ -268,7 +268,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="strength"
-      							value="1"
+      							// value="1"
       							value={formData.strength === "1"}
       							onChange={handleChange}
       							required
@@ -279,7 +279,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="strength"
-      							value="0"
+      							// value="0"
       							value={formData.strength === "0"}
       							onChange={handleChange}
       							required
@@ -295,7 +295,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="running"
-      							value="1"
+      							// value="1"
       							value={formData.running === "1"}
       							onChange={handleChange}
       							required
@@ -306,7 +306,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="running"
-      							value="0"
+      							// value="0"
       							value={formData.running === "0"}
       							onChange={handleChange}
       							required
@@ -322,7 +322,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="sports"
-      							value="1"
+      							// value="1"
       							value={formData.sports === "1"}
       							onChange={handleChange}
       							required
@@ -333,7 +333,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="sports"
-      							value="0"
+      							// value="0"
       							value={formData.sports === "0"}
       							onChange={handleChange}
       							required
@@ -349,7 +349,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="yoga"
-      							value="1"
+      							// value="1"
       							value={formData.yoga === "1"}
       							onChange={handleChange}
       							required
@@ -360,7 +360,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="yoga"
-      							value="0"
+      							// value="0"
       							value={formData.yoga === "0"}
       							onChange={handleChange}
       							required
@@ -376,7 +376,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="swimming"
-      							value="1"
+      							// value="1"
       							value={formData.swimming === "1"}
       							onChange={handleChange}
       							required
@@ -387,7 +387,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="swimming"
-      							value="0"
+      							// value="0"
       							value={formData.swimming === "0"}
       							onChange={handleChange}
       							required
@@ -403,7 +403,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="martialarts"
-      							value="1"
+      							// value="1"
       							value={formData.martialarts === "1"}
       							onChange={handleChange}
       							required
@@ -414,7 +414,7 @@ const InitialSurveyPage = () => {
       						<input
       							type="radio"
       							name="martialarts"
-      							value="0"
+      							// value="0"
       							value={formData.martialarts === "0"}
       							onChange={handleChange}
       							required

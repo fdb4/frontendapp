@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import './dailylog.css'
-import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
+import '../styling/dailylog.css'
+import VistorNavbar from "../../../components/navbar-visitor/visitornav.js";
 
 const API_URL = "http://127.0.0.1:5000";
 
