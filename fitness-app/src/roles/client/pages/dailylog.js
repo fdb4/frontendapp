@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import '../styling/dailylog.css'
-import VistorNavbar from "../../../components/navbar-visitor/visitornav.js";
+import ClientNavbar  from "../../../components/navbar-visitor/clientnav.js";
 
 const API_URL = "http://127.0.0.1:5000";
 
@@ -75,7 +75,7 @@ const DailyLog = () => {
 
 	return (
     <div className="daily-tracker-page">
-      <VistorNavbar />
+      <ClientNavbar />
       <div className="tracker-content-container">
         <div className="tracker-modal">
           <h1>Daily Log</h1>

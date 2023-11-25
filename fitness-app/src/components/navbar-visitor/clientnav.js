@@ -53,16 +53,16 @@ const ClientNavbar = () => {
         <Bars onClick={toggleMenu} />
         <NavMenu showMenu={showMenu}>
         <NavLink to="/clienthome" activeStyle>
-            HOME
+            Home
           </NavLink>
-          <NavLink to="/dailyactivity" activeStyle>
-            DAILY ACTIVITY
+          <NavLink to="/dailylog" activeStyle>
+            Daily Log
           </NavLink>
           <NavLink to="/workouts" activeStyle>
-            WORKOUTS
+            Workouts
           </NavLink>
           <NavLink to="/clientcoaches" activeStyle>
-            COACHES
+            Coaches
           </NavLink>
           <div style={{ position: "relative"}}>
             <UserProfileImage

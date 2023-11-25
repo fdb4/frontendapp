@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import "./initialsurveypage.css";
-import VistorNavbar from "../../../../components/navbar-visitor/visitornav.js";
+import ClientNavbar from "../../../../components/navbar-visitor/clientnav.js";
 
 const API_URL = "http://127.0.0.1:5000";
 
-const InitialSurveyPage = () => {
+const ClientSurvey = () => {
 
 	const [formData, setFormData] = useState({
 
@@ -107,7 +107,7 @@ const InitialSurveyPage = () => {
 
 	return (
     <div className="initial-survey-page">
-      <VistorNavbar />
+      <ClientNavbar/>
       <div className = "survey-modal-container">
       	<div className = "survey-modal">
       		<h1>Initial Survey</h1>
@@ -441,4 +441,4 @@ const InitialSurveyPage = () => {
   	);
 };
 
-export default InitialSurveyPage;
+export default ClientSurvey;

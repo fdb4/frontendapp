@@ -14,28 +14,28 @@ import Login from "./roles/visitors/login.js";
 import Registration from "./roles/visitors/registration.js";
 
 //imports for clients login
+import ClientSurvey from "./roles/client/pages/initialsurvey/initialsurveypage.js"
 import ClientHome from "./roles/client/pages/clienthome.js";
-import DailyActivity from "./roles/client/pages/dailyactivity.js";
-import Messages from "./roles/client/pages/profile/messages.js";
+import DailyLog from "./roles/client/pages/dailylog.js";
 import Workouts from "./roles/client/pages/workouts.js";
 import ClientCoaches from "./roles/client/pages/clientcoaches.js";
-import Settings from "./roles/client/pages/profile/settings.js";
+import CoachProfile from './roles/client/pages/coachprofile.js';
 import MyProfile from "./roles/client/pages/profile/myprofile.js";
 import Inbox from "./roles/client/pages/profile/inbox.js"
+import Messages from "./roles/client/pages/profile/messages.js";
+import Settings from "./roles/client/pages/profile/settings.js";
+
 
 
 //import for Coaches login
+import CoachSurvey from "./roles/coach/pages/coachsurvey.js";
 import Clients from "./roles/coach/pages/clients.js";
-import InitialSurveyPage from "./roles/client/pages/initialsurvey/initialsurveypage.js"
 import { AuthProvider } from "./components/navbar-visitor/auth.js";
-import CoachProfile from './roles/client/pages/coachprofile.js';
 import RequireAuth from "./components/navbar-visitor/requireauth.js";
-import DailyLog from "./roles/client/pages/dailylog.js"
 
 
 //import CoachProfile from './roles/client/pages/coachprofile.js';
-//import RequireAuth from "./components/navbar-visitor/requireauth.js";
-import CoachSurvey from "./roles/coach/pages/coachsurvey.js";
+//import RequireAuth from "./components/navbar-visitor/requireauth.js"; 
 
 
 function App() {
@@ -69,34 +69,24 @@ function App() {
         <Route path="/registration" element={<Registration />} />
 
         {/*initial survey routes based on user login */}
-        
-
+        <Route path="/clientsurvey" element={<RequireAuth><ClientSurvey /></RequireAuth>} /> 
+        <Route path="/coachsurvey" element={<RequireAuth><CoachSurvey /></RequireAuth>} />
 
         {/* Protected Routes for client */}
         <Route path="/clienthome" element={<RequireAuth><ClientHome /></RequireAuth>} />
-        <Route path="/dailyactivity" element={<RequireAuth><DailyActivity /></RequireAuth>} />
+        <Route path="/dailylog" element={<RequireAuth><DailyLog /></RequireAuth>} />
         <Route path="/workouts" element={<RequireAuth><Workouts /></RequireAuth>} />
         <Route path="/clientcoaches" element={<RequireAuth><ClientCoaches /></RequireAuth>} />
-        
-        <Route path="/dailylog" element={<RequireAuth><DailyLog /></RequireAuth>} />
-        
-
-        {/*coach's profile based on id. */}
-        <Route path="/coaches/:id" element={<RequireAuth><CoachProfile /></RequireAuth>}  />
+          <Route path="/coaches/:id" element={<RequireAuth><CoachProfile /></RequireAuth>}  />
         {/* Routes for client's profile */}
-        <Route path="/myprofile" element={<RequireAuth><MyProfile/>  </RequireAuth>}/>    
+        <Route path="/myprofile" element={<RequireAuth><MyProfile/></RequireAuth>}/>    
         <Route path="/inbox" element={<RequireAuth><Inbox/></RequireAuth>} />  
         <Route path="/messages" element={<RequireAuth><Messages /></RequireAuth>} />
         <Route path="/settings" element={<RequireAuth><Settings /></RequireAuth>} />
+
+
+        {/* Protected Routes for coach */}
         <Route path="/clients" element={<RequireAuth><Clients /></RequireAuth>} />
-
-
-        <Route path="/initialsurveypage" element={<RequireAuth><InitialSurveyPage /></RequireAuth>} /> 
-
-        //Survey Page
-        {/* <Route path="/initialsurveypage" element={<InitialSurveyPage />} />       */}
-        // survey
-        <Route path="/coachsurvey" element={<RequireAuth><CoachSurvey /></RequireAuth>} />
 
       </Routes>
       </AuthProvider>
