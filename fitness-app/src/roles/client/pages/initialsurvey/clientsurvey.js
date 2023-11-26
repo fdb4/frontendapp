@@ -74,6 +74,27 @@ const InitialSurveyPage = () => {
     		clientID: id
     	};
 
+    	const convertHeight = (heightString) => {
+
+    		if(!heightString) {
+
+    			return 0;
+    		}
+    		const h = heightString.split("'");
+    		const feet = parseInt(h[0], 10);
+    		const inches = h[1] ? parseInt(h[1], 10) : 0
+
+    		const total = (feet * 12) + inches;
+
+    		return total;
+    	};
+
+    	const clientIDVal = parseInt(formData.clientID, 10);
+    	const heightVal = convertHeight(formData.height);
+    	const weightVal = parseInt(formData.weight, 10);
+    	const goalweightVal = parseInt(formData.goalweight, 10)
+    	const ageVal = parseInt(formData.age, 10);
+
     	const genderVal = formData.gender.toLowerCase() === 'male' ? 0:1;
 
     	const cyclingVal = formData.cycling.toLowerCase() === 'yes' ? 1:0
@@ -89,6 +110,11 @@ const InitialSurveyPage = () => {
       		const sendData = {
 
         		...updateData,
+        		clientID: clientIDVal,
+        		height: heightVal,
+        		weight: weightVal,
+        		goalweight: goalweightVal,
+        		age: ageVal,
         		gender: genderVal,
         		cycling: cyclingVal,
         		strength: strengthVal,
