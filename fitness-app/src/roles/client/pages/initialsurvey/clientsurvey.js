@@ -86,7 +86,6 @@ const InitialSurveyPage = () => {
     		return total;
     	};
 
-    	const clientIDVal = parseInt(formData.clientID, 10);
     	const heightVal = convertHeight(formData.height);
     	const weightVal = parseInt(formData.weight, 10);
     	const goalweightVal = parseInt(formData.goalweight, 10)
@@ -107,7 +106,6 @@ const InitialSurveyPage = () => {
       		const sendData = {
 
         		...updateData,
-        		clientID: clientIDVal,
         		height: heightVal,
         		weight: weightVal,
         		goalweight: goalweightVal,
@@ -151,17 +149,6 @@ const InitialSurveyPage = () => {
       		<h1>Initial Survey</h1>
       		<form onSubmit={handleSubmit} className="initial-survey-form">
       			<h2>Personal Info</h2>
-      			<div>
-      				<label>Client ID </label>
-      				<input
-      					type="number"
-      					name="clientID"
-      					value={formData.clientID}
-      					onChange={handleChange}
-      					required
-      					step="1"
-      				/>
-      			</div>
       			<div>
   						<label>Height </label>
   							<select
