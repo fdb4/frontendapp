@@ -151,7 +151,7 @@ const InitialSurveyPage = () => {
       		<h1>Initial Survey</h1>
       		<form onSubmit={handleSubmit} className="initial-survey-form">
       			<h2>Personal Info</h2>
-      			{/* <div>
+      			<div>
       				<label>Client ID </label>
       				<input
       					type="number"
@@ -161,7 +161,7 @@ const InitialSurveyPage = () => {
       					required
       					step="1"
       				/>
-      			</div> */}
+      			</div>
       			<div>
   						<label>Height </label>
   							<select

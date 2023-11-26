@@ -7,7 +7,7 @@ import CoachNavbar from "../../../../components/navbar-visitor/coachnav.js"
 import Cookies from "js-cookie";
 
 const API_URL = "http://127.0.0.1:5000";
-const coachtId = Cookies.get('id');
+const clientID = Cookies.get('id');
 
 
 const CoachSurvey = () => {
@@ -16,7 +16,7 @@ const CoachSurvey = () => {
     
 
     const [data, setData] = useState({
-        id: '',
+        clientID: '',
         price: '',
         experience: '',
         bio: '',
@@ -56,7 +56,7 @@ const CoachSurvey = () => {
         
         const requestData = {
             ...data,
-            id: coachtId,
+            clientID: clientID,
         };
     
         try {
