@@ -1,0 +1,55 @@
+
+.body {
+
+	margin: 0;
+}
+
+.body_1 {
+    position: relative;
+}
+
+
+.h3-firstname, .h3-lastname {
+    position: absolute;
+    color: white;
+    z-index: 1000;
+}
+
+.h3-firstname {
+    top: 180px;
+    right: 410px;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.h3-lastname {
+    top: 220px;
+    right: 400px;
+    font-size: 40px;
+}
+
+
+.workout-button button{
+
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	height: 50px;
+	margin-bottom: 0.5px;
+	margin-left: 20px;
+	background-color: rgb(66, 179, 170);
+}
+
+.button-container button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    width: 90%;
+    height: 75px;
+    margin-bottom: 0.5px;
+    background-color: rgb(66, 179, 170);
+}
+
+.footer h2 {
+    color: white;
+}
