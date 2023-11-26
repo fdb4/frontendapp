@@ -9,7 +9,7 @@ import {
   LogoImage,
   DropdownLink,
   DropdownMenu,
-  UserProfileImage
+  UserProfileImage,
 } from "./NavbarElements";
 
 import logo from "../../roles/visitors/assets/logo.png";
@@ -17,12 +17,10 @@ import { useAuth } from "./auth";
 import Cookies from "js-cookie";
 import { useLocation, Navigate } from "react-router-dom";
 import MyProfileIcon from "./icons/account.png";
-import EditProfileIcon from "./icons/user-avatar.png";
 import InboxIcon from "./icons/notification.png";
 import Messages from "./icons/messages.png";
 import SettingsIcon from "./icons/settings.png";
 import LogoutIcon from "./icons/leave.png";
-import Profile from "./icons/profile.jpg"
 
 const ClientNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -33,7 +31,8 @@ const ClientNavbar = () => {
 
   const { setAuth } = useAuth();
   const handleLogout = () => {
-    Cookies.remove("accessToken");
+    Cookies.remove("id");
+    Cookies.remove("role");
     setAuth({});
     console.log("Done");
     Navigate("/");
@@ -53,19 +52,19 @@ const ClientNavbar = () => {
         </Logo>
         <Bars onClick={toggleMenu} />
         <NavMenu showMenu={showMenu}>
-        <NavLink to="/clienthome" activeStyle>
-            HOME
+          <NavLink to="/clienthome" activeStyle>
+            Home
           </NavLink>
-          <NavLink to="/dailyactivity" activeStyle>
-            DAILY ACTIVITY
+          <NavLink to="/dailylog" activeStyle>
+            Daily Log
           </NavLink>
           <NavLink to="/workouts" activeStyle>
-            WORKOUTS
+            Workouts
           </NavLink>
           <NavLink to="/clientcoaches" activeStyle>
-            COACHES
+            Coaches
           </NavLink>
-          <div style={{ position: "relative"}}>
+          <div style={{ position: "relative" }}>
             <UserProfileImage
               src={MyProfileIcon}
               alt="User Profile"
@@ -75,10 +74,6 @@ const ClientNavbar = () => {
               <DropdownLink to="/myprofile">
                 <img src={MyProfileIcon} alt="My Profile Icon" />
                 My Profile
-              </DropdownLink>
-              <DropdownLink to="/editprofile">
-                <img src={EditProfileIcon} alt="Edit Profile Icon" />
-                Edit Profile
               </DropdownLink>
               <DropdownLink to="/inbox">
                 <img src={InboxIcon} alt="Inbox Icon" />

@@ -3,7 +3,7 @@ function Clients() {
     return(
         <div className="body_1">
             <CoachNavbar />
-            <h1>Clients Page </h1>
+            <h1>Coaches Page </h1>
         </div>
     )
 }
