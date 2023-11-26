@@ -25,7 +25,7 @@ import Inbox from "./roles/client/pages/profile/inbox.js"
 import Messages from "./roles/client/pages/profile/messages.js";
 import Settings from "./roles/client/pages/profile/settings.js";
 
-
+import Survey from "./roles/visitors/initialsurveypage.js"
 
 //import for Coaches login
 import CoachSurvey from "./roles/coach/pages/intialsurvey/coachsurvey.js";
@@ -84,6 +84,8 @@ function App() {
         <Route path="/messages" element={<RequireAuth><Messages /></RequireAuth>} />
         <Route path="/settings" element={<RequireAuth><Settings /></RequireAuth>} />
 
+
+        <Route path="/survey" element={<RequireAuth><Survey /></RequireAuth>} />
 
         {/* Protected Routes for coach */}
         <Route path="/coachhome" element={<RequireAuth><CoachHome/></RequireAuth>} />

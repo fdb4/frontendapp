@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import "./initialsurveypage.css";
+// import "./initialsurveypage.css";
 import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
 
 const API_URL = "http://127.0.0.1:5000";
@@ -71,8 +71,8 @@ const InitialSurveyPage = () => {
 	      !formData.martialarts ||
     	  !formData.other) 
     	{
-     	 console.error("All fields are required.");
-     	 return;
+     	//  console.error("All fields are required.");
+     	//  return;
     	}
 
     	const updateData = {
@@ -81,7 +81,7 @@ const InitialSurveyPage = () => {
     		clientID: id
     	};
 
-    	const type = formData.gender.toLowerCase() === 'male' ? 0:1;
+    	const type = formData.gender === 'male' ? 0:1;
 
     	try {
 
@@ -120,7 +120,7 @@ const InitialSurveyPage = () => {
       		<h1>Initial Survey</h1>
       		<form onSubmit={handleSubmit} className="initial-survey-form">
       			<h2>Personal Info</h2>
-      			<div>
+      			{/* <div>
       				<label>Client ID </label>
       				<input
       					type="number"
@@ -130,7 +130,7 @@ const InitialSurveyPage = () => {
       					required
       					step="1"
       				/>
-      			</div>
+      			</div> */}
       			<div>
   						<label>Height </label>
   							<select
