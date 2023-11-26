@@ -4,8 +4,11 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import "../../../client/pages/initialsurvey/clientsurvey.css";
 import CoachNavbar from "../../../../components/navbar-visitor/coachnav.js"
+import Cookies from "js-cookie";
 
 const API_URL = "http://127.0.0.1:5000";
+const coachtId = Cookies.get('id');
+
 
 const CoachSurvey = () => {
     const [priceError, setPriceError] = useState("");
@@ -13,7 +16,7 @@ const CoachSurvey = () => {
     
 
     const [data, setData] = useState({
-        // id: '',
+        id: '',
         price: '',
         experience: '',
         bio: '',
@@ -31,46 +34,46 @@ const CoachSurvey = () => {
  	};
 
      const handleSubmit = async (e) => {
-    	e.preventDefault();
-
+        e.preventDefault();
+    
         const isValidPrice = /^\d+(\.\d{2})?$/.test(data.price);
-
+    
         if (!isValidPrice || isNaN(data.price) || data.price < 0) {
-          setPriceError('Please enter a valid positive number with up to two decimal places.');
-          return;
+            setPriceError('Please enter a valid positive number with up to two decimal places.');
+            return;
         } else {
-          setPriceError('');
+            setPriceError('');
         }
-
+    
         const isValidExperience = /^\d+$/.test(data.experience);
-
-        if (!isValidExperience|| data.experience <= 0) {
-          setExperienceError('Please enter a valid positive integer.');
-          return;
+    
+        if (!isValidExperience || data.experience <= 0) {
+            setExperienceError('Please enter a valid positive integer.');
+            return;
         } else {
-          setExperienceError('');
+            setExperienceError('');
         }
-
-    	try {
-            const response = await fetch(`${API_URL}/coachSignUp`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
+        
+        const requestData = {
+            ...data,
+            id: coachtId,
+        };
+    
+        try {
+            const response = await axios.post(`${API_URL}/coachSignUp`, requestData);
     
             if (!response.ok) {
                 throw new Error(`Request failed with status ${response.status}`);
             }
     
-            const result = await response.json();
-            console.log("Registering with data:", data);
+            const result = response.data;
+            console.log("Registering with data:", requestData);
             console.log("Response:", result);
         } catch (error) {
             console.error("Error", error.message);
         }
-	};
+    };
+    
 
     return(
         <div className="initial-survey-page">
