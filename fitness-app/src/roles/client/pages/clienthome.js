@@ -27,7 +27,9 @@ function ClientHome() {
     return(
         <div className="body_1">
           <ClientNavbar />
-            <h1>Home Page</h1>
+            <dev className="container-h1">
+              <h1>Home Page</h1>
+            </dev>
             <p9>Welcome to BitFit, Health for everyone!</p9>
             <h3 className="h3-firstname">{firstName}</h3>
             <h3 className="h3-lastname">{lastName}</h3>
