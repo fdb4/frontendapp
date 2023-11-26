@@ -155,17 +155,6 @@ const InitialSurveyPage = () => {
       		<form onSubmit={handleSubmit} className="initial-survey-form">
       			<h2>Personal Info</h2>
       			<div>
-      				<label>Client ID </label>
-      				<input
-      					type="number"
-      					name="clientID"
-      					value={formData.clientID}
-      					onChange={handleChange}
-      					required
-      					step="1"
-      				/>
-      			</div>
-      			<div>
   						<label>Height </label>
   							<select
    		 						name="height"
