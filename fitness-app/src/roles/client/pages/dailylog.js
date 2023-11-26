@@ -48,7 +48,7 @@ const DailyLog = () => {
 
  		try {
 
-      const comm = await axios.post(`${API_URL}/dailylog`, sendData);
+      const comm = await axios.post(`${API_URL}/dailyLog`, sendData);
       console.log("Registering with data:", sendData);
       console.log("Response:", comm.data);
     }
