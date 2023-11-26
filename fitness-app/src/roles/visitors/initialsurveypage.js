@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import "./clientsurvey.css";
-import VistorNavbar from "../../../../components/navbar-visitor/clientnav.js";
+import "./initialsurveypage.css";
+import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
 
 const API_URL = "http://127.0.0.1:5000";
 
@@ -19,22 +19,28 @@ const InitialSurveyPage = () => {
 		movement: "",
 		age: "",
 		gender: "",
-		cycling: "",
-		strength: "",
-		running: "",
-		sports: "",
-		yoga: "",
-		swimming: "",
-		martialarts: "",
+		cycling: 0,
+		strength: 0,
+		running: 0,
+		sports: 0,
+		yoga: 0,
+		swimming: 0,
+		martialarts: 0,
 		other: ""
 	});
 
 	const handleChange = (e) => {
-    	
-    	const { name, value } = e.target;
+    	const { name, value, type, } = e.target;
+
+    	let newValue;
+    	if(type === 'radio') {
+
+    		newValue = e.target.checked ? parseInt(value, 10) : formData[name];
+    	}
+
     	setFormData({
     	  ...formData,
-    	  [name]: value,
+    	  [name]: newValue,
     	});
  	};
 
@@ -60,9 +66,10 @@ const InitialSurveyPage = () => {
     	  !formData.strength ||
 	      !formData.running ||
     	  !formData.sports ||
-    	  !formData.yoga ||
+	      !formData.yoga ||
     	  !formData.swimming ||
-    	  !formData.martialarts) 
+	      !formData.martialarts ||
+    	  !formData.other) 
     	{
      	 console.error("All fields are required.");
      	 return;
@@ -74,29 +81,14 @@ const InitialSurveyPage = () => {
     		clientID: id
     	};
 
-    	const genderVal = formData.gender.toLowerCase() === 'male' ? 0:1;
-
-    	const cyclingVal = formData.cycling.toLowerCase() === 'yes' ? 1:0
-    	const strengthVal = formData.strength.toLowerCase() === 'yes' ? 1:0
-    	const runningVal = formData.running.toLowerCase() === 'yes' ? 1:0
-    	const sportsVal = formData.sports.toLowerCase() === 'yes' ? 1:0
-    	const yogaVal = formData.yoga.toLowerCase() === 'yes' ? 1:0
-    	const swimmingVal = formData.swimming.toLowerCase() === 'yes' ? 1:0
-    	const martialartsVal = formData.martialarts.toLowerCase() === 'yes' ? 1:0
+    	const type = formData.gender.toLowerCase() === 'male' ? 0:1;
 
     	try {
 
       		const sendData = {
 
         		...updateData,
-        		gender: genderVal,
-        		cycling: cyclingVal,
-        		strength: strengthVal,
-        		running: runningVal,
-        		sports: sportsVal,
-        		yoga: yogaVal,
-        		swimming: swimmingVal,
-        		martialarts: martialartsVal
+        		gender: type,
       		};
 
       		console.log("Registering with data:", sendData);
@@ -248,109 +240,179 @@ const InitialSurveyPage = () => {
     						</select>
      			</div>
 				<h3>Workout Interests</h3>
-					<div className="radio-option">
-      			<label>Cycling:</label>
-      				<div className="radio-group"> 
-      					<select
-   			 					name="cycling"
-    							value={formData.cycling}
-    							onChange={handleChange}
-    							required
-  							>
-    							<option value="">Select Option...</option>
-    							<option value="yes">Yes</option>
-    							<option value="no">No</option>
-  							</select>
-      				</div>
-      		</div>
+					<div>
+	  					<label>Gender </label>
+  						<select
+   			 				name="cycling"
+    						value={formData.cycling}
+    						onChange={handleChange}
+    						required
+  						>
+    						<option value="">Select Gender...</option>
+    						<option value="yes">Yes</option>
+    						<option value="no">No</option>
+  						</select>
+					</div>
       		<div className="radio-option">
       			<label>Strength:</label>
       				<div className="radio-group"> 
-      					<select
-   			 					name="strength"
-    							value={formData.strength}
-    							onChange={handleChange}
-    							required
-  							>
-    							<option value="">Select Option...</option>
-    							<option value="yes">Yes</option>
-    							<option value="no">No</option>
-  							</select>
+      					<label>
+      					    Yes 
+      						<input
+      							type="radio"
+      							name="strength"
+      							value={1}
+      							checked={formData.strength === 1}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
+      					<label>
+      						No 
+      						<input
+      							type="radio"
+      							name="strength"
+      							value={0}
+      							checked={formData.strength === 0}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
       				</div>
       		</div>
       		<div className="radio-option">
       			<label>Running:</label>
       				<div className="radio-group"> 
-      					<select
-   			 					name="running"
-    							value={formData.running}
-    							onChange={handleChange}
-    							required
-  							>
-    							<option value="">Select Option...</option>
-    							<option value="yes">Yes</option>
-    							<option value="no">No</option>
-  							</select>
+      					<label>
+      					    Yes 
+      						<input
+      							type="radio"
+      							name="running"
+      							value={1}
+      							checked={formData.running === 1}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
+      					<label>
+      						No 
+      						<input
+      							type="radio"
+      							name="running"
+      							value={0}
+      							checked={formData.running === 0}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
       				</div>
       		</div>
       		<div className="radio-option">
       			<label>Sports:</label>
       				<div className="radio-group"> 
-      					<select
-   			 					name="sports"
-    							value={formData.sports}
-    							onChange={handleChange}
-    							required
-  							>
-    							<option value="">Select Option...</option>
-    							<option value="yes">Yes</option>
-    							<option value="no">No</option>
-  							</select>
+      					<label>
+      					    Yes 
+      						<input
+      							type="radio"
+      							name="sports"
+      							value={1}
+      							checked={formData.sports === 1}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
+      					<label>
+      						No 
+      						<input
+      							type="radio"
+      							name="sports"
+      							value={0}
+      							checked={formData.sports === 0}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
       				</div>
       		</div>
       		<div className="radio-option">
      				<label>Yoga:</label>
       				<div className="radio-group"> 
-      					<select
-   			 					name="yoga"
-    							value={formData.yoga}
-    							onChange={handleChange}
-    							required
-  							>
-    							<option value="">Select Option...</option>
-    							<option value="yes">Yes</option>
-    							<option value="no">No</option>
-  							</select>
+      					<label>
+      					    Yes 
+      						<input
+      							type="radio"
+      							name="yoga"
+      							value={1}
+      							checked={formData.yoga === 1}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
+      					<label>
+      						No 
+      						<input
+      							type="radio"
+      							name="yoga"
+      							value={0}
+      							checked={formData.yoga === 0}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
       				</div>
       		</div>
       		<div className="radio-option">
       			<label>Swimming:</label>
       				<div className="radio-group"> 
-      					<select
-   			 					name="swimming"
-    							value={formData.swimming}
-    							onChange={handleChange}
-    							required
-  							>
-    							<option value="">Select Option...</option>
-    							<option value="yes">Yes</option>
-    							<option value="no">No</option>
-  							</select>
+      					<label>
+      					    Yes 
+      						<input
+      							type="radio"
+      							name="swimming"
+      							value={1}
+      							checked={formData.swimming === 1}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
+      					<label>
+      						No 
+      						<input
+      							type="radio"
+      							name="swimming"
+      							value={0}
+      							checked={formData.swimming === 0}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
       				</div>
       		</div>
       		<div className="radio-option">
      				<label>Martial Arts:</label>
       				<div className="radio-group"> 
-      					<select
-   			 					name="martialarts"
-    							value={formData.martialarts}
-    							onChange={handleChange}
-    							required
-  							>
-    							<option value="">Select Option...</option>
-    							<option value="yes">Yes</option>
-    							<option value="no">No</option>
-  							</select>
+      					<label>
+      					    Yes 
+      						<input
+      							type="radio"
+      							name="martialarts"
+      							value={1}
+      							checked={formData.martialarts === 1}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
+      					<label>
+      						No 
+      						<input
+      							type="radio"
+      							name="martialarts"
+      							value={0}
+      							checked={formData.martialarts === 0}
+      							onChange={handleChange}
+      							required
+      						/>
+      					</label>
       				</div>
       			</div>
       			<div>
