@@ -25,10 +25,11 @@ const InitialSurveyPage = () => {
 	  
 			  // Parse the JSON response
 			  const responseData = await response.json();
+			  console.log(role)
 			  if (responseData.survey === 0 && role === "Coach") {
 				  navigate('/coachsurvey')
 			  }
-			  if (responseData.survey === 0) {
+			  else if (responseData.survey === 0) {
 				  navigate('/clienthome')
 			  }
 
