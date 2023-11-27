@@ -23,10 +23,7 @@ function ClientCoaches() {
       let url = "http://127.0.0.1:5000/coaches";
 
       if (filters.type && filters.value) {
-        switch (filters.type) {
-          case "name":
-            url = `http://127.0.0.1:5000/coaches/filter/name/${filters.value}`;
-            break;
+        switch (filters.type) { 
           case "gym":
             url = `http://127.0.0.1:5000/coaches/filter/gym/${filters.value}`;
             break;
@@ -37,13 +34,13 @@ function ClientCoaches() {
             url = `http://127.0.0.1:5000/coaches/filter/town/${filters.value}`;
             break;
           case "experience":
-            url = `http://127.0.0.1:5000/coaches/filter/experience/${filters.value}`;
+            url = `http://127.0.0.1:5000/coaches/filter/exp/${filters.value}`;
             break;
           case "ratings":
-            url = `http://127.0.0.1:5000/coaches/filter/ratings/${filters.value}`;
+            url = `http://127.0.0.1:5000/coaches/filter/rating/${filters.value}`;
             break;
           case "price":
-            url = `http://127.0.0.1:5000/coaches/filter/price/${filters.value}`;
+            url = `http://127.0.0.1:5000/coaches/filter/cost/${filters.value}`;
             break;
           default:
             break;
@@ -109,13 +106,12 @@ function ClientCoaches() {
           <option value="" disabled>
             Filter by:
           </option>
-          <option value="name">Name</option>
           <option value="gym">Gym</option>
           <option value="state">State</option>
           <option value="town">Town</option>
           <option value="experience">Experience</option>
           <option value="ratings">Ratings</option>
-          <option value="price">Price</option>
+          <option value="price">Maximum Price</option>
         </select>
         <button onClick={handleFilter}>Filter</button>
         <button onClick={handleClear}>Clear</button>
