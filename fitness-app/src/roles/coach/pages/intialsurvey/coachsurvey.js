@@ -10,9 +10,8 @@ const API_URL = "http://127.0.0.1:5000";
 const clientID = Cookies.get('id');
 const role = Cookies.get("role")
 
-
 const CoachSurvey = () => {
-
+    const navigate = useNavigate()
     const [priceError, setPriceError] = useState("");
     const [experienceError, setExperienceError] = useState("");
     
@@ -71,6 +70,7 @@ const CoachSurvey = () => {
             const result = response.data;
             console.log("Registering with data:", requestData);
             console.log("Response:", result);
+            navigate('/clienthome')
         } catch (error) {
             console.error("Error", error.message);
         }

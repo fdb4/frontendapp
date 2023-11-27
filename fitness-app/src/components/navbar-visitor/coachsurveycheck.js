@@ -12,7 +12,7 @@ const CoachSurveyCheck = ({ children }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${API_URL}/doneSurvey/${clientID}`);
+                const response = await fetch(`${API_URL}/doneCoachSurvey/${clientID}`);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
