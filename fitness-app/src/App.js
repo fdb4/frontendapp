@@ -32,6 +32,8 @@ import CoachSurvey from "./roles/coach/pages/intialsurvey/coachsurvey.js";
 import CoachHome from "./roles/coach/pages/coachhome.js";
 import { AuthProvider } from "./components/navbar-visitor/auth.js";
 import RequireAuth from "./components/navbar-visitor/requireauth.js";
+import CoachSurveyCheck from "./components/navbar-visitor/coachsurveycheck.js";
+import ClientSurveyCheck from "./components/navbar-visitor/clientsurveycheck.js";
 
 
 //import CoachProfile from './roles/client/pages/coachprofile.js';
@@ -69,8 +71,8 @@ function App() {
         <Route path="/registration" element={<Registration />} />
 
         {/*initial survey routes based on user login */}
-        <Route path="/clientsurvey" element={<RequireAuth><ClientSurvey /></RequireAuth>} /> 
-        <Route path="/coachsurvey" element={<RequireAuth><CoachSurvey /></RequireAuth>} />
+        <Route path="/clientsurvey" element={<RequireAuth><ClientSurveyCheck><ClientSurvey /></ClientSurveyCheck></RequireAuth>} /> 
+        <Route path="/coachsurvey" element={<RequireAuth><CoachSurveyCheck><CoachSurvey /></CoachSurveyCheck></RequireAuth>} />
 
         {/* Protected Routes for client */}
         <Route path="/clienthome" element={<RequireAuth><ClientHome /></RequireAuth>} />
