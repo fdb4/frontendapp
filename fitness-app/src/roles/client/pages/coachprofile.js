@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ClientNavbar from "../../../components/navbar-visitor/clientnav";
 import "../styling/coachprofile.css";
-
+import Coach from "../../visitors/assets/coach.png"
 import { Link } from "react-router-dom";
 
 const CoachProfile = () => {
@@ -89,6 +89,7 @@ const CoachProfile = () => {
         {coach && (
           <div className="profile_2">
             <div className="left">
+              <img src={Coach} alt="coach profile" />
               <name>{coach.firstname} {coach.lastname}</name>
               <age>Age: {coach.age}</age>
               <price>Price: ${coach.price}</price>
