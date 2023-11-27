@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ClientNavbar from "../../../components/navbar-visitor/clientnav";
 import "../styling/clientcoaches.css";
 import { Link } from "react-router-dom";
+import Coach from "../../visitors/assets/coach.png"
 
 function ClientCoaches() {
   const [coaches, setCoaches] = useState([]);
@@ -123,6 +124,7 @@ function ClientCoaches() {
         <tr key={coach.clientID}>
           <div className="profile">
             <div className="left">
+              <img src={Coach} alt="coach profile" />
               <name>{coach.firstname} {coach.lastname}</name>
               <age>Age: </age>
               <price>Price: ${coach.price}</price>
