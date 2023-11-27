@@ -104,7 +104,7 @@ function Settings() {
       {clientInfo ? (
         <div className="profile_info">
           <img
-            className="profile_img"
+            className="img"
             src="https://i0.wp.com/www.lizzyc.com.au/journal/wp-content/uploads/2019/07/TGardiner0519_0012.jpg?resize=1024%2C682&ssl=1"
             alt="Profile"
           />

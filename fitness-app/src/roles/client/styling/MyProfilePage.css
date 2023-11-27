@@ -15,9 +15,9 @@
   padding: 20px;
 }
 
-img {
-  width: 200px;
-  height: 200px;
+.img {
+  width: 250px;
+  height: 250px;
   border-radius: 50%; /* Make the image circular */
   margin-left: 20px;
 }
@@ -33,5 +33,5 @@ img {
 }
 
 .right p {
-  margin: 500px 0; /* Add some margin to the paragraphs for spacing */
+  margin: 5px 0; /* Add some margin to the paragraphs for spacing */
 }

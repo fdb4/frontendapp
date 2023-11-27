@@ -89,7 +89,7 @@ const CoachProfile = () => {
         {coach && (
           <div className="profile_2">
             <div className="left">
-              <img className="coachprofileimg" src={Coach} alt="coach profile" />
+              <img className="img" src={Coach} alt="coach profile" />
               <name>{coach.firstname} {coach.lastname}</name>
               <age>Age: {coach.age}</age>
               <price>Price: ${coach.price}</price>

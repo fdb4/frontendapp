@@ -124,7 +124,7 @@ function ClientCoaches() {
         <tr key={coach.clientID}>
           <div className="profile">
             <div className="left">
-              <img src={Coach} alt="coach profile" />
+              <img className="img"src={Coach} alt="coach profile" />
               <name>{coach.firstname} {coach.lastname}</name>
               <age>Age: </age>
               <price>Price: ${coach.price}</price>
