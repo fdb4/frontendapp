@@ -12,36 +12,6 @@ const InitialSurveyPage = () => {
 	const id = Cookies.get("id");
 	const role = Cookies.get("role")
 
-	useEffect( () => {
-
-		const fetchData = async () => {
-			try {
-			  const response = await fetch(`${API_URL}/doneSurvey/${id}`);
-	  
-			  // Check if the request was successful (status code 200-299)
-			  if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			  }
-	  
-			  // Parse the JSON response
-			  const responseData = await response.json();
-			  console.log(role)
-			  if (responseData.survey === 0 && role === "Coach") {
-				  navigate('/coachsurvey')
-			  }
-			  else if (responseData.survey === 0) {
-				  navigate('/clienthome')
-			  }
-
-			} catch (error) {
-			  console.error('Error fetching data:', error);
-			}
-		  };
-	  
-		  // Call the async function
-		  fetchData();
-
-	}, [])
 
 	const [formData, setFormData] = useState({
 
