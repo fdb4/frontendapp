@@ -1,12 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./clientsurvey.css";
 import VistorNavbar from "../../../../components/navbar-visitor/clientnav.js";
 
 const API_URL = "http://127.0.0.1:5000";
 
 const InitialSurveyPage = () => {
+	const navigate = useNavigate();
+	const id = Cookies.get("id");
+	const role = Cookies.get("role")
+
+	useEffect( () => {
+
+		const fetchData = async () => {
+			try {
+			  const response = await fetch(`${API_URL}/doneSurvey/${id}`);
+	  
+			  // Check if the request was successful (status code 200-299)
+			  if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			  }
+	  
+			  // Parse the JSON response
+			  const responseData = await response.json();
+			  if (responseData.survey === 0 && role === "Coach") {
+				  navigate('/coachsurvey')
+			  }
+			  if (responseData.survey === 0) {
+				  navigate('/clienthome')
+			  }
+
+			} catch (error) {
+			  console.error('Error fetching data:', error);
+			}
+		  };
+	  
+		  // Call the async function
+		  fetchData();
+
+	}, [])
 
 	const [formData, setFormData] = useState({
 
@@ -38,8 +72,6 @@ const InitialSurveyPage = () => {
 
 	const handleSubmit = async (e) => {
     	e.preventDefault();
-
-    	const id = Cookies.get("id");
 
     	if(!id) {
     		console.error("Client ID is not available...");

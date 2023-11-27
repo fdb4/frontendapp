@@ -71,7 +71,7 @@ const Login = () => {
         }
         Cookies.set("id", id);
         Cookies.set("role", role);
-        navigate(from, { replace: true });
+        navigate('/clientsurvey');
       } else {
         setLoginMessage(data.message);
       }
