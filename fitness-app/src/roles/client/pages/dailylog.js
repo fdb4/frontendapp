@@ -159,8 +159,8 @@ const DailyLog = () => {
           <div className="tracker-modal">
             <h1>Daily Log</h1>
             <form onSubmit={handleSubmit} className="daily-tracker-form">
-              <div className="input-section">
-                <label>Water Intake(mL) </label>
+            <div className="input-section">
+              <label>Water Intake (mL)</label>
                 <input
                   type="number"
                   name="water"
@@ -168,9 +168,9 @@ const DailyLog = () => {
                   onChange={handleChange}
                   required
                 />
-              </div>
-              <div className="input-section">
-                <label>Calorie Intake </label>
+            </div>
+            <div className="input-section">
+              <label>Calorie Intake</label>
                 <input
                   type="number"
                   name="calorie"
@@ -178,35 +178,35 @@ const DailyLog = () => {
                   onChange={handleChange}
                   required
                 />
-              </div>
-              <div className="input-section">
-                <label>Daily Mood </label>
-                <input
-                  type="range"
-                  className="slider"
-                  name="mood"
-                  min="1"
-                  max="5"
-                  value={formData.mood}
-                  onChange={handleChange}
-                  required
-                />
-                <div className="mood-display">{setSmile}</div>
-              </div>
-              <button type="submit" className="submit-button">Submit</button>
+            </div>
+            <div className="input-section">
+              <label>Daily Mood</label>
+              <input
+                type="range"
+                className="slider"
+                name="mood"
+                min="1"
+                max="5"
+                value={formData.mood}
+                onChange={handleChange}
+                required
+              />
+              <div className="mood-display">{setSmile}</div>
+            </div>
+            <button type="submit" className="submit-button">Submit</button>
             </form>
           </div>
         </div>
-      </div>
-      <div className="graph-section">
-        <div className="graph-container">
-          <Line data={calGraphData} />
-        </div>
-        <div className="graph-container">
-          <Line data={waterGraphData} />
-        </div>
-        <div className="graph-container">
-          <Line data={moodGraphData} options={moodOptions} />
+        <div className="graph-section">
+          <div className="graph-container">
+            <Line data={calGraphData} />
+          </div>
+          <div className="graph-container">
+            <Line data={waterGraphData} />
+          </div>
+          <div className="graph-container">
+            <Line data={moodGraphData} options={moodOptions} />
+          </div>
         </div>
       </div>
     </div>
