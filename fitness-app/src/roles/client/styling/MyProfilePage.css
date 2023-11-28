@@ -3,35 +3,49 @@
 .body_1 {
   font-family: Arial, sans-serif;
   padding: 20px;
+  background-image: url('../../visitors/assets/background_2.jpg');
+  background-repeat: repeat-y;
+  background-size: cover;
+  min-height: 100vh;
 }
 
-.profile-container {
-  max-width: 500px;
-}
 
 .profile_info {
   display: flex;
   align-items: center;
   padding: 20px;
+  background-color: rgb(255, 255, 255, 0.9);
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  max-width: 800px;
 }
 
 .img {
   width: 250px;
   height: 250px;
-  border-radius: 50%; /* Make the image circular */
+  border-radius: 50%;
   margin-left: 20px;
 }
 
 .right {
   flex: 1;
   display: flex;
-  flex-direction: column; /* Stack the child elements vertically */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .right h1 {
+  align-items: center;
   margin-bottom: 10px;
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
 }
 
 .right p {
-  margin: 5px 0; /* Add some margin to the paragraphs for spacing */
+  align-items: center;
+  margin: 5px 0;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
 }

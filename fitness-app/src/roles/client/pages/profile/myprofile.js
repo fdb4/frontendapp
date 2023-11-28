@@ -27,6 +27,13 @@ const MyProfilePage = () => {
     return binaryGender === 0 ? "Male" : "Female";
   };
 
+  const heightConvert = (inches) => {
+
+    const feet = Math.floor(inches / 12);
+    const remainder = inches % 12;
+    return `${feet}' ${remainder}`; 
+  }
+
   return (
     <div className="body_1">
       <ClientNavbar />
@@ -42,9 +49,9 @@ const MyProfilePage = () => {
               alt="Profile"
             />
           <div className="right">
-            <h1>{clientInfo[0] ? `${clientInfo[0].firstname} ${clientInfo[0].lastname}'s` : "Client's"} </h1>
+            <h1>{clientInfo[0] ? `${clientInfo[0].firstname} ${clientInfo[0].lastname}` : "Client's"} </h1>
             <p>Email: {clientInfo[0] ? clientInfo[0].email : "N/A"}</p>
-            <p>Height: {clientInfo[0] ? clientInfo[0].height : "N/A"}</p>
+            <p>Height: {clientInfo[0] ? heightConvert(clientInfo[0].height) : "N/A"}</p>
             <p>Weight: {clientInfo[0] ? clientInfo[0].weight : "N/A"}</p>
             <p>Goal Weight: {clientInfo[0] ? clientInfo[0].goalweight : "N/A"}</p>
             <p>Movement: {clientInfo[0] ? clientInfo[0].movement : "N/A"}</p>
