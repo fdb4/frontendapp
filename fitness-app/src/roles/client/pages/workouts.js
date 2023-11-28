@@ -26,6 +26,7 @@ function Workouts() {
       <main>
         <div className="nav_2">
           <h2>Popular Exercise</h2>
+          
         </div>
       </main>
     </div>
