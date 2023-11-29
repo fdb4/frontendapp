@@ -1,136 +1,136 @@
 * {
-  text-align: left;
-  margin: 0;
-  padding: 0;
-}
-
-.individual {
-  margin-left: 20px;
-}
-.header {
-  display: inline-block;
-}
-.header h1 {
-  color: #fff;
-  font-family: Saira Condensed;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 100%; /* 50px */
-  text-transform: uppercase;
-  margin-top: 40px;
-  margin-bottom: -40px;
-}
-.header {
-  margin-left: 0px;
-}
-figure {
-  position: relative;
-}
-
-figure img {
-  border-radius: 65px;
-  background-color: lightgray;
-  width: 500px;
-  height: 400px;
-  flex-shrink: 0;
-  z-index: 1;
-}
-
-figcaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 500px;
-  padding: 10px;
-  box-sizing: border-box;
-  text-align: center;
-  border-radius: 0 0 65px 65px;
-}
-.titles,
-h4,
-h5 {
-  color: #fff;
-  font-family: Saira Condensed;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 100%;
-  margin-left: 20px;
-  margin-bottom: 10px;
-}
-.titles,
-h5 {
-  text-transform: uppercase;
-}
-.titles {
-  font-size: 30px;
-}
-h5 {
-  font-size: 20px;
-}
-div h4 {
-  margin-top: 70px;
-  font-size: 40px;
-  margin-bottom: -40px;
-}
-.workoutinfo {
-  margin-top: 37px;
-  width: 500px;
-  height: 499px;
-  flex-shrink: 0;
-  border-radius: 65px;
-  background: #479090;
-}
-.title {
-  text-align: center;
-  padding-top: 51px;
-}
-.par div {
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-}
-hr {
-  width: 400px;
-  margin: auto;
-  height: 3px;
-  background-color: rgb(255, 255, 255);
-}
-.par-item {
-  width: 500px;
-  flex-shrink: 0;
-  color: #fff;
-  text-align: center;
-  font-family: Saira Condensed;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-}
-div p {
-  color: #fff;
-  font-family: Saira Condensed;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-  max-width: 400px;
-  height: 100px;
-  margin: auto;
-  flex-shrink: 0;
-  margin-top: 70px;
-}
-.edit {
-  width: 167px;
-  height: 69px;
-  flex-shrink: 0;
-  float: right;
-  margin-right: 40px;
-  border-radius: 30px;
-  background: #000000;
-  color: #ffffff;
-  font-family: Poppins;
-  font-size: 18px;
-  font-style: normal;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+  }
   
-  letter-spacing: 1px;
-}
+  .individual {
+    margin-left: 20px;
+  }
+  .header {
+    display: inline-block;
+  }
+  .header h1 {
+    color: #fff;
+    font-family: Saira Condensed;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; /* 50px */
+    text-transform: uppercase;
+    margin-top: 40px;
+    margin-bottom: -40px;
+  }
+  .header {
+    margin-left: 0px;
+  }
+  figure {
+    position: relative;
+  }
+  
+  figure img {
+    border-radius: 65px;
+    background-color: lightgray;
+    width: 500px;
+    height: 400px;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  
+  figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 500px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 0 0 65px 65px;
+  }
+  .titles,
+  h4,
+  h5 {
+    color: #fff;
+    font-family: Saira Condensed;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+  .titles,
+  h5 {
+    text-transform: uppercase;
+  }
+  .titles {
+    font-size: 30px;
+  }
+  h5 {
+    font-size: 20px;
+  }
+  div h4 {
+    margin-top: 70px;
+    font-size: 40px;
+    margin-bottom: -40px;
+  }
+  .workoutinfo {
+    margin-top: 37px;
+    width: 500px;
+    height: 499px;
+    flex-shrink: 0;
+    border-radius: 65px;
+    background: #479090;
+  }
+  .title {
+    text-align: center;
+    padding-top: 51px;
+  }
+  .par {
+    display: flex;
+  }
+  hr {
+    width: 400px;
+    margin: auto;
+    height: 3px;
+    background-color: rgb(255, 255, 255);
+  }
+  .par-item {
+    width: 250px;
+    flex-shrink: 0;
+    color: #fff;
+    text-align: center;
+    font-family: Saira Condensed;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    margin: 20px 0;
+  }
+  .workout_description {
+    color: #fff;
+    font-family: Saira Condensed;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    max-width: 400px;
+    height: 100px;
+    margin: auto;
+    flex-shrink: 0;
+    margin-top: 70px;
+  }
+  .edit {
+    width: 167px;
+    height: 69px;
+    flex-shrink: 0;
+    float: right;
+    margin-right: 40px;
+    border-radius: 30px;
+    background: #000000;
+    color: #ffffff;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    
+    letter-spacing: 1px;
+  }
+  

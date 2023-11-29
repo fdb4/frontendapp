@@ -36,7 +36,7 @@ function Myworkouts() {
               <div className="par-item">66-70 mins per day</div>
             </div>
             <hr /> 
-            <p>
+            <p className="workout_description">
               A beginner routine with six days a week of lifting and a focus on
               barbell lifts. Two lower body workouts, two pul workouts, and two
               push workouts per day. The routine is very popular.

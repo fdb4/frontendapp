@@ -82,7 +82,7 @@ const CoachProfile = () => {
 
   return (
     <div>
-      <div className="body_1">
+      <div className="body">
         <ClientNavbar />
         <h1>Coach Profile</h1>
         <button onClick={handleGoBack}>Back</button>
