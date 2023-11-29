@@ -54,7 +54,7 @@ h1 {
 
 .h3-firstname, .h3-lastname {
     position: absolute;
-    color: white;
+    color: rgb(66, 179, 170);
     z-index: 1000;
 }
 

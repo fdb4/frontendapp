@@ -4,13 +4,32 @@
   background-repeat: repeat-y;
   background-size: cover;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
-.tracker-modal-container {
+* {
+  box-sizing: border-box;
+}
+
+.tracker-content-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
   height: 100%;
+  padding: 20px;
+}
+
+.log-section {
+  width: 45%;
+  margin-right: 10%;
+}
+
+.graph-section {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .tracker-modal {
@@ -18,9 +37,8 @@
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
   width: 100%;
-  margin: auto;
+  height: 100%;
   position: relative;
   z-index: 10;
 }
@@ -112,21 +130,32 @@
   background-color: #f54d6e;
 }
 
-.tracker-content-container {
+.graph-section {
+  flex: 1;
+  max-width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 }
 
-.input-section {
-  background: rgb(167, 80, 62);
-  padding: 20px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  width: calc(100% - 10px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
+.graph-container {
+  width: 100%;
+  padding: 0;
+  margin: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .tracker-content-container {
+    flex-direction: column;
+  }
+
+  .log-section, .graph-section {
+    width: 100%;
+    margin-right: 0;
+  }
 }
 
 .mood-display {
@@ -149,3 +178,4 @@
   display: block;
 
 }
+
