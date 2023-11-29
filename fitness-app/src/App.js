@@ -18,6 +18,7 @@ import ClientSurvey from "./roles/client/pages/initialsurvey/clientsurvey.js"
 import ClientHome from "./roles/client/pages/clienthome.js";
 import DailyLog from "./roles/client/pages/dailylog.js";
 import Workouts from "./roles/client/pages/workouts.js";
+import Myworkouts from "./roles/client/pages/workouts/myworkouts.js";
 import ClientCoaches from "./roles/client/pages/clientcoaches.js";
 import CoachProfile from './roles/client/pages/coachprofile.js';
 import MyProfile from "./roles/client/pages/profile/myprofile.js";
@@ -78,6 +79,7 @@ function App() {
         <Route path="/clienthome" element={<RequireAuth><ClientHome /></RequireAuth>} />
         <Route path="/dailylog" element={<RequireAuth><DailyLog /></RequireAuth>} />
         <Route path="/workouts" element={<RequireAuth><Workouts /></RequireAuth>} />
+        <Route path="/my-workouts" element={<RequireAuth><Myworkouts /></RequireAuth>} />
         <Route path="/clientcoaches" element={<RequireAuth><ClientCoaches /></RequireAuth>} />
           <Route path="/coaches/:id" element={<RequireAuth><CoachProfile /></RequireAuth>}  />
         {/* Routes for client's profile */}
