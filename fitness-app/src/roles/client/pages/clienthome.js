@@ -25,11 +25,11 @@ function ClientHome() {
     //Need to Import the UsersName/ID
     
     return(
-        <div className="body_1">
+        <div className="client-home">
           <ClientNavbar />
-            <dev className="container-h1">
+            <div className="container-h1">
               <h1>Home Page</h1>
-            </dev>
+            </div>
             <p9>Welcome to BitFit, Health for everyone!</p9>
             <h3 className="h3-firstname">{firstName}</h3>
             <h3 className="h3-lastname">{lastName}</h3>
