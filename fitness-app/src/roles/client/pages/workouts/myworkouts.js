@@ -1,7 +1,6 @@
 import React from "react";
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav";
-import { useNavigate } from "react-router-dom";
-import "../../styling/myworkouts.css";
+import { useNavigate } from "react-router-dom"; 
 
 function Myworkouts() {
     const navigate = useNavigate();
