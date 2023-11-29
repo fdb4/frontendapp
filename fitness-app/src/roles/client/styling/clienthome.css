@@ -8,6 +8,7 @@
 	background-image: url('../../visitors/assets/background_4.jpg');
     background-repeat: repeat-y;
   	background-size: cover;
+  	background-position: center -125px;
 }
 
 .h3-firstname, .h3-lastname {
@@ -35,6 +36,7 @@ p {
 	text-align: center;
 	font-family: 'Copperplate', 'Papyrus', fantasy;
 	display: block;
+	padding-bottom: 100px;
 }
 
 .container-for-h1 {
@@ -53,40 +55,43 @@ h1 {
 .workout-button {
 	display: flex;
 	flex-direction: column;
-	margin-left: auto;
-	margin-right: auto;
+	align-items: stretch;
+	margin-left: 200px;
 }
 
 .workout-button button{
-
 	display: flex;
 	flex-direction: column;
 	width: 30%;
+	align-self: flex-start;
 	height: 50px;
 	margin-bottom: 0.5px;
-	margin-left: 20px;
-	background-color: rgb(66, 179, 170);
+	background-color: rgb(66, 179, 170, 0.8);
 	font-size: 20px;
 }
 
-.button-container button {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-    width: 90%;
-    height: 75px;
-    margin-bottom: 0.5px;
-    background-color: rgb(66, 179, 170);
-    font-size: 20px;
-}
 
 .button-container {
     display: flex;
     flex-direction: column;
-    margin-left: auto; /* Center the container horizontally */
-    margin-right: auto; /* Center the container horizontally */
+    align-items: stretch;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-bottom: 30px;
 }
 
+.button-container button {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 75px;
+    margin-bottom: 0.5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(66, 179, 170, 0.8);
+    font-size: 20px;
+}
 
 .footer h2 {
     color: white;
