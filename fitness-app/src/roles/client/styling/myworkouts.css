@@ -1,9 +1,52 @@
 * {
-    text-align: left;
-    margin: 0;
-    padding: 0;
+  text-align: left;
+  margin: 0;
+  padding: 0;
 }
+
 .individual {
-    margin-left: 20px;
-    
+  margin-left: 20px;
+}
+
+figure {
+  position: relative;
+}
+
+figure img {
+  border-radius: 65px;
+  background-color: lightgray;
+  width: 500px;
+  height: 400px;
+  flex-shrink: 0;
+  z-index: 1; /* Ensure the image is above other elements */
+}
+
+figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 500px;
+  /* background-color: rgba(172, 76, 76, 0.8); */
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 0 0 65px 65px;
+  /* z-index: 2;  */
+}
+.titles,
+h5 {
+  color: #fff;
+  font-family: Saira Condensed;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 50px */
+  text-transform: uppercase;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+.titles {
+  font-size: 30px;
+}
+h5 {
+  font-size: 20px;
 }
