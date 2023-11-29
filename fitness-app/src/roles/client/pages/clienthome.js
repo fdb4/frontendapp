@@ -6,7 +6,7 @@ import instagram from "../../visitors/assets/instagram.png"
 import linkedin from "../../visitors/assets/linkedin.png"
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import './clienthome.css';
+import '../styling/clienthome.css';
 
 function ClientHome() {
     const [firstName, setFirstName] = useState('')
@@ -52,23 +52,7 @@ function ClientHome() {
                   <button to="/clientcoaches">Hire New Coach</button>
                 </Link>
               </div>
-              <div className="footer">
-                <h2>
-                  ADD US ON OUR 
-                  <br></br>
-                  <span className="champion">SOCIALS</span>
-                </h2>
-                <div className="socials">
-                  <img src={facebook} alt="Dumbbell" />
-                  <img src={linkedin} alt="linkedin" />
-                  <img src={instagram} alt="instagram" />
-                </div>
-                <div className="concerns">
-                  <p>info@yourdomain.com</p>
-                  <p>Privacy Policy</p>
-                  <p>Terms & Conditions</p>
-                </div>
-              </div>
+  
         </div>
     )
 };
