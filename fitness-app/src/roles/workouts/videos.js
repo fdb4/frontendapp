@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import "./videos.css";
 
-// Define or import your allVideos array
-const allVideos = [
-  // Your video data here
-];
-
 function Videos({ searchQuery }) {
-  const videosPerPage = 6; // Number of videos to display per page
+  const videosPerPage = 6; 
   const [currentPage, setCurrentPage] = useState(1);
+  const [goToPage, setGoToPage] = useState("");
 
   const allVideos = [
     {
@@ -192,22 +188,19 @@ function Videos({ searchQuery }) {
     },
   ];
 
-  // Calculate the index range for the current page
   const startIndex = (currentPage - 1) * videosPerPage;
   const endIndex = startIndex + videosPerPage;
 
-  // Filter and paginate the videos
   const filteredVideos = allVideos.filter((video) =>
     video.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const paginatedVideos = filteredVideos.slice(startIndex, endIndex);
-
-  // Calculate the total number of pages
   const totalPages = Math.ceil(filteredVideos.length / videosPerPage);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
+    setGoToPage(""); 
   };
 
   const handlePreviousPage = () => {
@@ -222,26 +215,43 @@ function Videos({ searchQuery }) {
     }
   };
 
+  const handleGoToPage = () => {
+    const pageNumber = parseInt(goToPage, 10);
+    if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= totalPages) {
+      handlePageChange(pageNumber);
+    }
+  };
+
   return (
-    <div>
-      <div className="video-container">
-        {paginatedVideos.map((video, index) => (
-          <div key={index} className="video-item">
-            <h3>{video.title}</h3>
-            <iframe
-              title={video.title}
-              width="320"
-              height="200"
-              src={`${video.url}?modestbranding=1&rel=0`}
-              allowFullScreen
-            ></iframe>
-          </div>
-        ))}
-      </div>
-      {/* Pagination */}
+    <div className="video-container">
+      {paginatedVideos.map((video, index) => (
+        <div key={index} className="video-item">
+          <iframe
+            title={video.title}
+            width="320"
+            height="200"
+            src={`${video.url}?modestbranding=1&rel=0`}
+            allowFullScreen
+          ></iframe>
+          <h3>{video.title}</h3>
+        </div>
+      ))}
       <div className="pagination">
         <button onClick={handlePreviousPage}>&lt; Previous</button>
+        <span>
+          Page {currentPage} of {totalPages} | Total Videos: {filteredVideos.length}
+        </span>
+        <span>
+          Go to Page:
+          <input
+            type="number"
+            value={goToPage}
+            onChange={(e) => setGoToPage(e.target.value)}
+          />
+          <button onClick={handleGoToPage}>Go</button>
+        </span>
         <button onClick={handleNextPage}>Next &gt;</button>
+
       </div>
     </div>
   );
