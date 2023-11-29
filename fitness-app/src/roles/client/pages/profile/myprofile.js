@@ -35,7 +35,7 @@ const MyProfilePage = () => {
   }
 
   return (
-    <div className="body_1">
+    <div className="profile-page">
       <ClientNavbar />
       {error ? (
         <div>
@@ -48,8 +48,10 @@ const MyProfilePage = () => {
               src="https://i0.wp.com/www.lizzyc.com.au/journal/wp-content/uploads/2019/07/TGardiner0519_0012.jpg?resize=1024%2C682&ssl=1"
               alt="Profile"
             />
-          <div className="right">
-            <h1>{clientInfo[0] ? `${clientInfo[0].firstname} ${clientInfo[0].lastname}` : "Client's"} </h1>
+          <div className="right-myprofile">
+            <h1 className="client-name">{clientInfo[0] ? `${clientInfo[0].firstname} ${clientInfo[0].lastname}` : "Client's"} </h1>
+          </div>
+          <div className="right-myprofile-info">
             <p>Email: {clientInfo[0] ? clientInfo[0].email : "N/A"}</p>
             <p>Height: {clientInfo[0] ? heightConvert(clientInfo[0].height) : "N/A"}</p>
             <p>Weight: {clientInfo[0] ? clientInfo[0].weight : "N/A"}</p>

@@ -150,7 +150,7 @@ const DailyLog = () => {
 
   useEffect(() => {
 
-    axios.get(`${API_URL}/dailylog-data/${id}`)
+    axios.get(`${API_URL}/dailyLog-data/${id}`)
     .then((response) => {
       console.log("Response: ", response.data);
       const data = response.data;

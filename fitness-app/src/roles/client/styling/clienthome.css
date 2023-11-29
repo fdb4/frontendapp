@@ -31,22 +31,23 @@
     font-size: 40px;
 }
 
-p9,
-p {
+.container-p9{
 	text-align: center;
 	font-family: 'Copperplate', 'Papyrus', fantasy;
 	display: block;
 	padding-bottom: 100px;
 }
 
-.container-for-h1 {
+.container-h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    text-align: center;
+    font-family: 'Copperplate', 'Papyrus', fantasy;
+    font-size: 48px;
 }
 
-h1 {
+.home-page-title {
     text-align: center;
     font-family: 'Copperplate', 'Papyrus', fantasy;
     font-size: 48px;

@@ -1,51 +1,49 @@
-/* MyProfilePage.css */
-
 .profile-page {
-  font-family: Arial, sans-serif;
   padding: 20px;
   background-image: url('../../visitors/assets/background_2.jpg');
   background-repeat: repeat-y;
   background-size: cover;
   min-height: 100vh;
+  color: rgb(0, 0, 0);
 }
-
 
 .profile_info {
   display: flex;
+  flex-direction: column; /* Adjust the direction to column */
   align-items: center;
-  padding: 20px;
-  background-color: rgb(255, 255, 255, 0.9);
+  padding-bottom: 10px;
+  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
   margin: 20px auto;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
   max-width: 800px;
+  color: rgb(0, 0, 0);
 }
 
 .img {
   width: 250px;
   height: 250px;
   border-radius: 50%;
-  margin-left: 20px;
+  margin-top: 20px;
 }
 
-.right {
-  flex: 1;
+.right-myprofile, .right-myprofile-info {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  width: 100%;
 }
 
-.right h1 {
-  align-items: center;
+.client-name {
   margin-bottom: 10px;
   color: rgb(0, 0, 0);
   text-decoration: underline;
 }
 
-.right p {
-  align-items: center;
-  margin: 5px 0;
-  color: rgb(0, 0, 0);
-  font-size: 20px;
+.right-myprofile-info {
+  font-family: 'Copperplate', 'Papyrus', fantasy;
 }
+
