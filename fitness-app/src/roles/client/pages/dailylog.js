@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto';
 import axios from 'axios';
@@ -11,6 +11,7 @@ const API_URL = "http://127.0.0.1:5000";
 const DailyLog = () => {
 
 	const smiles = ["😟", "😕", "😐", "🙂", "😀"];
+  const id = Cookies.get('id')
   const weekDates = () => {
 
     const today = new Date();
@@ -42,11 +43,11 @@ const DailyLog = () => {
 
   const[calGraphData, setCalGraphData] = useState({
 
-    labels: weekDates(),
+    labels: [],
     datasets: [
       {
         label: 'Weekly Calorie Intake',
-        data: [0, 0, 0, 0, 0, 0, 0],
+        data: [],
         borderColor: 'rgb(167, 80, 62)',
         backgroundColor: 'rgb(255, 255, 255)',
       }
@@ -55,11 +56,11 @@ const DailyLog = () => {
 
   const[waterGraphData, setWaterGraphData] = useState({
 
-    labels: weekDates(),
+    labels: [],
     datasets: [
       {
         label: 'Weekly Water Intake',
-        data: [0, 0, 0, 0, 0, 0, 0],
+        data: [],
         borderColor: 'rgb(167, 80, 62)',
         backgroundColor: 'rgb(255, 255, 255)',
       }
@@ -68,12 +69,12 @@ const DailyLog = () => {
 
   const [moodGraphData, setMoodGraphData] = useState({
 
-    labels: weekDates(),
+    labels: [],
     datasets: [
 
       {
         label: 'Weekly Mood',
-        data: [3, 3, 3, 3, 3, 3, 3],
+        data: [],
         borderColor: 'rgb(167, 80, 62)',
         backgroundColor: 'rgb(255, 255, 255)',
       }
@@ -108,8 +109,6 @@ const DailyLog = () => {
 
  	const handleSubmit = async (e) => {
  		e.preventDefault();
-
- 		const id = Cookies.get("id");
 
  		if(
  			!formData.calorie ||
@@ -149,6 +148,66 @@ const DailyLog = () => {
     }
  	};
 
+  useEffect(() => {
+
+    axios.get(`${API_URL}/dailylog-data/${id}`)
+    .then((response) => {
+      console.log("Response: ", response.data);
+      const data = response.data;
+
+      const labels = data.map(entry => new Date(entry.date).toLocaleDateString());
+      const calData = data.map(entry => entry.calorie);
+      const waterData = data.map(entry => entry.water);
+      const moodData = data.map(entry => entry.mood);
+
+      setCalGraphData({
+        labels,
+        datasets: [{
+          label: 'Weekly Calorie Intake',
+          data: calData,
+          borderColor: 'rgb(167, 80, 62)',
+          backgroundColor: 'rgba(255, 255, 255)',
+        }]
+      });
+
+      setWaterGraphData({
+        labels,
+        datasets: [{
+          label: 'Weekly Water Intake',
+          data: waterData,
+          borderColor: 'rgb(167, 80, 62)',
+          backgroundColor: 'rgba(255, 255, 255)',
+        }]
+      });
+
+      setMoodGraphData({
+        labels,
+        datasets: [{
+          label: 'Weekly Mood',
+          data: moodData,
+          borderColor: 'rgb(167, 80, 62)',
+          backgroundColor: 'rgba(255, 255, 255)',
+        }]
+      });
+    })
+    .catch((error) => {
+      if (error.response) {
+        
+        console.error("Error response:", error.response.data);
+      } 
+      else if (error.request) {
+      
+        console.error("No response:", error.request);
+      }
+      else {
+      
+        console.error("Error", error.message);
+      }
+    });
+  }, []);
+
+
+
 	const setSmile = smiles[formData.mood - 1] || smiles[0]
 
 	return (
@@ -159,8 +218,8 @@ const DailyLog = () => {
           <div className="tracker-modal">
             <h1>Daily Log</h1>
             <form onSubmit={handleSubmit} className="daily-tracker-form">
-              <div className="input-section">
-                <label>Water Intake(mL) </label>
+            <div className="input-section">
+              <label>Water Intake (mL)</label>
                 <input
                   type="number"
                   name="water"
@@ -168,9 +227,9 @@ const DailyLog = () => {
                   onChange={handleChange}
                   required
                 />
-              </div>
-              <div className="input-section">
-                <label>Calorie Intake </label>
+            </div>
+            <div className="input-section">
+              <label>Calorie Intake</label>
                 <input
                   type="number"
                   name="calorie"
@@ -178,35 +237,35 @@ const DailyLog = () => {
                   onChange={handleChange}
                   required
                 />
-              </div>
-              <div className="input-section">
-                <label>Daily Mood </label>
-                <input
-                  type="range"
-                  className="slider"
-                  name="mood"
-                  min="1"
-                  max="5"
-                  value={formData.mood}
-                  onChange={handleChange}
-                  required
-                />
-                <div className="mood-display">{setSmile}</div>
-              </div>
-              <button type="submit" className="submit-button">Submit</button>
+            </div>
+            <div className="input-section">
+              <label>Daily Mood</label>
+              <input
+                type="range"
+                className="slider"
+                name="mood"
+                min="1"
+                max="5"
+                value={formData.mood}
+                onChange={handleChange}
+                required
+              />
+              <div className="mood-display">{setSmile}</div>
+            </div>
+            <button type="submit" className="submit-button">Submit</button>
             </form>
           </div>
         </div>
-      </div>
-      <div className="graph-section">
-        <div className="graph-container">
-          <Line data={calGraphData} />
-        </div>
-        <div className="graph-container">
-          <Line data={waterGraphData} />
-        </div>
-        <div className="graph-container">
-          <Line data={moodGraphData} options={moodOptions} />
+        <div className="graph-section">
+          <div className="graph-container">
+            <Line data={calGraphData} />
+          </div>
+          <div className="graph-container">
+            <Line data={waterGraphData} />
+          </div>
+          <div className="graph-container">
+            <Line data={moodGraphData} options={moodOptions} />
+          </div>
         </div>
       </div>
     </div>
