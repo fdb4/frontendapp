@@ -1,0 +1,52 @@
+iframe {
+  border-radius: 10px;
+}
+/* videos.css */
+
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+  min-height: 400px; 
+}
+
+.video-item {
+  margin: 10px;
+  background-color: black;
+}
+
+.video-item h3 {
+  flex-shrink: 0;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 45px; 
+  letter-spacing: 0.3px;
+  text-align: left;
+  margin-left: 20px;
+}
+
+iframe {
+  width: 300px;
+  height: 180px;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  width: 100%;
+  margin-top: 10px; 
+}
+
+.pagination span {
+  margin-right: 10px; 
+}
+
+input {
+  margin-right: 5px; 
+}

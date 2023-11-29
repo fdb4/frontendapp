@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  width: 100%;
+  display: flex;
+}
+.header_2 {
+  margin-left: 50px;
+}
+.title {
+  margin-left: 50x;
+  margin-top: 100px;
+}
+.title h1,
+h2 {
+  flex-shrink: 0;
+  color: #fff;
+  font-family: Saira Condensed;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  text-align: left;
+}
+.title h2 {
+  font-size: 40px;
+}
+
+p {
+  width: 609.107px;
+  height: 65.706px;
+  flex-shrink: 0;
+  color: rgb(185, 184, 184);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0.5px;
+  margin-left: -25px;
+}
+.green {
+  border-radius: 10px;
+  background: #479090;
+  width: 167px;
+  height: 69px;
+  flex-shrink: 0;
+  margin-right: 51px;
+}
+.red {
+  width: 167px;
+  height: 69px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f70000;
+}
+
+.nav_2 h2 {
+  color: #fff;
+  font-family: Saira Condensed;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  width: 405px;
+  margin-left: 50px;
+  margin-top: -50px;
+}
+.searchbox {
+  width: 250px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background-color: #FEFEFE;
+  margin-left: 50px;
+}
