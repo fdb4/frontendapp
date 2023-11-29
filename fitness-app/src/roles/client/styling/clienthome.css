@@ -63,7 +63,8 @@ p {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    width: 90%;
+    width: 50%;
+    margin: 40px auto;
     height: 75px;
     margin-bottom: 0.5px;
     background-color: rgb(66, 179, 170);
