@@ -1,17 +1,33 @@
+import React, { useState, useEffect } from "react";
 import ClientNavbar from "../../../components/navbar-visitor/clientnav";
 import "../styling/workout.css";
 import Cardio from "../../../roles/visitors/assets/cardio.png";
+import Videos from "../../workouts/videos.js";
 
 function Workouts() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredVideos, setFilteredVideos] = useState([]);
+
+  const handleSearchChange = (event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+  };
+
+  useEffect(() => {
+    // Note: Videos is a component, so you need to call it with JSX syntax
+    // Also, pass the searchQuery as a prop
+    setFilteredVideos(<Videos searchQuery={searchQuery} />);
+  }, [searchQuery]);
+
   return (
     <div className="body_1">
       <ClientNavbar />
       <header className="heading">
         <div className="header_2">
-            <div className="title">
-                <h1>WORKOUTS</h1>
-                <h2>CARDIO</h2>
-            </div>
+          <div className="title">
+            <h1>WORKOUTS</h1>
+            <h2>CARDIO</h2>
+          </div>
 
           <p>
             Make the most of your workouts. Try some cardio and burn some fat.
@@ -25,8 +41,17 @@ function Workouts() {
       </header>
       <main>
         <div className="nav_2">
-          <h2>Popular Exercise</h2>
-          
+          <div className="search-container">
+            <h2>Popular Exercise</h2>
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </div>
+          {/* Render the Videos component */}
+          {filteredVideos}
         </div>
       </main>
     </div>

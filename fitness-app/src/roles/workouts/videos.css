@@ -1,0 +1,21 @@
+iframe {
+    border-radius: 10px;   
+}
+/* videos.css */
+
+.video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .video-item {
+    margin: 10px;
+  }
+  
+  /* Adjust the width and height according to your design */
+  iframe {
+    width: 300px;
+    height: 180px;
+  }
+  
