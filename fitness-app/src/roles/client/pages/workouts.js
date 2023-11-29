@@ -20,7 +20,7 @@ function Workouts() {
   }, [searchQuery]);
 
   return (
-    <div className="body_1">
+    <div className="body">
     <ClientNavbar />
     <header className="heading">
       <div className="header_2">
