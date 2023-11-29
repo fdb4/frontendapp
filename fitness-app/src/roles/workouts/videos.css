@@ -8,6 +8,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px;
+  min-height: 400px; 
 }
 
 .video-item {
@@ -28,14 +29,24 @@ iframe {
   margin-left: 20px;
 }
 
-/* Adjust the width and height according to your design */
 iframe {
   width: 300px;
   height: 180px;
 }
 
+
 .pagination {
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  align-items: center; 
+  width: 100%;
+  margin-top: 10px; 
+}
+
+.pagination span {
+  margin-right: 10px; 
+}
+
+input {
+  margin-right: 5px; 
 }

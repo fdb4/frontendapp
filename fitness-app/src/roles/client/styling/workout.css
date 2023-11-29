@@ -74,5 +74,6 @@ p {
   height: 50px;
   flex-shrink: 0;
   border-radius: 16px;
-  background-color: #FEFEFE;;
+  background-color: #FEFEFE;
+  margin-left: 50px;
 }
