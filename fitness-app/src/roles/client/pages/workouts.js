@@ -44,13 +44,13 @@ function Workouts() {
           <div className="search-container">
             <h2>Popular Exercise</h2>
             <input
+              className="searchbox"
               type="text"
               placeholder="Search"
               value={searchQuery}
               onChange={handleSearchChange}
             />
           </div>
-          {/* Render the Videos component */}
           {filteredVideos}
         </div>
       </main>

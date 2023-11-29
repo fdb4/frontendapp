@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./videos.css";
 
 function Videos({ searchQuery }) {
-  const videosPerPage = 6; 
+  const videosPerPage = 9; 
   const [currentPage, setCurrentPage] = useState(1);
   const [goToPage, setGoToPage] = useState("");
 
