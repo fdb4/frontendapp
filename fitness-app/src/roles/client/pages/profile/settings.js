@@ -20,9 +20,9 @@ function Settings() {
   const [editedInfo, setEditedInfo] = useState({});
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
-  useEffect(() => {
-    const clientId = Cookies.get('id');
+  const clientId = Cookies.get('id');
 
+  useEffect(() => {
     fetch(`http://127.0.0.1:5000/genInfo/${clientId}`)
       .then((response) => response.json())
       .then((data) => setClientInfo(data))
@@ -35,35 +35,43 @@ function Settings() {
 
   const handleEdit = () => {
     setEditMode(true);
-    // Copy the clientInfo to editedInfo for editing
     setEditedInfo({ ...clientInfo[0] });
   };
 
   const handleCancel = () => {
     setEditMode(false);
-    // Reset editedInfo to the original clientInfo
     setEditedInfo({});
   };
 
-  const handleSave = () => {
-    // Send a post request to save the editedInfo to the backend
-    fetch(`http://127.0.0.1:5000/updateInfo/${clientInfo[0].clientId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editedInfo),
+const handleSave = () => {
+  fetch(`http://127.0.0.1:5000/client/edit/${clientId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(editedInfo),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Assuming the API returns a success message
+      if (data.message === "Profile updated successfully") {
+        // Refetch the updated client data
+        fetch(`http://127.0.0.1:5000/genInfo/${clientId}`)
+          .then((response) => response.json())
+          .then((updatedData) => {
+            setClientInfo(updatedData);
+            setEditMode(false);
+          })
+          .catch((error) => console.error("Error fetching updated data:", error));
+      } else {
+        console.error("Error updating data:", data.message);
+      }
     })
-      .then((response) => response.json())
-      .then((data) => {
-        setClientInfo(data);
-        setEditMode(false);
-      })
-      .catch((error) => console.error("Error updating data:", error));
-  };
+    .catch((error) => console.error("Error updating data:", error));
+};
+  
 
   const handleChange = (e) => {
-    // Update the editedInfo when the user makes changes
     setEditedInfo({
       ...editedInfo,
       [e.target.name]: e.target.value,
@@ -79,7 +87,6 @@ function Settings() {
   };
 
   const handleDeleteConfirm = () => {
-    // Send a post request to mark the account for deletion
     fetch(`http://127.0.0.1:5000/deleteAccount/${clientInfo[0].clientId}`, {
       method: "POST",
       headers: {
@@ -89,12 +96,10 @@ function Settings() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Handle success (e.g., navigate to login page)
         console.log("Account marked for deletion:", data);
       })
       .catch((error) => console.error("Error deleting account:", error));
 
-    // Close the delete confirmation popup
     setShowDeleteConfirmation(false);
   };
 
@@ -108,7 +113,7 @@ function Settings() {
             src="https://i0.wp.com/www.lizzyc.com.au/journal/wp-content/uploads/2019/07/TGardiner0519_0012.jpg?resize=1024%2C682&ssl=1"
             alt="Profile"
           />
-          <div className="right">
+           <div className="right">
             <h1>Settings</h1>
             <p>{`${clientInfo[0].firstname} ${clientInfo[0].lastname}'s`}</p>
             {editMode ? (
@@ -225,7 +230,8 @@ function Settings() {
       )}
       {showDeleteConfirmation && (
         <DeleteConfirmationPopup
-          className="cancel" onCancel={handleDeleteCancel}
+          className="cancel"
+          onCancel={handleDeleteCancel}
           onConfirm={handleDeleteConfirm}
         />
       )}
