@@ -9,7 +9,7 @@
 
 .profile_info {
   display: flex;
-  flex-direction: column; /* Adjust the direction to column */
+  flex-direction: column;
   align-items: center;
   padding-bottom: 10px;
   font-family: 'Copperplate', 'Papyrus', fantasy;
@@ -43,7 +43,12 @@
   text-decoration: underline;
 }
 
-.right-myprofile-info {
+.right-myprofile-info > p {
+  margin: 0;
+  padding: 0;
   font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: rgb(0, 0, 0);
 }
 
