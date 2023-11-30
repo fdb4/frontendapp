@@ -49,7 +49,6 @@ const MyProfilePage = () => {
   }
 }
 
-
   return (
     <div className="profile-page">
       <ClientNavbar />
@@ -72,7 +71,7 @@ const MyProfilePage = () => {
             <p>Height: {clientInfo[0] ? heightConvert(clientInfo[0].height) : "N/A"}</p>
             <p>Weight: {clientInfo[0] ? clientInfo[0].weight : "N/A"}</p>
             <p>Goal Weight: {clientInfo[0] ? clientInfo[0].goalweight : "N/A"}</p>
-            <p>Movement: {clientInfo[0] ? getMovement(clientInfo[0].movement) : "N/A"}</p>
+            <p>Movement Type: {clientInfo[0] ? getMovement(clientInfo[0].movement) : "N/A"}</p>
             <p>Age: {clientInfo[0] ? clientInfo[0].age : "N/A"}</p>
             <p>Gender: {clientInfo[0] ? gender(clientInfo[0].gender) : "N/A"}</p>
           </div>
