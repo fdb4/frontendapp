@@ -8,10 +8,10 @@ header {
   display: flex;
 }
 .header_2 {
-  margin-left: 50px;
+  margin-left: 65px;
 }
 .title {
-  margin-left: 50x;
+  margin-left: 65x;
   margin-top: 100px;
 }
 .title h1,
@@ -75,5 +75,6 @@ p {
   flex-shrink: 0;
   border-radius: 16px;
   background-color: #FEFEFE;
-  margin-left: 50px;
+  margin-left: 65px;
+
 }

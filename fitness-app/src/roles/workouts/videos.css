@@ -1,5 +1,7 @@
 iframe {
   border-radius: 10px;
+  border-color: black;
+
 }
 /* videos.css */
 
@@ -13,7 +15,6 @@ iframe {
 
 .video-item {
   margin: 10px;
-  background-color: black;
 }
 
 .video-item h3 {
