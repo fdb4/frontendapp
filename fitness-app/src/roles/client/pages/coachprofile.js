@@ -4,14 +4,23 @@ import ClientNavbar from "../../../components/navbar-visitor/clientnav";
 import "../styling/coachprofile.css";
 import Coach from "../../visitors/assets/coach.png"
 import { Link } from "react-router-dom";
+import "../styling/confirmationmodal.css"
+import axios from "axios";
+import Cookies from 'js-cookie';
 
 const CoachProfile = () => {
+  const API_URL = "http://127.0.0.1:5000";
   const { id } = useParams();
   const [coach, setCoach] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [messageContent, setMessageContent] = useState('');
   const [showMessageForm, setShowMessageForm] = useState(false);
+  const clientID = Cookies.get('id')
+  const requestData = {
+    clientID: clientID,
+    coachID: id
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,6 +89,45 @@ const CoachProfile = () => {
     setShowMessageForm(false);
   };
 
+
+  function ConfirmationModal({ isOpen, onClose, onConfirm }) {
+    if (!isOpen) {
+      return null;
+    }
+  
+    return (
+      <div className="modal-overlay">
+        <div className="modal-content">
+          <div>Confirm: Send Coach Request
+          </div>
+          <button onClick={() => onConfirm()}>Yes</button>
+          <button onClick={() => onClose()}>No</button>
+        </div>
+      </div>
+    );
+  }
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleCoachRequest = () => {
+    setIsModalOpen(true);
+  }
+
+  const handleConfirm = async () => {
+    try {
+      const response = await axios.post(`${API_URL}/client/sendRequest`, requestData);
+
+      // Handle the response data, if needed
+      window.alert(response.data.message)
+    } catch (error) {
+      window.alert(`An error occurred: ${error.message}`);
+    }
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div>
       <div className="body">
@@ -120,11 +168,10 @@ const CoachProfile = () => {
               <button id="view" onClick={handleOpenMessageForm}>
                 Send Message
               </button>
-              <button id="view">
-                <Link to={`/messages`} className="view">
-                  Request Client
-                </Link>
+              <button id="view" onClick={handleCoachRequest}>
+                  Request Coach
               </button>
+              <ConfirmationModal isOpen={isModalOpen} onConfirm={handleConfirm} onClose={handleCancel} />
             </div>
 
             {/* Message Form Lightbox */}
