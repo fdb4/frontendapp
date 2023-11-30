@@ -114,8 +114,8 @@ const handleSave = () => {
             alt="Profile"
           />
            <div className="right">
-            <h1>Settings</h1>
-            <p>{`${clientInfo[0].firstname} ${clientInfo[0].lastname}'s`}</p>
+            <h1 className="settings">Settings</h1>
+            <p className="paragraph_1">Name: {`${clientInfo[0].firstname} ${clientInfo[0].lastname}'s`}</p>
             {editMode ? (
               <>
                 <label>
@@ -204,12 +204,12 @@ const handleSave = () => {
               </>
             ) : (
               <>
-                <p>Height: {clientInfo[0].height}</p>
-                <p>Weight: {clientInfo[0].weight}</p>
-                <p>Goal Weight: {clientInfo[0].goalweight}</p>
-                <p>Movement: {clientInfo[0].movement}</p>
-                <p>Age: {clientInfo[0].age}</p>
-                <p>Gender: {gender(clientInfo[0].gender)}</p>
+                <p className="paragraph_1">Height: {clientInfo[0].height}</p>
+                <p className="paragraph_1">Weight: {clientInfo[0].weight}</p>
+                <p className="paragraph_1">Goal Weight: {clientInfo[0].goalweight}</p>
+                <p className="paragraph_1">Movement: {clientInfo[0].movement}</p>
+                <p className="paragraph_1">Age: {clientInfo[0].age}</p>
+                <p className="paragraph_1">Gender: {gender(clientInfo[0].gender)}</p>
               </>
             )}
             {editMode ? (

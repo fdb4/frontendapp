@@ -34,4 +34,10 @@
   .delete-confirmation-popup  {
     background-color: rgb(146, 69, 69);
   }
-  
+
+  .paragraph_1, .settings {
+    color:black;
+    margin: -5px 0;
+  }
+ 
+ 
