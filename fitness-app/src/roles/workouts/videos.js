@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./videos.css";
 
 function Videos({ searchQuery }) {
-  const videosPerPage = 9; 
+  const videosPerPage = 9;
   const [currentPage, setCurrentPage] = useState(1);
   const [goToPage, setGoToPage] = useState("");
 
@@ -10,18 +10,38 @@ function Videos({ searchQuery }) {
     {
       title: "Push Ups",
       url: "https://www.youtube.com/embed/IODxDxX7oi4",
+      description:
+        `Push-ups are a bodyweight exercise targeting the chest, shoulders, and triceps. 
+        Start in a plank position, lower your body towards the ground by bending your elbows, and then push back up`,
+      muscleGroup: "chest",
+      equipment: "None",
     },
     {
       title: "Incline Bench Press",
       url: "https://www.youtube.com/embed/ajdFwa-qM98",
+      description: 
+      `This is a chest exercise performed on an inclined bench. It targets
+      the upper chest muscles. User a barbell or dumbbells and press them upwards
+      while laying on the incline bench`,
+      muscleGroup:"chest",
+      equipment: "inlcine bench, barbell or dumbbells"
     },
     {
       title: "Bench Press",
       url: "https://www.youtube.com/embed/4T9UQ4FBVXI?si=NiViPRBdxEqE0-kb",
+      description:
+      `A classic chest exercise involving pressing a barbell away from the chest.
+       It Works the chest, shouders, and triceps.`,
+       muscleGroup: "upper-body",
+       equipment:"flat bench, barbell"
     },
     {
       title: "Cable Cross",
       url: "https://www.youtube.com/embed/taI4XduLpTk?si=KopWEkjJLa1BwdpN",
+      description: `Cable crowssovers target the chest muscles by pulling cables 
+        from opposite sides, crowssing them in front of the body.`,
+        muscleGroup: "upper-body",
+        equipment: "cable machine"
     },
     {
       title: "Dumbbell Flyes",
@@ -200,7 +220,7 @@ function Videos({ searchQuery }) {
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
-    setGoToPage(""); 
+    setGoToPage("");
   };
 
   const handlePreviousPage = () => {
@@ -239,7 +259,8 @@ function Videos({ searchQuery }) {
       <div className="pagination">
         <button onClick={handlePreviousPage}>&lt; Previous</button>
         <span>
-          Page {currentPage} of {totalPages} | Total Videos: {filteredVideos.length}
+          Page {currentPage} of {totalPages} | Total Videos:{" "}
+          {filteredVideos.length}
         </span>
         <span>
           Go to Page:
@@ -251,7 +272,6 @@ function Videos({ searchQuery }) {
           <button onClick={handleGoToPage}>Go</button>
         </span>
         <button onClick={handleNextPage}>Next &gt;</button>
-
       </div>
     </div>
   );
