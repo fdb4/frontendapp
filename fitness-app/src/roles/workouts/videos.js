@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./videos.css";
 
-function Videos({ searchQuery }) {
+function Videos({ searchQuery, selectedEquipment }) {
   const [workouts, setWorkouts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [goToPage, setGoToPage] = useState("");
@@ -20,7 +20,7 @@ function Videos({ searchQuery }) {
       });
   }, []);
 
-  const workoutsPerPage = 6; // Change this to 6 for 6 videos per page
+  const workoutsPerPage = 6;
   const startIndex = (currentPage - 1) * workoutsPerPage;
   const endIndex = startIndex + workoutsPerPage;
 
@@ -32,8 +32,10 @@ function Videos({ searchQuery }) {
     return <p>No workouts available.</p>;
   }
 
+  // Apply equipment filter
   const filteredWorkouts = workouts.filter((workout) =>
-    workout.workoutname.toLowerCase().includes(searchQuery.toLowerCase())
+    workout.workoutname.toLowerCase().includes(searchQuery.toLowerCase()) &&
+    (!selectedEquipment || workout.equipment.toLowerCase() === selectedEquipment.toLowerCase())
   );
 
   const paginatedWorkouts = filteredWorkouts.slice(startIndex, endIndex);

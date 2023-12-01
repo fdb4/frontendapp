@@ -19,7 +19,6 @@ function Workouts() {
   };
 
   useEffect(() => {
-    // Fetch videos from the backend API based on searchQuery and selectedEquipment
     let url = "http://localhost:5000/workouts";
 
     // Append searchQuery to the URL if present
@@ -27,7 +26,6 @@ function Workouts() {
       url += `/search/${searchQuery}`;
     }
 
-    // Append selectedEquipment to the URL if present
     if (selectedEquipment) {
       url += `/filter/equipment/${selectedEquipment}`;
     }
@@ -43,7 +41,7 @@ function Workouts() {
 
   const commonEquipmentOptions = [
     "Bodyweight", "Barbell", "Dumbbells", "Cable Machine", "Bicycle",
-    "Jump Rope", "Bench", "Pull-up Bar", "Stairs or Stair Climber Machine",
+    "Jump Rope", "Incline Bench", "Pull-up Bar", "Stairs",
     "Yoga Mat", "Exercise Mat", "Foam Roller",
   ];
 
@@ -71,8 +69,8 @@ function Workouts() {
       </header>
       <main>
         <div className="nav_2">
+          <h2>Popular Exercise</h2>
           <div className="search-container">
-            <h2>Popular Exercise</h2>
             <input
               className="searchbox"
               type="text"
@@ -83,7 +81,7 @@ function Workouts() {
           </div>
 
           <div className="equipment-filter">
-            <label htmlFor="equipment">Filter by Equipment:</label>
+            <label htmlFor="equipment"></label>
             <select
               id="equipment"
               value={selectedEquipment}
@@ -98,11 +96,11 @@ function Workouts() {
             </select>
           </div>
 
-          <Videos
-            searchQuery={searchQuery}
-            selectedEquipment={selectedEquipment}
-          />
         </div>
+        <Videos
+          searchQuery={searchQuery}
+          selectedEquipment={selectedEquipment}
+        />
       </main>
     </div>
   );
