@@ -8,8 +8,7 @@ import Cookies from "js-cookie";
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav.js";
 
 const API_URL = "http://127.0.0.1:5000";
-const id = Cookies.get('id');
-const clientID = parseInt(id, 10);
+const clientID = Cookies.get('id');
 const role = Cookies.get("role")
 
 const CoachSurvey = () => {
