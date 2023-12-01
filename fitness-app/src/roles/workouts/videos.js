@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./videos.css";
 
-function Videos({ searchQuery, selectedEquipment }) {
+function Videos({ searchQuery, selectedEquipment, selectedMuscleGroup }) {
   const [workouts, setWorkouts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [goToPage, setGoToPage] = useState("");
@@ -32,12 +32,11 @@ function Videos({ searchQuery, selectedEquipment }) {
     return <p>No workouts available.</p>;
   }
 
-  // Apply equipment filter
   const filteredWorkouts = workouts.filter((workout) =>
-    workout.workoutname.toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (!selectedEquipment || workout.equipment.toLowerCase() === selectedEquipment.toLowerCase())
-  );
-
+  workout.workoutname.toLowerCase().includes(searchQuery.toLowerCase()) &&
+  (!selectedEquipment || workout.equipment.toLowerCase() === selectedEquipment.toLowerCase()) &&
+  (!selectedMuscleGroup || workout.musclegroup.toLowerCase() === selectedMuscleGroup.toLowerCase())
+);
   const paginatedWorkouts = filteredWorkouts.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filteredWorkouts.length / workoutsPerPage);
 

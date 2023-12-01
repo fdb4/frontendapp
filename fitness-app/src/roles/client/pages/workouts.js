@@ -8,6 +8,7 @@ import Videos from "../../workouts/videos.js";
 function Workouts() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedEquipment, setSelectedEquipment] = useState("");
+  const [selectedMuscleGroup, setSelectedMuscleGroup] = useState("");
   const [filteredVideos, setFilteredVideos] = useState([]);
 
   const handleSearchChange = (event) => {
@@ -18,16 +19,23 @@ function Workouts() {
     setSelectedEquipment(event.target.value);
   };
 
+  const handleMuscleGroupChange = (event) => {
+    setSelectedMuscleGroup(event.target.value);
+  };
+
   useEffect(() => {
     let url = "http://localhost:5000/workouts";
 
-    // Append searchQuery to the URL if present
     if (searchQuery) {
       url += `/search/${searchQuery}`;
     }
 
     if (selectedEquipment) {
       url += `/filter/equipment/${selectedEquipment}`;
+    }
+
+    if (selectedMuscleGroup) {
+      url += `/filter/musclegroup/${selectedMuscleGroup}`;
     }
 
     fetch(url)
@@ -37,7 +45,7 @@ function Workouts() {
         setFilteredVideos(data);
       })
       .catch((error) => console.error("Error fetching videos:", error));
-  }, [searchQuery, selectedEquipment]);
+  }, [searchQuery, selectedEquipment, selectedMuscleGroup]);
 
   const commonEquipmentOptions = [
     "Bodyweight", "Barbell", "Dumbbells", "Cable Machine", "Bicycle",
@@ -96,10 +104,31 @@ function Workouts() {
             </select>
           </div>
 
+          <div className="muscle-group-filter">
+            <label htmlFor="muscleGroup"></label>
+            <select
+              id="muscleGroup"
+              value={selectedMuscleGroup}
+              onChange={handleMuscleGroupChange}
+            >
+              <option value="">All Muscle Groups</option>
+              <option value="Chest">Chest</option>
+              <option value="Back">Back</option>
+              <option value="Shoulders">Shoulders</option>
+              <option value="Arms">Arms</option>
+              <option value="legs">Legs</option>
+              <option value="core">Core</option>
+              <option value="glutes, hamstrings">Glutes</option>
+              <option value="fullbody">Fullbody</option>
+            </select>
+          </div>
+
         </div>
         <Videos
           searchQuery={searchQuery}
           selectedEquipment={selectedEquipment}
+          selectedMuscleGroup = {selectedMuscleGroup}
+
         />
       </main>
     </div>
