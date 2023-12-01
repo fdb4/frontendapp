@@ -5,6 +5,7 @@ import axios from 'axios';
 import "../../../client/pages/initialsurvey/clientsurvey.css";
 import CoachNavbar from "../../../../components/navbar-visitor/coachnav.js"
 import Cookies from "js-cookie";
+import ClientNavbar from "../../../../components/navbar-visitor/clientnav.js";
 
 const API_URL = "http://127.0.0.1:5000";
 const clientID = Cookies.get('id');
@@ -54,18 +55,15 @@ const CoachSurvey = () => {
         } else {
             setExperienceError('');
         }
-        
+        console.log(clientID)
         const requestData = {
             ...data,
             clientID: clientID,
         };
     
         try {
-            const response = await axios.post(`${API_URL}/coachSignUp`, requestData);
-    
-            if (!response.ok) {
-                throw new Error(`Request failed with status ${response.status}`);
-            }
+            console.log(requestData)
+            const response = await axios.post(`${API_URL}/coachSignUp`, requestData)
     
             const result = response.data;
             console.log("Registering with data:", requestData);
@@ -79,7 +77,7 @@ const CoachSurvey = () => {
 
     return(
         <div className="initial-survey-page">
-             <CoachNavbar />
+             <ClientNavbar />
             <br />
             <div className = "survey-modal-container">
                 <div className = "survey-modal">
