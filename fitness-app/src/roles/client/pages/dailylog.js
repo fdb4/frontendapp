@@ -119,15 +119,22 @@ const DailyLog = () => {
      		return;
  		}
 
+    const calorieVal = parseInt(formData.calorie, 10);
+    const waterVal = parseInt(formData.water, 10);
+    const moodVal = parseInt(formData.mood, 10);
+
  		const sendData = {
 
     		...formData,
-    		clientID: id
+    		clientID: id,
+        calorie: calorieVal,
+        water: waterVal,
+        mood: moodVal
     };
 
  		try {
 
-      const comm = await axios.post(`${API_URL}/dailylog`, sendData);
+      const comm = await axios.post(`${API_URL}/dailyLog`, sendData);
       console.log("Registering with data:", sendData);
       console.log("Response:", comm.data);
     }

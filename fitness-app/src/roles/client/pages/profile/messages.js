@@ -1,5 +1,10 @@
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav"
-function Messages() {
+
+const Messages = () => {
+
+
     return(
         <div className="body_1">
             <ClientNavbar />
