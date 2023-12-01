@@ -5,9 +5,11 @@ import axios from 'axios';
 import "../../../client/pages/initialsurvey/clientsurvey.css";
 import CoachNavbar from "../../../../components/navbar-visitor/coachnav.js"
 import Cookies from "js-cookie";
+import ClientNavbar from "../../../../components/navbar-visitor/clientnav.js";
 
 const API_URL = "http://127.0.0.1:5000";
-const clientID = Cookies.get('id');
+const id = Cookies.get('id');
+const clientID = parseInt(id, 10);
 const role = Cookies.get("role")
 
 const CoachSurvey = () => {
@@ -61,6 +63,7 @@ const CoachSurvey = () => {
         };
     
         try {
+            console.log(requestData)
             const response = await axios.post(`${API_URL}/coachSignUp`, requestData);
     
             if (!response.ok) {
@@ -79,7 +82,7 @@ const CoachSurvey = () => {
 
     return(
         <div className="initial-survey-page">
-             <CoachNavbar />
+             <ClientNavbar />
             <br />
             <div className = "survey-modal-container">
                 <div className = "survey-modal">
