@@ -78,3 +78,6 @@ p {
   margin-left: 65px;
 
 }
+.name, .url {
+  color: white;
+}
