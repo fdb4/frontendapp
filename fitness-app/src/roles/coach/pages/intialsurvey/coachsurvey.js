@@ -55,7 +55,7 @@ const CoachSurvey = () => {
         } else {
             setExperienceError('');
         }
-        
+        console.log(clientID)
         const requestData = {
             ...data,
             clientID: clientID,
@@ -63,11 +63,7 @@ const CoachSurvey = () => {
     
         try {
             console.log(requestData)
-            const response = await axios.post(`${API_URL}/coachSignUp`, requestData);
-    
-            if (!response.ok) {
-                throw new Error(`Request failed with status ${response.status}`);
-            }
+            const response = await axios.post(`${API_URL}/coachSignUp`, requestData)
     
             const result = response.data;
             console.log("Registering with data:", requestData);
