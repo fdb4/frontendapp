@@ -76,6 +76,7 @@ function Videos({ searchQuery,  selectedEquipment }) {
           ></iframe>
           <h3>{workout.workoutname}</h3>
           <h3>{workout.musclegroup}</h3>
+          <h3>{workout.equipment}</h3>
         </div>
       ))}
       <div className="pagination">
