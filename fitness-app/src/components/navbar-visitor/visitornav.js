@@ -26,6 +26,9 @@ const VisitorNavbar = () => {
           <NavLink to="/services" activeStyle>
             SERVICES
           </NavLink>
+          <NavLink to="/workouts" activeStyle>
+            WORKOUTS
+          </NavLink>
           <NavLink to="/coaches" activeStyle>
             COACHES
           </NavLink>

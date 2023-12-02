@@ -126,7 +126,9 @@ const InitialSurveyPage = () => {
       		console.log("Registering with data:", sendData);
       		const comm = await axios.post(`${API_URL}/survey`, sendData);
       		console.log("Response:", comm.data);
-			navigate("/coachsurvey")
+			if (role === "Coach" || role === "Admin") {
+			navigate("/coachsurvey") }
+			else {navigate("/clienthome")}
     	}
     	catch(error) {
 

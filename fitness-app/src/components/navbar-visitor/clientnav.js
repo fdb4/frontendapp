@@ -28,7 +28,7 @@ const ClientNavbar = () => {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
-
+  const role = Cookies.get('role')
   const { setAuth } = useAuth();
   const handleLogout = () => {
     Cookies.remove("id");
@@ -64,6 +64,11 @@ const ClientNavbar = () => {
           <NavLink to="/clientcoaches" activeStyle>
             Coaches
           </NavLink>
+          {role === "Coach" && (
+          <NavLink to="/coachhome" activeStyle>
+            Your Clients
+          </NavLink>
+        )}
           <div style={{ position: "relative" }}>
             <UserProfileImage
               src={MyProfileIcon}

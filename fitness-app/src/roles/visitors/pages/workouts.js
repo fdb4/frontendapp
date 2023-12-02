@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
-import ClientNavbar from "../../../components/navbar-visitor/clientnav";
+import ClientNavbar from "../../../components/navbar-visitor/clientnav.js";
+import VisitorNavbar from "../../../components/navbar-visitor/visitornav.js";
 import "../styling/workout.css";
 import Cardio from "../../../roles/visitors/assets/cardio.png";
 import { Link } from "react-router-dom";
 import Videos from "../../workouts/videos.js";
+import { useAuth } from "../../../components/navbar-visitor/auth.js"
 
 function Workouts() {
+  const { auth } = useAuth()
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedEquipment, setSelectedEquipment] = useState("");
+  const [selectedMuscleGroup, setSelectedMuscleGroup] = useState("");
   const [filteredVideos, setFilteredVideos] = useState([]);
 
   const handleSearchChange = (event) => {
@@ -18,18 +22,23 @@ function Workouts() {
     setSelectedEquipment(event.target.value);
   };
 
+  const handleMuscleGroupChange = (event) => {
+    setSelectedMuscleGroup(event.target.value);
+  };
+
   useEffect(() => {
-    // Fetch videos from the backend API based on searchQuery and selectedEquipment
     let url = "http://localhost:5000/workouts";
 
-    // Append searchQuery to the URL if present
     if (searchQuery) {
       url += `/search/${searchQuery}`;
     }
 
-    // Append selectedEquipment to the URL if present
     if (selectedEquipment) {
       url += `/filter/equipment/${selectedEquipment}`;
+    }
+
+    if (selectedMuscleGroup) {
+      url += `/filter/musclegroup/${selectedMuscleGroup}`;
     }
 
     fetch(url)
@@ -39,17 +48,21 @@ function Workouts() {
         setFilteredVideos(data);
       })
       .catch((error) => console.error("Error fetching videos:", error));
-  }, [searchQuery, selectedEquipment]);
+  }, [searchQuery, selectedEquipment, selectedMuscleGroup]);
 
   const commonEquipmentOptions = [
     "Bodyweight", "Barbell", "Dumbbells", "Cable Machine", "Bicycle",
-    "Jump Rope", "Bench", "Pull-up Bar", "Stairs or Stair Climber Machine",
+    "Jump Rope", "Incline Bench", "Pull-up Bar", "Stairs",
     "Yoga Mat", "Exercise Mat", "Foam Roller",
   ];
 
   return (
     <div className="body">
-      <ClientNavbar />
+        {auth.id ? (
+          <ClientNavbar />
+      ) : (
+        <VisitorNavbar />
+      )}
       <header className="heading">
         <div className="header_2">
           <div className="title">
@@ -71,8 +84,8 @@ function Workouts() {
       </header>
       <main>
         <div className="nav_2">
+          <h2>Popular Exercise</h2>
           <div className="search-container">
-            <h2>Popular Exercise</h2>
             <input
               className="searchbox"
               type="text"
@@ -83,7 +96,7 @@ function Workouts() {
           </div>
 
           <div className="equipment-filter">
-            <label htmlFor="equipment">Filter by Equipment:</label>
+            <label htmlFor="equipment"></label>
             <select
               id="equipment"
               value={selectedEquipment}
@@ -98,9 +111,36 @@ function Workouts() {
             </select>
           </div>
 
+<<<<<<< HEAD:fitness-app/src/roles/client/pages/workouts.js
           <Videos searchQuery={searchQuery} selectedEquipment={selectedEquipment} />
+=======
+          <div className="muscle-group-filter">
+            <label htmlFor="muscleGroup"></label>
+            <select
+              id="muscleGroup"
+              value={selectedMuscleGroup}
+              onChange={handleMuscleGroupChange}
+            >
+              <option value="">All Muscle Groups</option>
+              <option value="Chest">Chest</option>
+              <option value="Back">Back</option>
+              <option value="Shoulders">Shoulders</option>
+              <option value="Arms">Arms</option>
+              <option value="legs">Legs</option>
+              <option value="core">Core</option>
+              <option value="glutes, hamstrings">Glutes</option>
+              <option value="fullbody">Fullbody</option>
+            </select>
+          </div>
+>>>>>>> 851ac82a3ba0d040f139587f1164d45cd050efa2:fitness-app/src/roles/visitors/pages/workouts.js
 
         </div>
+        <Videos
+          searchQuery={searchQuery}
+          selectedEquipment={selectedEquipment}
+          selectedMuscleGroup = {selectedMuscleGroup}
+
+        />
       </main>
     </div>
   );

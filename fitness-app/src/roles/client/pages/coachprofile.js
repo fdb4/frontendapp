@@ -48,7 +48,8 @@ const CoachProfile = () => {
   const sendMessage = async () => {
     try {
       // Fetch URL for sending messages (replace with your actual API endpoint)
-      const apiUrl = 'http://your-api-endpoint/messages';
+      // id = the clientID of person recieving the message
+      const apiUrl = `${API_URL}/message/${id}`;
   
       // Fetch options for the POST request
       const requestOptions = {
@@ -57,12 +58,9 @@ const CoachProfile = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          coachId: id, // Coach's ID from the URL
-          clientId: 2,
           message: messageContent,
         }),
       };
-  
       // Send the POST request
       const response = await fetch(apiUrl, requestOptions);
   
@@ -75,6 +73,8 @@ const CoachProfile = () => {
       // Close the message form
       setShowMessageForm(false);
     } catch (error) {
+      setShowMessageForm(false);
+      alert("Message did not go through")
       console.error('Error sending message:', error);
     }
   };
@@ -182,12 +182,6 @@ const CoachProfile = () => {
                     &times;
                   </span>
                   <form>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" /* Add name state and value here */ />
-
-                    <label htmlFor="title">Title:</label>
-                    <input type="text" id="title" /* Add title state and value here */ />
-
                     <label htmlFor="message">Message:</label>
                     <textarea
                       id="message"
