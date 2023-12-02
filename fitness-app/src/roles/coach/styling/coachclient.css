@@ -65,4 +65,12 @@ button:disabled {
   margin-top: 20px;
 }
 
-/* Add more specific styles as needed for different sections of your page */
+.middle_2 movement {
+  color: #000;
+  font-family: Saira Condensed;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 32px */
+  display: block;
+}
