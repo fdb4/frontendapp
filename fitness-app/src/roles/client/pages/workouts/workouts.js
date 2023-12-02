@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav.js";
 import VisitorNavbar from "../../../../components/navbar-visitor/visitornav.js";
 import "./styling/workout.css";
-import Cardio from "../workouts/images/cadio.png";
+import Cardio from "./images/cardio.png"
 import { Link } from "react-router-dom";
 import Videos from "./videos.js";
 import { useAuth } from "../../../../components/navbar-visitor/auth.js"
