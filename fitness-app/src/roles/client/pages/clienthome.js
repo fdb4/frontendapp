@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ClientNavbar from "../../../components/navbar-visitor/clientnav"
 import { Link } from 'react-router-dom';
-import facebook from "../../visitors/assets/facebook.png"
-import instagram from "../../visitors/assets/instagram.png"
-import linkedin from "../../visitors/assets/linkedin.png"
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import '../styling/clienthome.css';

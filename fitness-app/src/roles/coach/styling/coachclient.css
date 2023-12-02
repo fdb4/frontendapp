@@ -1,0 +1,68 @@
+/* Add your global styles here */
+
+/* Body styles */
+.body_1 {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* Header styles */
+h1 {
+  text-align: center;
+}
+
+/* Search container styles */
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 8px;
+  margin-right: 10px;
+}
+
+select {
+  padding: 8px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 8px;
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Profile styles */
+.profile {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 20px auto;
+}
+
+.left, .middle, .right {
+  flex: 1;
+}
+
+.img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Add more specific styles as needed for different sections of your page */
