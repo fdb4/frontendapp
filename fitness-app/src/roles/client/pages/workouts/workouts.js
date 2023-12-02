@@ -135,7 +135,6 @@ function Workouts() {
           searchQuery={searchQuery}
           selectedEquipment={selectedEquipment}
           selectedMuscleGroup = {selectedMuscleGroup}
-
         />
       </main>
     </div>
