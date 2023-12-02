@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Cookies from "js-cookie";
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav";
+import "./messages.css";
+
 
 const API_URL = "http://127.0.0.1:5000";
 
@@ -15,12 +17,18 @@ const Message = ({ sender, content, timestamp }) => {
   );
 };
 
+const Contact = ({ name }) => {
+
+  return <p>{name}</p>;
+};
+
 const ClientMessages = () => {
 
   const id = Cookies.get("id");
 
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+  const [contacts, setContacts] = useState([]);
   const [load, setLoad] = useState(true);
   const [error, setError] = useState('');
 
@@ -34,7 +42,15 @@ const ClientMessages = () => {
         setError('Failed to load client messages. Please try again later.');
         setLoad(false);
       });
-  }, []);
+
+      axios.get('${API_URL}/message/clientContacts/${id}')
+        .then(response => {
+          setContacts(response.data);
+        }) 
+        .catch(error => {
+          console.error('Error fetching list of contacts', error)
+        })
+  }, [id]);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -58,8 +74,18 @@ const ClientMessages = () => {
 
   return (
     <div className="messages">
-      <ClientNavbar />
-      {error && <p className="error-message">Error: {error}</p>}
+  <ClientNavbar />
+  {error && <p className="error-message">Error: {error}</p>}
+  
+  <div className="content-area">
+    <div className="contacts-list">
+      <h3>Message Contacts</h3>
+      {contacts.map(contact => (
+        <Contact key={contact.id} name={contact.name} />
+      ))}
+    </div>
+
+    <div className="messages-container">
       <div className="message-area">
         {load ? (
           <p>Loading Messages...</p>
@@ -87,6 +113,9 @@ const ClientMessages = () => {
         <button type="submit" className="send-button">Send</button>
       </form>
     </div>
+  </div>
+</div>
+
   );
 };
 
