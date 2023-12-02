@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import ClientNavbar from "../../../components/navbar-visitor/clientnav.js";
+import VisitorNavbar from "../../../components/navbar-visitor/visitornav.js";
 import "../styling/workout.css";
 import Cardio from "../../../roles/visitors/assets/cardio.png";
 import { Link } from "react-router-dom";
 import Videos from "../../workouts/videos.js";
+import { useAuth } from "../../../components/navbar-visitor/auth.js"
 
 function Workouts() {
+  const { auth } = useAuth()
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedEquipment, setSelectedEquipment] = useState("");
   const [selectedMuscleGroup, setSelectedMuscleGroup] = useState("");
@@ -55,7 +58,11 @@ function Workouts() {
 
   return (
     <div className="body">
-      <ClientNavbar />
+        {auth.id ? (
+          <ClientNavbar />
+      ) : (
+        <VisitorNavbar />
+      )}
       <header className="heading">
         <div className="header_2">
           <div className="title">

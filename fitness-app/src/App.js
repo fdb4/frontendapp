@@ -68,6 +68,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/coaches" element={<Coaches />} />
         <Route path="/about" element={<About />} />
+        <Route path="/workouts" element={<Workouts />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
         {/* login & registration */}
@@ -81,7 +82,6 @@ function App() {
         {/* Protected Routes for client */}
         <Route path="/clienthome" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><ClientHome /></RequireAuth>} />
         <Route path="/dailylog" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><DailyLog /></RequireAuth>} />
-        <Route path="/workouts" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><Workouts /></RequireAuth>} />
         <Route path="/my-workouts" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><Myworkouts /></RequireAuth>} />
         <Route path="/clientcoaches" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><ClientCoaches /></RequireAuth>} />
           <Route path="/coaches/:id" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><CoachProfile /></RequireAuth>}  />
