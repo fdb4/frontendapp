@@ -10,6 +10,7 @@ import Home from "./roles/visitors/pages/home.js";
 import Services from "./roles/visitors/pages/services.js";
 import Coaches from "./roles/visitors/pages/coaches.js";
 import About from "./roles/visitors/pages/about.js";
+import Workouts from "./roles/visitors/pages/workouts.js";
 import Login from "./roles/visitors/login.js";
 import Registration from "./roles/visitors/registration.js";
 import Unauthorized from "./roles/visitors/pages/unauthorized.js";
@@ -19,7 +20,6 @@ import Unauthorized from "./roles/visitors/pages/unauthorized.js";
 import ClientSurvey from "./roles/client/pages/initialsurvey/clientsurvey.js"
 import ClientHome from "./roles/client/pages/clienthome.js";
 import DailyLog from "./roles/client/pages/dailylog.js";
-import Workouts from "./roles/client/pages/workouts.js";
 import Myworkouts from "./roles/client/pages/workouts/myworkouts.js";
 import ClientCoaches from "./roles/client/pages/clientcoaches.js";
 import CoachProfile from './roles/client/pages/coachprofile.js';

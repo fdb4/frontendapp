@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ClientNavbar from "../../../components/navbar-visitor/clientnav";
+import ClientNavbar from "../../../components/navbar-visitor/clientnav.js";
 import "../styling/workout.css";
 import Cardio from "../../../roles/visitors/assets/cardio.png";
 import { Link } from "react-router-dom";
