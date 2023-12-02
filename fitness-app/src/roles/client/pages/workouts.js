@@ -98,10 +98,8 @@ function Workouts() {
             </select>
           </div>
 
-          <Videos
-            searchQuery={searchQuery}
-            selectedEquipment={selectedEquipment}
-          />
+          <Videos searchQuery={searchQuery} selectedEquipment={selectedEquipment} />
+
         </div>
       </main>
     </div>

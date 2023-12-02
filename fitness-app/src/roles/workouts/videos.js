@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./videos.css";
 
-function Videos({ searchQuery }) {
+function Videos({ searchQuery,  selectedEquipment }) {
   const [workouts, setWorkouts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [goToPage, setGoToPage] = useState("");
@@ -33,9 +33,9 @@ function Videos({ searchQuery }) {
   }
 
   const filteredWorkouts = workouts.filter((workout) =>
-    workout.workoutname.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
+  workout.workoutname.toLowerCase().includes(searchQuery.toLowerCase()) &&
+  (selectedEquipment ? workout.equipment === selectedEquipment : true)
+);
   const paginatedWorkouts = filteredWorkouts.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filteredWorkouts.length / workoutsPerPage);
 
@@ -75,6 +75,8 @@ function Videos({ searchQuery }) {
             allowFullScreen
           ></iframe>
           <h3>{workout.workoutname}</h3>
+          <h3>{workout.musclegroup}</h3>
+          <h3>{workout.equipment}</h3>
         </div>
       ))}
       <div className="pagination">
