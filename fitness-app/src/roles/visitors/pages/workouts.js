@@ -111,9 +111,6 @@ function Workouts() {
             </select>
           </div>
 
-<<<<<<< HEAD:fitness-app/src/roles/client/pages/workouts.js
-          <Videos searchQuery={searchQuery} selectedEquipment={selectedEquipment} />
-=======
           <div className="muscle-group-filter">
             <label htmlFor="muscleGroup"></label>
             <select
@@ -132,7 +129,6 @@ function Workouts() {
               <option value="fullbody">Fullbody</option>
             </select>
           </div>
->>>>>>> 851ac82a3ba0d040f139587f1164d45cd050efa2:fitness-app/src/roles/visitors/pages/workouts.js
 
         </div>
         <Videos
