@@ -17,9 +17,9 @@ const Message = ({ sender, content, timestamp }) => {
   );
 };
 
-const Contact = ({ name }) => {
+const Contact = ({ cID, name, onClick }) => {
 
-  return <p>{name}</p>;
+  return <p onClick={() => onClick(cID)} style ={{ cursor: 'pointer' }}>{name}</p>;
 };
 
 const ClientMessages = () => {
@@ -29,6 +29,7 @@ const ClientMessages = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [contacts, setContacts] = useState([]);
+  const [selectedCoachID, setSelectedCoachID] = useState(null);
   const [load, setLoad] = useState(true);
   const [error, setError] = useState('');
 
@@ -43,14 +44,19 @@ const ClientMessages = () => {
         setLoad(false);
       });
 
-      axios.get('${API_URL}/message/clientContacts/${id}')
-        .then(response => {
-          setContacts(response.data);
-        }) 
-        .catch(error => {
-          console.error('Error fetching list of contacts', error)
-        })
+    axios.get(`${API_URL}/clientContacts/${id}`)
+      .then(response => {
+        setContacts(response.data);
+      }) 
+      .catch(error => {
+        console.error('Error fetching list of contacts', error)
+      });       
   }, [id]);
+
+  const handleCoachClick = (coachId) => {
+
+    setSelectedCoachID(coachId);
+  };
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -74,47 +80,50 @@ const ClientMessages = () => {
 
   return (
     <div className="messages">
-  <ClientNavbar />
-  {error && <p className="error-message">Error: {error}</p>}
-  
-  <div className="content-area">
-    <div className="contacts-list">
-      <h3>Message Contacts</h3>
-      {contacts.map(contact => (
-        <Contact key={contact.id} name={contact.name} />
-      ))}
-    </div>
-
-    <div className="messages-container">
-      <div className="message-area">
-        {load ? (
-          <p>Loading Messages...</p>
-        ) : messages.length === 0 ? (
-          <p>No Messages...</p>
-        ) : (
-          messages.map(message => (
-            <Message
-              key={message.id}
-              sender={message.sender}
-              content={message.content}
-              timestamp={message.timestamp}
+      <ClientNavbar />
+      {error && <p className="error-message">Error: {error}</p>}
+      <div className="content-area">
+        <div className="contacts-list">
+          <h3>Message Contacts</h3>
+          {contacts.map(contact => (
+            <Contact 
+              key={contact.id} 
+              id={contact.id} 
+              name={contact.name} 
+              onClick={handleCoachClick} 
             />
-          ))
-        )}
+          ))}
+        </div>
+        <div className="messages-container">
+          <div className="message-area">
+            {load ? (
+              <p>Loading Messages...</p>
+            ) : messages.length === 0 ? (
+              <p>No Messages...</p>
+            ) : (
+              messages.map(message => (
+                <Message
+                  key={message.id}
+                  sender={message.sender}
+                  content={message.content}
+                  timestamp={message.timestamp}
+                />
+            ))
+          )}
+        </div>
+        <form onSubmit={handleSendMessage} className="message-form">
+          <input
+            type="text"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            placeholder="Type your message here..."
+            className="message-input"
+          />
+          <button type="submit" className="send-button">Send</button>
+        </form>
       </div>
-      <form onSubmit={handleSendMessage} className="message-form">
-        <input
-          type="text"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Type your message here..."
-          className="message-input"
-        />
-        <button type="submit" className="send-button">Send</button>
-      </form>
     </div>
   </div>
-</div>
 
   );
 };
