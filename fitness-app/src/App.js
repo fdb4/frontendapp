@@ -10,7 +10,7 @@ import Home from "./roles/visitors/pages/home.js";
 import Services from "./roles/visitors/pages/services.js";
 import Coaches from "./roles/visitors/pages/coaches.js";
 import About from "./roles/visitors/pages/about.js";
-import Workouts from "./roles/visitors/pages/workouts.js";
+import Workouts from "./roles/client/pages/workouts/workouts.js";
 import Login from "./roles/visitors/login.js";
 import Registration from "./roles/visitors/registration.js";
 import Unauthorized from "./roles/visitors/pages/unauthorized.js";

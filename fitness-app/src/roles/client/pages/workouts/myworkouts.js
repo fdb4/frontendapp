@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav";
 import { useNavigate } from "react-router-dom";
-import "../../styling/myworkouts.css";
+import "./styling/myworkouts.css";
 import Pullups from "../../../visitors/assets/pullup.jpg";
 
 function Myworkouts() {

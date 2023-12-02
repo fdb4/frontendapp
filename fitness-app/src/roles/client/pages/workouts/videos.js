@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./videos.css";
+import "./styling/video.css";
 
 function Videos({ searchQuery,  selectedEquipment }) {
   const [workouts, setWorkouts] = useState([]);
