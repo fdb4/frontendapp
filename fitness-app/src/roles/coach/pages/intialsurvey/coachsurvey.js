@@ -8,10 +8,10 @@ import Cookies from "js-cookie";
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav.js";
 
 const API_URL = "http://127.0.0.1:5000";
-const clientID = Cookies.get('id');
 const role = Cookies.get("role")
 
 const CoachSurvey = () => {
+    const clientID = Cookies.get('id');
     const navigate = useNavigate()
     const [priceError, setPriceError] = useState("");
     const [experienceError, setExperienceError] = useState("");
@@ -26,6 +26,12 @@ const CoachSurvey = () => {
         town: '',
         state: '',
     })
+    
+    const requestData = {
+        ...data,
+        clientID: clientID,
+    };
+
 
     const handleChange = (e) => {
     	const { name, value } = e.target;
@@ -34,6 +40,7 @@ const CoachSurvey = () => {
     	  [name]: value,
     	});
  	};
+
 
      const handleSubmit = async (e) => {
         e.preventDefault();
@@ -55,12 +62,7 @@ const CoachSurvey = () => {
         } else {
             setExperienceError('');
         }
-        console.log(clientID)
-        const requestData = {
-            ...data,
-            clientID: clientID,
-        };
-    
+
         try {
             console.log(requestData)
             const response = await axios.post(`${API_URL}/coachSignUp`, requestData)

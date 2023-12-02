@@ -119,6 +119,7 @@ function ClientCoaches() {
       {currentCoaches.map((coach) => (
         <tr key={coach.clientID}>
           <div className="profile">
+            {console.log(coach)}
             <div className="left">
               <img className="img"src={Coach} alt="coach profile" />
               <name>{coach.firstname} {coach.lastname}</name>
