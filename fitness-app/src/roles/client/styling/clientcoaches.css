@@ -131,3 +131,6 @@ input {
   color:black;
   margin:5px;
 }
+state {
+  display: block;
+}
