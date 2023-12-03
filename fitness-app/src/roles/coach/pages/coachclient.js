@@ -4,6 +4,7 @@ import ClientNavbar from "../../../components/navbar-visitor/clientnav";
 import "../styling/coachclient.css"
 import { Link } from "react-router-dom";
 import Coach from "../../visitors/assets/coach.png";
+import Cookies from "js-cookie"
 
 function ClientProfiles() {
   const [clients, setClients] = useState([]);
@@ -19,9 +20,11 @@ function ClientProfiles() {
     fetchData();
   }, [filters, searchTerm]);
 
+  const clientId = Cookies.get('id');
+
   const fetchData = async () => {
     try {
-      let url = "http://127.0.0.1:5000/clients/profiles";
+      let url = `http://127.0.0.1:5000/coaches/clients/${clientId}`;
       const response = await fetch(url);
       const data = await response.json();
 
