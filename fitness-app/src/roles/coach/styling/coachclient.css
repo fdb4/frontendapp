@@ -15,7 +15,7 @@ h1 {
 .search-container {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 input[type="text"] {
@@ -73,4 +73,32 @@ button:disabled {
   font-weight: 700;
   line-height: 100%; /* 32px */
   display: block;
+}
+
+.client-request {
+  margin-top:-10px;
+  color: white;
+  font-size: 30px;
+  text-align: left;
+}
+.requesting {
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.request {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.request-info {
+  flex-grow: 1;
+}
+
+.request-actions {
+  /* Add styling for request actions or buttons */
 }
