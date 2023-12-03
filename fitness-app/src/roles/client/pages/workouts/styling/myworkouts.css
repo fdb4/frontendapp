@@ -3,167 +3,72 @@
     margin: 0;
     padding: 0;
   }
-  
-  .individual {
-    margin-left: 20px;
-  }
-  .header {
-    display: inline-block;
-  }
-  .header h1 {
-    color: #fff;
-    font-family: Saira Condensed;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 100%; /* 50px */
-    text-transform: uppercase;
-    margin-top: 40px;
-    margin-bottom: -40px;
-  }
-  .header {
-    margin-left: 0px;
-  }
-  figure {
-    position: relative;
-  }
-  
-  figure img {
-    border-radius: 65px;
-    background-color: lightgray;
-    width: 500px;
-    height: 400px;
-    flex-shrink: 0;
-    z-index: 1;
-  }
-  
-  figcaption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 500px;
-    padding: 10px;
-    box-sizing: border-box;
-    text-align: center;
-    border-radius: 0 0 65px 65px;
-  }
-  .titles,
-  h4,
-  h5 {
-    color: #fff;
-    font-family: Saira Condensed;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 100%;
-    margin-left: 20px;
-    margin-bottom: 10px;
-  }
-  .titles,
-  h5 {
-    text-transform: uppercase;
-  }
-  .titles {
-    font-size: 30px;
-  }
-  h5 {
-    font-size: 20px;
-  }
-  div h4 {
-    margin-top: 70px;
-    font-size: 40px;
-    margin-bottom: -40px;
-  }
-  .workoutinfo {
-    margin-top: 37px;
-    width: 500px;
-    height: 499px;
-    flex-shrink: 0;
-    border-radius: 65px;
-    background: #479090;
-  }
-  .title {
-    text-align: center;
-    padding-top: 51px;
-  }
-  .par {
-    display: flex;
-  }
-  hr {
-    width: 400px;
-    margin: auto;
-    height: 3px;
-    background-color: rgb(255, 255, 255);
-  }
-  .par-item {
-    width: 250px;
-    flex-shrink: 0;
-    color: #fff;
-    text-align: center;
-    font-family: Saira Condensed;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
-    margin: 20px 0;
-  }
-  .workout_description {
-    color: #fff;
-    font-family: Saira Condensed;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
-    max-width: 400px;
-    height: 100px;
-    margin: auto;
-    flex-shrink: 0;
-    margin-top: 70px;
-  }
-  .edit {
-    width: 167px;
-    height: 69px;
-    flex-shrink: 0;
-    float: right;
-    margin-right: 40px;
-    border-radius: 30px;
-    background: #000000;
-    color: #ffffff;
-    font-family: Poppins;
-    font-size: 18px;
-    font-style: normal;
-    letter-spacing: 1px;
-  }
+.formstyling {
+  width: 50%;
+  margin: 0 auto;
 
-  .workout-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(6, 6, 6);
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    max-height: 70vh; /* Set a maximum height relative to the viewport height */
-    overflow-y: auto; /* Add vertical scrollbar if content exceeds max-height */
-  }
-  
-  /* Additional styling for the modal */
-  .workout-modal h2 {
-    margin-bottom: 20px;
-  }
-  
-  .workout-modal button {
-    margin-right: 10px;
-  }
-  
-  .workout-modal label {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .workout-modal input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-  }
+}
+
+.formstyling label {
+  color: white;
+}
+
+.exercise-form label {
+  color: white;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.exercise-form {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+button[type="button"] {
+  background-color: #45a049;
+}
+
+.cancel {
+  background-color: #c9302c;;
+}
+
+button[type="button"]:hover {
+  background-color: #c9302c;
+}
