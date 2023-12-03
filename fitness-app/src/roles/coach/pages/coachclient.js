@@ -190,7 +190,6 @@ function ClientProfiles() {
           {currentClients.map((client) => (
             <div key={client.email} className="profile">
               <div className="left">
-                <img className="img" src={Coach} alt="coach profile" />
                 <name>
                   {client.firstname} {client.lastname}
                 </name>
@@ -199,7 +198,6 @@ function ClientProfiles() {
 
               <div className="middle">
                 <div className="location">
-                  <email>Email: {client.email}</email>
                 </div>
                 <div className="middle_2">
                   <movement>Movement: {client.movement}</movement>
