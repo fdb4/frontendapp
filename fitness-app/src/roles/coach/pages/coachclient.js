@@ -28,7 +28,7 @@ function ClientProfiles() {
   const fetchData = async () => {
     try {
       setLoadingClients(true);
-      let url = `http://127.0.0.1:5000/coaches/clients/2`;
+      let url = `http://127.0.0.1:5000/coaches/clients/${clientId}`;
       const response = await fetch(url);
       const data = await response.json();
 
@@ -66,9 +66,9 @@ function ClientProfiles() {
     try {
       const requestUrl = `http://127.0.0.1:5000/coaches/requests`;
       const payload = {
-        coachID: clientId, // Replace with the actual coach ID
+        coachID: clientId,
         clientID: requestId,
-        decision: decision, // 1 for accept, 0 for decline
+        decision: decision,
       };
   
       await fetch(requestUrl, {
@@ -81,6 +81,12 @@ function ClientProfiles() {
   
       // Refresh the requests after a successful decision
       fetchRequests();
+  
+      // Check if the decision is to accept and there are no more requests
+      if (decision === 1 && requests.length === 1) {
+        // Reload the page after accepting the last client
+        window.location.reload();
+      }
     } catch (error) {
       console.error("Error handling request:", error);
       // Display a user-friendly error message
@@ -124,20 +130,25 @@ function ClientProfiles() {
       <h1>CLIENTS</h1>
 
       <div className="body_1">
-        <div className="search-container">{/* ... (existing code) */}</div>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <select
+            value={filters.type}
+            onChange={(e) => handleFilterChange(e.target.value)}
+          >
+            <option value="" disabled>
+              Filter by:
+            </option>
+          </select>
+          <button onClick={handleFilter}>Filter</button>
+          <button onClick={handleClear}>Clear</button>
+        </div>
       </div>
-
-      {loadingClients ? (
-        <p>Loading Clients...</p>
-      ) : (
-        <>
-          {currentClients.map((client) => (
-            <div key={client.email} className="profile">
-              {/* ... (existing code) */}
-            </div>
-          ))}
-        </>
-      )}
 
       {loadingRequests ? (
         <p>Loading Requests...</p>
