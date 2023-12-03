@@ -132,7 +132,7 @@ const ClientProfile = () => {
     <div>
       <div className="body">
         <ClientNavbar />
-        <h1>Coach Profile</h1>
+        <h1>Client Profile</h1>
         <button onClick={handleGoBack}>Back</button>
         {coach && (
           <div className="profile_2">

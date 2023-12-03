@@ -95,7 +95,7 @@ function App() {
 
         {/* Protected Routes for coach */}
         <Route path="/coachhome" element={<RequireAuth allowedRoles = {['Coach', 'Admin']}><CoachClient/></RequireAuth>} />
-          <Route path="/coaches/:id" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><ClientProfile /></RequireAuth>}  />
+          <Route path="/clients/:id" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><ClientProfile /></RequireAuth>}  />
       </Routes>
       </AuthProvider>
     </Router>
