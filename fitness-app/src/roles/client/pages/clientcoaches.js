@@ -118,10 +118,11 @@ function ClientCoaches() {
       </div>
       {currentCoaches.map((coach) => (
         <tr key={coach.clientID}>
+          
           <div className="profile">
+            <img className="img"src={Coach} alt="coach profile" />
             {console.log(coach)}
             <div className="left">
-              <img className="img"src={Coach} alt="coach profile" />
               <name>{coach.firstname} {coach.lastname}</name>
               <age>Age: </age>
               <price>Price: ${coach.price}</price>
