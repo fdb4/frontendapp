@@ -34,23 +34,29 @@ const ClientMessages = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get(`${API_URL}/message/${id}`)
-      .then(response => {
-        setMessages(response.data);
-        setLoad(false);
-      })
-      .catch((error) => {
-        setError('Failed to load client messages. Please try again later.');
-        setLoad(false);
-      });
+    if(selectedCoachID) {
 
-    axios.get(`${API_URL}/clientContacts/${id}`)
+      axios.get(`${API_URL}/message/${selectedCoachID}`)
+        .then(response => {
+          setMessages(response.data);
+          setLoad(false);
+        })
+        .catch((error) => {
+          setError('Failed to load client messages. Please try again later.');
+          setLoad(false);
+        });  
+    }    
+  }, [selectedCoachID]);
+
+  useEffect(() => {
+
+    axios.get(`${API_URL}/message/conversations/${id}`)
       .then(response => {
         setContacts(response.data);
       }) 
       .catch(error => {
         console.error('Error fetching list of contacts', error)
-      });       
+      }); 
   }, [id]);
 
   const handleCoachClick = (coachId) => {
@@ -88,7 +94,7 @@ const ClientMessages = () => {
           {contacts.map(contact => (
             <Contact 
               key={contact.id} 
-              id={contact.id} 
+              cID={contact.id}
               name={contact.name} 
               onClick={handleCoachClick} 
             />
