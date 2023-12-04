@@ -3,6 +3,8 @@ import "../../styling/MyProfilePage.css";
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav.js";
 import "../../styling/settings.css";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+
 
 function DeleteConfirmationPopup({ onCancel, onConfirm }) {
   return (
@@ -86,9 +88,11 @@ const handleSave = () => {
     setShowDeleteConfirmation(false);
   };
 
+  const navigate = useNavigate();
+
   const handleDeleteConfirm = () => {
-    fetch(`http://127.0.0.1:5000/deleteAccount/${clientInfo[0].clientId}`, {
-      method: "POST",
+    fetch(`http://127.0.0.1:5000/client/delete/${clientId}`, {
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
@@ -96,7 +100,15 @@ const handleSave = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Account marked for deletion:", data);
+        console.log("Account deleted:", data);
+        // Assuming the API returns a success message
+        if (data.message === "Client profile deleted successfully") {
+          // Use the navigate function to redirect to the homepage
+          navigate('/login');
+        } else {
+          // Handle other responses, e.g., display an error message
+          console.error("Error deleting account:", data.message);
+        }
       })
       .catch((error) => console.error("Error deleting account:", error));
 
