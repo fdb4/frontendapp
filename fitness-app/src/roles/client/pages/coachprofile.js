@@ -30,7 +30,7 @@ const CoachProfile = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        setCoach(data[0]); // Assuming the response is an array with a single coach object
+        setCoach(data); // Assuming the response is an array with a single coach object
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(error.message);
@@ -174,7 +174,6 @@ const CoachProfile = () => {
               <ConfirmationModal isOpen={isModalOpen} onConfirm={handleConfirm} onClose={handleCancel} />
             </div>
 
-            {/* Message Form Lightbox */}
             {showMessageForm && (
               <div className="lightbox">
                 <div className="form-container">
