@@ -42,6 +42,9 @@ function ClientCoaches() {
           case "price":
             url = `http://127.0.0.1:5000/coaches/filter/cost/${filters.value}`;
             break;
+          case "specilization":
+            url = `http://127.0.0.1:5000/coaches/filter/specialization/${filters.value}`;
+            break;
           default:
             break;
         }
@@ -112,6 +115,7 @@ function ClientCoaches() {
           <option value="experience">Experience</option>
           <option value="ratings">Ratings</option>
           <option value="price">Maximum Price</option>
+          <option value="specialization">Specialization</option>
         </select>
         <button onClick={handleFilter}>Filter</button>
         <button onClick={handleClear}>Clear</button>
