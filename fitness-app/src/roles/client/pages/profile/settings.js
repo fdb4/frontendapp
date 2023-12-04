@@ -22,6 +22,7 @@ function Settings() {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
   const clientId = Cookies.get("id");
+  const userRole = Cookies.get("role");
 
   useEffect(() => {
     fetch(`http://127.0.0.1:5000/genInfo/${clientId}`)
@@ -90,8 +91,7 @@ function Settings() {
 
   const navigate = useNavigate();
 
-
-  const handleDeleteConfirm = () => {
+  const handleDeleteConfirmClient = () => {
     fetch(`http://127.0.0.1:5000/client/delete/${clientId}`, {
       method: "DELETE",
       headers: {
@@ -105,9 +105,9 @@ function Settings() {
         // Assuming the API returns a success message
         if (data.message === "Client profile deleted successfully") {
           // Delete the client ID from cookies
-          Cookies.remove('id');
+          Cookies.remove("id");
           // Use the navigate function to redirect to the login page
-          navigate('/login');
+          navigate("/login");
         } else {
           // Handle other responses, e.g., display an error message
           console.error("Error deleting account:", data.message);
@@ -116,8 +116,7 @@ function Settings() {
       .catch((error) => console.error("Error deleting account:", error));
 
     setShowDeleteConfirmation(false);
-  }; 
-
+  };
 
   const handleDeleteConfirmCoach = () => {
     fetch(`http://127.0.0.1:5000/coach/delete/${clientId}`, {
@@ -133,9 +132,9 @@ function Settings() {
         // Assuming the API returns a success message
         if (data.message === "Coach profile deleted successfully") {
           // Delete the client ID from cookies
-          Cookies.remove('id');
+          Cookies.remove("id");
           // Use the navigate function to redirect to the login page
-          navigate('/login');
+          navigate("/login");
         } else {
           // Handle other responses, e.g., display an error message
           console.error("Error deleting account:", data.message);
@@ -144,8 +143,7 @@ function Settings() {
       .catch((error) => console.error("Error deleting account:", error));
 
     setShowDeleteConfirmation(false);
-  }; 
-
+  };
 
   return (
     <div className="body_1">
@@ -287,9 +285,14 @@ function Settings() {
       )}
       {showDeleteConfirmation && (
         <DeleteConfirmationPopup
-          className="cancel"
           onCancel={handleDeleteCancel}
-          onConfirm={handleDeleteConfirm}
+          onConfirm={() => {
+            if (userRole === "Client") {
+              handleDeleteConfirmClient();
+            } else {
+              handleDeleteConfirmCoach();
+            }
+          }}
         />
       )}
     </div>
