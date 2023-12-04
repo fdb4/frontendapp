@@ -131,6 +131,7 @@ function ClientCoaches() {
               <age>Age: </age>
               <price>Price: ${coach.price}</price>
               <gym>Gym: {coach.gym}</gym>
+              <specilization>Specialization: {coach.specilization}</specilization>
             </div>
 
             <div className="middle">

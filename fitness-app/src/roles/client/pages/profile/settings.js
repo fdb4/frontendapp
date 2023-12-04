@@ -5,7 +5,6 @@ import "../../styling/settings.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-
 function DeleteConfirmationPopup({ onCancel, onConfirm }) {
   return (
     <div className="delete-confirmation-popup">
@@ -22,7 +21,7 @@ function Settings() {
   const [editedInfo, setEditedInfo] = useState({});
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
-  const clientId = Cookies.get('id');
+  const clientId = Cookies.get("id");
 
   useEffect(() => {
     fetch(`http://127.0.0.1:5000/genInfo/${clientId}`)
@@ -30,7 +29,7 @@ function Settings() {
       .then((data) => setClientInfo(data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
-  
+
   const gender = (binaryGender) => {
     return binaryGender === 0 ? "Male" : "Female";
   };
@@ -45,33 +44,34 @@ function Settings() {
     setEditedInfo({});
   };
 
-const handleSave = () => {
-  fetch(`http://127.0.0.1:5000/client/edit/${clientId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(editedInfo),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      // Assuming the API returns a success message
-      if (data.message === "Profile updated successfully") {
-        // Refetch the updated client data
-        fetch(`http://127.0.0.1:5000/genInfo/${clientId}`)
-          .then((response) => response.json())
-          .then((updatedData) => {
-            setClientInfo(updatedData);
-            setEditMode(false);
-          })
-          .catch((error) => console.error("Error fetching updated data:", error));
-      } else {
-        console.error("Error updating data:", data.message);
-      }
+  const handleSave = () => {
+    fetch(`http://127.0.0.1:5000/client/edit/${clientId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editedInfo),
     })
-    .catch((error) => console.error("Error updating data:", error));
-};
-  
+      .then((response) => response.json())
+      .then((data) => {
+        // Assuming the API returns a success message
+        if (data.message === "Profile updated successfully") {
+          // Refetch the updated client data
+          fetch(`http://127.0.0.1:5000/genInfo/${clientId}`)
+            .then((response) => response.json())
+            .then((updatedData) => {
+              setClientInfo(updatedData);
+              setEditMode(false);
+            })
+            .catch((error) =>
+              console.error("Error fetching updated data:", error)
+            );
+        } else {
+          console.error("Error updating data:", data.message);
+        }
+      })
+      .catch((error) => console.error("Error updating data:", error));
+  };
 
   const handleChange = (e) => {
     setEditedInfo({
@@ -89,6 +89,7 @@ const handleSave = () => {
   };
 
   const navigate = useNavigate();
+
 
   const handleDeleteConfirm = () => {
     fetch(`http://127.0.0.1:5000/client/delete/${clientId}`, {
@@ -115,7 +116,36 @@ const handleSave = () => {
       .catch((error) => console.error("Error deleting account:", error));
 
     setShowDeleteConfirmation(false);
-  };
+  }; 
+
+
+  const handleDeleteConfirmCoach = () => {
+    fetch(`http://127.0.0.1:5000/coach/delete/${clientId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId: clientInfo[0].clientId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Account deleted:", data);
+        // Assuming the API returns a success message
+        if (data.message === "Coach profile deleted successfully") {
+          // Delete the client ID from cookies
+          Cookies.remove('id');
+          // Use the navigate function to redirect to the login page
+          navigate('/login');
+        } else {
+          // Handle other responses, e.g., display an error message
+          console.error("Error deleting account:", data.message);
+        }
+      })
+      .catch((error) => console.error("Error deleting account:", error));
+
+    setShowDeleteConfirmation(false);
+  }; 
+
 
   return (
     <div className="body_1">
@@ -127,10 +157,11 @@ const handleSave = () => {
             src="https://i0.wp.com/www.lizzyc.com.au/journal/wp-content/uploads/2019/07/TGardiner0519_0012.jpg?resize=1024%2C682&ssl=1"
             alt="Profile"
           />
-           <div className="right">
+          <div className="right">
             <h1 className="settings">Settings</h1>
-             <p className="paragraph_1">
-              Name: {`${clientInfo[0]?.firstname || "N/A"} ${
+            <p className="paragraph_1">
+              Name:{" "}
+              {`${clientInfo[0]?.firstname || "N/A"} ${
                 clientInfo[0]?.lastname || "N/A"
               }'s`}
             </p>
@@ -224,10 +255,16 @@ const handleSave = () => {
               <>
                 <p className="paragraph_1">Height: {clientInfo[0].height}</p>
                 <p className="paragraph_1">Weight: {clientInfo[0].weight}</p>
-                <p className="paragraph_1">Goal Weight: {clientInfo[0].goalweight}</p>
-                <p className="paragraph_1">Movement: {clientInfo[0].movement}</p>
+                <p className="paragraph_1">
+                  Goal Weight: {clientInfo[0].goalweight}
+                </p>
+                <p className="paragraph_1">
+                  Movement: {clientInfo[0].movement}
+                </p>
                 <p className="paragraph_1">Age: {clientInfo[0].age}</p>
-                <p className="paragraph_1">Gender: {gender(clientInfo[0].gender)}</p>
+                <p className="paragraph_1">
+                  Gender: {gender(clientInfo[0].gender)}
+                </p>
               </>
             )}
             {editMode ? (
@@ -238,7 +275,9 @@ const handleSave = () => {
             ) : (
               <>
                 <button onClick={handleEdit}>Edit</button>
-                <button className="delete" onClick={handleDelete}>Delete</button>
+                <button className="delete" onClick={handleDelete}>
+                  Delete
+                </button>
               </>
             )}
           </div>
