@@ -115,7 +115,7 @@ function ClientCoaches() {
           <option value="experience">Experience</option>
           <option value="ratings">Ratings</option>
           <option value="price">Maximum Price</option>
-          <option value="specialization">Specialization</option>
+          <option value="specializations">Specialization</option>
         </select>
         <button onClick={handleFilter}>Filter</button>
         <button onClick={handleClear}>Clear</button>
