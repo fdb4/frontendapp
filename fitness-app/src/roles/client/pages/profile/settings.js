@@ -103,7 +103,9 @@ const handleSave = () => {
         console.log("Account deleted:", data);
         // Assuming the API returns a success message
         if (data.message === "Client profile deleted successfully") {
-          // Use the navigate function to redirect to the homepage
+          // Delete the client ID from cookies
+          Cookies.remove('id');
+          // Use the navigate function to redirect to the login page
           navigate('/login');
         } else {
           // Handle other responses, e.g., display an error message
@@ -127,7 +129,11 @@ const handleSave = () => {
           />
            <div className="right">
             <h1 className="settings">Settings</h1>
-            <p className="paragraph_1">Name: {`${clientInfo[0].firstname} ${clientInfo[0].lastname}'s`}</p>
+             <p className="paragraph_1">
+              Name: {`${clientInfo[0]?.firstname || "N/A"} ${
+                clientInfo[0]?.lastname || "N/A"
+              }'s`}
+            </p>
             {editMode ? (
               <>
                 <label>
