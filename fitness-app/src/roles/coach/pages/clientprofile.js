@@ -450,6 +450,11 @@ const ClientProfile = () => {
   return (
   <div className="client-profile-page">
     <ClientNavbar />
+    <div className="client-actions">
+          <button className="back-button" onClick={handleGoBack}>Back</button>
+          <button className="action-button" onClick={handleOpenMessageForm}>Send Message</button>
+          <ConfirmationModal isOpen={isModalOpen} onConfirm={handleConfirm} onClose={handleCancel} />
+    </div>
     {client && (
       <div className="client-profile-container">
         <div className="client-info-section">
@@ -505,6 +510,7 @@ const ClientProfile = () => {
           <button className="action-button" onClick={handleCreateWorkout}>Create Client Workout</button>
           <WorkoutForm isOpen={showWorkoutForm} onClose={handleCancelCreateWorkout} />
         </div>
+
 
         {showMessageForm && (
           <div className="lightbox">
