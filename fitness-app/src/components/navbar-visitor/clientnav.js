@@ -29,6 +29,7 @@ const ClientNavbar = () => {
     setShowMenu(!showMenu);
   };
   const role = Cookies.get('role')
+  const isAdmin = Cookies.get('isAdmin')
   const { setAuth } = useAuth();
   const handleLogout = () => {
     Cookies.remove("id");
@@ -67,6 +68,11 @@ const ClientNavbar = () => {
           {role === "Coach" && (
           <NavLink to="/coachhome" activeStyle>
             Your Clients
+          </NavLink>
+        )}
+          {isAdmin && (
+          <NavLink to="/admincoaches" activeStyle>
+            Admin
           </NavLink>
         )}
           <div style={{ position: "relative" }}>

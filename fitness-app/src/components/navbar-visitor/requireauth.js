@@ -8,9 +8,11 @@ const RequireAuth = ( {children, allowedRoles} ) => {
     const location = useLocation();
     let id = ''
     let role = ''
+    let isAdmin = false
     if (Cookies.get('id')) {
         id = Cookies.get('id')
         role = Cookies.get('role')
+        isAdmin = Cookies.get('isAdmin')
         if (!auth.id) {
             setAuth({id})
         }
@@ -19,7 +21,7 @@ const RequireAuth = ( {children, allowedRoles} ) => {
         return <Navigate to="/login" state={{ from:location }} replace />
     }
 
-    if (!allowedRoles.includes(role)) {
+    if (!allowedRoles.includes(role) && !isAdmin) {
         return <Navigate to="/unauthorized" />
     }
 
