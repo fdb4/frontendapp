@@ -323,102 +323,91 @@ const ClientProfile = () => {
     };
 
     return (
-    <div className="lightbox">
-      <div className="form-container">
-        <span className="close" onClick={onClose}>&times;</span>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="sessionsName">Sessions Name:</label>
-          <input
-            type="text"
-            id="sessionsName"
-            name="sessionsName"
-            value={workoutPlan.sessionsName}
-            onChange={handleSessionNameChange}
-          />
-
-          {workoutPlan.selectedExercises.map((exercise, index) => (
-            <div key={index} className="exercise-form">
-              <label htmlFor={`exerciseID-${index}`}>Select Exercise:</label>
-              <select
-                id={`exerciseID-${index}`}
-                name="exerciseID"
-                value={exercise.exerciseID || ""}
-                onChange={(event) => handleInputChange(index, event)}
-              >
-                <option value="" disabled>
-                  Select an Exercise
-                </option>
-                {allExercises.map((option) => (
-                  <option key={option.workoutID} value={option.workoutID}>
-                    {option.workoutname}
+      <div className="lightbox">
+        <div className="form-container">
+          <span className="close" onClick={onClose}>&times;</span>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="sessionsName">Sessions Name:</label>
+            <input
+              type="text"
+              id="sessionsName"
+              name="sessionsName"
+              value={workoutPlan.sessionsName}
+              onChange={handleSessionNameChange}
+            />
+            {workoutPlan.selectedExercises.map((exercise, index) => (
+              <div key={index} className="exercise-form">
+                <label htmlFor={`exerciseID-${index}`}>Select Exercise:</label>
+                <select
+                  id={`exerciseID-${index}`}
+                  name="exerciseID"
+                  value={exercise.exerciseID || ""}
+                  onChange={(event) => handleInputChange(index, event)}
+                >
+                  <option value="" disabled>
+                    Select an Exercise
                   </option>
-                ))}
-              </select>
-              <p></p>
-              <label htmlFor={`sets-${index}`}>Sets:</label>
-              <input
-                type="number"
-                id={`sets-${index}`}
-                name="sets"
-                value={exercise.sets}
-                onChange={(event) => handleInputChange(index, event)}
-              />
-
-              <label htmlFor={`reps-${index}`}>Reps:</label>
-              <input
-                type="number"
-                id={`reps-${index}`}
-                name="reps"
-                value={exercise.reps}
-                onChange={(event) => handleInputChange(index, event)}
-              />
-
-              <label htmlFor={`time-${index}`}>Time:</label>
-              <input
-                type="number"
-                id={`time-${index}`}
-                name="time"
-                value={exercise.time}
-                onChange={(event) => handleInputChange(index, event)}
-              />
-
-              <button type="button" onClick={() => handleDeleteExercise(index)}>
-                Delete Exercise
+                  {allExercises.map((option) => (
+                    <option key={option.workoutID} value={option.workoutID}>
+                      {option.workoutname}
+                    </option>
+                  ))}
+                </select>
+                <p></p>
+                <label htmlFor={`sets-${index}`}>Sets:</label>
+                <input
+                  type="number"
+                  id={`sets-${index}`}
+                  name="sets"
+                  value={exercise.sets}
+                  onChange={(event) => handleInputChange(index, event)}
+                />
+                <label htmlFor={`reps-${index}`}>Reps:</label>
+                <input
+                  type="number"
+                  id={`reps-${index}`}
+                  name="reps"
+                  value={exercise.reps}
+                  onChange={(event) => handleInputChange(index, event)}
+                />
+                <label htmlFor={`time-${index}`}>Time:</label>
+                <input
+                  type="number"
+                  id={`time-${index}`}
+                  name="time"
+                  value={exercise.time}
+                  onChange={(event) => handleInputChange(index, event)}
+                />
+                <button type="button" onClick={() => handleDeleteExercise(index)}>
+                  Delete Exercise
+                </button>
+              </div>
+            ))}
+            <button type="button" onClick={handleAddExercise}>
+              Add Exercise
+            </button>
+            {limitReachedMessage && <p>{limitReachedMessage}</p>}
+            {error && <p>{error}</p>}
+            <div className="form-actions">
+              <button type="submit">Submit Workout Plan</button>
+              <button type="button" onClick={onClose}>
+                Cancel
               </button>
             </div>
-          ))}
-
-          <button type="button" onClick={handleAddExercise}>
-            Add Exercise
-          </button>
-
-          {limitReachedMessage && <p>{limitReachedMessage}</p>}
-          {error && <p>{error}</p>}
-
-          <div className="form-actions">
-            <button type="submit">Submit Workout Plan</button>
-            <button type="button" onClick={onClose}>
-              Cancel
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
-  );
-}
-  
-
+    );
+  }
 
   function ConfirmationModal({ isOpen, onClose, onConfirm }) {
     if (!isOpen) {
       return null;
     }
-  
     return (
       <div className="modal-overlay">
         <div className="modal-content">
-          <div>Confirm: Send Coach Request
-          </div>
+          <div>Confirm: Send Coach Request</div>
           <button onClick={() => onConfirm()}>Yes</button>
           <button onClick={() => onClose()}>No</button>
         </div>
@@ -433,11 +422,13 @@ const ClientProfile = () => {
 
   const handleConfirm = async () => {
     try {
+      
       const response = await axios.post(`${API_URL}/client/sendRequest`, requestData);
-
-      // Handle the response data, if needed
+      //Handle the response data, if needed
       window.alert(response.data.message)
-    } catch (error) {
+    } 
+    catch (error) {
+      
       window.alert(`An error occurred: ${error.message}`);
     }
     setIsModalOpen(false);
@@ -451,11 +442,11 @@ const ClientProfile = () => {
   <div className="client-profile-page">
     <ClientNavbar />
     <div className="client-actions">
-          <button className="back-button" onClick={handleGoBack}>Back</button>
-          <button className="action-button" onClick={handleOpenMessageForm}>Send Message</button>
-          <ConfirmationModal isOpen={isModalOpen} onConfirm={handleConfirm} onClose={handleCancel} />
-          <button className="action-button" onClick={handleCreateWorkout}>Create Client Workout</button>
-          <WorkoutForm isOpen={showWorkoutForm} onClose={handleCancelCreateWorkout} />
+      <button className="back-button" onClick={handleGoBack}>Back</button>
+      <button className="action-button" onClick={handleOpenMessageForm}>Send Message</button>
+      <ConfirmationModal isOpen={isModalOpen} onConfirm={handleConfirm} onClose={handleCancel} />
+      <button className="action-button" onClick={handleCreateWorkout}>Create Client Workout</button>
+      <WorkoutForm isOpen={showWorkoutForm} onClose={handleCancelCreateWorkout} />
     </div>
     {client && (
       <div className="client-profile-container">
@@ -491,7 +482,6 @@ const ClientProfile = () => {
             <p>Email: {client.email}</p>
           </div>
         </div>
-
         <div className="client-logs-section">
           <h3>{client.firstname}'s Daily Logs</h3>
           <div className="graph-container">
@@ -504,7 +494,6 @@ const ClientProfile = () => {
             <Line data={moodGraphData} options={moodOptions} />
           </div>
         </div>
-
         {showMessageForm && (
           <div className="lightbox">
             <div className="form-container">
@@ -515,7 +504,8 @@ const ClientProfile = () => {
                   id="message"
                   value={messageContent}
                   onChange={(e) => setMessageContent(e.target.value)}
-                ></textarea>
+                >
+                </textarea>
                 <button type="button" onClick={sendMessage}>Send Message</button>
               </form>
             </div>
@@ -524,7 +514,7 @@ const ClientProfile = () => {
       </div>
     )}
   </div>
-);
+  );
 };
 
 export default ClientProfile;
