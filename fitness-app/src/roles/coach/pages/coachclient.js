@@ -190,25 +190,20 @@ function ClientProfiles() {
           {currentClients.map((client) => (
             <div key={client.email} className="profile">
               <div className="left">
-                <name>
-                  {client.firstname} {client.lastname}
-                </name>
-                <age>Age: {client.age}</age>
+                <img 
+                  className="client-img" 
+                  src="https://i0.wp.com/www.lizzyc.com.au/journal/wp-content/uploads/2019/07/TGardiner0519_0012.jpg?resize=1024%2C682&ssl=1" 
+                  alt="client profile" 
+                />
               </div>
 
               <div className="middle">
-                <div className="location">
-                </div>
-                <div className="middle_2">
-                  <movement>Movement: {client.movement}</movement>
-                </div>
+                <name>
+                  {client.firstname} {client.lastname}
+                </name>
               </div>
 
               <div className="right">
-                <div className="contact">
-                  <contact>CONTACT</contact>
-                  <email>Email: {client.email}</email>
-                </div>
                 <Link to={`/clients/${client.clientID}`} className="view">
                   VIEW PROFILE
                 </Link>
