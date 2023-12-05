@@ -61,7 +61,7 @@ age {
   padding-top: 13px;
 }
 
-age, experience, ratings, price , gym {
+age, experience, ratings, price , gym, specilization{
   color: #000;
   font-family: Saira Condensed;
   font-size: 20px;
