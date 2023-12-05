@@ -454,6 +454,8 @@ const ClientProfile = () => {
           <button className="back-button" onClick={handleGoBack}>Back</button>
           <button className="action-button" onClick={handleOpenMessageForm}>Send Message</button>
           <ConfirmationModal isOpen={isModalOpen} onConfirm={handleConfirm} onClose={handleCancel} />
+          <button className="action-button" onClick={handleCreateWorkout}>Create Client Workout</button>
+          <WorkoutForm isOpen={showWorkoutForm} onClose={handleCancelCreateWorkout} />
     </div>
     {client && (
       <div className="client-profile-container">
@@ -502,15 +504,6 @@ const ClientProfile = () => {
             <Line data={moodGraphData} options={moodOptions} />
           </div>
         </div>
-
-        <div className="client-actions">
-          <button className="action-button" onClick={handleOpenMessageForm}>Send Message</button>
-          <ConfirmationModal isOpen={isModalOpen} onConfirm={handleConfirm} onClose={handleCancel} />
-          <button className="back-button" onClick={handleGoBack}>Back</button>
-          <button className="action-button" onClick={handleCreateWorkout}>Create Client Workout</button>
-          <WorkoutForm isOpen={showWorkoutForm} onClose={handleCancelCreateWorkout} />
-        </div>
-
 
         {showMessageForm && (
           <div className="lightbox">
