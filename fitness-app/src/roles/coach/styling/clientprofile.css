@@ -35,7 +35,7 @@ html, body {
   margin-bottom: 20px;
 }
 
-.client-details h2, .contact-info h3, .client-workout-preferences h3 {
+.client-details h1, .client-details h2, .contact-info h3, .client-workout-preferences h3 {
   align-items: center;
   color: black;
   text-decoration: underline;
@@ -89,12 +89,19 @@ html, body {
 }
 
 .form-container {
+  height: 500px;
+  overflow-y: auto;
+  color: black;
   background-color: white;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 80%; 
   max-width: 500px;
+}
+
+.form-container label {
+  color: black;
 }
 
 .close {

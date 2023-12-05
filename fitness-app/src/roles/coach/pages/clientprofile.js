@@ -18,6 +18,13 @@ const ClientProfile = () => {
   const navigate = useNavigate();
   const [messageContent, setMessageContent] = useState('');
   const [showMessageForm, setShowMessageForm] = useState(false);
+  const [showWorkoutForm, setShowWorkoutForm] = useState(false);
+  const [workoutPlan, setWorkoutPlan] = useState({
+    sessionsName: "",
+    selectedExercises: [],
+  });
+  const [allExercises, setAllExercises] = useState([]);
+  const [limitReachedMessage, setLimitReachedMessage] = useState("");
   const clientID = Cookies.get('id')
   const requestData = {
     clientID: clientID,
@@ -87,6 +94,14 @@ const ClientProfile = () => {
         }
       }
     },
+  };
+
+  const handleCreateWorkout = () => {
+    setShowWorkoutForm(true);
+  };
+
+  const handleCancelCreateWorkout = () => {
+    setShowWorkoutForm(false);
   };
 
   useEffect(() => {
@@ -162,9 +177,58 @@ const ClientProfile = () => {
       });
     };
 
+    const fetchExercises = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:5000/workouts");
+        const exercises = await response.json();
+        setAllExercises(exercises);
+      } catch (error) {
+        setError("Error fetching exercises. Please try again.");
+      }
+    };
+
     fetchData();
     fetchDailyLog();
+    fetchExercises();
   }, [id]);
+
+  const handleAddExercise = () => {
+    // Check if the limit (10 exercises) has been reached
+    if (workoutPlan.selectedExercises.length < 10) {
+      setWorkoutPlan((prev) => ({
+        ...prev,
+        selectedExercises: [
+          ...prev.selectedExercises,
+          { exerciseID: null, sets: 0, reps: 0, time: 0 },
+        ],
+      }));
+    } else {
+      setLimitReachedMessage("You've reached the limit of 10 exercises per session.");
+    }
+  };
+
+  const handleDeleteExercise = (index) => {
+    setLimitReachedMessage(""); // Clear the limitReachedMessage
+    setWorkoutPlan((prev) => {
+      const updatedExercises = [...prev.selectedExercises];
+      updatedExercises.splice(index, 1);
+      return { ...prev, selectedExercises: updatedExercises };
+    });
+  };
+
+  const handleInputChange = (index, event) => {
+    const { name, value } = event.target;
+    setWorkoutPlan((prev) => {
+      const updatedExercises = [...prev.selectedExercises];
+      updatedExercises[index][name] = value;
+      return { ...prev, selectedExercises: updatedExercises };
+    });
+  };
+
+  const handleSessionNameChange = (event) => {
+    const { value } = event.target;
+    setWorkoutPlan((prev) => ({ ...prev, sessionsName: value }));
+  };
 
   const getGender = (binaryGender) => {
     return binaryGender === 0 ? "Male" : "Female";
@@ -224,6 +288,126 @@ const ClientProfile = () => {
     setShowMessageForm(false);
   };
 
+  function WorkoutForm({ isOpen, onClose }) {
+    if (!isOpen) {
+      return null;
+    }
+
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+  
+      try {
+        const response = await fetch("http://127.0.0.1:5000/workout", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(workoutPlan),
+        });
+  
+        if (response.ok) {
+          // Workout plan submitted successfully
+          console.log("Workout Plan submitted:", workoutPlan);
+          // Optionally, reset the form or navigate away
+          setShowWorkoutForm(false);
+        } 
+        else {
+          // Handle server error
+          console.error("Failed to submit workout plan:", response.statusText);
+        }
+      } 
+      catch (error) {
+        // Handle network error
+        console.error("Network error:", error.message);
+      } 
+    };
+
+    return (
+    <div className="lightbox">
+      <div className="form-container">
+        <span className="close" onClick={onClose}>&times;</span>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="sessionsName">Sessions Name:</label>
+          <input
+            type="text"
+            id="sessionsName"
+            name="sessionsName"
+            value={workoutPlan.sessionsName}
+            onChange={handleSessionNameChange}
+          />
+
+          {workoutPlan.selectedExercises.map((exercise, index) => (
+            <div key={index} className="exercise-form">
+              <label htmlFor={`exerciseID-${index}`}>Select Exercise:</label>
+              <select
+                id={`exerciseID-${index}`}
+                name="exerciseID"
+                value={exercise.exerciseID || ""}
+                onChange={(event) => handleInputChange(index, event)}
+              >
+                <option value="" disabled>
+                  Select an Exercise
+                </option>
+                {allExercises.map((option) => (
+                  <option key={option.workoutID} value={option.workoutID}>
+                    {option.workoutname}
+                  </option>
+                ))}
+              </select>
+              <p></p>
+              <label htmlFor={`sets-${index}`}>Sets:</label>
+              <input
+                type="number"
+                id={`sets-${index}`}
+                name="sets"
+                value={exercise.sets}
+                onChange={(event) => handleInputChange(index, event)}
+              />
+
+              <label htmlFor={`reps-${index}`}>Reps:</label>
+              <input
+                type="number"
+                id={`reps-${index}`}
+                name="reps"
+                value={exercise.reps}
+                onChange={(event) => handleInputChange(index, event)}
+              />
+
+              <label htmlFor={`time-${index}`}>Time:</label>
+              <input
+                type="number"
+                id={`time-${index}`}
+                name="time"
+                value={exercise.time}
+                onChange={(event) => handleInputChange(index, event)}
+              />
+
+              <button type="button" onClick={() => handleDeleteExercise(index)}>
+                Delete Exercise
+              </button>
+            </div>
+          ))}
+
+          <button type="button" onClick={handleAddExercise}>
+            Add Exercise
+          </button>
+
+          {limitReachedMessage && <p>{limitReachedMessage}</p>}
+          {error && <p>{error}</p>}
+
+          <div className="form-actions">
+            <button type="submit">Submit Workout Plan</button>
+            <button type="button" onClick={onClose}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+  
+
 
   function ConfirmationModal({ isOpen, onClose, onConfirm }) {
     if (!isOpen) {
@@ -276,7 +460,7 @@ const ClientProfile = () => {
               alt="client profile" 
             />
             <div className="client-details">
-              <h2>{client.firstname} {client.lastname}</h2>
+              <h1>{client.firstname} {client.lastname}</h1>
               <p>Height: {client.height}</p>
               <p>Weight: {client.weight}</p>
               <p>Goal Weight: {client.goalweight}</p>
@@ -318,6 +502,8 @@ const ClientProfile = () => {
           <button className="action-button" onClick={handleOpenMessageForm}>Send Message</button>
           <ConfirmationModal isOpen={isModalOpen} onConfirm={handleConfirm} onClose={handleCancel} />
           <button className="back-button" onClick={handleGoBack}>Back</button>
+          <button className="action-button" onClick={handleCreateWorkout}>Create Client Workout</button>
+          <WorkoutForm isOpen={showWorkoutForm} onClose={handleCancelCreateWorkout} />
         </div>
 
         {showMessageForm && (
