@@ -39,22 +39,22 @@ const AdminCoaches = () => {
             <div className='profile'> 
             <div className='left'>
             <name>Name: {coach.firstname} {coach.lastname}</name>
-            <age>Age: {coach.age}</age>
             <price>Price: {coach.price}</price>
             
             </div>
             <div className="middle">
-              <div className="location">
                 <gym>Gym: {coach.gym}</gym>
                 <town>Town: {coach.town}</town>
                 <state>State: {coach.state}</state>
-              </div>
             </div>
             
-            <div className="info">
-              <bio>Description: {coach.bio}</bio>
+            <div className="right">
               <experience>Experience: {coach.experience}</experience>
               <ratings>Ratings: {coach.rating}</ratings>
+            </div>
+            <div className='actions_2'>
+              <button>Approve</button>
+              <button>Deny</button>
             </div>
             </div>
         </tr>
