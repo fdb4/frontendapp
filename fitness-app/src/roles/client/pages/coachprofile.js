@@ -21,7 +21,6 @@ const CoachProfile = () => {
     clientID: clientID,
     coachID: id
   }
-
   useEffect(() => {
     const fetchData = async () => {
       try {

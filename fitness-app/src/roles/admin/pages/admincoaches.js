@@ -2,6 +2,7 @@ import React from 'react';
 import ClientNavbar from '../../../components/navbar-visitor/clientnav';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
+import Coach from "../../visitors/assets/coach.png"
 
 const AdminCoaches = () => {
     const API_URL = "http://127.0.0.1:5000";
@@ -37,12 +38,13 @@ const AdminCoaches = () => {
       {coaches.map((coach) => (
         <tr key={coach.coachexpID}>
             <div className='profile'> 
+            <img className="img"src={Coach} alt="coach profile" />
             <div className='left'>
             <name>Name: {coach.firstname} {coach.lastname}</name>
-            <price>Price: {coach.price}</price>
+            <price>Price: ${coach.price}</price>
             
             </div>
-            <div className="middle">
+            <div className="right">
                 <gym>Gym: {coach.gym}</gym>
                 <town>Town: {coach.town}</town>
                 <state>State: {coach.state}</state>
