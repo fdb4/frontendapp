@@ -34,6 +34,7 @@ const ClientNavbar = () => {
   const handleLogout = () => {
     Cookies.remove("id");
     Cookies.remove("role");
+    Cookies.remove("isAdmin")
     setAuth({});
     console.log("Done");
     Navigate("/");
@@ -70,7 +71,7 @@ const ClientNavbar = () => {
             Your Clients
           </NavLink>
         )}
-          {isAdmin && (
+          {isAdmin === 'true' && (
           <NavLink to="/admincoaches" activeStyle>
             Admin
           </NavLink>
