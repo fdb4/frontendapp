@@ -73,7 +73,12 @@ const ClientNavbar = () => {
         )}
           {isAdmin === 'true' && (
           <NavLink to="/admincoaches" activeStyle>
-            Admin
+            Admin Coaches
+          </NavLink>
+        )}
+          {isAdmin === 'true' && (
+          <NavLink to="/adminworkouts" activeStyle>
+            Admin Workouts
           </NavLink>
         )}
           <div style={{ position: "relative" }}>
