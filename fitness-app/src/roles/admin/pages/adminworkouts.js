@@ -181,15 +181,17 @@ const AdminWorkouts = () => {
                             name="workoutname"
                             value={formData.workoutname}
                             onChange={handleInputChange}
+                            required
                         />
                         </label>
                         <label>
                         Video Link:
                         <input
-                            type="text"
+                            type="url"
                             name="videolink"
                             value={formData.videolink}
                             onChange={handleInputChange}
+                            required
                         />
                         </label>
                         <label>
@@ -199,6 +201,7 @@ const AdminWorkouts = () => {
                             name="description"
                             value={formData.description}
                             onChange={handleInputChange}
+                            required
                         />
                         </label>
                         <label>
@@ -208,6 +211,7 @@ const AdminWorkouts = () => {
                             name="musclegroup"
                             value={formData.musclegroup}
                             onChange={handleInputChange}
+                            required
                         />
                         </label>
                         <label>
@@ -217,6 +221,7 @@ const AdminWorkouts = () => {
                             name="equipment"
                             value={formData.equipment}
                             onChange={handleInputChange}
+                            required
                         />
                         </label>
                 
