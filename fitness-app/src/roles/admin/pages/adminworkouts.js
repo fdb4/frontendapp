@@ -240,7 +240,7 @@ const AdminWorkouts = () => {
                             <div className='name'>Equipment: {workout.equipment}</div>
                         </div>
                         <div className='middle'>
-                            <div className='description'>Description: {workout.description} </div>
+                            <div className='name'>Description: {workout.description} </div>
                         </div>
                         <div className='left'>
                             <button onClick={() => handleDeactivate(workout)}>Deactivate</button>
@@ -261,7 +261,7 @@ const AdminWorkouts = () => {
                             <div className='name'>Equipment: {workout.equipment}</div>
                         </div>
                         <div className='middle'>
-                            <div className='description'>Description: {workout.description} </div>
+                            <div className='name'>Description: {workout.description} </div>
                         </div>
                         <div className='left'>
                             <button onClick={() => handleActivate(workout)}>Activate</button>
