@@ -24,6 +24,7 @@
     "react-currency-input-field": "^3.6.12",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.20.1",
     "react-scripts": "^5.0.1",
     "styled-components": "^6.1.0",

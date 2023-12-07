@@ -38,6 +38,8 @@ import { AuthProvider } from "./components/navbar-visitor/auth.js";
 import RequireAuth from "./components/navbar-visitor/requireauth.js";
 import CoachSurveyCheck from "./components/navbar-visitor/coachsurveycheck.js";
 import ClientSurveyCheck from "./components/navbar-visitor/clientsurveycheck.js";
+import AdminCoaches from "./roles/admin/pages/admincoaches.js";
+import AdminWorkouts from "./roles/admin/pages/adminworkouts.js";
 
 
 //import CoachProfile from './roles/client/pages/coachprofile.js';
@@ -95,7 +97,11 @@ function App() {
 
         {/* Protected Routes for coach */}
         <Route path="/coachhome" element={<RequireAuth allowedRoles = {['Coach', 'Admin']}><CoachClient/></RequireAuth>} />
-          <Route path="/clients/:id" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><ClientProfile /></RequireAuth>}  />
+        <Route path="/clients/:id" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><ClientProfile /></RequireAuth>}  />
+
+        {/* Protected Routes for admin*/}
+        <Route path="/admincoaches" element={<RequireAuth allowedRoles = {['Admin']}><AdminCoaches/></RequireAuth>} />
+        <Route path="/adminworkouts" element={<RequireAuth allowedRoles = {['Admin']}><AdminWorkouts/></RequireAuth>} />
       </Routes>
       </AuthProvider>
     </Router>

@@ -11,7 +11,7 @@ import {
   DropdownMenu,
   UserProfileImage,
 } from "./NavbarElements";
-
+import AdminDropdown from './AdminDropdown';
 import logo from "../../roles/visitors/assets/logo.png";
 import { useAuth } from "./auth";
 import Cookies from "js-cookie";
@@ -29,10 +29,12 @@ const ClientNavbar = () => {
     setShowMenu(!showMenu);
   };
   const role = Cookies.get('role')
+  const isAdmin = Cookies.get('isAdmin')
   const { setAuth } = useAuth();
   const handleLogout = () => {
     Cookies.remove("id");
     Cookies.remove("role");
+    Cookies.remove("isAdmin")
     setAuth({});
     console.log("Done");
     Navigate("/");
@@ -42,6 +44,13 @@ const ClientNavbar = () => {
 
   const toggleProfileMenu = () => {
     setShowProfileMenu(!showProfileMenu);
+  };
+
+  const [showAdminDropdown, setShowAdminDropdown] = useState(false);
+
+  const toggleAdminDropdown = () => {
+    console.log("Toggle Admin Dropdown");
+    setShowAdminDropdown(!showAdminDropdown);
   };
 
   return (
@@ -68,6 +77,17 @@ const ClientNavbar = () => {
           <NavLink to="/coachhome" activeStyle>
             Your Clients
           </NavLink>
+        )}
+        {isAdmin === 'true' && (
+          <div
+            className="nav-link"
+             // Add any necessary styles for the cursor
+            onClick={toggleAdminDropdown}
+            style={{ position: 'relative', display: 'inline-block', cursor: 'pointer', }}
+          >
+            Admin
+            {showAdminDropdown && <AdminDropdown />}
+          </div>
         )}
           <div style={{ position: "relative" }}>
             <UserProfileImage

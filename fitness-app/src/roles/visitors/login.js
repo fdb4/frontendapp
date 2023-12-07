@@ -64,11 +64,19 @@ const Login = () => {
         setLoginMessage(data.message);
         const id = data?.clientID;
         let role = "";
-        if (data?.coachexpID === 0) {
+        let isAdmin = false;
+        if  (data?.adminID) {
+          isAdmin = true
+        }
+        if (data?.icoachexpID === 0) {
           role = "Client";
         } else {
           role = "Coach";
         }
+        if (isAdmin) {
+          role = "Coach";
+        }
+        Cookies.set("isAdmin", isAdmin)
         Cookies.set("id", id);
         Cookies.set("role", role);
         navigate('/clientsurvey');
