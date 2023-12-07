@@ -64,7 +64,7 @@ const Login = () => {
         setLoginMessage(data.message);
         const id = data?.clientID;
         let role = "";
-        if (data?.isCoach === 0) {
+        if (data?.coachexpID === 0) {
           role = "Client";
         } else {
           role = "Coach";
