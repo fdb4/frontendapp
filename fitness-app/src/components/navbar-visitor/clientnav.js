@@ -11,7 +11,7 @@ import {
   DropdownMenu,
   UserProfileImage,
 } from "./NavbarElements";
-
+import AdminDropdown from './AdminDropdown';
 import logo from "../../roles/visitors/assets/logo.png";
 import { useAuth } from "./auth";
 import Cookies from "js-cookie";
@@ -46,6 +46,13 @@ const ClientNavbar = () => {
     setShowProfileMenu(!showProfileMenu);
   };
 
+  const [showAdminDropdown, setShowAdminDropdown] = useState(false);
+
+  const toggleAdminDropdown = () => {
+    console.log("Toggle Admin Dropdown");
+    setShowAdminDropdown(!showAdminDropdown);
+  };
+
   return (
     <>
       <Nav>
@@ -71,15 +78,16 @@ const ClientNavbar = () => {
             Your Clients
           </NavLink>
         )}
-          {isAdmin === 'true' && (
-          <NavLink to="/admincoaches" activeStyle>
-            Admin Coaches
-          </NavLink>
-        )}
-          {isAdmin === 'true' && (
-          <NavLink to="/adminworkouts" activeStyle>
-            Admin Workouts
-          </NavLink>
+        {isAdmin === 'true' && (
+          <div
+            className="nav-link"
+             // Add any necessary styles for the cursor
+            onClick={toggleAdminDropdown}
+            style={{ position: 'relative', display: 'inline-block', cursor: 'pointer', }}
+          >
+            Admin
+            {showAdminDropdown && <AdminDropdown />}
+          </div>
         )}
           <div style={{ position: "relative" }}>
             <UserProfileImage
