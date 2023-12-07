@@ -6,8 +6,6 @@ import Coach from "../../visitors/assets/coach.png"
 
 const AdminCoaches = () => {
     const API_URL = "http://127.0.0.1:5000";
-    const clientID = Cookies.get('id');
-    const role = Cookies.get("role");
     // const navigate = useNavigate();
     const [coaches, setCoaches] = useState([])
 
@@ -31,6 +29,14 @@ const AdminCoaches = () => {
         fetchData();
     },[]);
     console.log(coaches)
+
+    const handleApprove = () => {
+
+    }
+
+    const handleDeny = () => {
+
+    }
   return (
     <div className='body_1'>
       Admins Only
@@ -55,8 +61,8 @@ const AdminCoaches = () => {
               <ratings>Ratings: {coach.rating}</ratings>
             </div>
             <div className='actions_2'>
-              <button>Approve</button>
-              <button>Deny</button>
+              <button onClick={handleApprove}>Approve</button>
+              <button onClick={handleDeny}>Deny</button>
             </div>
             </div>
         </tr>
