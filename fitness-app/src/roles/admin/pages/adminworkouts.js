@@ -42,13 +42,62 @@ const AdminWorkouts = () => {
         fetchData();
     },[]);
 
-    const handleDeactivate = (workout) => {
+    const handleDeactivate = async (workout) => {
         console.log(workout.workoutID)
+        const dataToSend = {
+            // Your data to be sent to the backend
+            workoutID: workout.workoutID,
+            visible: 0,
+          };
+        try {
+            const response = await fetch(`${API_URL}/workouts/visibility`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataToSend),
+        })
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+            window.location.reload()
+            console.log(responseData)
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     }
 
-    const handleActivate = (workout) => {
+    const handleActivate = async (workout) => {
         console.log(workout.workoutID)
+        const dataToSend = {
+            // Your data to be sent to the backend
+            workoutID: workout.workoutID,
+            visible: 1,
+          };
+        try {
+            const response = await fetch(`${API_URL}/workouts/visibility`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataToSend),
+        })
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+            window.location.reload()
+            console.log(responseData)
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     }
+    
     return (
         <div className="body_1">
             <ClientNavbar />
