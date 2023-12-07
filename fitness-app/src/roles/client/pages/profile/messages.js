@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Cookies from "js-cookie";
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav";
-import "./messages.css";
+import "../../styling/messages.css";
 
 
 const API_URL = "http://127.0.0.1:5000";
