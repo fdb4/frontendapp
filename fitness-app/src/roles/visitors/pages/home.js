@@ -8,6 +8,7 @@ import linkedin from "../assets/linkedin.png";
 import instagram from "../assets/instagram.png";
 import VisitorNavbar from "../../../components/navbar-visitor/visitornav";
 
+
 function Home() {
   return (
     <div className="image">

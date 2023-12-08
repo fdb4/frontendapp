@@ -36,7 +36,7 @@
   display: block;
   text-align: center;
   margin-top: 20px;
-  color: blue;
+  color: rgb(0, 26, 255);
   text-decoration: none;
   font-size: 16px;
 }
@@ -76,7 +76,7 @@
 }
 
 .registration-form button:hover {
-  background-color: #f54d6e;
+  background-color: #000000;
 }
 
 .registration-form .login-link:hover {
@@ -100,11 +100,11 @@
   font-size: 16px;
   color: #333;
 }
-
+  
 .link {
-
-  color:blue;
+  color: blue;
 }
+  
 .roles-container {
   
   display: flex;
@@ -167,7 +167,7 @@
 
   padding: 10px 20px;
   margin-bottom: 15px;
-  boarder: 2px solid #ddd;
+  border: 2px solid #ddd;
   border-radius: 4px;
   font-size: 15px;
   color: #333;
