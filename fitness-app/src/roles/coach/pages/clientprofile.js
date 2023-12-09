@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ClientNavbar from "../../../components/navbar-visitor/clientnav";
 import "../styling/clientprofile.css";
@@ -26,6 +26,7 @@ const ClientProfile = () => {
   const [allExercises, setAllExercises] = useState([]);
   const [limitReachedMessage, setLimitReachedMessage] = useState("");
   const clientID = Cookies.get('id')
+  const currentClientID = Cookies.get('currentClientID');
   const requestData = {
     clientID: clientID,
     coachID: id
@@ -121,7 +122,7 @@ const ClientProfile = () => {
 
     const fetchDailyLog = async () => {
 
-      axios.get(`${API_URL}/dailyLog-data/${id}`)
+      axios.get(`${API_URL}/dailyLog-data/${currentClientID}`)
       .then((response) => {
         console.log("Response: ", response.data);
         const data = response.data;
@@ -218,17 +219,22 @@ const ClientProfile = () => {
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
-    setWorkoutPlan((prev) => {
+    setWorkoutPlan(prev => {
       const updatedExercises = [...prev.selectedExercises];
-      updatedExercises[index][name] = value;
+      updatedExercises[index] = { ...updatedExercises[index], [name]: value };
       return { ...prev, selectedExercises: updatedExercises };
     });
   };
 
-  const handleSessionNameChange = (event) => {
-    const { value } = event.target;
-    setWorkoutPlan((prev) => ({ ...prev, sessionsName: value }));
-  };
+  const handleSessionNameChange = useCallback((event) => {
+    setWorkoutPlan(prev => ({ ...prev, sessionsName: event.target.value }))
+  }, [])
+
+  const heightConvert = (inches) => {
+    const feet = Math.floor(inches / 12);
+    const remainingInches = inches % 12;
+    return `${feet}' ${remainingInches}"`;
+  }
 
   const getGender = (binaryGender) => {
     return binaryGender === 0 ? "Male" : "Female";
@@ -248,7 +254,7 @@ const ClientProfile = () => {
     try {
       // Fetch URL for sending messages (replace with your actual API endpoint)
       // id = the clientID of person recieving the message
-      const apiUrl = `${API_URL}/message/${id}`;
+      const apiUrl = `${API_URL}/message/${currentClientID}`;
   
       // Fetch options for the POST request
       const requestOptions = {
@@ -288,7 +294,9 @@ const ClientProfile = () => {
     setShowMessageForm(false);
   };
 
-  function WorkoutForm({ isOpen, onClose }) {
+  const WorkoutForm = React.memo(({ isOpen, onClose }) =>  {
+    
+    const [sessionName, setSessionName] = useState(workoutPlan.sessionsName || '');
     if (!isOpen) {
       return null;
     }
@@ -297,7 +305,7 @@ const ClientProfile = () => {
       event.preventDefault();
   
       try {
-        const response = await fetch("http://127.0.0.1:5000/workout", {
+        const response = await fetch("http://127.0.0.1:5000/workout/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -336,7 +344,7 @@ const ClientProfile = () => {
               onChange={handleSessionNameChange}
             />
             {workoutPlan.selectedExercises.map((exercise, index) => (
-              <div key={index} className="exercise-form">
+              <div key={exercise.id || index} className="exercise-form">
                 <label htmlFor={`exerciseID-${index}`}>Select Exercise:</label>
                 <select
                   id={`exerciseID-${index}`}
@@ -390,15 +398,13 @@ const ClientProfile = () => {
             {error && <p>{error}</p>}
             <div className="form-actions">
               <button type="submit">Submit Workout Plan</button>
-              <button type="button" onClick={onClose}>
-                Cancel
-              </button>
+              <button type="button" onClick={onClose}>Cancel</button>
             </div>
           </form>
         </div>
       </div>
     );
-  }
+  });
 
   function ConfirmationModal({ isOpen, onClose, onConfirm }) {
     if (!isOpen) {
@@ -459,7 +465,7 @@ const ClientProfile = () => {
             />
             <div className="client-details">
               <h1>{client.firstname} {client.lastname}</h1>
-              <p>Height: {client.height}</p>
+              <p>Height: {heightConvert(client.height)}</p>
               <p>Weight: {client.weight}</p>
               <p>Goal Weight: {client.goalweight}</p>
               <p>Age: {client.age}</p>

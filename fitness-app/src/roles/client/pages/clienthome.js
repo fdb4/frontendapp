@@ -44,9 +44,6 @@ function ClientHome() {
                 <Link to="/dailylog">
                   <button>Daily Log</button>
                 </Link>
-                <Link>
-                  <button>Photo Progression</button>
-                </Link>
                 <Link to="/clientcoaches">
                   <button to="/clientcoaches">Hire New Coach</button>
                 </Link>

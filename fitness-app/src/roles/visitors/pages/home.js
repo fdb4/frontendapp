@@ -32,7 +32,6 @@ function Home() {
         </div>
       </div>
       <div className="info">
-        <h2 className="header_two">HOW TO GET STARTED?</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipiscing elit senectus,
           viverra cubilia aliquet pretium lobortis faucibus etiam et ultrices,
@@ -42,11 +41,16 @@ function Home() {
           feugiat aliquet iaculis justo cum, at magnis scelerisque etiam eros
           sodales, pellentesqu
         </p>
-        <button onClick={() => (window.location.href = "/registration")}>
-          SIGN UP
-        </button>
       </div>
-      <div className="footer">
+      <div className="reg-button">
+        <div className="reg-button-container">
+          <h3 className="header_two">HOW TO GET STARTED?</h3>
+          <button onClick={() => (window.location.href = "/registration")}>
+            SIGN UP
+          </button>
+        </div>
+      </div>
+        <div className="footer">
         <h2>
           READY FOR YOUR <br></br>
           <span className="champion">FIRST</span> LESSON?
