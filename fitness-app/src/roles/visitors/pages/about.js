@@ -10,11 +10,10 @@ function About() {
     <div className="body">
       <VisitorNavbar />
       <div className="header-container">
-        <h1>Meet Our Team of Creators, Designers, and Problem Solvers</h1>
+        <h1>Meet Our Team!</h1>
         <p id="para">
           This app has been designed by a group of passionate software
-          engineers. Get to know the people leading the way. This is the second
-          line. And this is the third line.
+          engineers. Get to know the people leading the way!
         </p>
       </div>
       <div className="team-container">
@@ -39,7 +38,7 @@ function About() {
           <p>Front-End</p>
         </div>
         <div className="team">
-          <h2>Casey Tirell</h2>
+          <h2>Casey Tirrell</h2>
           <p>Front-End</p>
         </div>
       </div>

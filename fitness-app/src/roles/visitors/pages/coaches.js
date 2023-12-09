@@ -23,7 +23,8 @@ function Coaches() {
       <div className="information">
         <div>
           <h2>
-            VIEW A LIST OF EXPERTS OR <br></br>
+            VIEW A LIST OF 
+            <span className="become"> EXPERTS</span>  OR <br></br>
             <span className="become">BECOME</span> ONE YOURSELF
           </h2>
           <p className="paragraph">
