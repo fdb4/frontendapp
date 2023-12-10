@@ -47,7 +47,9 @@ const AdminCoaches = () => {
   };
 
   const handleDeny = (coach) => {
-    const vis = false;
+    const vis = {
+      visible: false,
+    };
     axios
       .put(`${API_URL}/admincc/${coach.coachexpID}`, vis, {
         headers: {
