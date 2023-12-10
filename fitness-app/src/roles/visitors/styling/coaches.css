@@ -42,6 +42,14 @@
 
 .information h2 {
   margin: 1em;
+  color: white;
+}
+
+.information p {
+
+  color: white;
+  margin-left: 50px;
+  margin-bottom: 80px;
 }
 
 .paragraph {

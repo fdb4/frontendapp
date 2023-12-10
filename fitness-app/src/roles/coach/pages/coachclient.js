@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ClientNavbar from "../../../components/navbar-visitor/clientnav";
 import "../styling/coachclient.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Coach from "../../visitors/assets/coach.png";
 import Cookies from "js-cookie";
 
@@ -22,6 +22,8 @@ function ClientProfiles() {
     fetchData();
     fetchRequests();
   }, [filters, searchTerm]);
+
+  const nav = useNavigate();
 
   const clientId = Cookies.get("id");
 
@@ -124,6 +126,13 @@ function ClientProfiles() {
     });
   };
 
+  const handleClientSelect = (clientID) => {
+
+    Cookies.set('currentClientID', clientID);
+    nav(`/clients/${clientID}`)
+
+  }
+
   return (
     <div className="body_1">
       <ClientNavbar />
@@ -204,9 +213,9 @@ function ClientProfiles() {
               </div>
 
               <div className="right">
-                <Link to={`/clients/${client.clientID}`} className="view">
+                <button onClick={() => handleClientSelect(client.clientID)} className="view">
                   VIEW PROFILE
-                </Link>
+                </button>
               </div>
             </div>
           ))}

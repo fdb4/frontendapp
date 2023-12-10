@@ -1,15 +1,19 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   color: white;
 }
-/* Your CSS file or global CSS */
+
 .invert-logo {
   filter: invert(1);
   height: 80px;
 }
 
 .image {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
   background-image: url("../assets/home.jpg");
   background-size: cover;
   background-position: center;
@@ -18,15 +22,20 @@
   text-align: center;
 }
 
-h1 {
-  color: white;
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
 }
 
-.header {
-  margin-left: 1.5em;
-  margin-right: 2em;
-  font-size: 150%;
-  font-family: saira;
+.header h1 {
+
+  color: white;
+  font-size: 56px;
 }
 
 .champion {
@@ -37,8 +46,8 @@ h1 {
   background-color: #a16551;
   margin-top: 10%;
   margin-left: 2em;
-  margin-right: 2em; /* Updated margin-right */
-  width: 40%; /* Updated width */
+  margin-right: 2em;
+  width: 40%;
   display: flex;
   justify-content: space-around;
   padding: 40px 10px;
@@ -51,27 +60,28 @@ h1 {
 }
 
 .items img {
-  width: 50px; /* Adjust the width to your desired size */
-  height: auto; /* Maintain aspect ratio */
+  width: 50px;
+  height: auto;
 }
+
 .info {
   margin-left: 2em;
 }
 
-h2 {
-  margin-top: 50px;
+.info .header_two {
+  color: white;
 }
 
-p {
+.info h2 {
+  align-items: center;
   margin-top: 50px;
+  margin-right: 50px;
+}
+
+.info p {
+  margin-top: 40px;
+  margin-left: 10px;
   width: 40%;
-}
-
-button {
-  margin-top: 50px;
-  font-size: 16px;
-  padding: 10px;
-  margin-bottom: 60px;
 }
 
 .footer {
@@ -102,6 +112,7 @@ button {
   padding-right: 100%;
   color: #a16551;
 }
+
 .socials {
   display: flex;
   justify-content: space-between;
@@ -113,3 +124,92 @@ button {
   height: 30px;
   filter: invert(1);
 }
+
+.reg-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 120px;
+  margin-bottom: 100px;
+}
+
+.reg-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.reg-button-container h3 {
+  color: white;
+  font-family: "Crimson Text", serif;
+  font-size: 48px;
+}
+
+button {
+  font-size: 24px;
+  padding: 20px 60px;
+  background-color: #a16551;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #92704a;
+}
+
+@media (max-width: 1000px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    margin: 10px;
+    padding: 20px;
+  }
+
+  .items img {
+    width: 40px;
+    height: auto;
+  }
+
+  .info, .reg-button {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .reg-button-container h3 {
+    font-size: 24px;
+  }
+
+  button {
+    padding: 10px 30px;
+  }
+
+  .footer {
+    align-items: center;
+    text-align: center;
+  }
+
+  .concerns, .socials {
+    justify-content: center;
+  }
+
+  .header h1 {
+    font-size: 32px; /* Adjust font size for smaller screens */
+  }
+
+  .header {
+    width: 100%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+

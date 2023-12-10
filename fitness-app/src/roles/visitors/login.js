@@ -68,7 +68,7 @@ const Login = () => {
         if  (data?.adminID) {
           isAdmin = true
         }
-        if (data?.icoachexpID === 0) {
+        if (data?.coachexpID === 0) {
           role = "Client";
         } else {
           role = "Coach";

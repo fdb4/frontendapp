@@ -137,6 +137,7 @@ const DailyLog = () => {
       const comm = await axios.post(`${API_URL}/dailyLog`, sendData);
       console.log("Registering with data:", sendData);
       console.log("Response:", comm.data);
+      window.location.reload()
     }
     catch(error) {
 
