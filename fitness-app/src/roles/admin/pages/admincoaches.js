@@ -31,7 +31,7 @@ const AdminCoaches = () => {
   console.log(coaches);
 
   const handleApprove = (coach) => {
-    const vis = true;
+    const vis = false;
     axios
       .put(`${API_URL}/admincc/${coach.coachexpID}`, vis, {
         headers: {
@@ -40,6 +40,7 @@ const AdminCoaches = () => {
       })
       .then((response) => {
         console.log("Updated user:", response.data, " Approved Coach");
+        window.location.reload();
       })
       .catch((error) => {
         console.error("There was a problem with the axios request:", error);
@@ -48,7 +49,7 @@ const AdminCoaches = () => {
 
   const handleDeny = (coach) => {
     const vis = {
-      visible: false,
+      visible: true,
     };
     axios
       .put(`${API_URL}/admincc/${coach.coachexpID}`, vis, {
@@ -58,6 +59,7 @@ const AdminCoaches = () => {
       })
       .then((response) => {
         console.log("Updated user:", response.data, " Denied Coach");
+        window.location.reload();
       })
       .catch((error) => {
         console.error("There was a problem with the axios request:", error);
