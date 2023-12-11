@@ -133,20 +133,20 @@
   margin-bottom: 100px;
 }
 
-.reg-button-container {
+.reg-button-contain {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.reg-button-container h3 {
+.reg-button-contain h3 {
   color: white;
   font-family: "Crimson Text", serif;
   font-size: 48px;
 }
 
-button {
+.reg-button-contain button {
   font-size: 24px;
   padding: 20px 60px;
   background-color: #a16551;
@@ -157,7 +157,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.reg-button-contain button:hover {
   background-color: #92704a;
 }
 
@@ -184,7 +184,7 @@ button:hover {
     font-size: 24px;
   }
 
-  button {
+  .reg-button-contain button {
     padding: 10px 30px;
   }
 

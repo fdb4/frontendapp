@@ -43,7 +43,7 @@ function Home() {
         </p>
       </div>
       <div className="reg-button">
-        <div className="reg-button-container">
+        <div className="reg-button-contain">
           <h3 className="header_two">HOW TO GET STARTED?</h3>
           <button onClick={() => (window.location.href = "/registration")}>
             SIGN UP

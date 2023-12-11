@@ -66,7 +66,7 @@
 	width: 30%;
 	align-self: flex-start;
 	height: 50px;
-	margin-bottom: 0.5px;
+	margin-bottom: 40px;
 	background-color: rgb(66, 179, 170, 0.8);
 	font-size: 20px;
 }
@@ -87,7 +87,7 @@
     justify-content: center;
     width: 90%;
     height: 75px;
-    margin-bottom: 0.5px;
+    margin-bottom: 40px;
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(66, 179, 170, 0.8);
