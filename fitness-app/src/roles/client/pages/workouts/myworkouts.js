@@ -49,7 +49,7 @@ function Myworkouts() {
         ...prev,
         selectedExercises: [
           ...prev.selectedExercises,
-          { exerciseID: null, sets: 0, reps: 0, time: 0 },
+          { exerciseID: null, Sets: 0, reps: 0 },
         ],
       }));
     } else {
@@ -84,7 +84,7 @@ function Myworkouts() {
     event.preventDefault();
   
     try {
-      const response = await fetch("http://127.0.0.1:5000/workoutplan/create", {
+      const response = await fetch(`http://127.0.0.1:5000/workoutplan/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -153,8 +153,8 @@ function Myworkouts() {
                     <label>Sets:</label>
                     <input
                       type="number"
-                      name="sets"
-                      value={exercise.sets}
+                      name="Sets"
+                      value={exercise.Sets}
                       onChange={(event) => handleInputChange(index, event)}
                     />
                     <label>Reps:</label>
@@ -164,13 +164,7 @@ function Myworkouts() {
                       value={exercise.reps}
                       onChange={(event) => handleInputChange(index, event)}
                     />
-                    <label>Time:</label>
-                    <input
-                      type="number"
-                      name="time"
-                      value={exercise.time}
-                      onChange={(event) => handleInputChange(index, event)}
-                    />
+                    
                     <button
                       type="button"
                       onClick={() => handleDeleteExercise(index)}
