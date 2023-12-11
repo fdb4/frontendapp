@@ -10,6 +10,7 @@ import MessagePopup from "../../../components/navbar-visitor/MessagePopup";
 const AdminWorkouts = () => {
   const API_URL = "http://127.0.0.1:5000";
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showAddSuccess, setShowAddSuccess] = useState(false);
   const [activeWorkout, setActiveWorkout] = useState([]);
   const [deactiveWorkout, setDeactiveWorkout] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
@@ -142,8 +143,9 @@ const AdminWorkouts = () => {
       // Handle the response data if needed
       const responseData = await response.json();
       console.log("Data successfully submitted:", responseData);
-      window.location.reload();
-      alert("Added Workout");
+      // window.location.reload();
+      // alert("Added Workout");
+      setShowAddSuccess(true);
 
       // Close the modal after successful submission
       setModalOpen(false);
@@ -193,6 +195,9 @@ const AdminWorkouts = () => {
       <ClientNavbar />
       <div>
         <button onClick={handleAddWorkoutClick}>Add Workout</button>
+        {showAddSuccess && (
+          <MessagePopup message={`Workout Added Successful!`} />
+        )}
         <Modal
           isOpen={isModalOpen}
           onRequestClose={() => setModalOpen(false)}
