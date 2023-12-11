@@ -5,9 +5,11 @@ import Cookies from "js-cookie";
 import Coach from "../../visitors/assets/coach.png";
 import Modal from "react-modal";
 import "../styling/modal.css";
+import MessagePopup from "../../../components/navbar-visitor/MessagePopup";
 
 const AdminWorkouts = () => {
   const API_URL = "http://127.0.0.1:5000";
+  const [showSuccess, setShowSuccess] = useState(false);
   const [activeWorkout, setActiveWorkout] = useState([]);
   const [deactiveWorkout, setDeactiveWorkout] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
@@ -72,8 +74,9 @@ const AdminWorkouts = () => {
       }
 
       const responseData = await response.json();
-      window.location.reload();
-      alert("Workout Deactivated");
+      // window.location.reload();
+      // alert("Workout Deactivated");
+      setShowSuccess(true);
       console.log(responseData);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -101,8 +104,9 @@ const AdminWorkouts = () => {
       }
 
       const responseData = await response.json();
-      window.location.reload();
-      alert("Workout Activated");
+      // window.location.reload();
+      // alert("Workout Activated");
+      setShowSuccess(true);
       console.log(responseData);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -173,6 +177,7 @@ const AdminWorkouts = () => {
             >
               {type}
             </button>
+            {showSuccess && <MessagePopup message={`Successful!`} />}
           </div>
           <div style={styles.description}>
             <div style={styles.name}>Description: {workout.description} </div>
@@ -315,4 +320,3 @@ const styles = {
   },
 };
 export default AdminWorkouts;
-

@@ -3,15 +3,12 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./login.css";
 import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
 import { useAuth } from "../../components/navbar-visitor/auth.js";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
-
- 
 const Login = () => {
   const navigate = useNavigate();
-  const location = useLocation()
-  const from = location.state?.from?.pathname || "/clienthome"
-
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/clienthome";
 
   const [formData, setFormData] = useState({
     email: "",
@@ -28,14 +25,15 @@ const Login = () => {
     });
   };
 
-  
   const hashPassword = async (password) => {
     const encoder = new TextEncoder();
     const data = encoder.encode(password);
 
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashedPassword = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+    const hashedPassword = hashArray
+      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .join("");
 
     return hashedPassword;
   };
@@ -65,8 +63,8 @@ const Login = () => {
         const id = data?.clientID;
         let role = "";
         let isAdmin = false;
-        if  (data?.adminID) {
-          isAdmin = true
+        if (data?.adminID) {
+          isAdmin = true;
         }
         if (data?.coachexpID === 0) {
           role = "Client";
@@ -76,10 +74,10 @@ const Login = () => {
         if (isAdmin) {
           role = "Coach";
         }
-        Cookies.set("isAdmin", isAdmin)
+        Cookies.set("isAdmin", isAdmin);
         Cookies.set("id", id);
         Cookies.set("role", role);
-        navigate('/clientsurvey');
+        navigate("/clientsurvey");
       } else {
         setLoginMessage(data.message);
       }
@@ -91,7 +89,7 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <VistorNavbar/>
+      <VistorNavbar />
       <div className="login-container">
         <div className="login-modal">
           <h1>Login </h1>
@@ -119,10 +117,17 @@ const Login = () => {
             <button type="submit">Login</button>
           </form>
           {loginMessage && (
-            <p className={loginMessage.ok ? "success-message" : "error-message"}>{loginMessage}</p>
+            <p
+              className={loginMessage.ok ? "success-message" : "error-message"}
+            >
+              {loginMessage}
+            </p>
           )}
           <p>
-            Don't have an account? <Link className="link" to="/registration">Register here</Link>
+            Don't have an account?{" "}
+            <Link className="link" to="/registration">
+              Register here
+            </Link>
           </p>
         </div>
       </div>
