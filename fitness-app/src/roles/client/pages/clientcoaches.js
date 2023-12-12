@@ -52,7 +52,7 @@ function ClientCoaches() {
 
       const response = await fetch(url);
       const data = await response.json();
-      setCoaches(data);
+      setCoaches(Array.from(data));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
