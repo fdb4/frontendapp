@@ -10,8 +10,7 @@ const API_URL = "http://127.0.0.1:5000";
 
 const Message = ({ sender, content, timestamp }) => {
   return (
-    <div className="message">
-      <p className="sender">{sender}</p>
+    <div className={`message ${sender === Cookies.get("id") ? "sent" : "received"}`}>
       <p className="content">{content}</p>
       <p className="timestamp">{new Date(timestamp).toLocaleString()}</p>
     </div>
@@ -51,19 +50,19 @@ const ClientMessages = () => {
   const [selectedCoachID, setSelectedCoachID] = useState(null);
   const [load, setLoad] = useState(true);
   const [error, setError] = useState('');
-  const [messageContent, setMessageContent] = useState('');
-  const [showMessageForm, setShowMessageForm] = useState(false);
 
   useEffect(() => {
     if(selectedCoachID) {
 
+      setLoad(true);
       axios.get(`${API_URL}/message/${selectedCoachID}`)
         .then(response => {
           setMessages(response.data);
-          setLoad(false);
         })
         .catch((error) => {
           setError('Failed to load client messages. Please try again later.');
+        })
+        .finally(() => {
           setLoad(false);
         });  
     }    
@@ -85,9 +84,15 @@ const ClientMessages = () => {
     setSelectedCoachID(coachId);
   };
 
-  const sendMessage = async () => {
+  const sendMessage = async (e) => {
+
+    e.preventDefault();
+    if(!newMessage.trim()) {
+
+      return;
+    }
     try {
-      const apiUrl = `${API_URL}/message/${id}`;
+      const apiUrl = `${API_URL}/message/${selectedCoachID}`;
   
       // Fetch options for the POST request
       const requestOptions = {
@@ -97,7 +102,7 @@ const ClientMessages = () => {
         },
         body: JSON.stringify({
           clientID: Cookies.get('id'),
-          message: messageContent,
+          message: newMessage,
         }),
       };
       // Send the POST request
@@ -106,15 +111,10 @@ const ClientMessages = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
-      // Reset the message content after sending the message
-      setMessageContent('');
-      // Close the message form
-      setShowMessageForm(false);
-    } catch (error) {
-      setShowMessageForm(false);
-      alert("Message did not go through")
+    } 
+    catch (error) {
       console.error('Error sending message:', error);
+      alert("Message did not go through")
     }
   };
 
@@ -131,7 +131,7 @@ const ClientMessages = () => {
               cID={contact.clientID}
               firstname={contact.firstname} 
               lastname={contact.lastname}
-              onClick={handleCoachClick} 
+              onClick={() => handleCoachClick(contact.clientID)} 
             />
           ))}
         </div>
@@ -148,6 +148,7 @@ const ClientMessages = () => {
                   sender={message.sender}
                   content={message.content}
                   timestamp={message.timestamp}
+                  isCurrentUser={message.sender === id}
                 />
             ))
           )}

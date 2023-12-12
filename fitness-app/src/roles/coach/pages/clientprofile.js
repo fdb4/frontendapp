@@ -254,7 +254,7 @@ const ClientProfile = () => {
     try {
       // Fetch URL for sending messages (replace with your actual API endpoint)
       // id = the clientID of person recieving the message
-      const apiUrl = `${API_URL}/message/${currentClientID}`;
+      const apiUrl = `${API_URL}/message/${id}`;
   
       // Fetch options for the POST request
       const requestOptions = {
@@ -263,6 +263,7 @@ const ClientProfile = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          clientID: Cookies.get('id'),
           message: messageContent,
         }),
       };
