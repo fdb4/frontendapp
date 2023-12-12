@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ClientNavbar from "../../../components/navbar-visitor/clientnav";
 import "../styling/clientcoaches.css";
 import { Link } from "react-router-dom";
-import Coach from "../../visitors/assets/coach.png"
+import Coach from "../../visitors/assets/coach.png";
 
 function ClientCoaches() {
   const [coaches, setCoaches] = useState([]);
@@ -23,7 +23,7 @@ function ClientCoaches() {
       let url = "http://127.0.0.1:5000/coaches";
 
       if (filters.type && filters.value) {
-        switch (filters.type) { 
+        switch (filters.type) {
           case "gym":
             url = `http://127.0.0.1:5000/coaches/filter/gym/${filters.value}`;
             break;
@@ -89,7 +89,10 @@ function ClientCoaches() {
     });
   };
 
-  const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
+  const pageNumbers = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1
+  );
 
   return (
     <div className="body_1">
@@ -123,14 +126,18 @@ function ClientCoaches() {
       {currentCoaches.map((coach) => (
         <tr key={coach.clientID}>
           <div className="profile">
-            <img className="img"src={Coach} alt="coach profile" />
+            <img className="img" src={Coach} alt="coach profile" />
             {console.log(coach)}
             <div className="left">
-              <name>{coach.firstname} {coach.lastname}</name>
+              <name>
+                {coach.firstname} {coach.lastname}
+              </name>
               <age>Age: </age>
               <price>Price: ${coach.price}</price>
               <gym>Gym: {coach.gym}</gym>
-              <specilization>Specialization: {coach.specilization}</specilization>
+              <specilization>
+                Specialization: {coach.specializations}
+              </specilization>
             </div>
 
             <div className="middle">
@@ -149,7 +156,9 @@ function ClientCoaches() {
                 <contact>CONTACT</contact>
                 <email>Email: {coach.email}</email>
               </div>
-              <Link to={`/coaches/${coach.clientID}`} className="view">VIEW PROFILE</Link>
+              <Link to={`/coaches/${coach.clientID}`} className="view">
+                VIEW PROFILE
+              </Link>
             </div>
           </div>
         </tr>
