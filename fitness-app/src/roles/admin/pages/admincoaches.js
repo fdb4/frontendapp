@@ -42,7 +42,7 @@ const AdminCoaches = () => {
       })
       .then((response) => {
         console.log("Updated user:", response.data, " Approved Coach");
-        // window.location.reload();
+        window.location.reload();
       })
       .catch((error) => {
         console.error("There was a problem with the axios request:", error);
@@ -61,7 +61,7 @@ const AdminCoaches = () => {
       })
       .then((response) => {
         console.log("Updated user:", response.data, " Denied Coach");
-        // window.location.reload();
+        window.location.reload();
       })
       .catch((error) => {
         console.error("There was a problem with the axios request:", error);
