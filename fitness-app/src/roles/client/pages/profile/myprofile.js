@@ -4,6 +4,7 @@ import "../../styling/MyProfilePage.css";
 import Cookies from "js-cookie";
 import { FlareSharp } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import MessagePopup from "../../../../components/navbar-visitor/MessagePopup.js";
 
 const MyProfilePage = () => {
   const [clientInfo, setClientInfo] = useState(null);
@@ -12,6 +13,8 @@ const MyProfilePage = () => {
   const APIURL = "http://127.0.0.1:5000";
   const [alreadyCoach, setAlreadyCoach] = useState(false);
   const [coachRequest, setCoachRequest] = useState(false);
+  const [showUnsendSuccess, setShowUnsendSuccess] = useState(false);
+  const [showFireSuccess, setShowFireSuccess] = useState(false);
   const navigate = useNavigate();
   const clientId = Cookies.get("id");
 
@@ -160,7 +163,7 @@ const MyProfilePage = () => {
           <p style={{ color: "black" }}>Town: {coachInfo.town}</p>
           <p style={{ color: "black" }}>State: {coachInfo.state}</p>
           {alreadyCoach ? (
-            <button>Fire Coach</button>
+            <button onClick={handleFire}>Fire Coach</button>
           ) : (
             <button onClick={handleUnsendRequest}>Unsend Request</button>
           )}
@@ -188,7 +191,34 @@ const MyProfilePage = () => {
       }
 
       console.log("Request successfully unsent");
-      alert("Success");
+      setIsModalOpen(false);
+      setShowUnsendSuccess(true);
+    } catch (error) {
+      console.error("Error unsending request:", error.message);
+    }
+  };
+
+  const handleFire = async () => {
+    try {
+      const coachID = coachInfo.clientID;
+      const response = await fetch(`${APIURL}/client/firecoach`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          coachID: coachID,
+          clientID: clientId,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to unsend request");
+      }
+
+      console.log("Request successfully unsent");
+      setIsModalOpen(false);
+      setShowFireSuccess(true);
     } catch (error) {
       console.error("Error unsending request:", error.message);
     }
@@ -219,7 +249,12 @@ const MyProfilePage = () => {
           />
           <div className="right-myprofile">
             <div>
-              <p1 style={{ color: "black" }}>Your Coach:</p1>
+              {coachRequest ? (
+                <p style={{ color: "black" }}>Requested Coach:</p>
+              ) : (
+                <p style={{ color: "black" }}>Your Coach:</p>
+              )}
+
               <DisplayCoach />
             </div>
             <h1 className="client-name">
@@ -250,6 +285,12 @@ const MyProfilePage = () => {
         </div>
       ) : (
         <p>Loading... please wait</p>
+      )}
+      {showUnsendSuccess && (
+        <MessagePopup message={`Unsent Request Successfully!`} />
+      )}
+      {showFireSuccess && (
+        <MessagePopup message={`Fired Coach Successfully!`} />
       )}
     </div>
   );
