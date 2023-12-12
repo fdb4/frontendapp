@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import PropTypes from 'prop-types';
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav";
 import "../../styling/messages.css";
 
@@ -17,9 +18,27 @@ const Message = ({ sender, content, timestamp }) => {
   );
 };
 
-const Contact = ({ cID, name, onClick }) => {
+Message.propTypes = {
 
-  return <p onClick={() => onClick(cID)} style ={{ cursor: 'pointer' }}>{name}</p>;
+  sender: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  timestamp: PropTypes.number.isRequired,
+}
+
+const Contact = ({ cID, firstname, lastname, onClick }) => {
+
+  return (
+    <p onClick={() => onClick(cID)} style ={{ cursor: 'pointer' }}>
+      {firstname} {lastname}
+    </p>
+  );
+};
+
+Contact.propTypes = {
+  cID: PropTypes.number.isRequired,
+  firstname: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 const ClientMessages = () => {
@@ -32,6 +51,8 @@ const ClientMessages = () => {
   const [selectedCoachID, setSelectedCoachID] = useState(null);
   const [load, setLoad] = useState(true);
   const [error, setError] = useState('');
+  const [messageContent, setMessageContent] = useState('');
+  const [showMessageForm, setShowMessageForm] = useState(false);
 
   useEffect(() => {
     if(selectedCoachID) {
@@ -64,24 +85,37 @@ const ClientMessages = () => {
     setSelectedCoachID(coachId);
   };
 
-  const handleSendMessage = (e) => {
-    e.preventDefault();
-    if(!newMessage.trim()) {
-
-      return;
-    }
-
-    axios.post(`${API_URL}/message/${id}`, {
-
-      content: newMessage,
-    })
-    .then(response => {
-      setMessages([...messages, response.data.newMessage]);
-      setNewMessage('');
-    })
-    .catch(error => {
+  const sendMessage = async () => {
+    try {
+      const apiUrl = `${API_URL}/message/${id}`;
+  
+      // Fetch options for the POST request
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          clientID: Cookies.get('id'),
+          message: messageContent,
+        }),
+      };
+      // Send the POST request
+      const response = await fetch(apiUrl, requestOptions);
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      // Reset the message content after sending the message
+      setMessageContent('');
+      // Close the message form
+      setShowMessageForm(false);
+    } catch (error) {
+      setShowMessageForm(false);
+      alert("Message did not go through")
       console.error('Error sending message:', error);
-    });
+    }
   };
 
   return (
@@ -93,9 +127,10 @@ const ClientMessages = () => {
           <h3>Message Contacts</h3>
           {contacts.map(contact => (
             <Contact 
-              key={contact.id} 
-              cID={contact.id}
-              name={contact.name} 
+              key={contact.clientID} 
+              cID={contact.clientID}
+              firstname={contact.firstname} 
+              lastname={contact.lastname}
               onClick={handleCoachClick} 
             />
           ))}
@@ -117,16 +152,18 @@ const ClientMessages = () => {
             ))
           )}
         </div>
-        <form onSubmit={handleSendMessage} className="message-form">
-          <input
-            type="text"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Type your message here..."
-            className="message-input"
-          />
-          <button type="submit" className="send-button">Send</button>
-        </form>
+        <div className= "submit-button">
+          <form onSubmit={sendMessage} className="message-form">
+            <input
+              type="text"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              placeholder="Type your message here..."
+              className="message-input"
+            />
+            <button type="submit" className="send-button">Send</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>

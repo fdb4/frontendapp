@@ -57,6 +57,7 @@ const CoachProfile = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          clientID: Cookies.get('id'),
           message: messageContent,
           clientID: clientID,
         }),

@@ -42,7 +42,7 @@ function ClientCoaches() {
           case "price":
             url = `http://127.0.0.1:5000/coaches/filter/cost/${filters.value}`;
             break;
-          case "specilization":
+          case "specializations":
             url = `http://127.0.0.1:5000/coaches/filter/specialization/${filters.value}`;
             break;
           default:
@@ -52,7 +52,7 @@ function ClientCoaches() {
 
       const response = await fetch(url);
       const data = await response.json();
-      setCoaches(data);
+      setCoaches(Array.from(data));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -135,9 +135,18 @@ function ClientCoaches() {
               <age>Age: </age>
               <price>Price: ${coach.price}</price>
               <gym>Gym: {coach.gym}</gym>
-              <specilization>
-                Specialization: {coach.specializations}
-              </specilization>
+              <div className="specializations">
+                Specializations
+                <ul className="listing">
+                  {Array.isArray(coach.specializations) ? (
+                    coach.specializations.map((specialization, index) => (
+                      <li key={index}>{specialization}</li>
+                    ))
+                  ) : (
+                    <li>{coach.specializations}</li>
+                  )}
+                </ul>
+              </div>
             </div>
 
             <div className="middle">
