@@ -136,12 +136,14 @@ function ClientCoaches() {
               <price>Price: ${coach.price}</price>
               <gym>Gym: {coach.gym}</gym>
               <div className="specializations">
-                <strong>Specialization:</strong>
-                <ul>
-                  {coach.specialization ? (
-                    <li>{coach.specialization}</li>
+                Specializations
+                <ul className="listing">
+                  {Array.isArray(coach.specializations) ? (
+                    coach.specializations.map((specialization, index) => (
+                      <li key={index}>{specialization}</li>
+                    ))
                   ) : (
-                    <li>No specialization available</li>
+                    <li>{coach.specializations}</li>
                   )}
                 </ul>
               </div>

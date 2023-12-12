@@ -61,7 +61,7 @@ age {
   padding-top: 13px;
 }
 
-age, experience, ratings, price , gym, specilization{
+age, experience, ratings, price , gym, .specializations{
   color: #000;
   font-family: Saira Condensed;
   font-size: 20px;
@@ -89,6 +89,9 @@ email {
 }
 location, town, state, contact, email {
   color:#000;
+}
+.specializations .listing li {
+  color: black;
 }
 
 .right{
