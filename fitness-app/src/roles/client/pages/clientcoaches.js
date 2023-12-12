@@ -42,9 +42,9 @@ function ClientCoaches() {
           case "price":
             url = `http://127.0.0.1:5000/coaches/filter/cost/${filters.value}`;
             break;
-          case "specilization":
-            url = `http://127.0.0.1:5000/coaches/filter/specialization/${filters.value}`;
-            break;
+            case "specializations":
+              url = `http://127.0.0.1:5000/coaches/filter/specialization/${filters.value}`;
+              break;
           default:
             break;
         }
