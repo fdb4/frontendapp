@@ -12,6 +12,10 @@ import Cookies from 'js-cookie';
 
 const ClientProfile = () => {
   const API_URL = "http://127.0.0.1:5000";
+
+  const clientID = Cookies.get('id')
+  const currentClientID = Cookies.get('currentClientID');
+
   const { id } = useParams();
   const [client, setClient] = useState(null);
   const [error, setError] = useState(null);
@@ -20,18 +24,19 @@ const ClientProfile = () => {
   const [showMessageForm, setShowMessageForm] = useState(false);
   const [showWorkoutForm, setShowWorkoutForm] = useState(false);
   const [workoutPlan, setWorkoutPlan] = useState({
-    sessionsName: "",
+    planName: "",
+    clientID: currentClientID,
     selectedExercises: [],
   });
   const [allExercises, setAllExercises] = useState([]);
   const [limitReachedMessage, setLimitReachedMessage] = useState("");
-  const clientID = Cookies.get('id')
-  const currentClientID = Cookies.get('currentClientID');
   const requestData = {
     clientID: clientID,
     coachID: id
   }
   const [dailyLog, setDailyLog] = useState([]);
+  const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+
 
   const mapMood = (value) => {
 
@@ -181,8 +186,8 @@ const ClientProfile = () => {
     const fetchExercises = async () => {
       try {
         const response = await fetch("http://127.0.0.1:5000/workouts");
-        const exercises = await response.json();
-        setAllExercises(exercises);
+        const exercise = await response.json();
+        setAllExercises(exercise);
       } catch (error) {
         setError("Error fetching exercises. Please try again.");
       }
@@ -200,7 +205,7 @@ const ClientProfile = () => {
         ...prev,
         selectedExercises: [
           ...prev.selectedExercises,
-          { exerciseID: null, sets: 0, reps: 0, time: 0 },
+          { workoutID: null, Sets: 0, reps: 0, },
         ],
       }));
     } else {
@@ -295,6 +300,20 @@ const ClientProfile = () => {
     setShowMessageForm(false);
   };
 
+  const SuccessNotification = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    return (
+      <div className="notification-modal">
+        <div className="notification-content">
+          <p>Workout Plan Successfully Created!</p>
+          <button onClick={onClose}>OK</button>
+        </div>
+      </div>
+    );
+  };
+
+
   const WorkoutForm = React.memo(({ isOpen, onClose }) =>  {
     
     const [sessionName, setSessionName] = useState(workoutPlan.sessionsName || '');
@@ -304,20 +323,31 @@ const ClientProfile = () => {
 
     const handleSubmit = async (event) => {
       event.preventDefault();
+
+      const payload = {
+        planName: workoutPlan.sessionsName,
+        clientID: workoutPlan.clientID,
+        exercises: workoutPlan.selectedExercises.map(ex => ({
+          workoutID: ex.exerciseID,
+          Sets: ex.sets,
+          reps: ex.reps
+        }))
+      };
   
       try {
-        const response = await fetch("http://127.0.0.1:5000/workout/create", {
+        const response = await fetch("http://127.0.0.1:5000/create/workoutplan/client", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(workoutPlan),
+          body: JSON.stringify(payload),
         });
   
         if (response.ok) {
-          // Workout plan submitted successfully
+
+          setShowSuccessNotification(true);
+          setShowWorkoutForm(false);
           console.log("Workout Plan submitted:", workoutPlan);
-          // Optionally, reset the form or navigate away
           setShowWorkoutForm(false);
         } 
         else {
@@ -377,14 +407,6 @@ const ClientProfile = () => {
                   id={`reps-${index}`}
                   name="reps"
                   value={exercise.reps}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-                <label htmlFor={`time-${index}`}>Time:</label>
-                <input
-                  type="number"
-                  id={`time-${index}`}
-                  name="time"
-                  value={exercise.time}
                   onChange={(event) => handleInputChange(index, event)}
                 />
                 <button type="button" onClick={() => handleDeleteExercise(index)}>
@@ -520,6 +542,10 @@ const ClientProfile = () => {
         )}
       </div>
     )}
+    <SuccessNotification 
+      isOpen={showSuccessNotification} 
+      onClose={() => setShowSuccessNotification(false)} 
+    />
   </div>
   );
 };
