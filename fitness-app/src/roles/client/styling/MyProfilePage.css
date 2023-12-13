@@ -7,6 +7,10 @@
   color: rgb(0, 0, 0);
 }
 
+.coach-name p{
+  font-family: 'Copperplate', 'Papyrus', fantasy;
+}
+
 .profile_info {
   display: flex;
   flex-direction: column;
@@ -52,3 +56,40 @@
   color: rgb(0, 0, 0);
 }
 
+.coach-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.coach-display p {
+  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+
+.coach-display button {
+  margin-bottom: 10px;
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.coach-display button:hover {
+  background-color: #45a049;
+}
+
+.error-message {
+  color: red;
+  font-size: 18px;
+}
+
+.coach-status {
+  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+}

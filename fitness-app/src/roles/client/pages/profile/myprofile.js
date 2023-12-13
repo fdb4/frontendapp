@@ -107,19 +107,19 @@ const MyProfilePage = () => {
   function DisplayCoach() {
     if (alreadyCoach) {
       return (
-        <div style={{ flexDirection: "column" }}>
-          <p style={{ color: "black" }}>
+        <div className="coach-display">
+          <p>
             {coachInfo.firstname} {coachInfo.lastname}
           </p>
-          <button onClick={handleViewCoach}>View Profile</button>
+          <button onClick={handleViewCoach}>View Info</button>
           {isModalOpen && <CoachInformationModal onClose={handleCloseModal} />}
         </div>
       );
     }
     if (coachRequest) {
       return (
-        <div style={{ flexDirection: "column" }}>
-          <p style={{ color: "black" }}>
+        <div className="coach-display coach-request">
+          <p>
             {coachInfo.firstname} {coachInfo.lastname}
           </p>
           <button onClick={handleViewCoach}>View Profile</button>
@@ -128,12 +128,12 @@ const MyProfilePage = () => {
       );
     }
     return (
-      <div style={{ flexDirection: "column" }}>
-        <p style={{ color: "black" }}>None</p>
+      <div className="coach-display no-coach">
+        <p>None</p>
         <button onClick={() => navigate("/clientcoaches")}>Find Coach</button>
       </div>
     );
-  }
+}
 
   const CoachInformationModal = ({ onClose }) => {
     return (
@@ -249,11 +249,9 @@ const MyProfilePage = () => {
           />
           <div className="right-myprofile">
             <div>
-              {coachRequest ? (
-                <p style={{ color: "black" }}>Requested Coach:</p>
-              ) : (
-                <p style={{ color: "black" }}>Your Coach:</p>
-              )}
+              <p className="coach-status">
+                {coachRequest ? "Requested Coach:" : "Your Coach:"}
+              </p>
 
               <DisplayCoach />
             </div>

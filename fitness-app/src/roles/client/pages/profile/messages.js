@@ -55,9 +55,16 @@ const ClientMessages = () => {
     if(selectedCoachID) {
 
       setLoad(true);
-      axios.get(`${API_URL}/message/${selectedCoachID}`)
+      axios.get(`${API_URL}/message/${id}/${selectedCoachID}`)
         .then(response => {
-          setMessages(response.data);
+
+          const formattedMessages = response.data.map(msg => ({
+            id: msg.lastmodified,
+            content: msg.message,
+            timestamp: new Date(msg.lastmodified).getTime(),
+            sender: `${msg.SenderFN} ${msg.SenderLN}`
+          }));
+          setMessages(formattedMessages);
         })
         .catch((error) => {
           setError('Failed to load client messages. Please try again later.');
@@ -66,7 +73,7 @@ const ClientMessages = () => {
           setLoad(false);
         });  
     }    
-  }, [selectedCoachID]);
+  }, [selectedCoachID, id]);
 
   useEffect(() => {
 
@@ -91,24 +98,31 @@ const ClientMessages = () => {
 
       return;
     }
+
+    const tempTime = new Date();
     try {
+      
       const apiUrl = `${API_URL}/message/${selectedCoachID}`;
-  
-      // Fetch options for the POST request
-      const requestOptions = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          clientID: Cookies.get('id'),
-          message: newMessage,
-        }),
+      const messageData = {
+        clientID: id,
+        message: newMessage,
       };
-      // Send the POST request
-      const response = await fetch(apiUrl, requestOptions);
+      
+      const response = await axios.post(apiUrl, messageData);
   
-      if (!response.ok) {
+      if (response.status === 200 || response.status === 201) {
+
+        const { lastmodified, SenderFN, SenderLN } = response.data;
+
+        setMessages(prevMessages => [...prevMessages, {
+          id: tempTime.toISOString(),
+          content: newMessage,
+          timestamp: tempTime.toISOString(),
+          sender: `${SenderFN}${SenderLN}`
+        }]);
+        setNewMessage('');
+      }
+      else {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
     } 
@@ -138,7 +152,7 @@ const ClientMessages = () => {
         <div className="messages-container">
           <div className="message-area">
             {load ? (
-              <p>Loading Messages...</p>
+              <p>Select A Contact...</p>
             ) : messages.length === 0 ? (
               <p>No Messages...</p>
             ) : (
