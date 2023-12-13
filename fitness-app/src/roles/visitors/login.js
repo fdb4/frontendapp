@@ -4,6 +4,7 @@ import "./login.css";
 import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
 import { useAuth } from "../../components/navbar-visitor/auth.js";
 import Cookies from "js-cookie";
+import API_URL from "../../components/navbar-visitor/apiConfig.js";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const Login = () => {
       // Hash the password before sending it to the server
       const hashedPassword = await hashPassword(formData.password);
 
-      const response = await fetch("http://127.0.0.1:5000/login", {
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

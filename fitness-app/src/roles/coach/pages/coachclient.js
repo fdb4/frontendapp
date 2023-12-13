@@ -4,6 +4,7 @@ import "../styling/coachclient.css";
 import { Link, useNavigate } from "react-router-dom";
 import Coach from "../../visitors/assets/coach.png";
 import Cookies from "js-cookie";
+import API_URL from "../../../components/navbar-visitor/apiConfig";
 
 function ClientProfiles() {
   const [clients, setClients] = useState([]);
@@ -30,7 +31,7 @@ function ClientProfiles() {
   const fetchData = async () => {
     try {
       setLoadingClients(true);
-      let url = `http://127.0.0.1:5000/coaches/clients/${clientId}`;
+      let url = `${API_URL}/coaches/clients/${clientId}`;
       const response = await fetch(url);
       const data = await response.json();
 
@@ -53,7 +54,7 @@ function ClientProfiles() {
   const fetchRequests = async () => {
     try {
       setLoadingRequests(true);
-      let requestUrl = `http://127.0.0.1:5000/coaches/requests/${clientId}`;
+      let requestUrl = `${API_URL}/coaches/requests/${clientId}`;
       const response = await fetch(requestUrl);
       const requestJson = await response.json();
       setRequests(requestJson);
@@ -66,13 +67,13 @@ function ClientProfiles() {
 
   const handleRequestDecision = async (requestId, decision) => {
     try {
-      const requestUrl = `http://127.0.0.1:5000/coaches/requests`;
+      const requestUrl = `${API_URL}/coaches/requests`;
       const payload = {
         coachID: clientId,
         clientID: requestId,
         decision: decision,
       };
-  
+
       await fetch(requestUrl, {
         method: "POST",
         headers: {
@@ -80,10 +81,10 @@ function ClientProfiles() {
         },
         body: JSON.stringify(payload),
       });
-  
+
       // Refresh the requests after a successful decision
       fetchRequests();
-  
+
       // Check if the decision is to accept and there are no more requests
       if (decision === 1 && requests.length === 1) {
         // Reload the page after accepting the last client
@@ -127,11 +128,9 @@ function ClientProfiles() {
   };
 
   const handleClientSelect = (clientID) => {
-
-    Cookies.set('currentClientID', clientID);
-    nav(`/clients/${clientID}`)
-
-  }
+    Cookies.set("currentClientID", clientID);
+    nav(`/clients/${clientID}`);
+  };
 
   return (
     <div className="body_1">
@@ -199,10 +198,10 @@ function ClientProfiles() {
           {currentClients.map((client) => (
             <div key={client.email} className="profile">
               <div className="left">
-                <img 
-                  className="client-img" 
-                  src="https://i0.wp.com/www.lizzyc.com.au/journal/wp-content/uploads/2019/07/TGardiner0519_0012.jpg?resize=1024%2C682&ssl=1" 
-                  alt="client profile" 
+                <img
+                  className="client-img"
+                  src="https://i0.wp.com/www.lizzyc.com.au/journal/wp-content/uploads/2019/07/TGardiner0519_0012.jpg?resize=1024%2C682&ssl=1"
+                  alt="client profile"
                 />
               </div>
 
@@ -213,7 +212,10 @@ function ClientProfiles() {
               </div>
 
               <div className="right">
-                <button onClick={() => handleClientSelect(client.clientID)} className="view">
+                <button
+                  onClick={() => handleClientSelect(client.clientID)}
+                  className="view"
+                >
                   VIEW PROFILE
                 </button>
               </div>

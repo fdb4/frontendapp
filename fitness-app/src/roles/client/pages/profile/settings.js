@@ -4,6 +4,7 @@ import ClientNavbar from "../../../../components/navbar-visitor/clientnav.js";
 import "../../styling/settings.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../../../../components/navbar-visitor/apiConfig.js";
 
 function DeleteConfirmationPopup({ onCancel, onConfirm }) {
   return (
@@ -25,7 +26,7 @@ function Settings() {
   const userRole = Cookies.get("role");
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:5000/genInfo/${clientId}`)
+    fetch(`${API_URL}/genInfo/${clientId}`)
       .then((response) => response.json())
       .then((data) => setClientInfo(data))
       .catch((error) => console.error("Error fetching data:", error));
@@ -46,7 +47,7 @@ function Settings() {
   };
 
   const handleSave = () => {
-    fetch(`http://127.0.0.1:5000/client/edit/${clientId}`, {
+    fetch(`${API_URL}/client/edit/${clientId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +59,7 @@ function Settings() {
         // Assuming the API returns a success message
         if (data.message === "Profile updated successfully") {
           // Refetch the updated client data
-          fetch(`http://127.0.0.1:5000/genInfo/${clientId}`)
+          fetch(`${API_URL}/genInfo/${clientId}`)
             .then((response) => response.json())
             .then((updatedData) => {
               setClientInfo(updatedData);
@@ -92,7 +93,7 @@ function Settings() {
   const navigate = useNavigate();
 
   const handleDeleteConfirmClient = () => {
-    fetch(`http://127.0.0.1:5000/client/delete/${clientId}`, {
+    fetch(`${API_URL}/client/delete/${clientId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -119,7 +120,7 @@ function Settings() {
   };
 
   const handleDeleteConfirmCoach = () => {
-    fetch(`http://127.0.0.1:5000/coach/delete/${clientId}`, {
+    fetch(`${API_URL}/coach/delete/${clientId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

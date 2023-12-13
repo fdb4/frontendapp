@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 import "../styling/confirmationmodal.css";
 import axios from "axios";
 import Cookies from "js-cookie";
+import API_URL from "../../../components/navbar-visitor/apiConfig";
 
 const CoachProfile = () => {
-  const API_URL = "http://127.0.0.1:5000";
   const { id } = useParams();
   const [coach, setCoach] = useState(null);
   const [error, setError] = useState(null);
@@ -24,7 +24,7 @@ const CoachProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/coaches/${id}`);
+        const response = await fetch(`${API_URL}/coaches/${id}`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -57,7 +57,7 @@ const CoachProfile = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          clientID: Cookies.get('id'),
+          clientID: Cookies.get("id"),
           message: messageContent,
           clientID: clientID,
         }),

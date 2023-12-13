@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./registration.css";
 import VistorNavbar from "../../components/navbar-visitor/visitornav.js";
-
-const API_URL = "http://127.0.0.1:5000";
+import API_URL from "../../components/navbar-visitor/apiConfig.js";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +11,7 @@ const Registration = () => {
     lastname: "",
     email: "",
     password: "",
-    userType: ""
+    userType: "",
   });
 
   const handleChange = (e) => {
@@ -29,9 +28,11 @@ const Registration = () => {
     const encoder = new TextEncoder();
     const data = encoder.encode(password);
 
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashedPassword = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+    const hashedPassword = hashArray
+      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .join("");
 
     return hashedPassword;
   };
@@ -51,9 +52,8 @@ const Registration = () => {
     }
 
     const newData = {
-
       ...formData,
-      userType: formData.userType === 'coach' ? 1:0
+      userType: formData.userType === "coach" ? 1 : 0,
     };
 
     try {
@@ -63,7 +63,7 @@ const Registration = () => {
       const newData = {
         ...formData,
         password: hashedPassword,
-        userType: formData.userType === 'coach' ? 1 : 0
+        userType: formData.userType === "coach" ? 1 : 0,
       };
 
       const response = await fetch(`${API_URL}/signup`, {
@@ -154,7 +154,7 @@ const Registration = () => {
           <p>
             Already have an account? <Link to="/login">Login here</Link>
           </p>
-        </div>      
+        </div>
       </div>
     </div>
   );

@@ -5,12 +5,12 @@ import Cookies from "js-cookie";
 import { FlareSharp } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import MessagePopup from "../../../../components/navbar-visitor/MessagePopup.js";
+import API_URL from "../../../../components/navbar-visitor/apiConfig.js";
 
 const MyProfilePage = () => {
   const [clientInfo, setClientInfo] = useState(null);
   const [error, setError] = useState(null);
   const [coachInfo, setCoachInfo] = useState("");
-  const APIURL = "http://127.0.0.1:5000";
   const [alreadyCoach, setAlreadyCoach] = useState(false);
   const [coachRequest, setCoachRequest] = useState(false);
   const [showUnsendSuccess, setShowUnsendSuccess] = useState(false);
@@ -19,7 +19,7 @@ const MyProfilePage = () => {
   const clientId = Cookies.get("id");
 
   useEffect(() => {
-    fetch(`${APIURL}/genInfo/${clientId}`)
+    fetch(`${API_URL}/genInfo/${clientId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -33,7 +33,7 @@ const MyProfilePage = () => {
       });
 
     //See If Client Already Has a Coach
-    fetch(`${APIURL}/clients/coach/${clientId}`)
+    fetch(`${API_URL}/clients/coach/${clientId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -43,7 +43,7 @@ const MyProfilePage = () => {
       .then((data) => {
         // If No Coach, Check If They Have a Request Sent Out
         if (data.clientID === null) {
-          fetch(`${APIURL}/client/requests/${clientId}`)
+          fetch(`${API_URL}/client/requests/${clientId}`)
             .then((response) => {
               if (!response.ok) {
                 throw new Error("Failed to fetch data");
@@ -133,7 +133,7 @@ const MyProfilePage = () => {
         <button onClick={() => navigate("/clientcoaches")}>Find Coach</button>
       </div>
     );
-}
+  }
 
   const CoachInformationModal = ({ onClose }) => {
     return (
@@ -175,7 +175,7 @@ const MyProfilePage = () => {
   const handleUnsendRequest = async () => {
     try {
       const coachID = coachInfo.clientID;
-      const response = await fetch(`${APIURL}/client/unsendRequest`, {
+      const response = await fetch(`${API_URL}/client/unsendRequest`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -201,7 +201,7 @@ const MyProfilePage = () => {
   const handleFire = async () => {
     try {
       const coachID = coachInfo.clientID;
-      const response = await fetch(`${APIURL}/client/fireCoach`, {
+      const response = await fetch(`${API_URL}/client/fireCoach`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
