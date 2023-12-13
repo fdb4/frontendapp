@@ -201,7 +201,7 @@ const MyProfilePage = () => {
   const handleFire = async () => {
     try {
       const coachID = coachInfo.clientID;
-      const response = await fetch(`${APIURL}/client/firecoach`, {
+      const response = await fetch(`${APIURL}/client/fireCoach`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
