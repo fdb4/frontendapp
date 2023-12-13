@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Coach from "../../visitors/assets/coach.png";
 import axios from "axios";
+import API_URL from "../../../components/navbar-visitor/apiConfig";
 
 const AdminCoaches = () => {
-  const API_URL = "http://127.0.0.1:5000";
   // const navigate = useNavigate();
   const [coaches, setCoaches] = useState([]);
 

@@ -6,9 +6,9 @@ import Coach from "../../visitors/assets/coach.png";
 import Modal from "react-modal";
 import "../styling/modal.css";
 import MessagePopup from "../../../components/navbar-visitor/MessagePopup";
+import API_URL from "../../../components/navbar-visitor/apiConfig";
 
 const AdminWorkouts = () => {
-  const API_URL = "http://127.0.0.1:5000";
   const [showSuccess, setShowSuccess] = useState(false);
   const [showAddSuccess, setShowAddSuccess] = useState(false);
   const [activeWorkout, setActiveWorkout] = useState([]);

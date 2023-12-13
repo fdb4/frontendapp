@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import ClientNavbar from "../../../../components/navbar-visitor/clientnav.js";
 import VisitorNavbar from "../../../../components/navbar-visitor/visitornav.js";
 import "./styling/workout.css";
-import Cardio from "./images/cardio.png"
+import Cardio from "./images/cardio.png";
 import { Link } from "react-router-dom";
 import Videos from "./videos.js";
-import { useAuth } from "../../../../components/navbar-visitor/auth.js"
+import { useAuth } from "../../../../components/navbar-visitor/auth.js";
+import API_URL from "../../../../components/navbar-visitor/apiConfig.js";
 
 function Workouts() {
-  const { auth } = useAuth()
+  const { auth } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedEquipment, setSelectedEquipment] = useState("");
   const [selectedMuscleGroup, setSelectedMuscleGroup] = useState("");
@@ -27,7 +28,7 @@ function Workouts() {
   };
 
   useEffect(() => {
-    let url = "http://localhost:5000/workouts";
+    let url = `${API_URL}/workouts`;
 
     if (searchQuery) {
       url += `/search/${searchQuery}`;
@@ -51,18 +52,23 @@ function Workouts() {
   }, [searchQuery, selectedEquipment, selectedMuscleGroup]);
 
   const commonEquipmentOptions = [
-    "Bodyweight", "Barbell", "Dumbbells", "Cable Machine", "Bicycle",
-    "Jump Rope", "Incline Bench", "Pull-up Bar", "Stairs",
-    "Yoga Mat", "Exercise Mat", "Foam Roller",
+    "Bodyweight",
+    "Barbell",
+    "Dumbbells",
+    "Cable Machine",
+    "Bicycle",
+    "Jump Rope",
+    "Incline Bench",
+    "Pull-up Bar",
+    "Stairs",
+    "Yoga Mat",
+    "Exercise Mat",
+    "Foam Roller",
   ];
 
   return (
     <div className="body">
-        {auth.id ? (
-          <ClientNavbar />
-      ) : (
-        <VisitorNavbar />
-      )}
+      {auth.id ? <ClientNavbar /> : <VisitorNavbar />}
       <header className="heading">
         <div className="header_2">
           <div className="title">
@@ -129,12 +135,11 @@ function Workouts() {
               <option value="fullbody">Fullbody</option>
             </select>
           </div>
-
         </div>
         <Videos
           searchQuery={searchQuery}
           selectedEquipment={selectedEquipment}
-          selectedMuscleGroup = {selectedMuscleGroup}
+          selectedMuscleGroup={selectedMuscleGroup}
         />
       </main>
     </div>

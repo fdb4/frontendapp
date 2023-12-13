@@ -3,6 +3,7 @@ import ClientNavbar from "../../../components/navbar-visitor/clientnav";
 import "../styling/clientcoaches.css";
 import { Link } from "react-router-dom";
 import Coach from "../../visitors/assets/coach.png";
+import API_URL from "../../../components/navbar-visitor/apiConfig";
 
 function ClientCoaches() {
   const [coaches, setCoaches] = useState([]);
@@ -20,30 +21,30 @@ function ClientCoaches() {
 
   const fetchData = async () => {
     try {
-      let url = "http://127.0.0.1:5000/coaches";
+      let url = `${API_URL}/coaches`;
 
       if (filters.type && filters.value) {
         switch (filters.type) {
           case "gym":
-            url = `http://127.0.0.1:5000/coaches/filter/gym/${filters.value}`;
+            url = `${API_URL}/coaches/filter/gym/${filters.value}`;
             break;
           case "state":
-            url = `http://127.0.0.1:5000/coaches/filter/state/${filters.value}`;
+            url = `${API_URL}/coaches/filter/state/${filters.value}`;
             break;
           case "town":
-            url = `http://127.0.0.1:5000/coaches/filter/town/${filters.value}`;
+            url = `${API_URL}/coaches/filter/town/${filters.value}`;
             break;
           case "experience":
-            url = `http://127.0.0.1:5000/coaches/filter/exp/${filters.value}`;
+            url = `${API_URL}/coaches/filter/exp/${filters.value}`;
             break;
           case "ratings":
-            url = `http://127.0.0.1:5000/coaches/filter/rating/${filters.value}`;
+            url = `${API_URL}/coaches/filter/rating/${filters.value}`;
             break;
           case "price":
-            url = `http://127.0.0.1:5000/coaches/filter/cost/${filters.value}`;
+            url = `${API_URL}/coaches/filter/cost/${filters.value}`;
             break;
           case "specializations":
-            url = `http://127.0.0.1:5000/coaches/filter/specialization/${filters.value}`;
+            url = `${API_URL}/coaches/filter/specialization/${filters.value}`;
             break;
           default:
             break;

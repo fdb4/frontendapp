@@ -11,7 +11,7 @@ import {
   DropdownMenu,
   UserProfileImage,
 } from "./NavbarElements";
-import AdminDropdown from './AdminDropdown';
+import AdminDropdown from "./AdminDropdown";
 import logo from "../../roles/visitors/assets/logo.png";
 import { useAuth } from "./auth";
 import Cookies from "js-cookie";
@@ -28,13 +28,16 @@ const ClientNavbar = () => {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
-  const role = Cookies.get('role')
-  const isAdmin = Cookies.get('isAdmin')
+  const role = Cookies.get("role");
+  const isAdmin = Cookies.get("isAdmin");
   const { setAuth } = useAuth();
   const handleLogout = () => {
     Cookies.remove("id");
     Cookies.remove("role");
-    Cookies.remove("isAdmin")
+    Cookies.remove("isAdmin");
+    if (Cookies.get("currentClientID")) {
+      Cookies.remove("currentClientID");
+    }
     setAuth({});
     console.log("Done");
     Navigate("/");
@@ -74,21 +77,25 @@ const ClientNavbar = () => {
             Coaches
           </NavLink>
           {role === "Coach" && (
-          <NavLink to="/coachhome" activeStyle>
-            Your Clients
-          </NavLink>
-        )}
-        {isAdmin === 'true' && (
-          <div
-            className="nav-link"
-             // Add any necessary styles for the cursor
-            onClick={toggleAdminDropdown}
-            style={{ position: 'relative', display: 'inline-block', cursor: 'pointer', }}
-          >
-            Admin
-            {showAdminDropdown && <AdminDropdown />}
-          </div>
-        )}
+            <NavLink to="/coachhome" activeStyle>
+              Your Clients
+            </NavLink>
+          )}
+          {isAdmin === "true" && (
+            <div
+              className="nav-link"
+              // Add any necessary styles for the cursor
+              onClick={toggleAdminDropdown}
+              style={{
+                position: "relative",
+                display: "inline-block",
+                cursor: "pointer",
+              }}
+            >
+              Admin
+              {showAdminDropdown && <AdminDropdown />}
+            </div>
+          )}
           <div style={{ position: "relative" }}>
             <UserProfileImage
               src={MyProfileIcon}

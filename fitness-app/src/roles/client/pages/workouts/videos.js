@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./styling/videos.css";
+import API_URL from "../../../../components/navbar-visitor/apiConfig";
 
-function Videos({ searchQuery,  selectedEquipment, selectedMuscleGroup}) {
+function Videos({ searchQuery, selectedEquipment, selectedMuscleGroup }) {
   const [workouts, setWorkouts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [goToPage, setGoToPage] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/workouts")
+    fetch(`${API_URL}/workouts`)
       .then((response) => response.json())
       .then((data) => {
         setWorkouts(data);
@@ -32,11 +33,14 @@ function Videos({ searchQuery,  selectedEquipment, selectedMuscleGroup}) {
     return <p>No workouts available.</p>;
   }
 
-  const filteredWorkouts = workouts.filter((workout) =>
-  workout.workoutname.toLowerCase().includes(searchQuery.toLowerCase()) &&
-  (!selectedEquipment || workout.equipment.toLowerCase() === selectedEquipment.toLowerCase()) &&
-  (!selectedMuscleGroup || workout.musclegroup.toLowerCase() === selectedMuscleGroup.toLowerCase())
-);
+  const filteredWorkouts = workouts.filter(
+    (workout) =>
+      workout.workoutname.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (!selectedEquipment ||
+        workout.equipment.toLowerCase() === selectedEquipment.toLowerCase()) &&
+      (!selectedMuscleGroup ||
+        workout.musclegroup.toLowerCase() === selectedMuscleGroup.toLowerCase())
+  );
 
   const paginatedWorkouts = filteredWorkouts.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filteredWorkouts.length / workoutsPerPage);
@@ -84,7 +88,8 @@ function Videos({ searchQuery,  selectedEquipment, selectedMuscleGroup}) {
       <div className="pagination">
         <button onClick={handlePreviousPage}>&lt; Previous</button>
         <span>
-          Page {currentPage} of {totalPages} | Total Workouts: {filteredWorkouts.length}
+          Page {currentPage} of {totalPages} | Total Workouts:{" "}
+          {filteredWorkouts.length}
         </span>
         <span>
           Go to Page:

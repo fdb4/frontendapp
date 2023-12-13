@@ -3,6 +3,7 @@ import ClientNavbar from "../../../../components/navbar-visitor/clientnav";
 import { useNavigate } from "react-router-dom";
 import "./styling/myworkouts.css";
 import Cookies from "js-cookie";
+import API_URL from "../../../../components/navbar-visitor/apiConfig";
 
 function Myworkouts() {
   const clientID = Cookies.get("id");
@@ -21,7 +22,7 @@ function Myworkouts() {
   useEffect(() => {
     const fetchExercises = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/workouts");
+        const response = await fetch(`${API_URL}/workouts`);
         const exercises = await response.json();
         setAllExercises(exercises);
       } catch (error) {
@@ -85,16 +86,13 @@ function Myworkouts() {
     event.preventDefault();
     console.log(workoutPlan);
     try {
-      const response = await fetch(
-        `http://127.0.0.1:5000/create/workoutplan/client`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(workoutPlan),
-        }
-      );
+      const response = await fetch(`${API_URL}/create/workoutplan/client`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(workoutPlan),
+      });
 
       if (response.ok) {
         // Workout plan submitted successfully
