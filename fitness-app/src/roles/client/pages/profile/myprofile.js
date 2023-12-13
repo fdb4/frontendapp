@@ -111,7 +111,7 @@ const MyProfilePage = () => {
           <p>
             {coachInfo.firstname} {coachInfo.lastname}
           </p>
-          <button onClick={handleViewCoach}>View Info</button>
+          <button onClick={handleViewCoach}>View Coach Info</button>
           {isModalOpen && <CoachInformationModal onClose={handleCloseModal} />}
         </div>
       );

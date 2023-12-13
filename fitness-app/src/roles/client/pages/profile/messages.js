@@ -8,9 +8,10 @@ import "../../styling/messages.css";
 
 const API_URL = "http://127.0.0.1:5000";
 
-const Message = ({ sender, content, timestamp }) => {
+const Message = ({ sender, content, timestamp, isCurrentUser }) => {
   return (
-    <div className={`message ${sender === Cookies.get("id") ? "sent" : "received"}`}>
+    <div className={`message ${isCurrentUser ? "sent" : "received"}`}>
+      {!isCurrentUser && <p className="sender-name">{sender}</p>}
       <p className="content">{content}</p>
       <p className="timestamp">{new Date(timestamp).toLocaleString()}</p>
     </div>
@@ -22,6 +23,7 @@ Message.propTypes = {
   sender: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   timestamp: PropTypes.number.isRequired,
+  isCurrentUser: PropTypes.bool.isRequired,
 }
 
 const Contact = ({ cID, firstname, lastname, onClick }) => {
@@ -53,16 +55,15 @@ const ClientMessages = () => {
 
   useEffect(() => {
     if(selectedCoachID) {
-
       setLoad(true);
       axios.get(`${API_URL}/message/${id}/${selectedCoachID}`)
         .then(response => {
-
           const formattedMessages = response.data.map(msg => ({
             id: msg.lastmodified,
             content: msg.message,
             timestamp: new Date(msg.lastmodified).getTime(),
-            sender: `${msg.SenderFN} ${msg.SenderLN}`
+            sender: `${msg.SenderFN} ${msg.SenderLN}`,
+            senderId: msg.SenderID
           }));
           setMessages(formattedMessages);
         })
@@ -118,7 +119,8 @@ const ClientMessages = () => {
           id: tempTime.toISOString(),
           content: newMessage,
           timestamp: tempTime.toISOString(),
-          sender: `${SenderFN}${SenderLN}`
+          sender: `${SenderFN}${SenderLN}`,
+          senderId: id
         }]);
         setNewMessage('');
       }
@@ -162,7 +164,7 @@ const ClientMessages = () => {
                   sender={message.sender}
                   content={message.content}
                   timestamp={message.timestamp}
-                  isCurrentUser={message.sender === id}
+                  isCurrentUser={message.senderId.toString() === id}
                 />
             ))
           )}

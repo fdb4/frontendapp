@@ -1,7 +1,4 @@
 
-.messages, .messages * {
-  box-sizing: border-box;
-}
 
 .messages {
   color: black;
@@ -30,7 +27,7 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: white;
-  border: 1px solid #ddd;
+  border: 1px solid black;
   padding: 10px;
   border-radius: 4px;
   margin: 0 auto;
@@ -46,8 +43,43 @@
   padding: 10px;
 }
 
-.message-area p {
-  color: black;
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+}
+
+.message.sent {
+  align-items: flex-end;
+}
+
+.message .content {
+  background-color: lightgray;
+  padding: 8px 12px;
+  border-radius: 15px;
+  max-width: 70%;
+}
+
+.message.sent .content {
+  background-color: lightskyblue;
+}
+
+.message .timestamp {
+  font-size: 0.75em;
+  color: lightgreen;
+}
+
+.message.sent .timestamp {
+  text-align: right;
+}
+
+.message.received .timestamp {
+  text-align: left;
+}
+
+.message.received {
+  padding-left: 20px;
 }
 
 .message-area::-webkit-scrollbar-track {
@@ -70,6 +102,8 @@
   border-radius: 4px;
   margin: 0 auto;
   width: auto;
+  max-height: 500px;
+  overflow-y: auto;
   flex: 0 0 40%;
 }
 
@@ -107,18 +141,13 @@
   font-family: 'Copperplate', 'Papyrus', fantasy;
 }
 
-.sender {
-  font-weight: bold;
-}
 
-.content, .timestamp {
+.content {
   color: black;
-  margin-top: 5px;
 }
 
 .timestamp {
   font-size: 0.85em;
-  color: lightgray;
 }
 
 .error-message {
@@ -140,6 +169,10 @@
   border-radius: 4px;
 }
 
+.sender-name {
+  color: grey;
+}
+
 .send-button {
   font-family: 'Copperplate', 'Papyrus', fantasy;
   background-color: #007bff;
@@ -153,5 +186,6 @@
 .send-button:hover {
   background-color: #0056b3;
 }
+
 
 
