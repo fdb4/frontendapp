@@ -10,6 +10,9 @@ function Myworkouts() {
   const navigate = useNavigate();
   const [limitReachedMessage, setLimitReachedMessage] = useState("");
   const [error, setError] = useState("");
+  const [workouts, setWorkouts] = useState([]);
+  const [groupedExercises, setGroupedExercises] = useState({});
+  const [expandedWorkout, setExpandedWorkout] = useState(null);
 
   const [showWorkoutForm, setShowWorkoutForm] = useState(false);
   const [workoutPlan, setWorkoutPlan] = useState({
@@ -99,6 +102,7 @@ function Myworkouts() {
         console.log("Workout Plan submitted:", workoutPlan);
         // Optionally, reset the form or navigate away
         setShowWorkoutForm(false);
+        window.location.reload(); 
       } else {
         // Handle server error
         console.error("Failed to submit workout plan:", response.statusText);
@@ -109,14 +113,50 @@ function Myworkouts() {
     }
   };
 
+  useEffect(() => {
+    // Fetch workouts and group exercises when the component mounts
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${API_URL}/workoutplans/client/${clientID}`);
+        const data = await response.json();
+        setWorkouts(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [clientID]);
+  useEffect(() => {
+    // Group exercises by workout name
+    const groupExercisesByWorkoutName = () => {
+      const groupedExercises = {};
+      workouts.forEach((workout) => {
+        const workoutName = workout.planName;
+        if (!groupedExercises[workoutName]) {
+          groupedExercises[workoutName] = [];
+        }
+        groupedExercises[workoutName].push(workout);
+      });
+      setGroupedExercises(groupedExercises);
+    };
+
+    groupExercisesByWorkoutName();
+  }, [workouts]);
+
+  const handleExpandToggle = (workoutName) => {
+    setExpandedWorkout((prevExpanded) =>
+      prevExpanded === workoutName ? null : workoutName
+    );
+  };
   return (
-    <div className="body">
+    <div className="body_2">
       <ClientNavbar />
       <div className="individual">
         <div className="rightside">
-          <div className="header">
+          <div className="headers">
             <button onClick={handleGoBack}>Back</button>
-            <h1>My Workout</h1>
+            <h1 className="title">My Workout</h1>
             {showWorkoutForm ? (
               <>
                 <button onClick={handleCreateWorkout}>Create Workout</button>
@@ -166,7 +206,6 @@ function Myworkouts() {
                       value={exercise.reps}
                       onChange={(event) => handleInputChange(index, event)}
                     />
-
                     <button
                       type="button"
                       onClick={() => handleDeleteExercise(index)}
@@ -194,6 +233,31 @@ function Myworkouts() {
             )}
           </div>
         </div>
+
+        <div className="workouts_info">
+          <h2>Sessions</h2>
+          {Object.keys(groupedExercises).map((workoutName) => (
+            <div key={workoutName} className="workout-session">
+            
+              <div className="workout-header" onClick={() => handleExpandToggle(workoutName)}>
+                <h3>{workoutName}</h3>
+                <span className="dropdown-arrow">{expandedWorkout === workoutName ? '▼' : '▶'}</span>
+              </div>
+              {expandedWorkout === workoutName && (
+                <div className="exercise-list">
+                  {groupedExercises[workoutName].map((exercise) => (
+                    <div key={exercise.workoutID}>
+                      <p>
+                        {exercise.workoutname} - Sets: {exercise.Sets}, Reps: {exercise.reps}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
       </div>
     </div>
   );
