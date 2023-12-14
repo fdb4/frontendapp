@@ -1,5 +1,4 @@
-
-.messages {
+.body {
   color: black;
   max-width: 100%;
   margin: auto;
@@ -9,6 +8,14 @@
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+}
+.messages {
+  width: 1079px;
+  height: 970px;
+  flex-shrink: 1;
+  border-radius: 70px;
+  background: #fff;
+  margin: 20px auto;
 }
 
 .content-area {
@@ -22,18 +29,11 @@
 }
 
 .messages-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: white;
-  border: 1px solid black;
-  padding: 10px;
-  border-radius: 4px;
-  margin: 0 auto;
-  width: 100%;
-  flex: 1;
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
+
+  background: #479090;
+  max-width: 85%px;
+
+  flex-shrink: 0;
 }
 
 .message-area {
@@ -46,7 +46,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  
 }
 
 .message.sent {
@@ -54,13 +53,19 @@
 }
 
 .message .content {
-  background-color: lightgray;
-  padding: 8px 12px;
-  border-radius: 15px;
-  max-width: 70%;
+  width: 331px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 20px;
+background: #FFF;
 }
 
 .message.sent .content {
+  width: 331px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 20px;
+background: #FFF;
   background-color: lightskyblue;
 }
 
@@ -94,20 +99,19 @@
 }
 
 .contacts-list {
-  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-family: "Copperplate", "Papyrus", fantasy;
   background-color: lightgray;
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 4px;
   margin: 0 auto;
-  width: auto;
-  max-height: 500px;
+  max-height: auto;
   overflow-y: auto;
   flex: 0 0 40%;
 }
 
 .contacts-list p {
-  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-family: "Copperplate", "Papyrus", fantasy;
   color: black;
   cursor: pointer;
   text-align: center;
@@ -131,15 +135,15 @@
     justify-content: center;
   }
 
-  .contacts-list, .messages-container {
+  .contacts-list,
+  .messages-container {
     max-width: calc(45% - 20px);
   }
 }
 
 .messages-container p {
-  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-family: "Copperplate", "Papyrus", fantasy;
 }
-
 
 .content {
   color: black;
@@ -152,7 +156,7 @@
 .error-message {
   color: red;
   font-weight: bold;
-  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-family: "Copperplate", "Papyrus", fantasy;
 }
 
 .message-form {
@@ -161,7 +165,7 @@
 }
 
 .message-input {
-  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-family: "Copperplate", "Papyrus", fantasy;
   flex-grow: 1;
   padding: 10px;
   border: 1px solid #ddd;
@@ -173,7 +177,7 @@
 }
 
 .send-button {
-  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-family: "Copperplate", "Papyrus", fantasy;
   background-color: #007bff;
   color: white;
   border: none;
@@ -185,6 +189,3 @@
 .send-button:hover {
   background-color: #0056b3;
 }
-
-
-

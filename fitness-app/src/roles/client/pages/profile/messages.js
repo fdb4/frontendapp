@@ -127,58 +127,60 @@ const ClientMessages = () => {
   };
 
   return (
-    <div className="messages">
+    <div className="body">
       <ClientNavbar />
-      {error && <p className="error-message">Error: {error}</p>}
-      <div className="content-area">
-        <div className="contacts-list">
-          <h3>Message Contacts</h3>
-          {contacts.map((contact) => (
-            <Contact
-              key={contact.clientID}
-              cID={contact.clientID}
-              firstname={contact.firstname}
-              lastname={contact.lastname}
-              onClick={() => handleCoachClick(contact.clientID)}
-            />
-          ))}
-        </div>
-        <div className="messages-container">
-          <div className="message-area">
-            {load ? (
-              <p>Select A Contact...</p>
-            ) : messages.length === 0 ? (
-              <p>No Messages...</p>
-            ) : (
-              messages.map((message) => (
-                <Message
-                  key={message.id}
-                  sender={message.sender}
-                  content={message.content}
-                  timestamp={message.timestamp}
-                  isCurrentUser={message.senderId.toString() === id}
-                />
-              ))
-            )}
-          </div>
-          <div className="submit-button">
-            <form onSubmit={sendMessage} className="message-form">
-              <input
-                type="text"
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-                placeholder="Type your message here..."
-                className="message-input"
+      <div className="messages">
+        {error && <p className="error-message">Error: {error}</p>}
+        <div className="content-area">
+          <div className="contacts-list">
+            <h3>Message Contacts</h3>
+            {contacts.map((contact) => (
+              <Contact
+                key={contact.clientID}
+                cID={contact.clientID}
+                firstname={contact.firstname}
+                lastname={contact.lastname}
+                onClick={() => handleCoachClick(contact.clientID)}
               />
-              <button type="submit" className="send-button">
-                Send
-              </button>
-            </form>
+            ))}
+          </div>
+          <div className="messages-container">
+            <div className="message-area" id="chatbox">
+              {load ? (
+                <p>Select A Contact...</p>
+              ) : messages.length === 0 ? (
+                <p>No Messages...</p>
+              ) : (
+                messages.map((message) => (
+                  <Message
+                    key={message.id}
+                    content={message.content}
+                    timestamp={message.timestamp}
+                    isCurrentUser={message.senderId.toString() === id}
+                  />
+                ))
+              )}
+            </div>
+            <div className="submit-button" id="enter">
+              <form onSubmit={sendMessage} className="message-form">
+                <input
+                  type="text"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  placeholder="Type your message here..."
+                  className="message-input"
+                  id="usermsg"
+                />
+                <button type="submit" className="send-button" id="submitmsg">
+                  Send
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  );  
 };
 
 export default ClientMessages;
