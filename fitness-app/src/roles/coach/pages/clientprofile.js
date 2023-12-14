@@ -250,6 +250,10 @@ const ClientProfile = () => {
     navigate(-1);
   };
 
+  const handleCreateWorkoutClick = () => {
+    navigate(`/client-workout/${currentClientID}`)
+  }
+
   const sendMessage = async () => {
     try {
       // Fetch URL for sending messages (replace with your actual API endpoint)
@@ -369,7 +373,7 @@ const ClientProfile = () => {
               onChange={handleSessionNameChange}
             />
             {workoutPlan.selectedExercises.map((exercise, index) => (
-              <div key={exercise.id || index} className="exercise-form">
+              <div key={`exercise-${exercise.workoutID}-${index}`} className="exercise-form">
                 <label htmlFor={`exerciseID-${index}`}>Select Exercise:</label>
                 <select
                   id={`exerciseID-${index}`}
@@ -481,7 +485,7 @@ const ClientProfile = () => {
           onConfirm={handleConfirm}
           onClose={handleCancel}
         />
-        <button className="action-button" onClick={handleCreateWorkout}>
+        <button className="action-button" onClick={handleCreateWorkoutClick}>
           Create Client Workout
         </button>
         <WorkoutForm
