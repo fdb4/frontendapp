@@ -145,6 +145,13 @@ function Myworkouts() {
 
     groupExercisesByWorkoutName();
   }, [workouts]);
+  // console.log(groupedExercises);
+  // console.log(allExercises);
+
+  const getWorkoutNameById = (workoutId) => {
+    const workout = allExercises.find((entry) => entry.workoutID === workoutId);
+    return workout ? workout.workoutname : "Workout not found";
+  };
 
   const handleExpandToggle = (workoutName) => {
     setExpandedWorkout((prevExpanded) =>
@@ -159,7 +166,9 @@ function Myworkouts() {
           <div className="headers">
             <button onClick={handleGoBack}>Back</button>
             <h1 className="title">My Workout</h1>
-            <button className="create" onClick={handleCreateWorkout}>Create Workout</button>
+            <button className="create" onClick={handleCreateWorkout}>
+              Create Workout
+            </button>
           </div>
           <div className="formstyling">
             {showWorkoutForm && (
@@ -210,7 +219,11 @@ function Myworkouts() {
                     </button>
                   </div>
                 ))}
-                <button className="add" type="button" onClick={handleAddExercise}>
+                <button
+                  className="add"
+                  type="button"
+                  onClick={handleAddExercise}
+                >
                   Add Exercise
                 </button>
                 {limitReachedMessage && <p>{limitReachedMessage}</p>}
@@ -248,8 +261,8 @@ function Myworkouts() {
                   {groupedExercises[workoutName].map((exercise) => (
                     <div key={exercise.workoutID}>
                       <p>
-                        {exercise.workoutname} - Sets: {exercise.Sets}, Reps:{" "}
-                        {exercise.reps}
+                        {getWorkoutNameById(exercise.workoutID)} - Sets:{" "}
+                        {exercise.Sets}, Reps: {exercise.reps}
                       </p>
                     </div>
                   ))}
