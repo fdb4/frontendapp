@@ -102,7 +102,7 @@ function Myworkouts() {
         console.log("Workout Plan submitted:", workoutPlan);
         // Optionally, reset the form or navigate away
         setShowWorkoutForm(false);
-        window.location.reload(); 
+        window.location.reload();
       } else {
         // Handle server error
         console.error("Failed to submit workout plan:", response.statusText);
@@ -117,7 +117,9 @@ function Myworkouts() {
     // Fetch workouts and group exercises when the component mounts
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_URL}/workoutplans/client/${clientID}`);
+        const response = await fetch(
+          `${API_URL}/workoutplans/client/${clientID}`
+        );
         const data = await response.json();
         setWorkouts(data);
       } catch (error) {
@@ -157,13 +159,7 @@ function Myworkouts() {
           <div className="headers">
             <button onClick={handleGoBack}>Back</button>
             <h1 className="title">My Workout</h1>
-            {showWorkoutForm ? (
-              <>
-                <button onClick={handleCreateWorkout}>Create Workout</button>
-              </>
-            ) : (
-              <button onClick={handleCreateWorkout}>Create Workout</button>
-            )}
+            <button className="create" onClick={handleCreateWorkout}>Create Workout</button>
           </div>
           <div className="formstyling">
             {showWorkoutForm && (
@@ -214,13 +210,13 @@ function Myworkouts() {
                     </button>
                   </div>
                 ))}
-                <button type="button" onClick={handleAddExercise}>
+                <button className="add" type="button" onClick={handleAddExercise}>
                   Add Exercise
                 </button>
                 {limitReachedMessage && <p>{limitReachedMessage}</p>}
                 {error && <p>{error}</p>}
-                <div>
-                  <button type="submit">Submit Workout Plan</button>
+                <div className="submission">
+                  <button type="submits">Submit Workout Plan</button>
                   <button
                     className="cancel_2"
                     type="button"
@@ -238,17 +234,22 @@ function Myworkouts() {
           <h2>Sessions</h2>
           {Object.keys(groupedExercises).map((workoutName) => (
             <div key={workoutName} className="workout-session">
-            
-              <div className="workout-header" onClick={() => handleExpandToggle(workoutName)}>
+              <div
+                className="workout-header"
+                onClick={() => handleExpandToggle(workoutName)}
+              >
                 <h3>{workoutName}</h3>
-                <span className="dropdown-arrow">{expandedWorkout === workoutName ? '▼' : '▶'}</span>
+                <span className="dropdown-arrow">
+                  {expandedWorkout === workoutName ? "▼" : "▶"}
+                </span>
               </div>
               {expandedWorkout === workoutName && (
                 <div className="exercise-list">
                   {groupedExercises[workoutName].map((exercise) => (
                     <div key={exercise.workoutID}>
                       <p>
-                        {exercise.workoutname} - Sets: {exercise.Sets}, Reps: {exercise.reps}
+                        {exercise.workoutname} - Sets: {exercise.Sets}, Reps:{" "}
+                        {exercise.reps}
                       </p>
                     </div>
                   ))}
@@ -257,7 +258,6 @@ function Myworkouts() {
             </div>
           ))}
         </div>
-
       </div>
     </div>
   );
