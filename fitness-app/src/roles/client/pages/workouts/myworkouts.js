@@ -491,7 +491,10 @@ function Myworkouts() {
                       {limitReachedMessage && <p>{limitReachedMessage}</p>}
                       {error && <p>{error}</p>}
                       <div>
-                        <button onClick={() => handleSubmitEdits(workoutName)}>
+                        <button
+                          onClick={() => handleSubmitEdits(workoutName)}
+                          style={styles.buttonStyle}
+                        >
                           Save Edits
                         </button>
                       </div>

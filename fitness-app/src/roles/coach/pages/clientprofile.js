@@ -746,6 +746,7 @@ const ClientProfile = () => {
                           <div>
                             <button
                               onClick={() => handleSubmitEdits(workoutName)}
+                              style={styles.buttonStyle}
                             >
                               Save Edits
                             </button>
