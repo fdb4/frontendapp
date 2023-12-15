@@ -251,8 +251,8 @@ const ClientProfile = () => {
   };
 
   const handleCreateWorkoutClick = () => {
-    navigate(`/client-workout/${currentClientID}`)
-  }
+    navigate(`/client-workout/${currentClientID}`);
+  };
 
   const sendMessage = async () => {
     try {
@@ -373,7 +373,10 @@ const ClientProfile = () => {
               onChange={handleSessionNameChange}
             />
             {workoutPlan.selectedExercises.map((exercise, index) => (
-              <div key={`exercise-${exercise.workoutID}-${index}`} className="exercise-form">
+              <div
+                key={`exercise-${exercise.workoutID}-${index}`}
+                className="exercise-form"
+              >
                 <label htmlFor={`exerciseID-${index}`}>Select Exercise:</label>
                 <select
                   id={`exerciseID-${index}`}
@@ -470,6 +473,54 @@ const ClientProfile = () => {
     setIsModalOpen(false);
   };
 
+  //Clients Sessions
+
+  const [workouts, setWorkouts] = useState([]);
+  const [groupedExercises, setGroupedExercises] = useState({});
+  const [expandedWorkout, setExpandedWorkout] = useState(null);
+  useEffect(() => {
+    // Fetch workouts and group exercises when the component mounts
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${API_URL}/workoutplans/client/${id}`);
+        const data = await response.json();
+        setWorkouts(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [clientID]);
+
+  useEffect(() => {
+    // Group exercises by workout name
+    const groupExercisesByWorkoutName = () => {
+      const groupedExercises = {};
+      workouts.forEach((workout) => {
+        const workoutName = workout.planName;
+        if (!groupedExercises[workoutName]) {
+          groupedExercises[workoutName] = [];
+        }
+        groupedExercises[workoutName].push(workout);
+      });
+      setGroupedExercises(groupedExercises);
+    };
+
+    groupExercisesByWorkoutName();
+  }, [workouts]);
+
+  const getWorkoutNameById = (workoutId) => {
+    const workout = allExercises.find((entry) => entry.workoutID === workoutId);
+    return workout ? workout.workoutname : "Workout not found";
+  };
+
+  const handleExpandToggle = (workoutName) => {
+    setExpandedWorkout((prevExpanded) =>
+      prevExpanded === workoutName ? null : workoutName
+    );
+  };
+
   return (
     <div className="client-profile-page">
       <ClientNavbar />
@@ -528,6 +579,39 @@ const ClientProfile = () => {
               <h3>CONTACT</h3>
               <p>Email: {client.email}</p>
             </div>
+          </div>
+          <div className="workouts_info">
+            <h2>Sessions</h2>
+            {Object.keys(groupedExercises).length === 0 ? (
+              <p>No Workout Sessions Available</p>
+            ) : (
+              Object.keys(groupedExercises).map((workoutName) => (
+                <div key={workoutName} className="workout-session">
+                  <div
+                    className="workout-header"
+                    onClick={() => handleExpandToggle(workoutName)}
+                  >
+                    <h3>{workoutName}</h3>
+                    <span className="dropdown-arrow">
+                      {expandedWorkout === workoutName ? "▼" : "▶"}{" "}
+                    </span>
+                  </div>
+                  {expandedWorkout === workoutName && (
+                    <div className="exercise-list">
+                      <button>Edit Plan</button>
+                      {groupedExercises[workoutName].map((exercise) => (
+                        <div key={exercise.workoutID}>
+                          <p>
+                            {getWorkoutNameById(exercise.workoutID)} - Sets:{" "}
+                            {exercise.Sets}, Reps: {exercise.reps}{" "}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))
+            )}
           </div>
           <div className="client-logs-section">
             <h3>{client.firstname}'s Daily Logs</h3>
