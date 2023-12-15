@@ -11,6 +11,7 @@ function Myworkouts() {
   const navigate = useNavigate();
   const [limitReachedMessage, setLimitReachedMessage] = useState("");
   const [showLogSuccess, setShowLogSuccess] = useState(false);
+  const [showLogError, setShowLogError] = useState(false);
   const [error, setError] = useState("");
   const [workouts, setWorkouts] = useState([]);
   const [groupedExercises, setGroupedExercises] = useState({});
@@ -213,6 +214,7 @@ function Myworkouts() {
         setShowLogSuccess(true);
       } else {
         // Handle server error
+        setShowLogError(true);
         console.error(
           "Failed to submit workout plan log:",
           response.statusText
@@ -403,6 +405,9 @@ function Myworkouts() {
         )}
         {showLogSuccess && (
           <MessagePopup message={`Workout Plan Logged Successfully!`} />
+        )}
+        {showLogError && (
+          <MessagePopup message={`Workout Plan Logged Failed! Try Again`} />
         )}
       </div>
     </div>
