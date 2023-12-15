@@ -242,6 +242,75 @@ function Myworkouts() {
     });
   };
 
+  const [editMode, setEditMode] = useState(false);
+  const handleEditMode = (workoutName) => {
+    setEditMode(true);
+    setWorkoutPlan((prev) => ({
+      ...prev,
+      planName: workoutName,
+    }));
+    groupedExercises[workoutName].map((exercise) => {
+      setWorkoutPlan((prev) => ({
+        ...prev,
+        exercises: [
+          ...prev.exercises,
+          {
+            workoutID: exercise.workoutID,
+            Sets: exercise.Sets,
+            reps: exercise.reps,
+          },
+        ],
+      }));
+    });
+  };
+
+  const handleEditClose = () => {
+    setEditMode(false);
+    setWorkoutPlan({
+      planName: "",
+      clientID: clientID,
+      exercises: [],
+    });
+  };
+
+  const [showEditSuccess, setShowEditSuccess] = useState(false);
+  const [showEditError, setShowEditError] = useState(false);
+  const handleSubmitEdits = async (workoutName) => {
+    const workoutplanID = groupedExercises[workoutName][0].workoutplanID;
+    console.log(workoutplanID);
+    console.log(workoutPlan);
+    try {
+      const response = await fetch(
+        `${API_URL}/edit/workoutplan/${workoutplanID}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(workoutPlanLog),
+        }
+      );
+
+      if (response.ok) {
+        // Workout plan submitted successfully
+        console.log("Workout Plan Edit Submitted:", workoutPlan);
+        // Optionally, reset the form or navigate away
+        setEditMode(false);
+        setShowEditSuccess(true);
+      } else {
+        // Handle server error
+        setShowEditError(true);
+        console.error(
+          "Failed to submit workout plan edit:",
+          response.statusText
+        );
+      }
+    } catch (error) {
+      // Handle network error
+      console.error("Network error:", error.message);
+    }
+  };
+
   return (
     <div className="body_2">
       <ClientNavbar />
@@ -342,18 +411,99 @@ function Myworkouts() {
               </div>
               {expandedWorkout === workoutName && (
                 <div className="exercise-list">
-                  <button onClick={() => openLogModal(workoutName)}>
-                    Log Plan
-                  </button>{" "}
-                  <button>Edit Plan</button>
-                  {groupedExercises[workoutName].map((exercise) => (
-                    <div key={exercise.workoutID}>
-                      <p>
-                        {getWorkoutNameById(exercise.workoutID)} - Sets:{" "}
-                        {exercise.Sets}, Reps: {exercise.reps}{" "}
-                      </p>
+                  {!editMode ? (
+                    <div>
+                      <button onClick={() => openLogModal(workoutName)}>
+                        Log Plan
+                      </button>{" "}
+                      <button onClick={() => handleEditMode(workoutName)}>
+                        Edit Plan
+                      </button>
+                      {groupedExercises[workoutName].map((exercise) => (
+                        <div key={exercise.workoutID}>
+                          <p>
+                            {getWorkoutNameById(exercise.workoutID)} - Sets:{" "}
+                            {exercise.Sets}, Reps: {exercise.reps}{" "}
+                          </p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  ) : (
+                    <div>
+                      <button onClick={() => handleEditClose()}>Close</button>
+                      {workoutPlan.exercises.map((exercise, index) => (
+                        <div key={index} className="exercise-form">
+                          <label style={styles.labelStyle}>
+                            Select Exercise:
+                          </label>
+                          <select
+                            name="workoutID"
+                            value={exercise.workoutID || ""}
+                            onChange={(event) =>
+                              handleInputChange(index, event)
+                            }
+                          >
+                            <option value="" disabled>
+                              Select an Exercise
+                            </option>
+                            {allExercises.map((option) => (
+                              <option
+                                key={option.workoutID}
+                                value={option.workoutID}
+                              >
+                                {option.workoutname}
+                              </option>
+                            ))}
+                          </select>
+                          <label style={styles.labelStyle}>Sets:</label>
+                          <input
+                            type="number"
+                            name="Sets"
+                            value={exercise.Sets}
+                            onChange={(event) =>
+                              handleInputChange(index, event)
+                            }
+                          />
+                          <label style={styles.labelStyle}>Reps:</label>
+                          <input
+                            type="number"
+                            name="reps"
+                            value={exercise.reps}
+                            onChange={(event) =>
+                              handleInputChange(index, event)
+                            }
+                          />
+
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteExercise(index)}
+                          >
+                            Delete Exercise
+                          </button>
+                        </div>
+                      ))}
+                      <button type="button" onClick={handleAddExercise}>
+                        Add Exercise
+                      </button>
+                      {limitReachedMessage && <p>{limitReachedMessage}</p>}
+                      {error && <p>{error}</p>}
+                      <div>
+                        <button onClick={() => handleSubmitEdits(workoutName)}>
+                          Save Edits
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  {showEditSuccess && (
+                    <MessagePopup
+                      message={`Workout Plan Editted Successfully!`}
+                    />
+                  )}
+                  {showEditError && (
+                    <MessagePopup
+                      message={`Workout Plan Edit Failed! Try Again`}
+                    />
+                  )}
                 </div>
               )}
             </div>
