@@ -8,8 +8,13 @@
 .header_1 {
   margin-left: 2em;
 }
-.coaches {
+
+.header_1 h1 {
+  font-family: "Crimson Text", serif;
   color: #a16551;
+}
+.coaches {
+  color: white;
 }
 
 .images_1 {

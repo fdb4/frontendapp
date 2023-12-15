@@ -7,13 +7,14 @@
 }
 
 .title-container {
-  color: #fff;
+  color: white;
   padding: 20px;
   border-radius: 5px;
   margin-bottom: 20px;
 }
-
-
+.title-container h1 {
+  color: white;
+}
 
 .title {
   font-size: 48px;
