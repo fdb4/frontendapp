@@ -40,12 +40,13 @@
   max-height: 500px;
   overflow-y: auto;
   padding: 10px;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .message {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .message.sent {
@@ -53,20 +54,23 @@
 }
 
 .message .content {
-  width: 331px;
+  width: 275px;
   height: 60px;
   flex-shrink: 0;
   border-radius: 20px;
-background: #FFF;
+  background: #FFF;
+  padding: 5px;
 }
 
 .message.sent .content {
-  width: 331px;
+  width: 275px;
   height: 60px;
   flex-shrink: 0;
   border-radius: 20px;
-background: #FFF;
+  background: #FFF;
   background-color: lightskyblue;
+  text-align: left;
+  padding-left: 15px;
 }
 
 .message .timestamp {
@@ -83,7 +87,12 @@ background: #FFF;
 }
 
 .message.received {
-  padding-left: 20px;
+  padding-left: 25px;
+  align-self: flex-start;
+}
+.message.received .content {
+  text-align: left;
+  padding-left: 15px;
 }
 
 .message-area::-webkit-scrollbar-track {
@@ -129,7 +138,7 @@ background: #FFF;
   background-color: lightblue;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 700px) {
   .content-area {
     flex-direction: row;
     justify-content: center;
@@ -184,6 +193,7 @@ background: #FFF;
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
+  border-radius: 70px;
 }
 
 .send-button:hover {

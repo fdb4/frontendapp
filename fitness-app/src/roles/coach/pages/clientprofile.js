@@ -486,7 +486,7 @@ const ClientProfile = () => {
           onClose={handleCancel}
         />
         <button className="action-button" onClick={handleCreateWorkoutClick}>
-          Create Client Workout
+          See Client Workout Info
         </button>
         <WorkoutForm
           isOpen={showWorkoutForm}
