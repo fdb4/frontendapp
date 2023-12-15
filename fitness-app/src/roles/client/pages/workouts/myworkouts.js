@@ -164,6 +164,7 @@ function Myworkouts() {
   };
 
   const handleExpandToggle = (workoutName) => {
+    handleEditClose();
     setExpandedWorkout((prevExpanded) =>
       prevExpanded === workoutName ? null : workoutName
     );
@@ -287,7 +288,7 @@ function Myworkouts() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(workoutPlanLog),
+          body: JSON.stringify(workoutPlan),
         }
       );
 
@@ -319,9 +320,11 @@ function Myworkouts() {
           <div className="headers">
             <button onClick={handleGoBack}>Back</button>
             <h1 className="title">My Workout</h1>
-            <button className="create" onClick={handleCreateWorkout}>
-              Create Workout
-            </button>
+            {!editMode && (
+              <button className="create" onClick={handleCreateWorkout}>
+                Create Workout
+              </button>
+            )}
           </div>
           <div className="formstyling">
             {showWorkoutForm && (
