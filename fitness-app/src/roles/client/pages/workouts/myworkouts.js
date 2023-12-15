@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import "./styling/myworkouts.css";
 import Cookies from "js-cookie";
 import API_URL from "../../../../components/navbar-visitor/apiConfig";
+import MessagePopup from "../../../../components/navbar-visitor/MessagePopup";
 
 function Myworkouts() {
   const clientID = Cookies.get("id");
   const navigate = useNavigate();
   const [limitReachedMessage, setLimitReachedMessage] = useState("");
+  const [showLogSuccess, setShowLogSuccess] = useState(false);
   const [error, setError] = useState("");
   const [workouts, setWorkouts] = useState([]);
   const [groupedExercises, setGroupedExercises] = useState({});
@@ -21,6 +23,15 @@ function Myworkouts() {
     exercises: [],
   });
   const [allExercises, setAllExercises] = useState([]);
+
+  const [logModalVisible, setLogModalVisible] = useState(false);
+  const [sets, setSets] = useState(0);
+  const [reps, setReps] = useState(0);
+  const [workoutPlanLog, setWorkoutPlanLog] = useState({
+    clientID: clientID,
+    workoutplanID: "",
+    exerciseLogs: [],
+  });
 
   useEffect(() => {
     const fetchExercises = async () => {
@@ -145,8 +156,6 @@ function Myworkouts() {
 
     groupExercisesByWorkoutName();
   }, [workouts]);
-  // console.log(groupedExercises);
-  // console.log(allExercises);
 
   const getWorkoutNameById = (workoutId) => {
     const workout = allExercises.find((entry) => entry.workoutID === workoutId);
@@ -158,6 +167,79 @@ function Myworkouts() {
       prevExpanded === workoutName ? null : workoutName
     );
   };
+
+  const openLogModal = (workoutName) => {
+    setLogModalVisible(true);
+    setExpandedWorkout(workoutName);
+    const workoutplanID = groupedExercises[workoutName][0].workoutplanID;
+    setWorkoutPlanLog((prev) => ({
+      ...prev,
+      workoutplanID: workoutplanID,
+    }));
+    groupedExercises[workoutName].map((exercise) => {
+      setWorkoutPlanLog((prev) => ({
+        ...prev,
+        exerciseLogs: [
+          ...prev.exerciseLogs,
+          { workoutID: exercise.workoutID, sets: 0, reps: 0 },
+        ],
+      }));
+    });
+  };
+
+  const closeLogModal = () => {
+    setLogModalVisible(false);
+    setExpandedWorkout(null);
+    resetWorkoutPlanLog();
+  };
+
+  const handleLogSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch(`${API_URL}/log/workoutprogress`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(workoutPlanLog),
+      });
+
+      if (response.ok) {
+        // Workout plan submitted successfully
+        console.log("Workout Plan submitted:", workoutPlanLog);
+        // Optionally, reset the form or navigate away
+        resetWorkoutPlanLog();
+        closeLogModal();
+        setShowLogSuccess(true);
+      } else {
+        // Handle server error
+        console.error(
+          "Failed to submit workout plan log:",
+          response.statusText
+        );
+      }
+    } catch (error) {
+      // Handle network error
+      console.error("Network error:", error.message);
+    }
+  };
+
+  const handleInputLogChange = (index, name, value) => {
+    setWorkoutPlanLog((prev) => {
+      const updatedExercises = [...prev.exerciseLogs];
+      updatedExercises[index][name] = value;
+      return { ...prev, exerciseLogs: updatedExercises };
+    });
+  };
+
+  const resetWorkoutPlanLog = () => {
+    setWorkoutPlanLog({
+      clientID: clientID,
+      workoutplanID: "",
+      exerciseLogs: [],
+    });
+  };
+
   return (
     <div className="body_2">
       <ClientNavbar />
@@ -253,16 +335,20 @@ function Myworkouts() {
               >
                 <h3>{workoutName}</h3>
                 <span className="dropdown-arrow">
-                  {expandedWorkout === workoutName ? "▼" : "▶"}
+                  {expandedWorkout === workoutName ? "▼" : "▶"}{" "}
                 </span>
               </div>
               {expandedWorkout === workoutName && (
                 <div className="exercise-list">
+                  <button onClick={() => openLogModal(workoutName)}>
+                    Log Plan
+                  </button>{" "}
+                  <button>Edit Plan</button>
                   {groupedExercises[workoutName].map((exercise) => (
                     <div key={exercise.workoutID}>
                       <p>
                         {getWorkoutNameById(exercise.workoutID)} - Sets:{" "}
-                        {exercise.Sets}, Reps: {exercise.reps}
+                        {exercise.Sets}, Reps: {exercise.reps}{" "}
                       </p>
                     </div>
                   ))}
@@ -271,9 +357,110 @@ function Myworkouts() {
             </div>
           ))}
         </div>
+        {logModalVisible && (
+          <div style={styles.modalStyle}>
+            <div style={styles.modalContentStyle}>
+              <span style={styles.closeButtonStyle} onClick={closeLogModal}>
+                &times;
+              </span>
+              <h2 style={styles.headerStyle}>
+                Session Name: {expandedWorkout}
+              </h2>
+              {/* Your form elements for logging sets and reps */}
+              {groupedExercises[expandedWorkout].map((exercises, index) => (
+                <div key={index}>
+                  <p>{getWorkoutNameById(exercises.workoutID)} :</p>
+                  <label style={styles.labelStyle}>Sets:</label>
+                  <input
+                    type="number"
+                    name="sets"
+                    value={exercises.sets}
+                    onChange={(event) =>
+                      handleInputLogChange(index, "sets", event.target.value)
+                    }
+                    placeholder="0"
+                    required
+                  />
+                  <label style={styles.labelStyle}>Reps:</label>
+                  <input
+                    type="number"
+                    name="Reps"
+                    value={exercises.Reps}
+                    onChange={(event) =>
+                      handleInputLogChange(index, "reps", event.target.value)
+                    }
+                    placeholder="0"
+                    required
+                  />
+                </div>
+              ))}
+
+              <button style={styles.buttonStyle} onClick={handleLogSubmit}>
+                Submit
+              </button>
+            </div>
+          </div>
+        )}
+        {showLogSuccess && (
+          <MessagePopup message={`Workout Plan Logged Successfully!`} />
+        )}
       </div>
     </div>
   );
 }
+
+const styles = {
+  modalStyle: {
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    backgroundColor: "#fefefe",
+    padding: "20px",
+    zIndex: "1",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    maxHeight: "80%", // Set a maximum height for the modal
+    overflowY: "auto",
+  },
+
+  modalContentStyle: {
+    textAlign: "center",
+  },
+
+  closeButtonStyle: {
+    position: "absolute",
+    top: "10px",
+    right: "10px",
+    fontSize: "20px",
+    cursor: "pointer",
+    color: "black",
+  },
+
+  headerStyle: {
+    margin: "10px 0",
+  },
+
+  labelStyle: {
+    display: "block",
+    margin: "10px 0",
+    color: "black",
+  },
+
+  inputStyle: {
+    width: "100%",
+    padding: "8px",
+    margin: "5px 0",
+    boxSizing: "border-box",
+  },
+
+  buttonStyle: {
+    backgroundColor: "#4CAF50",
+    color: "white",
+    padding: "10px",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+};
 
 export default Myworkouts;
