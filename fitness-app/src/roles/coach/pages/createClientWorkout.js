@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ClientNavbar from "../../../components/navbar-visitor/clientnav";
 import { useNavigate, useParams } from "react-router-dom";
-//import "./styling/myworkouts.css";
+import "../styling/createclientworkout.css";
 import Cookies from "js-cookie";
+import axios from "axios";
 import API_URL from "../../../components/navbar-visitor/apiConfig";
 
 function ClientWorkouts() {
@@ -20,6 +21,53 @@ function ClientWorkouts() {
   });
   const [allExercises, setAllExercises] = useState([]);
   const [clientInfo, setClientInfo] = useState({});
+  const [clientWorkoutSessions, setClientWorkoutSessions] = useState([]);
+  const [groupedExercises, setGroupedExercises] = useState({});
+  const [expandedWorkout, setExpandedWorkout] = useState(null);
+
+  useEffect(() => {
+    const fetchExercises = async () => {
+      try {
+        const response = await fetch(`${API_URL}/workouts`);
+        const exercises = await response.json();
+        setAllExercises(exercises);
+      } catch (error) {
+        setError("Error fetching exercises. Please try again.");
+      }
+    };
+
+    fetchExercises();
+  }, []);
+
+  useEffect(() => {
+
+    const fetchWorkoutSessions = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/workoutplans/client/${currentClientID}`);
+        const data = response.data;
+        const groupedWorkouts = data.reduce((acc, curr) => {
+          (acc[curr.workoutplanID] = acc[curr.workoutplanID] || []).push(curr);
+          return acc;
+        }, {});
+        setClientWorkoutSessions(groupedWorkouts);
+      } 
+      catch (error) {
+        console.error("Error fetching workout sessions:", error);
+        setError(error.message || "Failed to fetch workout sessions");
+      }
+    };
+
+    fetchWorkoutSessions();
+  }, [currentClientID]);
+
+  const getWorkoutNameById = (workoutId) => {
+    const workout = allExercises.find((entry) => entry.workoutID === workoutId);
+    return workout ? workout.workoutname : "Workout not found";
+  };
+
+  const handleToggle = (workoutplanID) => {
+    setExpandedWorkout(expandedWorkout === workoutplanID ? null : workoutplanID);
+  };
 
   useEffect(() => {
     fetch(`${API_URL}/genInfo/${currentClientID}`)
@@ -49,7 +97,7 @@ function ClientWorkouts() {
   }, []);
 
   const handleGoBack = () => {
-    navigate("/workouts");
+    navigate("/coachhome");
   };
 
   const handleCreateWorkout = () => {
@@ -130,7 +178,6 @@ function ClientWorkouts() {
       <div className="individual">
         <div className="rightside">
           <div className="header">
-            <button onClick={handleGoBack}>Back</button>
             <h1>
               {clientInfo.firstname && clientInfo.lastname 
               ? `Create ${clientInfo.firstname} ${clientInfo.lastname}'s Workout` 
@@ -143,6 +190,7 @@ function ClientWorkouts() {
             ) : (
               <button onClick={handleCreateWorkout}>Create Workout</button>
             )}
+            <button onClick={handleGoBack}>Back</button>
           </div>
           <div className="formstyling">
             {showWorkoutForm && (
@@ -212,6 +260,30 @@ function ClientWorkouts() {
               </form>
             )}
           </div>
+        </div>
+        <div className="workouts-info">
+          <h2>{clientInfo.firstname}'s Workout Sessions</h2>
+          {Object.entries(clientWorkoutSessions).map(([workoutplanID, exercises]) => (
+            <div key={workoutplanID} className="workout-session">
+              <div className = "workout-header" onClick={() => handleToggle(workoutplanID)}>
+                <h3>Workout Plan: {exercises[0].planName}</h3>
+                <span className ="dropdown-arrow">
+                  {expandedWorkout === workoutplanID ? "▼" : "▶"}
+                </span>
+              </div>
+              {expandedWorkout === workoutplanID && (
+                <div className="exersise-list">
+                  {exercises.map((exercise, index) => (
+                    <div key={index}>
+                      <p>Exercise: {getWorkoutNameById(exercise.workoutID)}</p>
+                      <p>Sets: {exercise.Sets}</p>
+                      <p>Reps: {exercise.reps}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>

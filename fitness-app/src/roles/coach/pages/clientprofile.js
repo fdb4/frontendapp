@@ -36,6 +36,7 @@ const ClientProfile = () => {
   };
   const [dailyLog, setDailyLog] = useState([]);
   const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+  const [workoutLogs, setWorkoutLogs] = useState([]);
 
   const mapMood = (value) => {
     const smiles = ["😟", "😕", "😐", "🙂", "😀"];
@@ -188,9 +189,27 @@ const ClientProfile = () => {
       }
     };
 
+    const fetchWorkoutLogs = async () => {
+
+      try {
+
+        const response = await fetch(`${API_URL}/workoutlogs/client/${currentClientID}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setWorkoutLogs(data);
+      }
+      catch(error) {
+
+        console.error("Error fetching workout logs:", error);
+      }
+    };
+
     fetchData();
     fetchDailyLog();
     fetchExercises();
+    fetchWorkoutLogs();
   }, [id]);
 
   const handleAddExercise = () => {
@@ -607,7 +626,7 @@ const ClientProfile = () => {
           onClose={handleCancel}
         />
         <button className="action-button" onClick={handleCreateWorkoutClick}>
-          See Client Workout Info
+          Create Client Workout
         </button>
         <WorkoutForm
           isOpen={showWorkoutForm}
@@ -765,6 +784,20 @@ const ClientProfile = () => {
                       )}
                     </div>
                   )}
+                </div>
+              ))
+            )}
+            <h2>Workout Logs</h2>
+            {workoutLogs.length === 0 ? (
+              <p>No Workout Log Entries</p>
+            ) : (
+              workoutLogs.map((log, index) => (
+                <div key={index} className="workout-log">
+                 <p>Workout Plan ID: {log.workoutplanID}</p>
+                  <p>Workout ID: {log.workoutID}</p>
+                  <p>Sets: {log.sets}</p>
+                  <p>Reps: {log.reps}</p>
+                  <p>Last Modified: {new Date(log.lastmodified).toLocaleString()}</p>
                 </div>
               ))
             )}
