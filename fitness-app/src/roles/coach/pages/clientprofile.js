@@ -793,8 +793,7 @@ const ClientProfile = () => {
             ) : (
               workoutLogs.map((log, index) => (
                 <div key={index} className="workout-log">
-                 <p>Workout Plan ID: {log.workoutplanID}</p>
-                  <p>Workout ID: {log.workoutID}</p>
+                  <p>Workout ID: {getWorkoutNameById(log.workoutID)}</p>
                   <p>Sets: {log.sets}</p>
                   <p>Reps: {log.reps}</p>
                   <p>Last Modified: {new Date(log.lastmodified).toLocaleString()}</p>

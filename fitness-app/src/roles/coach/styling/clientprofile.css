@@ -141,5 +141,28 @@
   color: black;
 }
 
+.workouts_info {
+  color: black;
+}
 
+.workout-log-group {
+  margin-bottom: 20px;
+}
+
+.workout-log-group h3 {
+  color: black;
+}
+
+.workout-log {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.workout-log p {
+  color: black;
+  margin: 5px 0;
+}
 
