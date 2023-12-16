@@ -37,6 +37,8 @@ const ClientProfile = () => {
   const [dailyLog, setDailyLog] = useState([]);
   const [showSuccessNotification, setShowSuccessNotification] = useState(false);
   const [workoutLogs, setWorkoutLogs] = useState([]);
+  const [expandedLog, setExpandedLog] = useState(null);
+  const [expandedPlan, setExpandedPlan] = useState(null);
 
   const mapMood = (value) => {
     const smiles = ["😟", "😕", "😐", "🙂", "😀"];
@@ -610,6 +612,24 @@ const ClientProfile = () => {
     }
   };
 
+  const groupLogsByWorkoutPlanID = () => {
+    return workoutLogs.reduce((acc, log) => {
+      acc[log.workoutplanID] = acc[log.workoutplanID] || [];
+      acc[log.workoutplanID].push(log);
+      return acc;
+    }, {});
+  };
+
+  const groupedLogs = groupLogsByWorkoutPlanID();
+
+  const handleExpandPlan = (workoutPlanID) => {
+    setExpandedPlan(expandedPlan === workoutPlanID ? null : workoutPlanID);
+  };
+
+  const handleExpandLog = (workoutID) => {
+    setExpandedLog(expandedLog === workoutID ? null : workoutID);
+  };
+
   return (
     <div className="client-profile-page">
       <ClientNavbar />
@@ -788,15 +808,32 @@ const ClientProfile = () => {
               ))
             )}
             <h2>Workout Logs</h2>
-            {workoutLogs.length === 0 ? (
+            {Object.keys(groupedLogs).length === 0 ? (
               <p>No Workout Log Entries</p>
             ) : (
-              workoutLogs.map((log, index) => (
-                <div key={index} className="workout-log">
-                  <p>Workout ID: {getWorkoutNameById(log.workoutID)}</p>
-                  <p>Sets: {log.sets}</p>
-                  <p>Reps: {log.reps}</p>
-                  <p>Last Modified: {new Date(log.lastmodified).toLocaleString()}</p>
+              Object.entries(groupedLogs).map(([workoutPlanID, logs]) => (
+                <div key={workoutPlanID} className="workout-log-group">
+                  <div
+                    className="workout-plan-header"
+                    onClick={() => handleExpandPlan(workoutPlanID)}
+                  >
+                    <h3>Workout Plan ID: {workoutPlanID}</h3>
+                    <span className="dropdown-arrow">
+                      {expandedPlan === workoutPlanID ? "▼" : "▶"}{" "}
+                    </span>
+                  </div>
+                  {expandedPlan === workoutPlanID && (
+                    <div>
+                      {logs.map((log, index) => (
+                        <div key={index} className="workout-log">
+                          <p>Workout ID: {getWorkoutNameById(log.workoutID)}</p>
+                          <p>Sets: {log.sets}</p>
+                          <p>Reps: {log.reps}</p>
+                          <p>Last Modified: {new Date(log.lastmodified).toLocaleString()}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))
             )}

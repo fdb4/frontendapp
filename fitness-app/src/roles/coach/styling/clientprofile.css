@@ -166,3 +166,14 @@
   margin: 5px 0;
 }
 
+.workout-plan-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.dropdown-arrow {
+  margin-left: 10px;
+}
+
