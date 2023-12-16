@@ -22,6 +22,18 @@ const AdminWorkouts = () => {
     equipment: "",
   });
 
+  const ITEMS_PER_PAGE = 5;
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastActive = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstActive = indexOfLastActive - ITEMS_PER_PAGE;
+  const currentActiveWorkouts = activeWorkout.slice(indexOfFirstActive, indexOfLastActive);
+
+  const indexOfLastDeactive = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstDeactive = indexOfLastDeactive - ITEMS_PER_PAGE;
+  const currentDeactiveWorkouts = deactiveWorkout.slice(indexOfFirstDeactive, indexOfLastDeactive);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -205,87 +217,41 @@ const AdminWorkouts = () => {
           className="modal-content"
           overlayClassName="modal-overlay"
         >
-          <button className="close-button" onClick={handleCloseModal}>
-            ×
-          </button>
-          <br />
-          <br />
-          <form onSubmit={addWorkout}>
-            <label>
-              Workout Name:
-              <input
-                type="text"
-                name="workoutname"
-                value={formData.workoutname}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-            <label>
-              Video Link:
-              <input
-                type="url"
-                name="videolink"
-                value={formData.videolink}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-            <label>
-              Description:
-              <input
-                type="text"
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-            <label>
-              Muscle Group:
-              <input
-                type="text"
-                name="musclegroup"
-                value={formData.musclegroup}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-            <label>
-              Equipment:
-              <input
-                type="text"
-                name="equipment"
-                value={formData.equipment}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-
-            <button type="submit">Submit</button>
-          </form>
+          {/* ... (existing code) */}
         </Modal>
       </div>
 
       <div style={styles.all_workouts}>
         <div id="activeworkout" style={styles.workoutsection}>
           Active Workouts:
-          {activeWorkout.map((workout) => (
-            <DisplayWorkout workout={workout} type={"Deactivate"} />
+          {currentActiveWorkouts.map((workout) => (
+            <DisplayWorkout workout={workout} type={"Deactivate"} key={workout.workoutID} />
           ))}
         </div>
 
         <div id="deactiveworkout" style={styles.workoutsection}>
           Deactive Workouts:
-          {deactiveWorkout.map((workout) => (
-            <DisplayWorkout workout={workout} type={"Activate"} />
+          {currentDeactiveWorkouts.map((workout) => (
+            <DisplayWorkout workout={workout} type={"Activate"} key={workout.workoutID} />
           ))}
         </div>
+      </div>
+
+      <div style={{ textAlign: 'center' }}>
+        <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+          Previous Page
+        </button>
+        <span style={{ margin: '0 10px' }}>Page {currentPage}</span>
+        <button
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={currentPage * ITEMS_PER_PAGE >= activeWorkout.length && currentPage * ITEMS_PER_PAGE >= deactiveWorkout.length}
+        >
+          Next Page
+        </button>
       </div>
     </div>
   );
 };
-
 const styles = {
   all_workouts: {
     padding: "10px",
