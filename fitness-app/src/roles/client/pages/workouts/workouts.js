@@ -84,7 +84,9 @@ function Workouts() {
           <Link to="/my-workouts">
             <button className="green">My Workout</button>
           </Link>
-          <button className="red">Preview</button>
+          <Link to="/preview">
+            <button className="red">Preview</button>
+          </Link>
         </div>
         <img src={Cardio} alt="Cardio" />
       </header>

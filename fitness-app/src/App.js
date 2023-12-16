@@ -21,10 +21,11 @@ import ClientSurvey from "./roles/client/pages/initialsurvey/clientsurvey.js"
 import ClientHome from "./roles/client/pages/clienthome.js";
 import DailyLog from "./roles/client/pages/dailylog.js";
 import Myworkouts from "./roles/client/pages/workouts/myworkouts.js";
+import Preview from "./roles/client/pages/workouts/preview.js";
 import ClientCoaches from "./roles/client/pages/clientcoaches.js";
 import CoachProfile from './roles/client/pages/coachprofile.js';
 import MyProfile from "./roles/client/pages/profile/myprofile.js";
-import Inbox from "./roles/client/pages/profile/inbox.js"
+import Inbox from "./roles/client/pages/profile/inbox.js";
 import Messages from "./roles/client/pages/profile/messages.js";
 import Settings from "./roles/client/pages/profile/settings.js";
 
@@ -87,6 +88,7 @@ function App() {
         <Route path="/clienthome" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><ClientHome /></RequireAuth>} />
         <Route path="/dailylog" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><DailyLog /></RequireAuth>} />
         <Route path="/my-workouts" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><Myworkouts /></RequireAuth>} />
+        <Route path="/preview" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><Preview /></RequireAuth>} />
         <Route path="/clientcoaches" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><ClientCoaches /></RequireAuth>} />
           <Route path="/coaches/:id" element={<RequireAuth allowedRoles = {['Client', 'Coach', 'Admin']}><CoachProfile /></RequireAuth>}  />
         {/* Routes for client's profile */}

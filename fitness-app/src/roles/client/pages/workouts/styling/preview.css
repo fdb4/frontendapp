@@ -1,0 +1,38 @@
+/* previewStyles.css */
+
+.body {
+    padding: 20px;
+  }
+  
+  .button {
+    margin: 20px  0;
+    max-width: 50px;
+  }
+  
+  .filter-controls {
+    margin-bottom: 20px;
+  }
+
+  .workout-plan-container {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    padding: 10px;
+  }
+  
+  .workout-plan-header {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .workout-log-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .workout-log-item {
+    margin-bottom: 8px;
+  }
+  
