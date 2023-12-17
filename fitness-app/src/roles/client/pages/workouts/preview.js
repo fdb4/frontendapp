@@ -19,7 +19,7 @@ function Preview() {
     fetch(`${API_URL}/workoutlogs/client/${clientId}`)
       .then(response => response.json())
       .then(data => {
-<<<<<<< HEAD
+
         // Check if data is an object, and convert it to an array if needed
         let logsArray = [];
         if (Array.isArray(data)) {
@@ -31,12 +31,6 @@ function Preview() {
   
         // Group workout logs by workoutplanID
         const groupedWorkoutLogs = groupByPlanName(logsArray);
-=======
-
-        const logsArray = Array.isArray(data) ? data : [data]; // Wrap the object in an array
-
-        const groupedWorkoutLogs = groupByWorkoutPlanID(logsArray);
->>>>>>> f5e3785c3b6135adbeae623b755c9f84218c83a6
         setWorkoutLogs(groupedWorkoutLogs);
       })
       .catch(error => console.error('Error fetching workout logs:', error));
@@ -60,7 +54,6 @@ function Preview() {
     return groupedLogs;
   };
 
-<<<<<<< HEAD
   const groupByPlanName = logs => {
   if (!Array.isArray(logs)) {
     console.error('Invalid logs format:', logs); // Error log for invalid format
@@ -84,8 +77,7 @@ function Preview() {
 
   // Function to sort logs based on sortOrder
 // Function to sort logs based on sortOrder
-=======
->>>>>>> f5e3785c3b6135adbeae623b755c9f84218c83a6
+
     const sortLogs = (logs, order) => {
     // Convert the object of logs back to an array
     const logsArray = Object.values(logs);
