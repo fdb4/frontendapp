@@ -182,8 +182,10 @@ function Preview() {
             className="workout-plan-header"
             onClick={() => toggleDropdown(workoutplanID)}
           >
-            Workout Plan ID: {workoutplanID.planName}
-            {openDropdowns[workoutplanID] ? "▼ " : "► "}
+            <p1>
+              Workout Plan Name: {filteredLogs[workoutplanID][0].planName}
+            </p1>
+            <p1>{openDropdowns[workoutplanID] ? "▼ " : "► "}</p1>
           </h3>
           {openDropdowns[workoutplanID] && (
             <ul className="workout-log-list">
