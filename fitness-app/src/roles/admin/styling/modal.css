@@ -1,33 +1,71 @@
+/* Modal Overlay */
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9998;
+}
+/* Modal Content */
 .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 40px; /* Increase padding at the top */
-    background-color: white;
-    z-index: 9999;
-    max-width: 400px;
-    width: 100%;
-  }
-  
-  .modal-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9998;
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px; /* Increase padding at the top */
+  background-color: white;
+  z-index: 9999;
+  max-width: 400px;
+  width: 100%;
+}
 
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: #333;
-  }
-  
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #333;
+}
+
+.close-button:hover {
+  color: #555; /* Close button color on hover */
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+  color: #000; /* Set label text color to black */
+}
+
+input {
+  padding: 8px;
+  margin-top: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  background-color: #000000; /* Submit button background color set to black */
+  color: #fff; /* Submit button text color set to white */
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: #333; /* Submit button background color on hover */
+}

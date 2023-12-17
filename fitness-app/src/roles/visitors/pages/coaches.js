@@ -23,8 +23,8 @@ function Coaches() {
       <div className="information">
         <div>
           <h2>
-            VIEW A LIST OF 
-            <span className="become"> EXPERTS</span>  OR <br></br>
+            VIEW A LIST OF
+            <span className="become"> EXPERTS</span> OR <br></br>
             <span className="become">BECOME</span> ONE YOURSELF
           </h2>
           <p className="paragraph">
@@ -50,11 +50,6 @@ function Coaches() {
           <img src={facebook} alt="Dumbbell" />
           <img src={linkedin} alt="linkedin" />
           <img src={instagram} alt="instagram" />
-        </div>
-        <div className="concerns">
-          <p>info@yourdomain.com</p>
-          <p>Privacy Policy</p>
-          <p>Terms & Conditions</p>
         </div>
       </div>
     </div>

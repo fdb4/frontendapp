@@ -73,12 +73,17 @@ const Login = () => {
           role = "Coach";
         }
         if (isAdmin) {
-          role = "Coach";
+          role = "Admin";
         }
         Cookies.set("isAdmin", isAdmin);
         Cookies.set("id", id);
         Cookies.set("role", role);
-        navigate("/clientsurvey");
+        if (!isAdmin) {
+          console.log("here");
+          navigate("/clientsurvey");
+        } else {
+          navigate("/adminworkouts");
+        }
       } else {
         setLoginMessage(data.message);
       }

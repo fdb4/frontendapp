@@ -10,60 +10,57 @@ import VisitorNavbar from "../../../components/navbar-visitor/visitornav";
 
 function Home() {
   return (
-    <div className="image">
+    <div className="">
       <VisitorNavbar />
-      <div className="header">
-        <h1>
-          WORKOUT LIKE <br />A <span className="champion">CHAMPION</span>
-        </h1>
-      </div>
-      <div className="features">
-        <div className="items">
-          <img src={dumbbellImage} alt="Dumbbell" />
-          <div className="items">Workout</div>
+      <div className="image">
+        <div className="header">
+          <h1 style={{ color: "white" }}>
+            WORKOUT LIKE <br />A <span className="champion">CHAMPION</span>
+          </h1>
         </div>
-        <div className="items">
-          <img src={timer} alt="Timer" />
-          <div className="items">Progress</div>
+        <div className="features">
+          <div className="items">
+            <img src={dumbbellImage} alt="Dumbbell" />
+            <div className="items">Workout</div>
+          </div>
+          <div className="items">
+            <img src={timer} alt="Timer" />
+            <div className="items">Progress</div>
+          </div>
+          <div className="items">
+            <img src={scheduler} alt="Your Image" />
+            <div className="items">Lessons</div>
+          </div>
         </div>
-        <div className="items">
-          <img src={scheduler} alt="Your Image" />
-          <div className="items">Lessons</div>
+        <div className="info">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipiscing elit senectus,
+            viverra cubilia aliquet pretium lobortis faucibus etiam et ultrices,
+            lacinia placerat condimentum elementum volutpat torquent
+            suspendisse. Taciti vivamus quisque feugiat aliquet iaculis justo
+            cum, at magnis scelerisque etiam eros sodales, pellentesqu Taciti
+            vivamus quisque feugiat aliquet iaculis justo cum, at magnis
+            scelerisque etiam eros sodales, pellentesqu
+          </p>
         </div>
-      </div>
-      <div className="info">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipiscing elit senectus,
-          viverra cubilia aliquet pretium lobortis faucibus etiam et ultrices,
-          lacinia placerat condimentum elementum volutpat torquent suspendisse.
-          Taciti vivamus quisque feugiat aliquet iaculis justo cum, at magnis
-          scelerisque etiam eros sodales, pellentesqu Taciti vivamus quisque
-          feugiat aliquet iaculis justo cum, at magnis scelerisque etiam eros
-          sodales, pellentesqu
-        </p>
-      </div>
-      <div className="reg-button">
-        <div className="reg-button-contain">
-          <h3 className="header_two">HOW TO GET STARTED?</h3>
-          <button onClick={() => (window.location.href = "/registration")}>
-            SIGN UP
-          </button>
+        <div className="reg-button">
+          <div className="reg-button-contain">
+            <h3 className="header_two">HOW TO GET STARTED?</h3>
+            <button onClick={() => (window.location.href = "/registration")}>
+              SIGN UP
+            </button>
+          </div>
         </div>
-      </div>
         <div className="footer">
-        <h2>
-          READY FOR YOUR <br></br>
-          <span className="champion">FIRST</span> LESSON?
-        </h2>
-        <div className="socials">
-          <img src={facebook} alt="Dumbbell" />
-          <img src={linkedin} alt="linkedin" />
-          <img src={instagram} alt="instagram" />
-        </div>
-        <div className="concerns">
-          <p>info@yourdomain.com</p>
-          <p>Privacy Policy</p>
-          <p>Terms & Conditions</p>
+          <h2>
+            READY FOR YOUR <br></br>
+            <span className="champion">FIRST</span> LESSON?
+          </h2>
+          <div className="socials">
+            <img src={facebook} alt="Dumbbell" />
+            <img src={linkedin} alt="linkedin" />
+            <img src={instagram} alt="instagram" />
+          </div>
         </div>
       </div>
     </div>

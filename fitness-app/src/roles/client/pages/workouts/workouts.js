@@ -74,7 +74,7 @@ function Workouts() {
   ];
 
   return (
-    <div className="body">
+    <div className="body_1">
       {auth.id ? <ClientNavbar /> : <VisitorNavbar />}
       <header className="heading">
         <div className="header_2">

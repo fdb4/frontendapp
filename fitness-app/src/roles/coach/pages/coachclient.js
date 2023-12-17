@@ -162,7 +162,7 @@ function ClientProfiles() {
         <p>Loading Requests...</p>
       ) : requests.length > 0 ? (
         <div className="requesting">
-          <h2>Client Requests</h2>
+          <h2 className="client-request">Client Requests</h2>
           {requests.map((request) => (
             <div key={request.clientID} className="request">
               <div className="request-info">

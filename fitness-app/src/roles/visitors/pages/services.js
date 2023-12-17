@@ -9,8 +9,8 @@ import VisitorNavbar from "../../../components/navbar-visitor/visitornav";
 
 function Services() {
   return (
-    <div className="body">
-     <VisitorNavbar />
+    <div className="body_3">
+      <VisitorNavbar />
       <div className="title-container">
         <h1 className="title">SERVICES</h1>
       </div>
@@ -30,7 +30,7 @@ function Services() {
         </div>
       </div>
       <div className="item_2">
-        <img src={image} alt="Two people running and working out" />
+        <img  className="images" src={image} alt="Two people running and working out" />
         <div className="middle">
           <h2>Fit-Camp</h2>
           <p>
@@ -40,6 +40,7 @@ function Services() {
           </p>
         </div>
       </div>
+      <h2>Hire Coaches</h2>
       <div className="item_3">
         <p>
           If you want someone to oversee your workout journey, then worry not!
@@ -47,7 +48,6 @@ function Services() {
           comfort of using this app. All you need to do is sign up right now and
           start working out with a professional.
         </p>
-        <h2>Hire Coaches</h2>
         <img
           className="images"
           src={image_2}
@@ -63,11 +63,6 @@ function Services() {
           <img src={facebook} alt="Dumbbell" />
           <img src={linkedin} alt="linkedin" />
           <img src={instagram} alt="instagram" />
-        </div>
-        <div className="concerns">
-          <p>info@yourdomain.com</p>
-          <p>Privacy Policy</p>
-          <p>Terms & Conditions</p>
         </div>
       </div>
     </div>

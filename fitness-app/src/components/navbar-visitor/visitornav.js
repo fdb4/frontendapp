@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { Nav, NavLink, NavMenu, Bars, LoginButton, Logo, LogoImage, HamburgerMenu } from "./NavbarElements";
-import { FaBars } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
 import logo from "../../roles/visitors/assets/logo.png";
 
 const VisitorNavbar = () => {

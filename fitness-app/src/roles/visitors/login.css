@@ -5,12 +5,33 @@
 }
 
 .login-modal {
+  /* ... your existing styles ... */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  width: 100%; 
+  max-width: 400px; 
+}
+
+.login-form label,
+.login-form input,
+.login-form button {
+  width: 100%; 
+}
+
+
+.login-modal {
 	background-color: rgba(255, 255, 255, 0.9);
 	padding: 20px;
 	border-radius: 5px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	position: relative;
 	z-index: 10;
+  height: 600px;
 }
 
 .login-modal p {
@@ -44,18 +65,9 @@
 	color: #666;
 }
 
-.login-form input {
-  padding: 10px 15px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  color: #333;
-}
 
 .login-form button {
   padding: 15px 20px;
-  background-color: rgb(167, 80, 62);
   color: white;
   font-weight: bold;
   border: none;
@@ -73,18 +85,11 @@
   text-decoration: underline;
 }
 
-.login-form label {
-  
-  display: block;
-  margin-bottom: 8px;
-  color: #666;
-}
 
 .login-form input {
-  width: calc(100% - 30px);
   padding: 10px 15px;
   margin-bottom: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   border-radius: 4px;
   font-size: 16px;
   color: #333;
@@ -95,7 +100,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Adjust this value as needed */
+    height: 100vh;
+    
   }
   
 .link {
