@@ -125,15 +125,21 @@ function ClientCoaches() {
         <button onClick={handleClear}>Clear</button>
       </div>
       {currentCoaches.map((coach) => (
-        <tr key={coach.clientID}>
+        <div key={coach.clientID}>
           <div className="profile">
-            <img className="img" src={Coach} alt="coach profile" />
-            {console.log(coach)}
+            <img
+              className="img"
+              src={Coach}
+              alt="coach profile"
+              style={{
+                borderRadius: "50%",
+                width: "10%",
+              }}
+            />
             <div className="left">
               <name>
                 {coach.firstname} {coach.lastname}
               </name>
-              <age>Age: </age>
               <price>Price: ${coach.price}</price>
               <gym>Gym: {coach.gym}</gym>
               <div className="specializations">
@@ -171,7 +177,7 @@ function ClientCoaches() {
               </Link>
             </div>
           </div>
-        </tr>
+        </div>
       ))}
       <div className="pagination">
         <button
