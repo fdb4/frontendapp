@@ -40,4 +40,7 @@
     margin: -5px 0;
   }
  
- 
+  .editing {
+    display: flex;
+    flex-direction: column;
+  }
