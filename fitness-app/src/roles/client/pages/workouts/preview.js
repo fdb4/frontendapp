@@ -146,6 +146,9 @@ function Preview() {
     }));
   };
 
+  const dateDisplay = (date) => {
+    return new Date(date).toLocaleString();
+  };
   return (
     <div className="body">
       <ClientNavbar />
@@ -184,6 +187,10 @@ function Preview() {
           >
             <p1>
               Workout Plan Name: {filteredLogs[workoutplanID][0].planName}
+            </p1>
+            <p1>
+              Log Time:{" "}
+              {dateDisplay(filteredLogs[workoutplanID][0].lastmodified)}
             </p1>
             <p1>{openDropdowns[workoutplanID] ? "▼ " : "► "}</p1>
           </h3>
