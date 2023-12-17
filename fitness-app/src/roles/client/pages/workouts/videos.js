@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styling/videos.css";
 import API_URL from "../../../../components/navbar-visitor/apiConfig";
 
-function Videos({ searchQuery, selectedEquipment, selectedMuscleGroup }) {
+function Videos({ filtered }) {
   const [workouts, setWorkouts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [goToPage, setGoToPage] = useState("");
@@ -29,21 +29,15 @@ function Videos({ searchQuery, selectedEquipment, selectedMuscleGroup }) {
     return <p>Loading workouts...</p>;
   }
 
-  if (!workouts || workouts.length === 0) {
+  if (!filtered || Object.keys(filtered).length === 0) {
     return <p>No workouts available.</p>;
   }
 
-  const filteredWorkouts = workouts.filter(
-    (workout) =>
-      workout.workoutname.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (!selectedEquipment ||
-        workout.equipment.toLowerCase() === selectedEquipment.toLowerCase()) &&
-      (!selectedMuscleGroup ||
-        workout.musclegroup.toLowerCase() === selectedMuscleGroup.toLowerCase())
-  );
+  const filteredWorkoutsArray = Object.values(filtered);
+  console.log(filtered);
 
-  const paginatedWorkouts = filteredWorkouts.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(filteredWorkouts.length / workoutsPerPage);
+  const paginatedWorkouts = filteredWorkoutsArray.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(filteredWorkoutsArray.length / workoutsPerPage);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -89,7 +83,7 @@ function Videos({ searchQuery, selectedEquipment, selectedMuscleGroup }) {
         <button onClick={handlePreviousPage}>&lt; Previous</button>
         <span>
           Page {currentPage} of {totalPages} | Total Workouts:{" "}
-          {filteredWorkouts.length}
+          {filteredWorkoutsArray.length}
         </span>
         <span>
           Go to Page:
