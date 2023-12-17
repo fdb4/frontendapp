@@ -5,6 +5,7 @@ import "./styling/myworkouts.css";
 import Cookies from "js-cookie";
 import API_URL from "../../../../components/navbar-visitor/apiConfig";
 import MessagePopup from "../../../../components/navbar-visitor/MessagePopup";
+import Modal from "react-modal";
 
 function Myworkouts() {
   const clientID = Cookies.get("id");
@@ -12,6 +13,8 @@ function Myworkouts() {
   const [limitReachedMessage, setLimitReachedMessage] = useState("");
   const [showLogSuccess, setShowLogSuccess] = useState(false);
   const [showLogError, setShowLogError] = useState(false);
+  const [showCreateSuccess, setShowCreateSuccess] = useState(false);
+  const [showCreateError, setShowCreateError] = useState(false);
   const [error, setError] = useState("");
   const [workouts, setWorkouts] = useState([]);
   const [groupedExercises, setGroupedExercises] = useState({});
@@ -23,6 +26,7 @@ function Myworkouts() {
     clientID: clientID,
     exercises: [],
   });
+
   const [allExercises, setAllExercises] = useState([]);
 
   const [logModalVisible, setLogModalVisible] = useState(false);
@@ -114,9 +118,10 @@ function Myworkouts() {
         console.log("Workout Plan submitted:", workoutPlan);
         // Optionally, reset the form or navigate away
         setShowWorkoutForm(false);
-        window.location.reload();
+        setShowCreateSuccess(true);
       } else {
         // Handle server error
+        setShowCreateError(true);
         console.error("Failed to submit workout plan:", response.statusText);
       }
     } catch (error) {
@@ -282,7 +287,7 @@ function Myworkouts() {
     console.log(workoutPlan);
     try {
       const response = await fetch(
-        `${API_URL}/edit/workoutplan/${workoutplanID}`,
+        `${API_URL}/edit/workoutplan/${clientID}/${workoutplanID}`,
         {
           method: "PUT",
           headers: {
@@ -316,10 +321,11 @@ function Myworkouts() {
     <div className="body_2">
       <ClientNavbar />
       <div className="individual">
-        <div className="rightside">
+        <div className="workouts_info">
           <div className="headers">
-            <button onClick={handleGoBack}>Back</button>
-            <h1 className="title">My Workout</h1>
+            <button style={{ marginRight: "10px" }} onClick={handleGoBack}>
+              Back
+            </button>
             {!editMode && (
               <button className="create" onClick={handleCreateWorkout}>
                 Create Workout
@@ -327,7 +333,26 @@ function Myworkouts() {
             )}
           </div>
           <div className="formstyling">
-            {showWorkoutForm && (
+            <Modal
+              isOpen={showWorkoutForm}
+              onRequestClose={handleCancelCreateWorkout}
+              contentLabel="Create Workout Modal"
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 1000,
+                },
+                content: {
+                  top: 150,
+                  left: 250,
+                  right: 250,
+                  bottom: 150,
+                  backgroundColor: "white",
+                  padding: "20px",
+                  overflow: "auto", // Enable scrolling
+                },
+              }}
+            >
               <form onSubmit={handleSubmit}>
                 <label>Sessions Name:</label>
                 <input
@@ -395,12 +420,18 @@ function Myworkouts() {
                   </button>
                 </div>
               </form>
+            </Modal>
+            {showCreateSuccess && (
+              <MessagePopup message={`Workout Plan Created Successfully!`} />
+            )}
+            {showCreateError && (
+              <MessagePopup
+                message={`Workout Plan was not created! Try Again`}
+              />
             )}
           </div>
-        </div>
 
-        <div className="workouts_info">
-          <h2>Sessions</h2>
+          <h2>Your Workout Plans</h2>
           {Object.keys(groupedExercises).map((workoutName) => (
             <div key={workoutName} className="workout-session">
               <div
@@ -433,7 +464,6 @@ function Myworkouts() {
                     </div>
                   ) : (
                     <div>
-                      <button onClick={() => handleEditClose()}>Close</button>
                       {workoutPlan.exercises.map((exercise, index) => (
                         <div key={index} className="exercise-form">
                           <label style={styles.labelStyle}>
@@ -485,12 +515,22 @@ function Myworkouts() {
                           </button>
                         </div>
                       ))}
-                      <button type="button" onClick={handleAddExercise}>
+                      <button
+                        style={{ marginBottom: "10px" }}
+                        type="button"
+                        onClick={handleAddExercise}
+                      >
                         Add Exercise
                       </button>
                       {limitReachedMessage && <p>{limitReachedMessage}</p>}
                       {error && <p>{error}</p>}
                       <div>
+                        <button
+                          style={{ marginRight: "10px" }}
+                          onClick={() => handleEditClose()}
+                        >
+                          Close
+                        </button>
                         <button
                           onClick={() => handleSubmitEdits(workoutName)}
                           style={styles.buttonStyle}
