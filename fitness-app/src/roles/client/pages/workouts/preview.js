@@ -20,10 +20,16 @@ function Preview() {
       .then(response => response.json())
       .then(data => {
         // Check if data is an object, and convert it to an array if needed
-        const logsArray = Array.isArray(data) ? data : Object.values(data);
+        let logsArray = [];
+        if (Array.isArray(data)) {
+          logsArray = data;
+        } 
+        else if (typeof data === 'object' && data !== null) {
+          logsArray = Object.values(data).flat();
+        }
   
         // Group workout logs by workoutplanID
-        const groupedWorkoutLogs = groupByWorkoutPlanID(logsArray);
+        const groupedWorkoutLogs = groupByPlanName(logsArray);
         setWorkoutLogs(groupedWorkoutLogs);
       })
       .catch(error => console.error('Error fetching workout logs:', error));
@@ -45,6 +51,27 @@ function Preview() {
 
     return groupedLogs;
   };
+
+  const groupByPlanName = logs => {
+  if (!Array.isArray(logs)) {
+    console.error('Invalid logs format:', logs); // Error log for invalid format
+    return {};
+  }
+
+  const groupedLogs = {};
+
+  logs.forEach(log => {
+    const groupName = log.planName || 'Unnamed Plan';
+
+    if (!groupedLogs[groupName]) {
+      groupedLogs[groupName] = [];
+    }
+
+    groupedLogs[groupName].push(log);
+  });
+
+  return groupedLogs;
+};
 
   // Function to sort logs based on sortOrder
 // Function to sort logs based on sortOrder
@@ -111,7 +138,7 @@ function Preview() {
   };
 
   // Apply sorting and filtering based on user selections
-  const filteredLogs = filterLogsByTime(sortLogs(workoutLogs, sortOrder), timeFilter);
+  const filteredLogs = filterLogsByTime(sortLogs(groupByPlanName(workoutLogs), sortOrder), timeFilter);
 
   return (
     <div className="body">
@@ -143,11 +170,11 @@ function Preview() {
       </div>
 
       {/* Display filtered workout logs */}
-      {Object.keys(filteredLogs).map(workoutplanID => (
-        <div key={workoutplanID} className="workout-plan-container">
-          <h3 className="workout-plan-header">Workout Plan ID: {workoutplanID}</h3>
+      {Object.keys(filteredLogs).map(planName => (
+        <div key={planName} className="workout-plan-container">
+          <h3 className="workout-plan-header">Workout Plan: {planName}</h3>
           <ul className="workout-log-list">
-            {filteredLogs[workoutplanID].map(log => (
+            {filteredLogs[planName].map(log => (
               <li key={log.workoutID} className="workout-log-item">
                 <p>Workout ID: {log.workoutID}</p>
                 <p>Sets: {log.sets}</p>

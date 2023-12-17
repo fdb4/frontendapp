@@ -5,6 +5,7 @@ import "../styling/createclientworkout.css";
 import Cookies from "js-cookie";
 import axios from "axios";
 import API_URL from "../../../components/navbar-visitor/apiConfig";
+import MessagePopup from "../../../components/navbar-visitor/MessagePopup";
 
 function ClientWorkouts() {
   const { id: clientId } = useParams();
@@ -24,6 +25,8 @@ function ClientWorkouts() {
   const [clientWorkoutSessions, setClientWorkoutSessions] = useState([]);
   const [groupedExercises, setGroupedExercises] = useState({});
   const [expandedWorkout, setExpandedWorkout] = useState(null);
+  const [showCreateSuccess, setShowCreateSuccess] = useState(false);
+  const [showCreateError, setShowCreateError] = useState(false);
 
   useEffect(() => {
     const fetchExercises = async () => {
@@ -158,17 +161,19 @@ function ClientWorkouts() {
       });
 
       if (response.ok) {
-        // Workout plan submitted successfully
         console.log("Workout Plan submitted:", workoutPlan);
-        // Optionally, reset the form or navigate away
         setShowWorkoutForm(false);
+        setShowCreateSuccess(true); // Set success message state
+        setShowCreateError(false);
       } else {
-        // Handle server error
         console.error("Failed to submit workout plan:", response.statusText);
+        setShowCreateError(true); // Set error message state
+        setShowCreateSuccess(false);
       }
     } catch (error) {
-      // Handle network error
       console.error("Network error:", error.message);
+      setShowCreateError(true); // Set error message state
+      setShowCreateSuccess(false);
     }
   };
 
@@ -259,6 +264,16 @@ function ClientWorkouts() {
                 </div>
               </form>
             )}
+            {showCreateSuccess && (
+            <MessagePopup
+              message={`Workout Plan Created Successfully!`}
+            />
+          )}
+          {showCreateError && (
+            <MessagePopup
+              message={`Workout Plan Creation Failed! Try Again`}
+            />
+          )}
           </div>
         </div>
         <div className="workouts-info">
