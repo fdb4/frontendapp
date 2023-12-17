@@ -1,110 +1,139 @@
-.body_1 {
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  background-color: black;
-  padding: 20px;
+Styling for the search input and buttons
+input[type="text"], option, select {
+  color: #000;
+  font-size: 16px;
 }
-
-h1 {
-  text-align: center;
-  color: #007bff;
-}
-
-.search-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.search-container input[type="text"],
-.search-container select {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  width: 100%;
-  max-width: 300px;
-}
-
-.search-container button {
-  padding: 10px 15px;
-  border-radius: 5px;
+button {
   background-color: #007bff;
-  color: white;
+  color: #fff;
   border: none;
   cursor: pointer;
-  width: 100%;
-  max-width: 150px;
 }
 
-.search-container button:hover {
+button:hover {
   background-color: #0056b3;
 }
 
-.coach-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center; /* Center the items */
-}
 
+/* Styling for the "Results per Page" dropdown */
+label select {
+  margin-left: 10px;
+}
 .profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: white;
+  margin: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  background: #d9d9d9;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+#view, .view {
+  display: inline-flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #3503fc;
+  color: #fff;
+  text-decoration: none;
   text-align: center;
-  width: 100%;
-  max-width: 600px; /* Adjust this value as needed */
-  margin: 0 auto; /* Center the profiles */
+  margin-top: 10px;
 }
 
-.profile img.img {
-  max-width: 100px;
-  border-radius: 50%;
-  margin-bottom: 15px;
+#view:hover, .view:hover {
+  background-color: #2802c7;
 }
 
-.profile .left,
-.profile .middle,
-.profile .right {
-  margin-bottom: 15px;
-  text-align: left;
-  width: 100%;
+.left {
+  margin-top: 44px;
+}
+name {
+  font-size: 40px;
+  color:#000;
+
+}
+name, age, price, gym{ 
+  padding-left:30px;
+}
+age {
+  padding-top: 13px;
+}
+
+age, experience, ratings, price , gym, .specializations{
+  color: #000;
+  font-family: Saira Condensed;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 32px */
+  display: block;
+}
+price, gym {
+  padding-top: 18px;
+}
+gym {
+  padding-bottom:18px;
+}
+
+.middle{
+  margin-top: 44px;
+}
+
+town, email {
+  margin:5px 0;
+}
+email {
+  padding-top:5px;
+}
+location, town, state, contact, email {
+  color:#000;
+}
+.specializations .listing li {
+  color: black;
+}
+
+.right{
+  margin-top: 44px;
+  margin-left:36px;
+}
+.contact {
+  display:flex;
+  flex-direction:column;  
+  font-size:20px;
 }
 
 .pagination {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
   margin-top: 20px;
 }
 
-.pagination button {
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  background-color: #f8f9fa;
-  cursor: pointer;
+/* Individual element styling */
+.name,
+.age,
+price,
+gym,
+town,
+state,
+email,
+experience,
+ratings,
+bio {
+  color: #000;
+  font-family: "Saira Condensed", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+  padding-top: 10px;
 }
 
-.pagination button:hover {
-  background-color: #e2e6ea;
+input {
+  color:black;
+  margin:5px;
 }
-
-.pagination span {
-  margin: 0 10px;
-}
-
-.pagination input[type="number"] {
-  width: 50px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  text-align: center;
+state {
+  display: block;
 }
