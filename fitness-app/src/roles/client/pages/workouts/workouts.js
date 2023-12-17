@@ -31,15 +31,21 @@ function Workouts() {
     let url = `${API_URL}/workouts`;
 
     if (searchQuery) {
-      url += `/search/${searchQuery}`;
+      url += `/filter/name/${searchQuery}`;
+      setSelectedEquipment("");
+      setSelectedMuscleGroup("");
     }
 
     if (selectedEquipment) {
       url += `/filter/equipment/${selectedEquipment}`;
+      setSearchQuery("");
+      setSelectedMuscleGroup("");
     }
 
     if (selectedMuscleGroup) {
       url += `/filter/musclegroup/${selectedMuscleGroup}`;
+      setSelectedEquipment("");
+      setSearchQuery("");
     }
 
     fetch(url)
@@ -47,6 +53,7 @@ function Workouts() {
       .then((data) => {
         console.log("Fetched video data:", data);
         setFilteredVideos(data);
+        console.log(data);
       })
       .catch((error) => console.error("Error fetching videos:", error));
   }, [searchQuery, selectedEquipment, selectedMuscleGroup]);
@@ -72,15 +79,13 @@ function Workouts() {
       <header className="heading">
         <div className="header_2">
           <div className="title">
-            <h1>WORKOUTS</h1>
-            <h2>CARDIO</h2>
+            <h1 style={{ marginBottom: "30px" }}>WORKOUTS</h1>
+            <p>
+              Welcome to the workouts page, check out the workout bank and then
+              create your own personalized workout to log against!
+            </p>
           </div>
 
-          <p>
-            Make the most of your workouts. Try some cardio and burn some fat.
-            Or if you want you can check out some of the more popular options.
-            Try anything but be consistent!
-          </p>
           <Link to="/my-workouts">
             <button className="green">My Workout</button>
           </Link>
@@ -92,7 +97,7 @@ function Workouts() {
       </header>
       <main>
         <div className="nav_2">
-          <h2>Popular Exercise</h2>
+          <h2>Our Exercises:</h2>
           <div className="search-container">
             <input
               className="searchbox"
@@ -138,11 +143,7 @@ function Workouts() {
             </select>
           </div>
         </div>
-        <Videos
-          searchQuery={searchQuery}
-          selectedEquipment={selectedEquipment}
-          selectedMuscleGroup={selectedMuscleGroup}
-        />
+        <Videos filtered={filteredVideos} />
       </main>
     </div>
   );
