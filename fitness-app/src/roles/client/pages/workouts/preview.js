@@ -9,8 +9,9 @@ import './styling/preview.css'; // Import the external stylesheet
 
 function Preview() {
   const [workoutLogs, setWorkoutLogs] = useState([]);
-  const [sortOrder, setSortOrder] = useState('asc'); // 'asc' or 'desc'
-  const [timeFilter, setTimeFilter] = useState('all'); // 'all', 'today', 'yesterday', 'last7', 'last14', 'last30'
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [timeFilter, setTimeFilter] = useState('all');
+  const [openDropdowns, setOpenDropdowns] = useState({}); // State to track open/closed status of dropdowns
   const clientId = Cookies.get('id');
   const navigate = useNavigate();
 
@@ -114,6 +115,13 @@ function Preview() {
   // Apply sorting and filtering based on user selections
   const filteredLogs = filterLogsByTime(sortLogs(workoutLogs, sortOrder), timeFilter);
 
+  const toggleDropdown = workoutplanID => {
+    setOpenDropdowns(prevState => ({
+      ...prevState,
+      [workoutplanID]: !prevState[workoutplanID],
+    }));
+  };
+
   return (
     <div className="body">
       <ClientNavbar />
@@ -146,16 +154,21 @@ function Preview() {
       {/* Display filtered workout logs */}
       {Object.keys(filteredLogs).map(workoutplanID => (
         <div key={workoutplanID} className="workout-plan-container">
-          <h3 className="workout-plan-header">Workout Plan ID: {workoutplanID}</h3>
-          <ul className="workout-log-list">
-            {filteredLogs[workoutplanID].map(log => (
-              <li key={log.workoutID} className="workout-log-item">
-                <p>Workout ID: {log.workoutID}</p>
-                <p>Sets: {log.sets}</p>
-                <p>Reps: {log.reps}</p>
-              </li>
-            ))}
-          </ul>
+          <h3 className="workout-plan-header" onClick={() => toggleDropdown(workoutplanID)}>
+            Workout Plan ID: {workoutplanID.planName}
+            {openDropdowns[workoutplanID] ? '▼ ' : '► '}
+          </h3>
+          {openDropdowns[workoutplanID] && (
+            <ul className="workout-log-list">
+              {filteredLogs[workoutplanID].map(log => (
+                <li key={log.workoutID} className="workout-log-item">
+                  <p>Workout ID: {log.workoutID}</p>
+                  <p>Sets: {log.sets}</p>
+                  <p>Reps: {log.reps}</p>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       ))}
     </div>
