@@ -59,7 +59,10 @@ function Settings() {
 
   const handleEdit = () => {
     setEditMode(true);
-    setEditedInfo({ ...clientInfo[0] });
+    setEditedInfo({
+      ...clientInfo[0],
+      movement_type: clientInfo[0].movement || ""
+    });
   };
 
   const handleCancel = () => {
@@ -68,6 +71,7 @@ function Settings() {
   };
 
   const handleSave = () => {
+    console.log('Sending data:', editedInfo);
     fetch(`${API_URL}/client/edit/${clientId}`, {
       method: "PUT",
       headers: {
@@ -97,10 +101,11 @@ function Settings() {
   };
 
   const handleChange = (e) => {
-    setEditedInfo({
-      ...editedInfo,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setEditedInfo(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleDelete = () => {
@@ -186,7 +191,8 @@ function Settings() {
               }`}
             </p>
             {editMode ? (
-              <>
+              <div className="editing-form">
+              <div className="form-group">
                 <label>
                   First Name:
                   <input
@@ -196,6 +202,8 @@ function Settings() {
                     onChange={handleChange}
                   />
                 </label>
+              </div>
+              <div className="form-group">
                 <label>
                   Last Name:
                   <input
@@ -205,6 +213,8 @@ function Settings() {
                     onChange={handleChange}
                   />
                 </label>
+              </div>
+              <div className="form-group">
                 <label>
                   Email:
                   <input
@@ -214,6 +224,8 @@ function Settings() {
                     onChange={handleChange}
                   />
                 </label>
+              </div>
+              <div className="form-group">
                 <label>
                   Height:
                   <input
@@ -223,6 +235,8 @@ function Settings() {
                     onChange={handleChange}
                   />
                 </label>
+              </div>
+              <div className="form-group">
                 <label>
                   Weight:
                   <input
@@ -232,6 +246,8 @@ function Settings() {
                     onChange={handleChange}
                   />
                 </label>
+              </div>
+              <div className="form-group">
                 <label>
                   Goal Weight:
                   <input
@@ -241,15 +257,23 @@ function Settings() {
                     onChange={handleChange}
                   />
                 </label>
+              </div>
+              <div className="form-group">
                 <label>
                   Movement:
-                  <input
-                    type="text"
-                    name="movement"
-                    value={editedInfo.movement || ""}
+                  <select 
+                    name="movement_type" 
+                    value={editedInfo.movement_type || ""} 
                     onChange={handleChange}
-                  />
+                  >
+                    <option value="sedentary">Sedentary</option>
+                    <option value="lightly">Lightly Active</option>
+                    <option value="moderate">Moderately Active</option>
+                    <option value="very">Very Active</option>
+                  </select>
                 </label>
+              </div>
+              <div className="form-group">
                 <label>
                   Age:
                   <input
@@ -259,6 +283,8 @@ function Settings() {
                     onChange={handleChange}
                   />
                 </label>
+              </div>
+              <div className="form-group">
                 <label>
                   Gender:
                   <select
@@ -270,7 +296,8 @@ function Settings() {
                     <option value="1">Female</option>
                   </select>
                 </label>
-              </>
+              </div>
+              </div>
             ) : (
               <>
                 <p className="paragraph_1">Height: {heightConvert(clientInfo[0].height)}</p>
@@ -288,16 +315,20 @@ function Settings() {
               </>
             )}
             {editMode ? (
-              <>
-                <button onClick={handleSave}>Save</button>
-                <button onClick={handleCancel}>Cancel</button>
-              </>
+              <div className="editing-buttons">
+                <button className="save-button" onClick={handleSave}>Save</button>
+                <button className="cancel-button" onClick={handleCancel}>Cancel</button>
+              </div>
             ) : (
               <>
-                <button onClick={handleEdit}>Edit</button>
-                <button className="delete" onClick={handleDelete}>
-                  Delete
-                </button>
+                <div className="button-container">
+                  <div className="edit-button">
+                    <button className="edit" onClick={handleEdit}>Edit</button>
+                  </div>
+                  <div className="delete-button">
+                    <button className="delete" onClick={handleDelete}>Delete</button>
+                  </div>
+                </div>
               </>
             )}
           </div>
