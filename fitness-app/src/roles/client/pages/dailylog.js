@@ -6,10 +6,13 @@ import Cookies from "js-cookie";
 import "../styling/dailylog.css";
 import ClientNavbar from "../../../components/navbar-visitor/clientnav.js";
 import API_URL from "../../../components/navbar-visitor/apiConfig.js";
+import MessagePopup from "../../../components/navbar-visitor/MessagePopup.js";
 
 const DailyLog = () => {
   const smiles = ["😟", "😕", "😐", "🙂", "😀"];
   const id = Cookies.get("id");
+  const [showLogSuccess, setShowLogSuccess] = useState(false);
+  const [showLogError, setShowLogError] = useState(false);
   const weekDates = () => {
     const today = new Date();
     const firstDay = today.getDate() - today.getDay() + 1;
@@ -119,7 +122,7 @@ const DailyLog = () => {
       const comm = await axios.post(`${API_URL}/dailyLog`, sendData);
       console.log("Registering with data:", sendData);
       console.log("Response:", comm.data);
-      window.location.reload();
+      setShowLogSuccess(true);
     } catch (error) {
       if (error.response) {
         console.error("Error response:", error.response.data);
@@ -128,6 +131,7 @@ const DailyLog = () => {
       } else {
         console.error("Error", error.message);
       }
+      setShowLogError(true);
     }
   };
 
@@ -240,6 +244,12 @@ const DailyLog = () => {
                 Submit
               </button>
             </form>
+            {showLogSuccess && (
+              <MessagePopup message={`Daily Log Successful!`} />
+            )}
+            {showLogError && (
+              <MessagePopup message={`Daily Log Failed! Try Again`} />
+            )}
           </div>
         </div>
         <div className="graph-section">
