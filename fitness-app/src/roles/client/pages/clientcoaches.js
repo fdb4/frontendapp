@@ -125,6 +125,12 @@ function ClientCoaches() {
         <button onClick={handleClear}>Clear</button>
       </div>
       {currentCoaches.map((coach) => (
+<<<<<<< HEAD
+        <tr key={coach.clientID}>
+          <div key={coach.clientID} className="profile">
+            <img className="img" src={Coach} alt="coach profile" />
+            {console.log(coach)}
+=======
         <div key={coach.clientID}>
           <div className="profile">
             <img
@@ -136,6 +142,7 @@ function ClientCoaches() {
                 width: "10%",
               }}
             />
+>>>>>>> 2de90d74b1c48b21d4a2c680c7e1f78170a598fa
             <div className="left">
               <name>
                 {coach.firstname} {coach.lastname}
