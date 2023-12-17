@@ -36,7 +36,6 @@
 }
 
 .information {
-  border: 1px solid #a16551;
   border-radius: 50px;
   display: flex;
   flex-direction: row;
@@ -51,7 +50,6 @@
 }
 
 .information p {
-
   color: white;
   margin-left: 50px;
   margin-bottom: 80px;

@@ -2,44 +2,42 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: white;
+
 }
 
 .invert-logo {
   filter: invert(1);
-  height: 80px;
 }
-
 .image {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
+  margin-top: 0; 
   background-image: url("../assets/home.jpg");
-  background-size: cover;
+  background-size: cover; 
   background-position: center;
+  background-repeat: no-repeat;
   font-family: "Crimson Text", serif;
   padding: 20px;
-  text-align: center;
+  max-width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: right;
+  align-items: right;
   margin-top: 10px;
   width: 100%;
-  text-align: center;
+
 }
 
 .header h1 {
-
   color: white;
   font-size: 56px;
 }
 
 .champion {
-  color: #a16551;
+  color: #b9a198;
 }
 
 .features {
@@ -53,10 +51,6 @@
   padding: 40px 10px;
   font-family: saira;
   border-radius: 50px;
-}
-
-.items {
-  color: black;
 }
 
 .items img {
@@ -92,20 +86,13 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .footer h2 {
   margin: 0;
 }
 
-.concerns {
-  background-color: black;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  text-align: left;
-}
 
 .concerns p {
   margin: 5px 0;
@@ -130,14 +117,14 @@
   flex-direction: column;
   align-items: flex-end;
   margin-right: 120px;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 
 .reg-button-contain {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: right;  
+  justify-self: right;
 }
 
 .reg-button-contain h3 {
@@ -149,12 +136,14 @@
 .reg-button-contain button {
   font-size: 24px;
   padding: 20px 60px;
-  background-color: #a16551;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  max-width: 50%;
+  margin: auto;
 }
 
 .reg-button-contain button:hover {
