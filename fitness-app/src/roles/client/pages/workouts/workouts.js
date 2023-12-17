@@ -31,15 +31,21 @@ function Workouts() {
     let url = `${API_URL}/workouts`;
 
     if (searchQuery) {
-      url += `/search/${searchQuery}`;
+      url += `/filter/name/${searchQuery}`;
+      setSelectedEquipment("");
+      setSelectedMuscleGroup("");
     }
 
     if (selectedEquipment) {
       url += `/filter/equipment/${selectedEquipment}`;
+      setSearchQuery("");
+      setSelectedMuscleGroup("");
     }
 
     if (selectedMuscleGroup) {
       url += `/filter/musclegroup/${selectedMuscleGroup}`;
+      setSelectedEquipment("");
+      setSearchQuery("");
     }
 
     fetch(url)
@@ -47,6 +53,7 @@ function Workouts() {
       .then((data) => {
         console.log("Fetched video data:", data);
         setFilteredVideos(data);
+        console.log(data);
       })
       .catch((error) => console.error("Error fetching videos:", error));
   }, [searchQuery, selectedEquipment, selectedMuscleGroup]);
@@ -138,11 +145,7 @@ function Workouts() {
             </select>
           </div>
         </div>
-        <Videos
-          searchQuery={searchQuery}
-          selectedEquipment={selectedEquipment}
-          selectedMuscleGroup={selectedMuscleGroup}
-        />
+        <Videos filtered={filteredVideos} />
       </main>
     </div>
   );
