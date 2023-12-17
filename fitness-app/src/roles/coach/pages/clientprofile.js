@@ -192,18 +192,16 @@ const ClientProfile = () => {
     };
 
     const fetchWorkoutLogs = async () => {
-
       try {
-
-        const response = await fetch(`${API_URL}/workoutlogs/client/${currentClientID}`);
+        const response = await fetch(
+          `${API_URL}/workoutlogs/client/${currentClientID}`
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
         setWorkoutLogs(data);
-      }
-      catch(error) {
-
+      } catch (error) {
         console.error("Error fetching workout logs:", error);
       }
     };
@@ -614,7 +612,7 @@ const ClientProfile = () => {
 
   const groupLogsByWorkoutPlanName = () => {
     return workoutLogs.reduce((acc, log) => {
-      const groupName = log.planName || 'Unamed Plan';
+      const groupName = log.planName || "Unamed Plan";
       acc[groupName] = acc[groupName] || [];
       acc[groupName].push(log);
       return acc;
@@ -830,7 +828,10 @@ const ClientProfile = () => {
                           <p>Workout ID: {getWorkoutNameById(log.workoutID)}</p>
                           <p>Sets: {log.sets}</p>
                           <p>Reps: {log.reps}</p>
-                          <p>Last Modified: {new Date(log.lastmodified).toLocaleString()}</p>
+                          <p>
+                            Last Modified:{" "}
+                            {new Date(log.lastmodified).toLocaleString()}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -863,6 +864,7 @@ const ClientProfile = () => {
                     id="message"
                     value={messageContent}
                     onChange={(e) => setMessageContent(e.target.value)}
+                    style={{ color: "black" }}
                   ></textarea>
                   <button type="button" onClick={sendMessage}>
                     Send Message

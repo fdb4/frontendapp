@@ -20,7 +20,6 @@ import Preview from "./roles/client/pages/workouts/preview.js";
 import ClientCoaches from "./roles/client/pages/clientcoaches.js";
 import CoachProfile from "./roles/client/pages/coachprofile.js";
 import MyProfile from "./roles/client/pages/profile/myprofile.js";
-import Inbox from "./roles/client/pages/profile/inbox.js";
 import Messages from "./roles/client/pages/profile/messages.js";
 import Settings from "./roles/client/pages/profile/settings.js";
 
@@ -147,14 +146,6 @@ function App() {
             element={
               <RequireAuth allowedRoles={["Client", "Coach", "Admin"]}>
                 <MyProfile />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/inbox"
-            element={
-              <RequireAuth allowedRoles={["Client", "Coach", "Admin"]}>
-                <Inbox />
               </RequireAuth>
             }
           />

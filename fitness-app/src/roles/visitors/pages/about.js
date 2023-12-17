@@ -1,13 +1,13 @@
 import React from "react";
 import "../styling/about.css";
-import facebook from "../assets/facebook.png"
-import linkedin  from "../assets/linkedin.png";
-import instagram from "../assets/instagram.png"
+import facebook from "../assets/facebook.png";
+import linkedin from "../assets/linkedin.png";
+import instagram from "../assets/instagram.png";
 import VisitorNavbar from "../../../components/navbar-visitor/visitornav";
 
 function About() {
   return (
-    <div className="body">
+    <div className="body_1">
       <VisitorNavbar />
       <div className="header-container">
         <h1>Meet Our Team!</h1>
@@ -51,11 +51,6 @@ function About() {
           <img src={facebook} alt="Dumbbell" />
           <img src={linkedin} alt="linkedin" />
           <img src={instagram} alt="instagram" />
-        </div>
-        <div className="concerns">
-          <p>info@yourdomain.com</p>
-          <p>Privacy Policy</p>
-          <p>Terms & Conditions</p>
         </div>
       </div>
     </div>

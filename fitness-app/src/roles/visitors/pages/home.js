@@ -13,7 +13,7 @@ function Home() {
     <div className="image">
       <VisitorNavbar />
       <div className="header">
-        <h1>
+        <h1 style={{ color: "white" }}>
           WORKOUT LIKE <br />A <span className="champion">CHAMPION</span>
         </h1>
       </div>
@@ -50,7 +50,7 @@ function Home() {
           </button>
         </div>
       </div>
-        <div className="footer">
+      <div className="footer">
         <h2>
           READY FOR YOUR <br></br>
           <span className="champion">FIRST</span> LESSON?
@@ -59,11 +59,6 @@ function Home() {
           <img src={facebook} alt="Dumbbell" />
           <img src={linkedin} alt="linkedin" />
           <img src={instagram} alt="instagram" />
-        </div>
-        <div className="concerns">
-          <p>info@yourdomain.com</p>
-          <p>Privacy Policy</p>
-          <p>Terms & Conditions</p>
         </div>
       </div>
     </div>

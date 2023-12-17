@@ -9,8 +9,8 @@ import VisitorNavbar from "../../../components/navbar-visitor/visitornav";
 
 function Services() {
   return (
-    <div className="body">
-     <VisitorNavbar />
+    <div className="body_1">
+      <VisitorNavbar />
       <div className="title-container">
         <h1 className="title">SERVICES</h1>
       </div>
@@ -63,11 +63,6 @@ function Services() {
           <img src={facebook} alt="Dumbbell" />
           <img src={linkedin} alt="linkedin" />
           <img src={instagram} alt="instagram" />
-        </div>
-        <div className="concerns">
-          <p>info@yourdomain.com</p>
-          <p>Privacy Policy</p>
-          <p>Terms & Conditions</p>
         </div>
       </div>
     </div>
