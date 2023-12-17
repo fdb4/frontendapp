@@ -36,6 +36,27 @@ function Settings() {
     return binaryGender === 0 ? "Male" : "Female";
   };
 
+  const heightConvert = (inches) => {
+    const feet = Math.floor(inches / 12);
+    const remainingInches = inches % 12;
+    return `${feet}' ${remainingInches}"`;
+  };
+
+  function getMovement(movement) {
+    switch (movement) {
+      case "sedentary":
+        return "Sedentary";
+      case "lightly":
+        return "Lightly Active";
+      case "moderate":
+        return "Moderately Active";
+      case "very":
+        return "Very Active";
+      default:
+        return movement || "N/A";
+    }
+  }
+
   const handleEdit = () => {
     setEditMode(true);
     setEditedInfo({ ...clientInfo[0] });
@@ -162,7 +183,7 @@ function Settings() {
               Name:{" "}
               {`${clientInfo[0]?.firstname || "N/A"} ${
                 clientInfo[0]?.lastname || "N/A"
-              }'s`}
+              }`}
             </p>
             {editMode ? (
               <>
@@ -252,13 +273,13 @@ function Settings() {
               </>
             ) : (
               <>
-                <p className="paragraph_1">Height: {clientInfo[0].height}</p>
+                <p className="paragraph_1">Height: {heightConvert(clientInfo[0].height)}</p>
                 <p className="paragraph_1">Weight: {clientInfo[0].weight}</p>
                 <p className="paragraph_1">
                   Goal Weight: {clientInfo[0].goalweight}
                 </p>
                 <p className="paragraph_1">
-                  Movement: {clientInfo[0].movement}
+                  Movement: {getMovement(clientInfo[0].movement)}
                 </p>
                 <p className="paragraph_1">Age: {clientInfo[0].age}</p>
                 <p className="paragraph_1">
