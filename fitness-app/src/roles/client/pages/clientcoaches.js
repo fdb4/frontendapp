@@ -124,68 +124,41 @@ function ClientCoaches() {
         <button onClick={handleFilter}>Filter</button>
         <button onClick={handleClear}>Clear</button>
       </div>
-      {currentCoaches.map((coach) => (
-<<<<<<< HEAD
-        <tr key={coach.clientID}>
+      <div className="coach-list">
+        {currentCoaches.map((coach) => (
           <div key={coach.clientID} className="profile">
-            <img className="img" src={Coach} alt="coach profile" />
-            {console.log(coach)}
-=======
-        <div key={coach.clientID}>
-          <div className="profile">
-            <img
-              className="img"
-              src={Coach}
-              alt="coach profile"
-              style={{
-                borderRadius: "50%",
-                width: "10%",
-              }}
-            />
->>>>>>> 2de90d74b1c48b21d4a2c680c7e1f78170a598fa
+          <img className="img" src={Coach} alt="coach profile" />
             <div className="left">
-              <name>
-                {coach.firstname} {coach.lastname}
-              </name>
-              <price>Price: ${coach.price}</price>
-              <gym>Gym: {coach.gym}</gym>
+              <p>{coach.firstname} {coach.lastname}</p>
+              <p>Price: ${coach.price}</p>
+              <p>Gym: {coach.gym}</p>
               <div className="specializations">
                 Specializations
-                <ul className="listing">
-                  {Array.isArray(coach.specializations) ? (
-                    coach.specializations.map((specialization, index) => (
+                {coach.specializations && (
+                  <ul className="listing">
+                    {coach.specializations.map((specialization, index) => (
                       <li key={index}>{specialization}</li>
-                    ))
-                  ) : (
-                    <li>{coach.specializations}</li>
-                  )}
-                </ul>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
-
             <div className="middle">
-              <div className="location">
-                <town>Town: {coach.town} </town>
-                <state>State: {coach.state}</state>
-              </div>
-              <div className="middle_2">
-                <experience>Experience: {coach.experience}</experience>
-                <ratings>Ratings: {coach.rating}</ratings>
-              </div>
+              <p>Town: {coach.town}</p>
+              <p>State: {coach.state}</p>
+              <p>Experience: {coach.experience}</p>
+              <p>Ratings: {coach.rating}</p>
             </div>
-
             <div className="right">
-              <div className="contact">
-                <contact>CONTACT</contact>
-                <email>Email: {coach.email}</email>
-              </div>
+              <p>CONTACT</p>
+              <p>Email: {coach.email}</p>
               <Link to={`/coaches/${coach.clientID}`} className="view">
                 VIEW PROFILE
               </Link>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       <div className="pagination">
         <button
           onClick={() => paginate(currentPage - 1)}
