@@ -582,7 +582,7 @@ const ClientProfile = () => {
     console.log(workoutPlan);
     try {
       const response = await fetch(
-        `${API_URL}/edit/workoutplan/${workoutplanID}`,
+        `${API_URL}/workoutplan/update/${workoutplanID}`,
         {
           method: "PUT",
           headers: {
@@ -612,15 +612,16 @@ const ClientProfile = () => {
     }
   };
 
-  const groupLogsByWorkoutPlanID = () => {
+  const groupLogsByWorkoutPlanName = () => {
     return workoutLogs.reduce((acc, log) => {
-      acc[log.workoutplanID] = acc[log.workoutplanID] || [];
-      acc[log.workoutplanID].push(log);
+      const groupName = log.planName || 'Unamed Plan';
+      acc[groupName] = acc[groupName] || [];
+      acc[groupName].push(log);
       return acc;
     }, {});
   };
 
-  const groupedLogs = groupLogsByWorkoutPlanID();
+  const groupedLogs = groupLogsByWorkoutPlanName();
 
   const handleExpandPlan = (workoutPlanID) => {
     setExpandedPlan(expandedPlan === workoutPlanID ? null : workoutPlanID);
@@ -811,18 +812,18 @@ const ClientProfile = () => {
             {Object.keys(groupedLogs).length === 0 ? (
               <p>No Workout Log Entries</p>
             ) : (
-              Object.entries(groupedLogs).map(([workoutPlanID, logs]) => (
-                <div key={workoutPlanID} className="workout-log-group">
+              Object.entries(groupedLogs).map(([planName, logs]) => (
+                <div key={planName} className="workout-log-group">
                   <div
                     className="workout-plan-header"
-                    onClick={() => handleExpandPlan(workoutPlanID)}
+                    onClick={() => handleExpandPlan(planName)}
                   >
-                    <h3>Workout Plan ID: {workoutPlanID}</h3>
+                    <h3>{planName} Logs</h3>
                     <span className="dropdown-arrow">
-                      {expandedPlan === workoutPlanID ? "▼" : "▶"}{" "}
+                      {expandedPlan === planName ? "▼" : "▶"}{" "}
                     </span>
                   </div>
-                  {expandedPlan === workoutPlanID && (
+                  {expandedPlan === planName && (
                     <div>
                       {logs.map((log, index) => (
                         <div key={index} className="workout-log">

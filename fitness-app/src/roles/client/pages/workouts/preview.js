@@ -15,19 +15,19 @@ function Preview() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch workout logs from the endpoint
+
     fetch(`${API_URL}/workoutlogs/client/${clientId}`)
       .then(response => response.json())
       .then(data => {
-        // Check if data is an object, and convert it to an array if needed
-        const logsArray = Array.isArray(data) ? data : Object.values(data);
-  
-        // Group workout logs by workoutplanID
+
+        const logsArray = Array.isArray(data) ? data : [data]; // Wrap the object in an array
+
         const groupedWorkoutLogs = groupByWorkoutPlanID(logsArray);
         setWorkoutLogs(groupedWorkoutLogs);
       })
       .catch(error => console.error('Error fetching workout logs:', error));
   }, [clientId]);
+
 
   // Function to group workout logs by workoutplanID
   const groupByWorkoutPlanID = logs => {
@@ -46,8 +46,6 @@ function Preview() {
     return groupedLogs;
   };
 
-  // Function to sort logs based on sortOrder
-// Function to sort logs based on sortOrder
     const sortLogs = (logs, order) => {
     // Convert the object of logs back to an array
     const logsArray = Object.values(logs);
@@ -64,40 +62,43 @@ function Preview() {
   // Function to filter logs based on timeFilter
   const filterLogsByTime = (logs, filter) => {
     const currentDate = new Date();
-
+  
     switch (filter) {
       case 'today':
-        return logs.filter(log => isSameDay(new Date(log.date), currentDate));
+        return logs.filter(log => isSameDay(new Date(log.lastmodified), currentDate));
       case 'yesterday':
         const yesterday = new Date(currentDate);
         yesterday.setDate(currentDate.getDate() - 1);
-        return logs.filter(log => isSameDay(new Date(log.date), yesterday));
+        return logs.filter(log => isSameDay(new Date(log.lastmodified), yesterday));
       case 'last7':
         const last7Days = new Date(currentDate);
         last7Days.setDate(currentDate.getDate() - 7);
-        return logs.filter(log => new Date(log.date) >= last7Days);
+        return logs.filter(log => new Date(log.lastmodified) >= last7Days);
       case 'last14':
         const last14Days = new Date(currentDate);
         last14Days.setDate(currentDate.getDate() - 14);
-        return logs.filter(log => new Date(log.date) >= last14Days);
+        return logs.filter(log => new Date(log.lastmodified) >= last14Days);
       case 'last30':
         const last30Days = new Date(currentDate);
         last30Days.setDate(currentDate.getDate() - 30);
-        return logs.filter(log => new Date(log.date) >= last30Days);
+        return logs.filter(log => new Date(log.lastmodified) >= last30Days);
       default:
         return logs;
     }
   };
-
+  
+  
   // Function to check if two dates are the same day
   const isSameDay = (date1, date2) => {
+    console.log("Date 1:", date1);
+    console.log("Date 2:", date2);
+  
     return (
-      date1.getFullYear() === date2.getFullYear() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getDate() === date2.getDate()
+      date1.getUTCFullYear() === date2.getUTCFullYear() &&
+      date1.getUTCMonth() === date2.getUTCMonth() &&
+      date1.getUTCDate() === date2.getUTCDate()
     );
   };
-
   const handleSortChange = e => {
     setSortOrder(e.target.value);
   };

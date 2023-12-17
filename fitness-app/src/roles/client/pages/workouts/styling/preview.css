@@ -1,38 +1,49 @@
-/* previewStyles.css */
+/* preview.css */
 
 .body {
-    padding: 20px;
-  }
-  
-  .button {
-    margin: 20px  0;
-    max-width: 50px;
-  }
-  
-  .filter-controls {
-    margin-bottom: 20px;
-  }
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+}
 
-  .workout-plan-container {
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px; 
-    padding: 10px;
-  }
-  
-  .workout-plan-header {
-    color: #333;
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .workout-log-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .workout-log-item {
-    margin-bottom: 8px;
-  }
-  
+.button {
+  margin-top: 20px;
+  max-width: 60px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filter-controls {
+  margin: 20px 0;
+}
+
+.label {
+  margin-right: 10px;
+}
+
+.workout-plan-container {
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.workout-plan-header {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.workout-log-list {
+  list-style: none;
+  padding: 0;
+}
+
+.workout-log-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Add more styles as needed */
