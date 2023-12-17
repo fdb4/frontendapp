@@ -146,8 +146,21 @@ function Preview() {
     }));
   };
 
-  const dateDisplay = (date) => {
-    return new Date(date).toLocaleString();
+  const dateDisplay = (data) => {
+    // Check if data is a valid date string
+    const isValidDate = (date) => !isNaN(new Date(date).getTime());
+
+    if (isValidDate(data)) {
+      // Use a custom format for date only
+      return new Date(data).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      });
+    } else {
+      // Handle the case where data is not a valid date
+      return "Invalid Date";
+    }
   };
   return (
     <div className="body">
