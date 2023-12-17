@@ -63,69 +63,68 @@ const ClientNavbar = () => {
           <LogoImage src={logo} alt="Your Logo" className="invert-logo" />
         </Logo>
         <Bars onClick={toggleMenu} />
-        <NavMenu showMenu={showMenu}>
-          <NavLink to="/clienthome" activeStyle>
-            Home
-          </NavLink>
-          <NavLink to="/dailylog" activeStyle>
-            Daily Log
-          </NavLink>
-          <NavLink to="/workouts" activeStyle>
-            Workouts
-          </NavLink>
-          <NavLink to="/clientcoaches" activeStyle>
-            Coaches
-          </NavLink>
-          {role === "Coach" && (
-            <NavLink to="/coachhome" activeStyle>
-              Your Clients
+        {isAdmin === "true" ? (
+          <NavMenu>
+            <NavLink to="/adminworkouts" activeStyle>
+              Admin Workouts
             </NavLink>
-          )}
-          {isAdmin === "true" && (
-            <div
-              className="nav-link"
-              // Add any necessary styles for the cursor
-              onClick={toggleAdminDropdown}
-              style={{
-                position: "relative",
-                display: "inline-block",
-                cursor: "pointer",
-              }}
-            >
-              Admin
-              {showAdminDropdown && <AdminDropdown />}
+            <NavLink to="/admincoaches" activeStyle>
+              Admin Coaches
+            </NavLink>
+            <NavLink activeStyle onClick={handleLogout}>
+              Logout
+            </NavLink>
+          </NavMenu>
+        ) : (
+          <NavMenu showMenu={showMenu}>
+            <NavLink to="/clienthome" activeStyle>
+              Home
+            </NavLink>
+            <NavLink to="/dailylog" activeStyle>
+              Daily Log
+            </NavLink>
+            <NavLink to="/workouts" activeStyle>
+              Workouts
+            </NavLink>
+            <NavLink to="/clientcoaches" activeStyle>
+              Coaches
+            </NavLink>
+            {role === "Coach" && (
+              <NavLink to="/coachhome" activeStyle>
+                Your Clients
+              </NavLink>
+            )}
+            <div style={{ position: "relative" }}>
+              <UserProfileImage
+                src={MyProfileIcon}
+                alt="User Profile"
+                onClick={toggleProfileMenu}
+              />
+              <DropdownMenu show={showProfileMenu}>
+                <DropdownLink to="/myprofile">
+                  <img src={MyProfileIcon} alt="My Profile Icon" />
+                  My Profile
+                </DropdownLink>
+                <DropdownLink to="/inbox">
+                  <img src={InboxIcon} alt="Inbox Icon" />
+                  Inbox
+                </DropdownLink>
+                <DropdownLink to="/messages">
+                  <img src={Messages} alt="Inbox Icon" />
+                  Messages
+                </DropdownLink>
+                <DropdownLink to="/settings">
+                  <img src={SettingsIcon} alt="Settings Icon" />
+                  Settings
+                </DropdownLink>
+                <DropdownLink to="/" onClick={handleLogout}>
+                  <img src={LogoutIcon} alt="Logout Icon" />
+                  Logout
+                </DropdownLink>
+              </DropdownMenu>
             </div>
-          )}
-          <div style={{ position: "relative" }}>
-            <UserProfileImage
-              src={MyProfileIcon}
-              alt="User Profile"
-              onClick={toggleProfileMenu}
-            />
-            <DropdownMenu show={showProfileMenu}>
-              <DropdownLink to="/myprofile">
-                <img src={MyProfileIcon} alt="My Profile Icon" />
-                My Profile
-              </DropdownLink>
-              <DropdownLink to="/inbox">
-                <img src={InboxIcon} alt="Inbox Icon" />
-                Inbox
-              </DropdownLink>
-              <DropdownLink to="/messages">
-                <img src={Messages} alt="Inbox Icon" />
-                Messages
-              </DropdownLink>
-              <DropdownLink to="/settings">
-                <img src={SettingsIcon} alt="Settings Icon" />
-                Settings
-              </DropdownLink>
-              <DropdownLink to="/" onClick={handleLogout}>
-                <img src={LogoutIcon} alt="Logout Icon" />
-                Logout
-              </DropdownLink>
-            </DropdownMenu>
-          </div>
-        </NavMenu>
+          </NavMenu>
+        )}
       </Nav>
     </>
   );
