@@ -98,7 +98,7 @@ function Workouts() {
       <main>
         <div className="nav_2">
           <h2>Our Exercises:</h2>
-          <div className="search-container">
+          <div className="search-container" style={{ marginRight: "50px" }}>
             <input
               className="searchbox"
               type="text"

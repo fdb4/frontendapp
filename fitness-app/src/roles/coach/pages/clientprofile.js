@@ -580,7 +580,7 @@ const ClientProfile = () => {
     console.log(workoutPlan);
     try {
       const response = await fetch(
-        `${API_URL}/workoutplan/update/${workoutplanID}`,
+        `${API_URL}/edit/workoutplan/${id}/${workoutplanID}`,
         {
           method: "PUT",
           headers: {

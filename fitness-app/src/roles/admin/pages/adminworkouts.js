@@ -287,7 +287,7 @@ const AdminWorkouts = () => {
 
       <div style={styles.all_workouts}>
         <div id="activeworkout" style={styles.workoutsection}>
-          Active Workouts:
+          <p1 style={{ color: "white" }}> Active Workouts:</p1>
           {currentActiveWorkouts.map((workout) => (
             <DisplayWorkout
               workout={workout}
@@ -298,7 +298,7 @@ const AdminWorkouts = () => {
         </div>
 
         <div id="deactiveworkout" style={styles.workoutsection}>
-          Deactive Workouts:
+          <p1 style={{ color: "white " }}>Deactive Workouts:</p1>
           {currentDeactiveWorkouts.map((workout) => (
             <DisplayWorkout
               workout={workout}
