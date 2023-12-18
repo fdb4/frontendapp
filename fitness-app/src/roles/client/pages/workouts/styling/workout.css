@@ -85,9 +85,19 @@ p {
 .nav_2 {
   display: flex;
   align-items: baseline;
+  justify-content: space-between;
 }
 
 .search-container,
 .equipment-filter {
   display: inline-block;
+  margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+  .search-container,
+  .equipment-filter {
+    width: 100%; /* Full width for smaller screens */
+    margin-bottom: 10px; /* Adds space below each element */
+  }
 }

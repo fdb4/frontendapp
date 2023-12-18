@@ -31,7 +31,7 @@ function ClientHome() {
         <h1>Home Page</h1>
       </div>
       <div className="container-p9">
-        <p9>Welcome to BitFit, Health for everyone!</p9>
+        <p9 style = {{ color: 'white' }}>Welcome to BitFit, Health for everyone!</p9>
       </div>
       <h3 className="h3-firstname">{firstName}</h3>
       <h3 className="h3-lastname">{lastName}</h3>

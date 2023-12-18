@@ -53,10 +53,13 @@ button:disabled {
   flex: 1;
 }
 
-.img {
-  max-width: 100px;
-  max-height: 100px;
+.profile img.img {
+  max-width: 200px; /* Increased from 100px */
+  max-height: 200px; /* Increased from 100px */
+  border-radius: 50%;
+  margin-bottom: 15px;
 }
+
 
 /* Pagination styles */
 .pagination {

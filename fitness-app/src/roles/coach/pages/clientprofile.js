@@ -855,7 +855,7 @@ const ClientProfile = () => {
           {showMessageForm && (
             <div className="lightbox">
               <div className="form-container">
-                <span className="close" onClick={handleCloseMessageForm}>
+                <span className="close" style = {{ color: 'white' }} onClick={handleCloseMessageForm}>
                   &times;
                 </span>
                 <form>

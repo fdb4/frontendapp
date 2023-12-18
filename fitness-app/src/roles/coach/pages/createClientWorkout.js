@@ -290,9 +290,9 @@ function ClientWorkouts() {
                 <div className="exersise-list">
                   {exercises.map((exercise, index) => (
                     <div key={index}>
-                      <p>Exercise: {getWorkoutNameById(exercise.workoutID)}</p>
-                      <p>Sets: {exercise.Sets}</p>
-                      <p>Reps: {exercise.reps}</p>
+                      <p style = {{ color: 'black' }}>Exercise: {getWorkoutNameById(exercise.workoutID)}</p>
+                      <p style = {{ color: 'black' }}>Sets: {exercise.Sets}</p>
+                      <p style = {{ color: 'black' }}>Reps: {exercise.reps}</p>
                     </div>
                   ))}
                 </div>

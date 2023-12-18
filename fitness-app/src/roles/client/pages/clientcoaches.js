@@ -129,7 +129,7 @@ function ClientCoaches() {
           <div key={coach.clientID} className="profile">
           <img className="img" src={Coach} alt="coach profile" />
             <div className="left">
-              <p>{coach.firstname} {coach.lastname}</p>
+              <p style={{ fontSize: '32px', fontWeight: 'bold' }}>{coach.firstname} {coach.lastname}</p>
               <p>Price: ${coach.price}</p>
               <p>Gym: {coach.gym}</p>
               <div className="specializations">

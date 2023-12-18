@@ -1,7 +1,7 @@
 body {
   font-family: "Saira Condensed", sans-serif;
   margin: 0;
-  color: white;
+  color: black;
 }
 
 .body {
@@ -12,11 +12,31 @@ body {
   color: white;
 }
 
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-info, .location, .experience, .description, .contact {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.description, .contact {
+  text-align: center;
+}
+
 h1 {
   text-align: center;
 }
 
-button {
+.coach-profile-button {
   background-color: #007bff;
   color: white;
   border: none;
@@ -25,7 +45,7 @@ button {
   border-radius: 5px;
   margin-top: 10px;
 }
-button {
+.coach-profile-button {
   margin-top: 10px;
 }
 
@@ -47,16 +67,9 @@ button {
   align-items: flex-start;
 }
 
-.img {
-  border-radius: 50%;
-  width: 30%;
-}
-
-
-button:hover {
+.coach-profile-button:hover {
   background-color: #0056b3;
 }
-
 
 /* Main content styling */
 .name,
@@ -111,6 +124,14 @@ gym {
   background: rgba(0, 0, 0, 0.5);
 }
 
+.profile-img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+
+}
+
+
 .form-container {
   background: #fff;
   padding: 20px;
@@ -142,5 +163,9 @@ form {
 @media screen and (max-width: 768px) {
   .profile_2 {
     flex-direction: column;
+  }
+  .coach-profile-img {
+    width: 100px;
+    height: 100px;
   }
 }

@@ -144,102 +144,78 @@ const CoachProfile = () => {
       <div className="body">
         <ClientNavbar />
         <h1>Coach Profile</h1>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            position: "fixed",
-            top: 107,
-            left: 20,
-          }}
-        >
-          <button onClick={handleGoBack}>Back</button>
+        <div className="back-button">
+          <button className="coach-profile-button" onClick={handleGoBack}>Back</button>
         </div>
         {coach && (
-          <div className="profile_2">
+          <div className="profile">
             <img
-              className="img"
+              className="profile-img"
               src={Coach}
               alt="coach profile"
-              style={{
-                borderRadius: "50%",
-                width: "10%",
-              }}
             />
-            <div className="left">
-              <name>
+            <div className="profile-info">
+              <h2>
                 {coach.firstname} {coach.lastname}
-              </name>
-              <price>Price: ${coach.price}</price>
-              <gym>Gym: {coach.gym}</gym>
+              </h2>
+              <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+                <strong>Price:</strong> ${coach.price}
+              </p>
+              <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+                <strong>Gym:</strong> {coach.gym}
+              </p>
             </div>
-            <div className="middle">
+            <div className="profile-info">
               <div className="location">
-                <town>Town: {coach.town} </town>
-                <state>State: {coach.state}</state>
+                <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+                  <strong>Town:</strong> {coach.town}
+                </p>
+                <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+                  <strong>State:</strong> {coach.state}
+                </p>
               </div>
-              <div className="middle_2">
-                <experience>Experience: {coach.experience}</experience>
-                <ratings>Ratings: {coach.rating}</ratings>
+              <div className="experience">
+                <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+                  <strong>Experience:</strong> {coach.experience}
+                </p>
+                <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+                  <strong>Ratings:</strong> {coach.rating}
+                </p>
               </div>
             </div>
-            <div style={{ color: "black" }}>Description: {coach.bio}</div>
+            <div className="description">
+              <p style = {{ color: 'black', fontSize: '24px' }}>
+                <strong>Description:</strong> {coach.bio}
+              </p>
+            </div>
 
-            <div className="right">
-              <div className="contact">
-                <contact>CONTACT</contact>
-                <email>Email: {coach.email}</email>
-              </div>
+            <div className="contact">
+              <h2>Contact</h2>
+              <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+                <strong>Email:</strong> {coach.email}
+              </p>
+            </div>
+            <div className="buttons">
               <button
-                id="view"
+                id="message-button"
                 onClick={handleOpenMessageForm}
-                style={{ marginRight: "10px" }}
               >
                 Send Message
               </button>
-              <button id="view" onClick={handleCoachRequest}>
+              <button id="request-button" onClick={handleCoachRequest}>
                 Request Coach
               </button>
-              <ConfirmationModal
-                isOpen={isModalOpen}
-                onConfirm={handleConfirm}
-                onClose={handleCancel}
-              />
-              {showRequestSuccess && (
-                <MessagePopup message="Request Sent Successfully!" />
-              )}
-              {showRequestError && (
-                <MessagePopup message="Request Failed to Send!" />
-              )}
             </div>
-            {showMessageForm && (
-              <div className="lightbox">
-                <div className="form-container">
-                  <span className="close" onClick={handleCloseMessageForm}>
-                    &times;
-                  </span>
-                  <form>
-                    <label htmlFor="message">Message:</label>
-                    <textarea
-                      id="message"
-                      value={messageContent}
-                      onChange={(e) => setMessageContent(e.target.value)}
-                      style={{ color: "black" }}
-                    ></textarea>
-                    <button type="button" onClick={sendMessage}>
-                      Send Message
-                    </button>
-                  </form>
-                </div>
-              </div>
+            <ConfirmationModal
+              isOpen={isModalOpen}
+              onConfirm={handleConfirm}
+              onClose={handleCancel}
+            />
+            {showRequestSuccess && (
+              <MessagePopup message="Request Sent Successfully!" />
             )}
-            {showMessageSuccess && (
-              <MessagePopup message="Message Sent Successfully!" />
-            )}
-            {showMessageError && (
-              <MessagePopup message="Message Failed to Send!" />
+            {showRequestError && (
+              <MessagePopup message="Request Failed to Send!" />
             )}
           </div>
         )}
@@ -266,12 +242,12 @@ const styles = {
     padding: "20px",
     borderRadius: "8px",
     textAlign: "center",
-    color: "rgb(246, 245, 245)",
+    color: "white",
   },
 
   modalButton: {
     margin: "8px",
-    backgroundColor: "#333",
+    backgroundColor: "#007bff",
     color: "white",
     border: "none",
     padding: "8px 16px",
@@ -280,8 +256,8 @@ const styles = {
   },
 
   modalButtonHover: {
-    backgroundColor: "#555",
-  },
+    backgroundColor: "#0056b3",
+  }
 };
 
 export default CoachProfile;
