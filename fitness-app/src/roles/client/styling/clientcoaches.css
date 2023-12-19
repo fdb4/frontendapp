@@ -1,258 +1,135 @@
-.body_1 {
-  font-family: 'Copperplate', 'Papyrus', fantasy;
-  color: #333;
+.cc-client-coaches {
   background-color: black;
+  color: #333;
   padding: 20px;
+  overflow-x: auto;
 }
 
-.body_1 h1 {
+.cc-title {
   text-align: center;
+  color: white;
 }
 
-.search-container {
+.cc-search-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
-.search-container input[type="text"],
-.search-container select {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  width: 100%;
-  max-width: 300px;
+.cc-search-container input[type="text"],
+.cc-search-container select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #007bff;
+  font-size: 16px;
 }
 
-.search-container button {
-  padding: 10px 15px;
-  border-radius: 5px;
+.cc-search-container button {
+  padding: 12px 20px;
+  border-radius: 8px;
   background-color: #007bff;
   color: white;
-  border: none;
   cursor: pointer;
-  width: 100%;
-  max-width: 150px;
 }
 
-.search-container button:hover {
+.cc-search-container button:hover {
   background-color: #0056b3;
 }
 
-.coach-list {
+.cc-coach-list {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  color: black;
-}
-
-.coach-list.coach-name {
-  font-size: 48px; /* Adjust the size as needed */
-  font-weight: bold; /* Optional: makes the name stand out more */
-}
-
-.coach-list .profile {
-  text-align: center;
-}
-
-.coach-list p,
-.coach-list ul,
-.coach-list li,
-.coach-list a {
-  color: inherit;
-  font-size: 20px;
-  line-height: 0.8;
-}
-
-.coach-list a {
-  padding: 0;
-  color: #007bff;
-  text-decoration: none;
-  list-style: none;
-}
-
-.coach-list li {
-  margin-bottom: 5px;
-}
-
-.coach-list a:hover {
-  color: #0056b3;
-  text-decoration: underline;
-}
-
-.profile .right {
-  text-align: center;
-  width: 100%;
-  margin-top: 15px;
-}
-
-.coach-list .left, 
-.coach-list .middle, 
-.coach-list .right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: no-wrap;
+  gap: 10px;
   justify-content: center;
 }
 
-.coach-list .profile .middle p {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.coach-list .profile .left p {
-  text-align: center;
-  margin: 0 0 10px;
-}
-
-.coach-list .profile .right p {
-  text-align: center;
-  margin: 0 0 10px;
-}
-
-.coach-list .profile .specializations {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-}
-
-.coach-list .profile .specializations ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  text-align: left;
-  display: block;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.coach-list .profile .specializations li {
-  font-size: 16px;
-  position: relative;
-  padding-left: 20px;
-}
-
-.coach-list .profile .specializations li:before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #333;
-  font-size: 18px;
-}
-
-.coach-list .profile .specializations label {
-  font-weight: bold;
-  display: block;
-  text-align: center;
-  margin-bottom: 5px;
-}
-
-.img {
-  max-width: 100px;
-  max-height: 100px;
-}
-
-.profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.cc-coach-profile {
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
-  width: 100%;
-  max-width: 600px; /* Adjust this value as needed */
-  margin: 0 auto; /* Center the profiles */
+  width: calc(20% - 16px); /* Fixed width for consistency */
 }
 
-.profile img.img {
-  max-width: 100px;
+.cc-coach-img {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   margin-bottom: 15px;
 }
 
-.profile .right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-
-.coach-list .profile .img {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  margin-bottom: 15px;
-}
-
-.profile .left,
-.profile .middle,
-.profile .right {
-  margin-bottom: 15px;
+.cc-left, .cc-middle, .cc-right {
+  color: black; /* Ensuring black font on white background */
   text-align: left;
-  width: 100%;
 }
 
-.pagination {
-  color: white;
+.cc-specializations {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.cc-specializations ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.cc-specializations li {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cc-specializations ul .cc-listing {
+  font-size: 14px; /* Slightly smaller font for list */
+}
+
+.cc-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   margin-top: 20px;
+  color: white;
 }
 
-.pagination button {
+.cc-pagination button {
   color: black;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 8px 15px;
+  border-radius: 8px;
   border: 1px solid #ddd;
   background-color: skyblue;
   cursor: pointer;
 }
 
-.pagination button:hover {
+.cc-pagination button:hover {
   background-color: royalblue;
 }
 
-.pagination span {
-  margin: 0 10px;
-}
-
-.pagination input[type="number"] {
+.cc-pagination input[type="number"] {
   width: 50px;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 8px;
+  border-radius: 8px;
   border: 1px solid #ddd;
   text-align: center;
 }
 
-.view {
-  display: inline-block !important;
-  padding: 10px 20px !important;
-  background-color: #007bff !important;
-  color: white !important;
-  border: none !important;
-  border-radius: 5px !important;
-  text-decoration: none !important;
-  cursor: pointer !important;
-  font-size: 16px !important;
-  text-align: center !important;
-  line-height: 1 !important;
-  min-width: 100px !important;
+.cc-view {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: background-color 0.3s;
 }
 
-.view:hover {
-  background-color: #0056b3 !important;
+.cc-view:hover {
+  background-color: #0056b3;
 }
+
+
 
 

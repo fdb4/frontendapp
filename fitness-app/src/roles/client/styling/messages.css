@@ -32,7 +32,7 @@
 
   background: #479090;
   max-width: 85%px;
-
+  border-radius: 4px;
   flex-shrink: 0;
 }
 
@@ -170,7 +170,6 @@
 
 .message-form {
   display: flex;
-  gap: 10px;
 }
 
 .message-input {

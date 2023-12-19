@@ -11,7 +11,7 @@
 
 .client-actions {
 
-  align-items: center;
+  justify-content: center;
   margin-top: 30px;
   margin-bottom: 30px;
 }
@@ -26,8 +26,40 @@
   font-family: 'Copperplate', 'Papyrus', fantasy;
 }
 
-.client-profile-info, .client-workout-preferences, .contact-info {
-  margin-bottom: 20px;
+.client-details {
+  display: flex;      
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;       
+  font-size: 24px;       
+  margin: auto;            
+  color: black;
+  font-family: 'Copperplate', 'Papyrus', fantasy;
+}
+
+.client-workout-preferences {
+  display: flex;      
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;       
+  font-size: 24px;       
+  margin: auto;            
+  color: black;
+  font-family: 'Copperplate', 'Papyrus', fantasy;
+}
+
+.contact-info {
+  display: flex;      
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;       
+  font-size: 24px;       
+  margin: auto;            
+  color: black;
+  font-family: 'Copperplate', 'Papyrus', fantasy;
 }
 
 .client-img {
@@ -38,7 +70,7 @@
 }
 
 .client-details h1, .client-details h2, .contact-info h3, .client-workout-preferences h3 {
-  align-items: center;
+  align-content: center;
   color: black;
   text-decoration: underline;
   font-size: 36px;

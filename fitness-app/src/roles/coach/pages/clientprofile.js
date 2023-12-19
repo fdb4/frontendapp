@@ -689,9 +689,9 @@ const ClientProfile = () => {
             </div>
           </div>
           <div className="workouts_info">
-            <h2>Sessions</h2>
+            <h2 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Sessions</h2>
             {Object.keys(groupedExercises).length === 0 ? (
-              <p>No Workout Sessions Available</p>
+              <p style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>No Workout Sessions Available</p>
             ) : (
               Object.keys(groupedExercises).map((workoutName) => (
                 <div key={workoutName} className="workout-session">
@@ -713,7 +713,7 @@ const ClientProfile = () => {
                           </button>
                           {groupedExercises[workoutName].map((exercise) => (
                             <div key={exercise.workoutID}>
-                              <p>
+                              <p style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                                 {getWorkoutNameById(exercise.workoutID)} - Sets:{" "}
                                 {exercise.Sets}, Reps: {exercise.reps}{" "}
                               </p>
@@ -806,7 +806,7 @@ const ClientProfile = () => {
                 </div>
               ))
             )}
-            <h2>Workout Logs</h2>
+            <h2 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Workout Logs</h2>
             {Object.keys(groupedLogs).length === 0 ? (
               <p>No Workout Log Entries</p>
             ) : (

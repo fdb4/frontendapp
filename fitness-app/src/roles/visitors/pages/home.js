@@ -15,7 +15,7 @@ function Home() {
       <div className="image">
         <div className="header">
           <h1 style={{ color: "white" }}>
-            WORKOUT LIKE <br />A <span className="champion">CHAMPION</span>
+            WORKOUT LIKE <br />A <span className="champion" style = {{ color: '#b9a198' }}>CHAMPION</span>
           </h1>
         </div>
         <div className="features">

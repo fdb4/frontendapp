@@ -141,68 +141,67 @@ const CoachProfile = () => {
 
   return (
     <div>
-      <div className="body">
+      <div className="coach-profile-body">
         <ClientNavbar />
-        <h1>Coach Profile</h1>
-        <div className="back-button">
+        <h1 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Coach Profile</h1>
+        <div className="coach-profile-back-button">
           <button className="coach-profile-button" onClick={handleGoBack}>Back</button>
         </div>
         {coach && (
-          <div className="profile">
+          <div className="coach-profile-container">
             <img
-              className="profile-img"
+              className="coach-profile-img"
               src={Coach}
               alt="coach profile"
             />
-            <div className="profile-info">
-              <h2>
+            <div className="coach-profile-info">
+              <h2 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 {coach.firstname} {coach.lastname}
               </h2>
-              <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+              <p className="coach-profile-info-text"style = {{ color: 'black', fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 <strong>Price:</strong> ${coach.price}
               </p>
-              <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+              <p className="coach-profile-info-text" style = {{ color: 'black', fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 <strong>Gym:</strong> {coach.gym}
               </p>
             </div>
-            <div className="profile-info">
-              <div className="location">
-                <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+            <div className="coach-profile-additional-info">
+              <div className="coach-profile-location">
+                <p className="coach-profile-info-text" style = {{ color: 'black', fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                   <strong>Town:</strong> {coach.town}
                 </p>
-                <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+                <p className="coach-profile-info-text" style = {{ color: 'black', fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                   <strong>State:</strong> {coach.state}
                 </p>
               </div>
-              <div className="experience">
-                <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+              <div className="coach-profile-experience">
+                <p className="coach-profile-info-text" style = {{ color: 'black', fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                   <strong>Experience:</strong> {coach.experience}
                 </p>
-                <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+                <p className="coach-profile-info-text" style = {{ color: 'black', fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                   <strong>Ratings:</strong> {coach.rating}
                 </p>
               </div>
             </div>
-            <div className="description">
-              <p style = {{ color: 'black', fontSize: '24px' }}>
+            <div className="coach-profile-description">
+              <p style = {{ color: 'black', fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 <strong>Description:</strong> {coach.bio}
               </p>
             </div>
-
-            <div className="contact">
-              <h2>Contact</h2>
-              <p className="info" style = {{ color: 'black', fontSize: '24px' }}>
+            <div className="coach-profile-contact">
+              <h2 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Contact</h2>
+              <p className="coach-profile-info-text" style = {{ color: 'black', fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 <strong>Email:</strong> {coach.email}
               </p>
             </div>
-            <div className="buttons">
+            <div className="coach-profile-buttons">
               <button
-                id="message-button"
+                id="coach-profile-message-button"
                 onClick={handleOpenMessageForm}
               >
                 Send Message
               </button>
-              <button id="request-button" onClick={handleCoachRequest}>
+              <button id="coach-profile-request-button" onClick={handleCoachRequest}>
                 Request Coach
               </button>
             </div>
@@ -219,6 +218,27 @@ const CoachProfile = () => {
             )}
           </div>
         )}
+        {showMessageForm && (
+        <div className="coach-profile-lightbox">
+          <div className="coach-profile-form-container">
+            <span className="coach-profile-close" style={{ color: 'white' }} onClick={handleCloseMessageForm}>
+              &times;
+            </span>
+            <form>
+              <label htmlFor="message">Message:</label>
+              <textarea
+                id="message"
+                value={messageContent}
+                onChange={(e) => setMessageContent(e.target.value)}
+                style={{ color: "black", fontFamily: 'Copperplate, Papyrus, fantasy'}}
+              ></textarea>
+              <button type="button" onClick={sendMessage}>
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
       </div>
     </div>
   );

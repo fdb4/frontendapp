@@ -431,14 +431,14 @@ function Myworkouts() {
             )}
           </div>
 
-          <h2>Your Workout Plans</h2>
+          <h2 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Your Workout Plans</h2>
           {Object.keys(groupedExercises).map((workoutName) => (
             <div key={workoutName} className="workout-session">
               <div
                 className="workout-header"
                 onClick={() => handleExpandToggle(workoutName)}
               >
-                <h3>{workoutName}</h3>
+                <h3 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>{workoutName}</h3>
                 <span className="dropdown-arrow">
                   {expandedWorkout === workoutName ? "▼" : "▶"}{" "}
                 </span>
@@ -455,7 +455,7 @@ function Myworkouts() {
                       </button>
                       {groupedExercises[workoutName].map((exercise) => (
                         <div key={exercise.workoutID}>
-                          <p>
+                          <p style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                             {getWorkoutNameById(exercise.workoutID)} - Sets:{" "}
                             {exercise.Sets}, Reps: {exercise.reps}{" "}
                           </p>
@@ -567,7 +567,7 @@ function Myworkouts() {
               {/* Your form elements for logging sets and reps */}
               {groupedExercises[expandedWorkout].map((exercises, index) => (
                 <div key={index}>
-                  <p>{getWorkoutNameById(exercises.workoutID)} :</p>
+                  <p style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>{getWorkoutNameById(exercises.workoutID)} :</p>
                   <label style={styles.labelStyle}>Sets:</label>
                   <input
                     type="number"
@@ -642,6 +642,7 @@ const styles = {
   },
 
   labelStyle: {
+    fontFamily: "Copperplate, Papyrus, fantasy",
     display: "block",
     margin: "10px 0",
     color: "black",

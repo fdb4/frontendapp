@@ -1,4 +1,11 @@
 
+.body-settings {
+
+  background-color: black;
+  height: 100vh;
+  overflow: auto;
+}
+
 .edit-mode {
   display: flex;
   flex-direction: column;
@@ -80,6 +87,7 @@
 
 .delete:hover {
   background-color: #D10000 !important;
+  border-radius: 20px;
 }
 
 .delete-confirmation-popup {
@@ -122,15 +130,15 @@
   color: black !important;
 }
 
-
 .edit {
-
   margin-top: 10px;
   background-color: limegreen !important;
+  border-radius: 20px;
 }
 
 .edit:hover {
   background-color: darkgreen !important;
+  border-radius: 20px;
 }
 
 .editing-form label {
@@ -181,6 +189,7 @@
 
 .editing-buttons button:hover {
   opacity: 0.9;
+  border-radius: 20px;
 }
 
 .editing-buttons .save-button {
@@ -191,5 +200,18 @@
   background-color: grey;
 }
 
+.editing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.edit, .delete {
 
+  border-radius: 20px;
+  padding: 8px 15px;
+  margin-top: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

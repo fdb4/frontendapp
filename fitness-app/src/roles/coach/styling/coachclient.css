@@ -1,105 +1,109 @@
-/* Add your global styles here */
-
-/* Body styles */
-.body_1 {
-  font-family: Arial, sans-serif;
+/* Global Styles */
+.cp-body_1 {
+  color: white;
+  font-family: 'Arial', sans-serif;
+  background-color: black; /* Light background for contrast */
   padding: 20px;
 }
 
-/* Header styles */
-h1 {
+.cp-body_1 h1 {
   text-align: center;
+  color: #333; /* Darker text for better readability */
 }
 
-/* Search container styles */
-.search-container {
+/* Search Section */
+.cp-search-section {
   display: flex;
-  align-items: center;
-  /* margin-bottom: 20px; */
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-input[type="text"] {
-  padding: 8px;
-  margin-right: 10px;
+.cp-search-container {
+  display: flex;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-select {
+input[type="text"], select {
   padding: 8px;
   margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 button {
-  padding: 8px;
-  background-color: #3498db;
+  padding: 8px 12px;
+  background-color: #3498db; /* Keep primary color */
   color: #fff;
-  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2874a6; /* Darker shade for hover */
 }
 
 button:disabled {
   background-color: #ccc;
-  cursor: not-allowed;
 }
 
-/* Profile styles */
-.profile {
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid #ccc;
+/* Client Requests and Profiles */
+.cp-request, .cp-profile {
+  background: #fff;
+  border: 1px solid #ddd;
   padding: 15px;
-  margin: 20px auto;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.left, .middle, .right {
+.cp-left, .cp-middle, .cp-right {
   flex: 1;
 }
 
-.profile img.img {
-  max-width: 200px; /* Increased from 100px */
-  max-height: 200px; /* Increased from 100px */
+.cp-client-img {
+  max-width: 100px; 
   border-radius: 50%;
-  margin-bottom: 15px;
 }
 
+/* Typography */
+.cp-request-info p, .cp-middle name {
+  color: #333;
+  font-size: 16px;
+}
 
-/* Pagination styles */
-.pagination {
+.client-request-title {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Pagination */
+.cp-pagination {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 20px;
 }
 
-.middle_2 movement {
-  color: #000;
-  font-family: Saira Condensed;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; /* 32px */
-  display: block;
+.cp-pagination button {
+  margin: 0 5px;
 }
 
-.client-request {
-  margin-top: 10px auto;
-  color: white;
-  font-size: 30px;
-  text-align: left;
-}
-.requesting {
-  margin-left: 20px;
-  font-size: 20px;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cp-search-container, .cp-request, .cp-profile {
+    flex-direction: column;
+  }
+
+  input[type="text"], select, button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
-.request {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-}
-
-.request-info {
-  flex-grow: 1;
-}
 

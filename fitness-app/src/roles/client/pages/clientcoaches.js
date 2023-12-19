@@ -96,10 +96,10 @@ function ClientCoaches() {
   );
 
   return (
-    <div className="body_1">
+    <div className="cc-client-coaches">
       <ClientNavbar />
-      <h1>COACHES</h1>
-      <div className="search-container">
+      <h1 className="cc-title" style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>COACHES</h1>
+      <div className="cc-search-container">
         <input
           type="text"
           placeholder="Search"
@@ -124,18 +124,18 @@ function ClientCoaches() {
         <button onClick={handleFilter}>Filter</button>
         <button onClick={handleClear}>Clear</button>
       </div>
-      <div className="coach-list">
+      <div className="cc-coach-list">
         {currentCoaches.map((coach) => (
-          <div key={coach.clientID} className="profile">
-          <img className="img" src={Coach} alt="coach profile" />
-            <div className="left">
-              <p style={{ fontSize: '32px', fontWeight: 'bold' }}>{coach.firstname} {coach.lastname}</p>
-              <p>Price: ${coach.price}</p>
-              <p>Gym: {coach.gym}</p>
-              <div className="specializations">
+          <div key={coach.clientID} className="cc-coach-profile">
+          <img className="cc-coach-img" src={Coach} alt="coach profile" />
+            <div className="cc-left">
+              <p style={{ fontSize: '24px', fontWeight: 'bold', color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>{coach.firstname} {coach.lastname}</p>
+              <p style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Price: ${coach.price}</p>
+              <p style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Gym: {coach.gym}</p>
+              <div className="cc-specializations" style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 Specializations
                 {coach.specializations && (
-                  <ul className="listing">
+                  <ul className="cc-listing" style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                     {coach.specializations.map((specialization, index) => (
                       <li key={index}>{specialization}</li>
                     ))}
@@ -143,23 +143,23 @@ function ClientCoaches() {
                 )}
               </div>
             </div>
-            <div className="middle">
-              <p>Town: {coach.town}</p>
-              <p>State: {coach.state}</p>
-              <p>Experience: {coach.experience}</p>
-              <p>Ratings: {coach.rating}</p>
+            <div className="cc-middle" >
+              <p style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Town: {coach.town}</p>
+              <p style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>State: {coach.state}</p>
+              <p style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Experience: {coach.experience}</p>
+              <p style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Ratings: {coach.rating}</p>
             </div>
-            <div className="right">
-              <p>CONTACT</p>
-              <p>Email: {coach.email}</p>
-              <Link to={`/coaches/${coach.clientID}`} className="view">
+            <div className="cc-right">
+              <p style = {{ fontSize: '18px', fontWeight: 'bold', color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>CONTACT:</p>
+              <p style = {{ fontSize: '12px', color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Email: {coach.email}</p>
+              <Link to={`/coaches/${coach.clientID}`} className="cc-view">
                 VIEW PROFILE
               </Link>
             </div>
           </div>
         ))}
       </div>
-      <div className="pagination">
+      <div className="cc-pagination">
         <button
           onClick={() => paginate(currentPage - 1)}
           disabled={currentPage === 1}

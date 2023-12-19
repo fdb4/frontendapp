@@ -173,7 +173,7 @@ function Settings() {
   };
 
   return (
-    <div className="body_1">
+    <div className="body-settings">
       <ClientNavbar />
       {clientInfo ? (
         <div className="profile_info">

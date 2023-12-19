@@ -1,171 +1,117 @@
-body {
-  font-family: "Saira Condensed", sans-serif;
-  margin: 0;
-  color: black;
-}
-
-.body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.coach-profile-body {
+  color: #333;
+  background-color: black;
   padding: 20px;
-  color: white;
+  text-align: center;
 }
 
-.profile {
+.coach-profile-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
 }
 
-.profile-info, .location, .experience, .description, .contact {
+.coach-profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.coach-profile-info, 
+.coach-profile-additional-info,
+.coach-profile-description,
+.coach-profile-contact,
+.coach-profile-buttons {
+  margin-bottom: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-  margin-top: 10px;
 }
 
-.description, .contact {
+.coach-profile-info h2,
+.coach-profile-contact h2 {
+  color: #333;
+  margin-bottom: 10px;
+  margin-top: 170px;
+}
+
+.coach-profile-info-text,
+.coach-profile-description p {
+  color: black;
+  font-size: 24px;
+  margin: 5px 0;
+  line-height: 1.5;
   text-align: center;
 }
 
-h1 {
-  text-align: center;
-}
-
-.coach-profile-button {
+.coach-profile-buttons button {
   background-color: #007bff;
   color: white;
+  padding: 10px 15px;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-.coach-profile-button {
-  margin-top: 10px;
+  margin: 10px;
 }
 
-.profile_2 {
-  margin: 20px;
-  border-radius: 10px;
-  background: #d9d9d9;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
-}
-
-.left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.coach-profile-button:hover {
+.coach-profile-buttons button:hover {
   background-color: #0056b3;
 }
 
-/* Main content styling */
-.name,
-price,
-gym {
-  font-size: 18px;
-  margin-top: 10px;
-}
-
-/* Middle section styling */
-.location {
-  margin-top: 10px;
-}
-
-/* Right section styling */
-.actions_2 {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-#view {
-  display: inline-flex;
-  padding: 10px 20px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  background: #3503fc;
-  color: white;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
-}
-
-#view:hover {
-  background-color: #2802c7;
-}
-
-/* Lightbox styling */
-.lightbox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.coach-profile-lightbox {
+  background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.profile-img {
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-
-}
-
-
-.form-container {
-  background: #fff;
+.coach-profile-form-container {
+  background-color: white;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  width: 300px;
+  position: relative;
 }
 
-.close {
+.coach-profile-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
+  top: 0;
+  right: 0;
+  font-size: 28px;
   cursor: pointer;
+  color: black;
+  background-color: #007bff;
+  border-radius: 8px;
+  padding: 5px;
+  z-index: 1100;
 }
 
-textarea {
+
+.coach-profile-form-container label,
+.coach-profile-form-container textarea,
+.coach-profile-form-container button {
   width: 100%;
-  height: 100px;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-/* Ensure text doesn't go outside the container */
-form {
-  max-width: 400px;
-  margin: 0 auto;
+
+.coach-profile-back-button {
+  margin-bottom: 20px;
+  align-self: flex-start;
 }
 
-/* Responsive design */
-@media screen and (max-width: 768px) {
-  .profile_2 {
-    flex-direction: column;
-  }
-  .coach-profile-img {
-    width: 100px;
-    height: 100px;
-  }
-}
+
+

@@ -79,8 +79,8 @@ function Workouts() {
       <header className="heading">
         <div className="header_2">
           <div className="title">
-            <h1 style={{ marginBottom: "30px" }}>WORKOUTS</h1>
-            <p>
+            <h1 style={{ marginBottom: "30px", fontFamily: 'Copperplate, Papyrus, fantasy' }}>WORKOUTS</h1>
+            <p style = {{ fontFamily: 'Copperplate, Papyrus, fantasy', color: 'white' }}>
               Welcome to the workouts page, check out the workout bank and then
               create your own personalized workout to log against!
             </p>
@@ -97,7 +97,7 @@ function Workouts() {
       </header>
       <main>
         <div className="nav_2">
-          <h2>Our Exercises:</h2>
+          <h2 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Our Exercises:</h2>
           <div className="search-container" style={{ marginRight: "50px" }}>
             <input
               className="searchbox"
@@ -107,7 +107,6 @@ function Workouts() {
               onChange={handleSearchChange}
             />
           </div>
-
           <div className="equipment-filter">
             <label htmlFor="equipment"></label>
             <select

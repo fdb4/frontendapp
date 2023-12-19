@@ -133,12 +133,11 @@ function ClientProfiles() {
   };
 
   return (
-    <div className="body_1">
+    <div className="cp-body_1">
       <ClientNavbar />
-      <h1>CLIENTS</h1>
-
-      <div className="body_1">
-        <div className="search-container">
+      <h1 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy', color: 'white' }}>CLIENTS</h1>
+      <div className="cp-search-section">
+        <div className="cp-search-container">
           <input
             type="text"
             placeholder="Search"
@@ -161,18 +160,17 @@ function ClientProfiles() {
       {loadingRequests ? (
         <p>Loading Requests...</p>
       ) : requests.length > 0 ? (
-        <div className="requesting">
-          <h2 className="client-request">Client Requests</h2>
+        <div className="cp-requesting">
+          <h2 className="client-request-title" style = {{ fontFamily: 'Copperplate, Papyrus, fantasy', color: 'white' }}>Client Requests</h2>
           {requests.map((request) => (
-            <div key={request.clientID} className="request">
-              <div className="request-info">
-                <p>
+            <div key={request.clientID} className="cp-request">
+              <div className="cp-request-info">
+                <p style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                   <strong>Name:</strong>{" "}
-                  {`${request.firstname} ${request.lastname}`}
+                  {`${request.firstname} ${request.lastname}`}{" "}
                 </p>
-                {/* Add other request information fields as needed */}
               </div>
-              <div className="request-actions">
+              <div className="cp-request-actions">
                 <button
                   onClick={() => handleRequestDecision(request.clientID, 1)}
                 >
@@ -188,7 +186,7 @@ function ClientProfiles() {
           ))}
         </div>
       ) : (
-        <p className="requesting">No client requests found.</p>
+        <p className="cp-requesting" style = {{ color: 'white', fontFamily: 'Copperplate, Papyrus, fantasy' }}>No client requests found.</p>
       )}
 
       {loadingClients ? (
@@ -196,25 +194,26 @@ function ClientProfiles() {
       ) : (
         <>
           {currentClients.map((client) => (
-            <div key={client.email} className="profile">
-              <div className="left">
+            <div key={client.email} className="cp-profile">
+              <div className="cp-left">
                 <img
-                  className="client-img"
+                  className="cp-client-img"
                   src="https://i0.wp.com/www.lizzyc.com.au/journal/wp-content/uploads/2019/07/TGardiner0519_0012.jpg?resize=1024%2C682&ssl=1"
                   alt="client profile"
                 />
               </div>
 
-              <div className="middle">
-                <name>
-                  {client.firstname} {client.lastname}
+              <div className="cp-middle">
+                <name style = {{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
+                  <strong>{client.firstname} {client.lastname}</strong>
                 </name>
               </div>
 
-              <div className="right">
+              <div className="cp-right">
                 <button
                   onClick={() => handleClientSelect(client.clientID)}
-                  className="view"
+                  className="cp-view"
+                  style = {{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}
                 >
                   VIEW PROFILE
                 </button>
@@ -224,7 +223,7 @@ function ClientProfiles() {
         </>
       )}
 
-      <div className="pagination">
+      <div className="cp-pagination">
         <button
           onClick={() => paginate(currentPage - 1)}
           disabled={currentPage === 1}

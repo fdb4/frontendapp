@@ -183,7 +183,7 @@ function ClientWorkouts() {
       <div className="individual">
         <div className="rightside">
           <div className="header">
-            <h1>
+            <h1 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>
               {clientInfo.firstname && clientInfo.lastname 
               ? `Create ${clientInfo.firstname} ${clientInfo.lastname}'s Workout` 
               : 'Loading...'}
@@ -200,7 +200,7 @@ function ClientWorkouts() {
           <div className="formstyling">
             {showWorkoutForm && (
               <form onSubmit={handleSubmit}>
-                <label>Sessions Name:</label>
+                <label style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Sessions Name:</label>
                 <input
                   type="text"
                   name="planName"
@@ -209,7 +209,7 @@ function ClientWorkouts() {
                 />
                 {workoutPlan.exercises.map((exercise, index) => (
                   <div key={index} className="exercise-form">
-                    <label>Select Exercise:</label>
+                    <label style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Select Exercise:</label>
                     <select
                       name="workoutID"
                       value={exercise.workoutID || ""}
@@ -224,14 +224,14 @@ function ClientWorkouts() {
                         </option>
                       ))}
                     </select>
-                    <label>Sets:</label>
+                    <label style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Sets:</label>
                     <input
                       type="number"
                       name="Sets"
                       value={exercise.Sets}
                       onChange={(event) => handleInputChange(index, event)}
                     />
-                    <label>Reps:</label>
+                    <label style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Reps:</label>
                     <input
                       type="number"
                       name="reps"
@@ -277,11 +277,11 @@ function ClientWorkouts() {
           </div>
         </div>
         <div className="workouts-info">
-          <h2>{clientInfo.firstname}'s Workout Sessions</h2>
+          <h2 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>{clientInfo.firstname}'s Workout Sessions</h2>
           {Object.entries(clientWorkoutSessions).map(([workoutplanID, exercises]) => (
             <div key={workoutplanID} className="workout-session">
               <div className = "workout-header" onClick={() => handleToggle(workoutplanID)}>
-                <h3>Workout Plan: {exercises[0].planName}</h3>
+                <h3 style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Workout Plan: {exercises[0].planName}</h3>
                 <span className ="dropdown-arrow">
                   {expandedWorkout === workoutplanID ? "▼" : "▶"}
                 </span>
@@ -290,9 +290,9 @@ function ClientWorkouts() {
                 <div className="exersise-list">
                   {exercises.map((exercise, index) => (
                     <div key={index}>
-                      <p style = {{ color: 'black' }}>Exercise: {getWorkoutNameById(exercise.workoutID)}</p>
-                      <p style = {{ color: 'black' }}>Sets: {exercise.Sets}</p>
-                      <p style = {{ color: 'black' }}>Reps: {exercise.reps}</p>
+                      <p style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Exercise: {getWorkoutNameById(exercise.workoutID)}</p>
+                      <p style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Sets: {exercise.Sets}</p>
+                      <p style = {{ color: 'black', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Reps: {exercise.reps}</p>
                     </div>
                   ))}
                 </div>

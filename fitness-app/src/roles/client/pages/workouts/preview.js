@@ -163,23 +163,20 @@ function Preview() {
     }
   };
   return (
-    <div className="body">
-      <ClientNavbar />
-      <button className="button" onClick={handleGoBack}>
-        Back
-      </button>
-
-      {/* Filter controls */}
+  <div className="body">
+    <ClientNavbar />
+    <div className="top-bar">
+      <button className="button" onClick={handleGoBack}>Back</button>
       <div className="filter-controls">
-        <label>
-          Sort Order:
+        <div className="filter-item">
+          <label style = {{ color: 'white', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Sort Order:</label>
           <select value={sortOrder} onChange={handleSortChange}>
             <option value="asc">Ascending</option>
             <option value="desc">Descending</option>
           </select>
-        </label>
-        <label>
-          Time Filter:
+        </div>
+        <div className="filter-item">
+          <label style = {{ color: 'white', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Time Filter:</label>
           <select value={timeFilter} onChange={handleTimeFilterChange}>
             <option value="all">All</option>
             <option value="today">Today</option>
@@ -188,32 +185,29 @@ function Preview() {
             <option value="last14">Last 14 days</option>
             <option value="last30">Last 30 days</option>
           </select>
-        </label>
+        </div>
       </div>
+    </div>
 
-      {/* Display filtered workout logs */}
+    <div className="workout-logs-container">
       {Object.keys(filteredLogs).map((workoutplanID) => (
         <div key={workoutplanID} className="workout-plan-container">
-          <h3
-            className="workout-plan-header"
-            onClick={() => toggleDropdown(workoutplanID)}
-          >
-            <p1>
-              Workout Plan Name: {filteredLogs[workoutplanID][0].planName}
-            </p1>
-            <p1>
-              Log Time:{" "}
-              {dateDisplay(filteredLogs[workoutplanID][0].lastmodified)}
-            </p1>
-            <p1>{openDropdowns[workoutplanID] ? "▼ " : "► "}</p1>
+          <h3 className="workout-plan-header" style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }} onClick={() => toggleDropdown(workoutplanID)}>
+            Workout Plan Name: {filteredLogs[workoutplanID][0].planName}
+            <span className="log-time">
+              Log Time: {dateDisplay(filteredLogs[workoutplanID][0].lastmodified)}
+            </span>
+            <span className="dropdown-icon">
+              {openDropdowns[workoutplanID] ? "▼ " : "► "}
+            </span>
           </h3>
           {openDropdowns[workoutplanID] && (
             <ul className="workout-log-list">
               {filteredLogs[workoutplanID].map((log) => (
                 <li key={log.workoutID} className="workout-log-item">
-                  <p>Workout Name: {getWorkoutNameById(log.workoutID)}</p>
-                  <p>Sets: {log.sets}</p>
-                  <p>Reps: {log.reps}</p>
+                  <p style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Workout Name: {getWorkoutNameById(log.workoutID)}</p>
+                  <p style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Sets: {log.sets}</p>
+                  <p style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Reps: {log.reps}</p>
                 </li>
               ))}
             </ul>
@@ -221,7 +215,9 @@ function Preview() {
         </div>
       ))}
     </div>
-  );
+  </div>
+);
+
 }
 
 export default Preview;
