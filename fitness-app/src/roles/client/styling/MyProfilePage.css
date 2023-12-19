@@ -93,3 +93,26 @@
   font-size: 24px;
   color: rgb(0, 0, 0);
 }
+
+.modal {
+  max-width: 600px;
+}
+
+.modal-content {
+  max-height: 500px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: left;
+}
+
+.modal-content p {
+  margin: 5px 0;
+  padding: 2px;
+}
+
+.modal-content .row {
+  display: flex;
+  justify-content: space-between;
+}
+
+
