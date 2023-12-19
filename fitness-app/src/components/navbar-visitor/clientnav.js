@@ -39,8 +39,8 @@ const ClientNavbar = () => {
       Cookies.remove("currentClientID");
     }
     setAuth({});
-    console.log("Done");
-    Navigate("/");
+    // console.log("Done");
+    // Navigate("/");
   };
 
   const [showProfileMenu, setShowProfileMenu] = useState(false);
