@@ -166,7 +166,8 @@ function Preview() {
   <div className="body">
     <ClientNavbar />
     <div className="top-bar">
-      <button className="button" onClick={handleGoBack}>Back</button>
+      <button style = {{ display: 'block' }} className="button" onClick={handleGoBack}>Back</button>
+      <h2 style = {{ color: 'white', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Logged Sessions</h2>
       <div className="filter-controls">
         <div className="filter-item">
           <label style = {{ color: 'white', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Sort Order:</label>
