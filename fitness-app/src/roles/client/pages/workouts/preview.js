@@ -176,7 +176,7 @@ function Preview() {
             <option value="desc">Descending</option>
           </select>
         </div>
-        <div className="filter-item">
+        {/* <div className="filter-item">
           <label style = {{ color: 'white', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Time Filter:</label>
           <select value={timeFilter} onChange={handleTimeFilterChange}>
             <option value="all">All</option>
@@ -186,7 +186,7 @@ function Preview() {
             <option value="last14">Last 14 days</option>
             <option value="last30">Last 30 days</option>
           </select>
-        </div>
+        </div> */}
       </div>
     </div>
 
