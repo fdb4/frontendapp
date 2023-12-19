@@ -1,0 +1,95 @@
+.profile-page {
+  padding: 20px;
+  background-image: url('../../visitors/assets/background_2.jpg');
+  background-repeat: repeat-y;
+  background-size: cover;
+  min-height: 100vh;
+  color: rgb(0, 0, 0);
+}
+
+.coach-name p{
+  font-family: 'Copperplate', 'Papyrus', fantasy;
+}
+
+.profile_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;
+  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  max-width: 800px;
+  color: rgb(0, 0, 0);
+}
+
+.img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin-top: 20px;
+}
+
+.right-myprofile, .right-myprofile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.client-name {
+  margin-bottom: 10px;
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
+}
+
+.right-myprofile-info > p {
+  margin: 0;
+  padding: 0;
+  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: rgb(0, 0, 0);
+}
+
+.coach-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.coach-display p {
+  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+
+.coach-display button {
+  margin-bottom: 10px;
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.coach-display button:hover {
+  background-color: #45a049;
+}
+
+.error-message {
+  color: red;
+  font-size: 18px;
+}
+
+.coach-status {
+  font-family: 'Copperplate', 'Papyrus', fantasy;
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+}

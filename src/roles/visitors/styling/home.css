@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+.invert-logo {
+  filter: invert(1);
+}
+.image {
+  margin-top: 0; 
+  background-image: url("../assets/home.jpg");
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Crimson Text", serif;
+  padding: 20px;
+  max-width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: right;
+  margin-top: 10px;
+  width: 100%;
+
+}
+
+.header h1 {
+  color: white;
+  font-size: 56px;
+}
+
+.champion {
+  color: #b9a198;
+}
+
+.features {
+  background-color: #a16551;
+  margin-top: 10%;
+  margin-left: 2em;
+  margin-right: 2em;
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  padding: 40px 10px;
+  font-family: saira;
+  border-radius: 50px;
+}
+
+.items img {
+  width: 50px;
+  height: auto;
+}
+
+.info {
+  margin-left: 2em;
+}
+
+.info .header_two {
+  color: white;
+}
+
+.info h2 {
+  align-items: center;
+  margin-top: 50px;
+  margin-right: 50px;
+}
+
+.info p {
+  margin-top: 40px;
+  margin-left: 10px;
+  width: 40%;
+}
+
+.footer {
+  width: 100%;
+  min-height: 150px;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.footer h2 {
+  margin: 0;
+}
+
+
+.concerns p {
+  margin: 5px 0;
+  padding-right: 100%;
+  color: #a16551;
+}
+
+.socials {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.socials img {
+  width: 30px;
+  height: 30px;
+  filter: invert(1);
+}
+
+.reg-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 120px;
+  margin-bottom: 150px;
+}
+
+.reg-button-contain {
+  display: flex;
+  flex-direction: column;
+  align-items: right;  
+  justify-self: right;
+}
+
+.reg-button-contain h3 {
+  color: white;
+  font-family: "Crimson Text", serif;
+  font-size: 48px;
+}
+
+.reg-button-contain button {
+  font-size: 24px;
+  padding: 20px 60px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  max-width: 50%;
+  margin: auto;
+}
+
+.reg-button-contain button:hover {
+  background-color: #92704a;
+}
+
+@media (max-width: 1000px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    margin: 10px;
+    padding: 20px;
+  }
+
+  .items img {
+    width: 40px;
+    height: auto;
+  }
+
+  .info, .reg-button {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .reg-button-container h3 {
+    font-size: 24px;
+  }
+
+  .reg-button-contain button {
+    padding: 10px 30px;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+
+  .concerns, .socials {
+    justify-content: center;
+  }
+
+  .header h1 {
+    font-size: 32px; /* Adjust font size for smaller screens */
+  }
+
+  .header {
+    width: 100%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+

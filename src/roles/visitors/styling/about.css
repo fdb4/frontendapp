@@ -1,0 +1,67 @@
+/* about.css */
+
+.body {
+  text-align: center;
+  padding: 20px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center; /* Center the header elements */
+  flex-direction: column; /* Align header elements vertically */
+  align-items: center; /* Center the header elements horizontally */
+}
+
+.header-container h1 {
+
+  font-size: 56px;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  margin-top: 40px;
+}
+
+h1 {
+  color: #ffffff;
+}
+
+#para {
+  font-size: 18px;
+  text-align: center;
+  color: #a16551;
+  line-height: 1.5;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.team-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the team members horizontally */
+  gap: 20px;
+  margin-bottom: 30px
+}
+
+.team {
+  width: calc(33.33% - 20px);
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;;
+}
+
+.team h2 {
+
+  color: white;
+  margin-top: 20px;
+}
+
+.team p {
+  color: white;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 32px;
+}

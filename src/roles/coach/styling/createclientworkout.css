@@ -1,0 +1,154 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: black;
+}
+
+.individual {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.rightside {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  max-width: 40%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header button {
+  padding: 10px;
+  margin: 0 10px;
+  cursor: pointer;
+  background-color: #2a6403;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+.header h1 {
+  color: black;
+}
+
+.formstyling {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.exercise-form {
+  margin-bottom: 20px;
+}
+
+.exercise-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.exercise-form select,
+.exercise-form input {
+  width: calc(100% - 20px);
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.exercise-form button {
+  background-color: #fa1e01;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.add {
+  background-color: #2a6403;
+  margin-bottom: 20px;
+}
+
+.exercise-form button.cancel_2 {
+  background-color: #b68888;
+  margin-right: 0;
+}
+
+.submission {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.submission button {
+  background-color: #2a6403;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.submission button.cancel_2 {
+  background-color: #a39191;
+  margin-right: 0;
+}
+
+.workouts-info {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-left: 20px;
+}
+
+.workout-session {
+  margin-bottom: 20px;
+}
+
+.exercise-list p {
+  color: #333;
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.workout-session .exercise-list p:first-child {
+  font-weight: bold;
+  background-color: #e8e8e8;
+}
+
+.workout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-arrow {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.exercise-list {
+  margin-top: 10px;
+}
+
+.exercise-list p {
+  color: black;
+  text-align: center;
+}

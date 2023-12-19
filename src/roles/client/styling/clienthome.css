@@ -1,0 +1,102 @@
+
+.body {
+
+	margin: 0;
+}
+
+.client-home {
+	background-image: url('../../visitors/assets/background_4.jpg');
+    background-repeat: repeat-y;
+  	background-size: cover;
+  	background-position: center -125px;
+}
+
+.h3-firstname, .h3-lastname {
+    position: absolute;
+    font-family: 'Copperplate', 'Papyrus', fantasy;
+    color: white;
+    z-index: 1000;
+}
+
+.h3-firstname {
+    top: 225px;
+    left: 70%;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.h3-lastname {
+    top: 275px;
+    left: 70%;
+    font-size: 40px;
+}
+
+.container-p9{
+	text-align: center;
+	font-family: 'Copperplate', 'Papyrus', fantasy;
+	display: block;
+	padding-bottom: 100px;
+}
+
+.container-h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Copperplate', 'Papyrus', fantasy;
+    font-size: 48px;
+}
+
+.home-page-title {
+    text-align: center;
+    font-family: 'Copperplate', 'Papyrus', fantasy;
+    font-size: 48px;
+}
+
+.workout-button {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	margin-left: 200px;
+}
+
+.workout-button button{
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	align-self: flex-start;
+	height: 50px;
+	margin-bottom: 40px;
+	background-color: rgb(66, 179, 170, 0.8);
+	font-size: 20px;
+	border-radius: 70px;
+	align-items: center;
+}
+
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-bottom: 30px;
+}
+
+.button-container button {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 75px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(66, 179, 170, 0.8);
+    font-size: 20px;
+    border-radius: 70px;
+}
+
+.footer h2 {
+    color: white;
+}

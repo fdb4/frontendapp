@@ -1,0 +1,128 @@
+/* Services.css */
+.body_3 {
+  background-color: #000000;
+  font-family: "Crimson Text", serif;
+  padding: 20px;
+  text-align: center;
+  
+}
+
+.title-container {
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+.title-container h1 {
+  margin-top: 0px;
+  color: white;
+}
+
+.title {
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+.paragraphs-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 110px;
+}
+
+.paragraphs-container p {
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  margin-left: 30px;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+
+.item {
+
+  padding: 20px;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  border-radius: 50px;
+}
+
+.item h2 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.item p {
+  max-width: 600px;
+}
+
+.item_2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 20px;
+  color: #ffffff;
+  border-radius: 50px;
+  overflow: hidden;
+  
+}
+
+.middle {
+  text-align: left;
+  margin-left: 40px;
+}
+
+.middle p{
+
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  margin-left: 30px;
+  margin-right: 50px;
+  margin-top: 10px;
+  margin-bottom: 150px;
+}
+
+.item_3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 20px;
+  color: #222;
+  border-radius: 50px;
+
+}
+
+.item_3 p {
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 150px;
+  margin-right: 40px;
+}
+
+.images {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50px;
+}
+.footer {
+  border-top: 1px solid #a16551;
+  border-radius: 50px;
+  padding-top: 20px;
+}
+.footer h2,
+p,
+.socials {
+  padding-left: 20px;
+}
+.socials {
+  margin: 5px;
+}
+
+.socials img:hover {
+  background-color: rgb(0, 255, 153);
+}
+

@@ -1,0 +1,146 @@
+body {
+  font-family: "Saira Condensed", sans-serif;
+  margin: 0;
+  color: white;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+button {
+  margin-top: 10px;
+}
+
+.profile_2 {
+  margin: 20px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.img {
+  border-radius: 50%;
+  width: 30%;
+}
+
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Main content styling */
+.name,
+price,
+gym {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* Middle section styling */
+.location {
+  margin-top: 10px;
+}
+
+/* Right section styling */
+.actions_2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#view {
+  display: inline-flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #3503fc;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+#view:hover {
+  background-color: #2802c7;
+}
+
+/* Lightbox styling */
+.lightbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.form-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+}
+
+/* Ensure text doesn't go outside the container */
+form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .profile_2 {
+    flex-direction: column;
+  }
+}

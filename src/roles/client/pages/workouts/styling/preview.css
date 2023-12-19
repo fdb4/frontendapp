@@ -1,0 +1,49 @@
+.body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+
+}
+
+.button {
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+
+}
+
+.filter-controls {
+  margin-top: 20px;
+
+}
+
+.workout-plan-container {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  width: 900px;
+}
+
+.workout-plan-header {
+  font-size: 18px;
+  margin-bottom: 10px;
+
+}
+
+.workout-log-list {
+  list-style: none;
+  padding: 0;
+  margin: auto;
+}
+
+.workout-log-item {
+  background-color: rgba(194, 176, 153, 0.404);
+}
+
+
+.workout-log-item p{
+  color: black;
+  margin: 10px auto;
+}
