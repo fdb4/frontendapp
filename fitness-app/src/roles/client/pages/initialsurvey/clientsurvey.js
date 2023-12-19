@@ -138,11 +138,11 @@ const InitialSurveyPage = () => {
       <VistorNavbar />
       <div className="survey-modal-container">
         <div className="survey-modal">
-          <h1>Initial Survey</h1>
+          <h1 style={{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Initial Survey</h1>
           <form onSubmit={handleSubmit} className="initial-survey-form">
-            <h2>Personal Info</h2>
+            <h2 style={{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Personal Info</h2>
             <div>
-              <label>Height </label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Height </label>
               <select
                 name="height"
                 value={formData.height}
@@ -150,46 +150,46 @@ const InitialSurveyPage = () => {
                 required
               >
                 <option value="">Select height...</option>
-                <option value="5'0">5'0</option>
-                <option value="5'1">5'1</option>
-                <option value="5'2">5'2</option>
-                <option value="5'3">5'3</option>
-                <option value="5'4">5'4</option>
-                <option value="5'5">5'5</option>
-                <option value="5'6">5'6</option>
-                <option value="5'7">5'7</option>
-                <option value="5'8">5'8</option>
-                <option value="5'9">5'9</option>
-                <option value="5'10">5'0</option>
-                <option value="5'11">5'1</option>
-                <option value="6'0">6'0</option>
-                <option value="6'1">6'1</option>
-                <option value="6'2">6'2</option>
-                <option value="6'3">6'3</option>
-                <option value="6'4">6'4</option>
-                <option value="6'5">6'5</option>
-                <option value="6'6">6'6</option>
-                <option value="6'7">6'7</option>
-                <option value="6'8">6'8</option>
-                <option value="6'9">6'9</option>
-                <option value="6'10">6'10</option>
-                <option value="6'11">6'11</option>
-                <option value="7'0">7'0</option>
-                <option value="7'1">7'1</option>
-                <option value="7'2">7'2</option>
-                <option value="7'3">7'3</option>
-                <option value="7'4">7'4</option>
-                <option value="7'5">7'5</option>
-                <option value="7'6">7'6</option>
-                <option value="7'7">7'7</option>
-                <option value="7'8">7'8</option>
-                <option value="7'9">7'9</option>
-                <option value="7'10">7'10</option>
-                <option value="7'11">7'11</option>
+                <option value="5'0">5'0"</option>
+                <option value="5'1">5'1"</option>
+                <option value="5'2">5'2"</option>
+                <option value="5'3">5'3"</option>
+                <option value="5'4">5'4"</option>
+                <option value="5'5">5'5"</option>
+                <option value="5'6">5'6"</option>
+                <option value="5'7">5'7"</option>
+                <option value="5'8">5'8"</option>
+                <option value="5'9">5'9"</option>
+                <option value="5'10">5'10"</option>
+                <option value="5'11">5'11"</option>
+                <option value="6'0">6'0"</option>
+                <option value="6'1">6'1"</option>
+                <option value="6'2">6'2"</option>
+                <option value="6'3">6'3"</option>
+                <option value="6'4">6'4"</option>
+                <option value="6'5">6'5"</option>
+                <option value="6'6">6'6"</option>
+                <option value="6'7">6'7"</option>
+                <option value="6'8">6'8"</option>
+                <option value="6'9">6'9"</option>
+                <option value="6'10">6'10"</option>
+                <option value="6'11">6'11"</option>
+                <option value="7'0">7'0"</option>
+                <option value="7'1">7'1"</option>
+                <option value="7'2">7'2"</option>
+                <option value="7'3">7'3"</option>
+                <option value="7'4">7'4"</option>
+                <option value="7'5">7'5"</option>
+                <option value="7'6">7'6"</option>
+                <option value="7'7">7'7"</option>
+                <option value="7'8">7'8"</option>
+                <option value="7'9">7'9"</option>
+                <option value="7'10">7'10"</option>
+                <option value="7'11">7'11"</option>
               </select>
             </div>
             <div>
-              <label>Starting Weight </label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Starting Weight </label>
               <input
                 type="number"
                 name="weight"
@@ -200,7 +200,7 @@ const InitialSurveyPage = () => {
               />
             </div>
             <div>
-              <label>Age </label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Age </label>
               <input
                 type="number"
                 name="age"
@@ -211,7 +211,7 @@ const InitialSurveyPage = () => {
               />
             </div>
             <div>
-              <label>Gender </label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Gender </label>
               <select
                 name="gender"
                 value={formData.gender}
@@ -223,9 +223,9 @@ const InitialSurveyPage = () => {
                 <option value="female">Female</option>
               </select>
             </div>
-            <h2>Workout Info</h2>
+            <h2 style={{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Workout Info</h2>
             <div>
-              <label>Goal Weight </label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Goal Weight </label>
               <input
                 type="number"
                 name="goalweight"
@@ -235,7 +235,7 @@ const InitialSurveyPage = () => {
               />
             </div>
             <div>
-              <label>Movement Type </label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Movement Type </label>
               <select
                 name="movement"
                 value={formData.movement}
@@ -249,9 +249,9 @@ const InitialSurveyPage = () => {
                 <option value="very">Very Active</option>
               </select>
             </div>
-            <h3>Workout Interests</h3>
+            <h3 style={{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Workout Interests</h3>
             <div className="radio-option">
-              <label>Cycling:</label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Cycling:</label>
               <div className="radio-group">
                 <select
                   name="cycling"
@@ -266,7 +266,7 @@ const InitialSurveyPage = () => {
               </div>
             </div>
             <div className="radio-option">
-              <label>Strength:</label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Strength:</label>
               <div className="radio-group">
                 <select
                   name="strength"
@@ -281,7 +281,7 @@ const InitialSurveyPage = () => {
               </div>
             </div>
             <div className="radio-option">
-              <label>Running:</label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Running:</label>
               <div className="radio-group">
                 <select
                   name="running"
@@ -296,7 +296,7 @@ const InitialSurveyPage = () => {
               </div>
             </div>
             <div className="radio-option">
-              <label>Sports:</label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Sports:</label>
               <div className="radio-group">
                 <select
                   name="sports"
@@ -311,7 +311,7 @@ const InitialSurveyPage = () => {
               </div>
             </div>
             <div className="radio-option">
-              <label>Yoga:</label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Yoga:</label>
               <div className="radio-group">
                 <select
                   name="yoga"
@@ -326,7 +326,7 @@ const InitialSurveyPage = () => {
               </div>
             </div>
             <div className="radio-option">
-              <label>Swimming:</label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Swimming:</label>
               <div className="radio-group">
                 <select
                   name="swimming"
@@ -341,7 +341,7 @@ const InitialSurveyPage = () => {
               </div>
             </div>
             <div className="radio-option">
-              <label>Martial Arts:</label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Martial Arts:</label>
               <div className="radio-group">
                 <select
                   name="martialarts"
@@ -356,7 +356,7 @@ const InitialSurveyPage = () => {
               </div>
             </div>
             <div>
-              <label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 Other:
                 <textarea
                   name="other"

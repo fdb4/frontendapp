@@ -1,71 +1,210 @@
-/* Modal Overlay */
-.modal-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9998;
-}
-/* Modal Content */
-.modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 40px; /* Increase padding at the top */
-  background-color: white;
-  z-index: 9999;
-  max-width: 400px;
-  width: 100%;
+
+.aw-workout-container {
+  background-color: black;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background-size: cover;
 }
 
-/* Close Button */
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+.aw-workout-container button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
   cursor: pointer;
-  background: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.aw-workout-conatainer .aw-deactivate-button:hover {
+  background-color: darkred;
+}
+
+.aw-add-workout-modal {
+  background-color: #222;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.aw-modal-overlay {
+  background-color: rgba(0,0,0,0.7);
+}
+
+.aw-modal-close-btn {
+  float: right;
   border: none;
+  color: white;
+  background-color: transparent;
   font-size: 20px;
-  color: #333;
+  cursor: pointer;
 }
 
-.close-button:hover {
-  color: #555; /* Close button color on hover */
+.aw-workout-form .aw-form-group {
+  margin-bottom: 15px;
 }
 
-/* Form Styling */
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  margin-bottom: 10px;
-  color: #000; /* Set label text color to black */
-}
-
-input {
-  padding: 8px;
-  margin-top: 5px;
+.aw-workout-input {
   width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   box-sizing: border-box;
+  background-color: white;
+  color: black;
 }
 
-/* Submit Button */
-button[type="submit"] {
-  background-color: #000000; /* Submit button background color set to black */
-  color: #fff; /* Submit button text color set to white */
-  border: none;
+.aw-submit-workout-btn {
+  width: 100%;
+}
+
+.aw-workout-listings {
+  display: flex;
+  justify-content: space-between;
+}
+
+.aw-workout-section {
+  background-color: #1a1a1a;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
+  flex: 1;
+}
+
+.aw-section-title {
+  font-weight: bold;
+}
+
+.aw-pagination-controls {
+  margin-top: 20px;
+}
+
+.aw-current-page-indicator {
+  color: #4CAF50;
+}
+
+.aw-success-message {
+  background-color: #4CAF50;
+  color: white;
   padding: 10px;
   border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-button[type="submit"]:hover {
-  background-color: #333; /* Submit button background color on hover */
+.ac-page-body {
+  font-family: 'Arial', sans-serif;
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ac-no-coaches-message h1 {
+  text-align: center;
+}
+
+.ac-coach-profile-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.ac-coach-profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.ac-profile-image {
+  display: block;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.ac-profile-details {
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.ac-coach-name {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ac-coach-price,
+.ac-coach-gym {
+  margin: 5px 0;
+  display: block;
+}
+
+.ac-location-experience-container {
+  text-align: center;
+  margin-top: 0 auto;
+  width: 100%;
+}
+
+.ac-location-details,
+.ac-experience-ratings {
+  margin: 10px 0;
+}
+
+.ac-action-buttons-container {
+  text-align: center;
+  margin-top: 0 auto;
+  width: 100%;
+}
+
+.ac-contact-details {
+  margin-bottom: 20px;
+}
+
+.ac-approve-button,
+.ac-deny-button {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+  font-size: 0.9em;
+}
+
+.ac-deny-button {
+  background-color: #d9534f;
+}
+
+.ac-approve-button:hover,
+.ac-deny-button:hover {
+  opacity: 0.8;
+}
+
+.MessagePopup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
 }

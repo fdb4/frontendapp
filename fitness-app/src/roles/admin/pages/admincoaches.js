@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Coach from "../../visitors/assets/coach.png";
 import axios from "axios";
+import "../styling/modal.css";
 import API_URL from "../../../components/navbar-visitor/apiConfig";
 import MessagePopup from "../../../components/navbar-visitor/MessagePopup";
 
@@ -75,52 +76,47 @@ const AdminCoaches = () => {
       });
   };
   return (
-    <div className="body_2">
+    <div className="ac-page-body">
       <ClientNavbar />
       {coaches.length === 0 ? (
-        <div className="body">
+        <div className="ac-no-coaches-message">
           <h1 style={{ color: "white" }}>No Coaches Requesting...</h1>
         </div>
       ) : (
         coaches.map((coach) => (
-          <div key={coach.coachexpID}>
-            <tr className="profile_2">
+          <div key={coach.coachexpID} className="ac-coach-profile-container">
+            <div className="ac-coach-profile-content">
               <img
-                className="img"
+                className="ac-profile-image"
                 src={Coach}
                 alt="coach profile"
-                style={{
-                  borderRadius: "50%",
-                  width: "10%",
-                }}
               />
-              <div className="left">
-                <name>
+              <div className="ac-profile-details">
+                <name className="ac-coach-name" style ={{ fontSize: '36px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'black' }}>
                   {coach.firstname} {coach.lastname}
                 </name>
-                <price>Price: ${coach.price}</price>
-                <gym>Gym: {coach.gym}</gym>
+                <price className="ac-coach-price" style ={{ fontSize: '18px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'black' }}>Price: ${coach.price}</price>
+                <gym className="ac-coach-gym">Gym: {coach.gym}</gym>
               </div>
-              <div className="middle">
-                <div className="location">
-                  <town>Town: {coach.town} </town>
-                  <state>State: {coach.state}</state>
+              <div className="ac-location-experience-container" style ={{ fontSize: '18px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'black' }}>
+                <div className="ac-location-details">
+                  <town className="ac-coach-town">Town: {coach.town} </town>
+                  <state className="ac-coach-state">State: {coach.state} </state>
                 </div>
-                <div className="middle_2">
-                  <experience>Experience: {coach.experience}</experience>
-                  <ratings>Ratings: {coach.rating}</ratings>
+                <div className="ac-experience-ratings" style ={{ fontSize: '18px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'black' }}>
+                  <experience className="ac-coach-experience">Experience: {coach.experience} </experience>
+                  <ratings className="ac-coach-ratings">Ratings: {coach.rating}</ratings>
                 </div>
               </div>
-
-              <div className="right">
-                <div className="contact">
-                  <contact>CONTACT</contact>
-                  <email>Email: {coach.email}</email>
+              <div className="ac-action-buttons-container" style ={{ fontSize: '18px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'black' }}>
+                <div className="ac-contact-details">
+                  <contact className="ac-contact-label" style ={{ fontSize: '18px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'black' }}>CONTACT </contact>
+                  <email className="ac-coach-email" style ={{ fontSize: '18px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'black' }}>Email: {coach.email}</email>
                 </div>
-                <button onClick={() => handleApprove(coach)}>Approve</button>
-                <button onClick={() => handleDeny(coach)}>Deny</button>
+                <button className="ac-approve-button" onClick={() => handleApprove(coach)}>Approve</button>
+                <button className="ac-deny-button" onClick={() => handleDeny(coach)}>Deny</button>
               </div>
-            </tr>
+            </div>
             {approved && (
               <MessagePopup message="Approved Coach Successfully!" />
             )}

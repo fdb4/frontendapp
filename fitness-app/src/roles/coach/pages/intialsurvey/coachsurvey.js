@@ -81,11 +81,11 @@ const CoachSurvey = () => {
       <br />
       <div className="survey-modal-container">
         <div className="survey-modal">
-          <h1>Coach Initial Survey</h1>
+          <h1 style={{ fontSize: '40px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>Coach Initial Survey</h1>
           <form onSubmit={handleSubmit} className="initial-survey-form">
-            <h2>Extra Information</h2>
+            <h2 style={{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Extra Information</h2>
             <div>
-              <label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 Hourly Price:
                 <input
                   type="number"
@@ -98,11 +98,9 @@ const CoachSurvey = () => {
               </label>
               {priceError && <h9 style={{ color: "red" }}>{priceError}</h9>}
             </div>
-
             <br />
-
             <div>
-              <label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 Years of Experience:
                 <input
                   type="number"
@@ -116,11 +114,9 @@ const CoachSurvey = () => {
                 <h9 style={{ color: "red" }}>{experienceError}</h9>
               )}
             </div>
-
             <br />
-
             <div>
-              <label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 Gym Name:
                 <input
                   type="text"
@@ -131,11 +127,9 @@ const CoachSurvey = () => {
                 />
               </label>
             </div>
-
             <br />
-
             <div>
-              <label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 Current Town:
                 <input
                   type="text"
@@ -146,11 +140,9 @@ const CoachSurvey = () => {
                 />
               </label>
             </div>
-
             <br />
-
             <div>
-              <label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 Current State:
                 <input
                   type="text"
@@ -161,11 +153,9 @@ const CoachSurvey = () => {
                 />
               </label>
             </div>
-
             <br />
-
             <div>
-              <label>
+              <label style={{ fontSize: '24px', fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                 Bio:
                 <textarea
                   placeholder="Enter your bio"
@@ -176,7 +166,6 @@ const CoachSurvey = () => {
                 />
               </label>
             </div>
-
             <button type="submit" className="submit-button">
               Submit Survey
             </button>

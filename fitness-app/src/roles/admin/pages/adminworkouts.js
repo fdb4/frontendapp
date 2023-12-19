@@ -184,94 +184,107 @@ const AdminWorkouts = () => {
   function DisplayWorkout({ workout, type }) {
     return (
       <tr key={workout.workoutID}>
-        <div style={styles.profile}>
-          <div style={styles.left_profile}>
-            <div style={styles.name}>{workout.workoutname}</div>
-            <div style={styles.name}>Muscle Group: {workout.musclegroup}</div>
-            <div style={styles.name}>Equipment: {workout.equipment}</div>
-            <button
-              onClick={() => {
-                if (type === "Deactivate") return handleDeactivate(workout);
-                return handleActivate(workout);
-              }}
-            >
-              {type}
-            </button>
-            {showSuccess && <MessagePopup message={`Successful!`} />}
+        <td>
+          <div style={styles.workoutCard}>
+            <div style={styles.workoutDetails}>
+              <div style={styles.workoutName}>{workout.workoutname}</div>
+              <div style={styles.detail}>Muscle Group: {workout.musclegroup}</div>
+              <div style={styles.detail}>Equipment: {workout.equipment}</div>
+              <button
+                style={type === "Deactivate" ? styles.deactivateButton : styles.activateButton}
+                onClick={() => {
+                  if (type === "Deactivate") return handleDeactivate(workout);
+                  return handleActivate(workout);
+                }}
+              >
+                {type}
+              </button>
+              {showSuccess && <MessagePopup message={`Successful!`} />}
+            </div>
+            <div style={styles.description}>
+              <div style={styles.detail}>Description: {workout.description}</div>
+            </div>
           </div>
-          <div style={styles.description}>
-            <div style={styles.name}>Description: {workout.description} </div>
-          </div>
-          <div style={styles.left_profile}></div>
-        </div>
+        </td>
       </tr>
     );
   }
 
   return (
-    <div className="body_1">
+    <div className="aw-workout-container">
       <ClientNavbar />
-      <div>
-        <button onClick={handleAddWorkoutClick}>Add Workout</button>
+      <div className="aw-workout-actions">
+        <button className="aw-add-workout-btn" onClick={handleAddWorkoutClick}>Add Workout</button>
         {showAddSuccess && (
-          <MessagePopup message={`Workout Added Successful!`} />
+          <MessagePopup className="aw-success-message" message={`Workout Added Successful!`} />
         )}
         <Modal
           isOpen={isModalOpen}
           onRequestClose={() => setModalOpen(false)}
           contentLabel="Add Workout Modal"
-          className="modal-content"
+          className="aw-add-workout-modal"
           overlayClassName="modal-overlay"
         >
-          <button className="close-button" onClick={handleCloseModal}>
-            ×
-          </button>
-          <br />
-          <br />
-          <form onSubmit={addWorkout}>
-            <label>
-              Workout Name:
-              <input
-                type="text"
-                name="workoutname"
-                value={formData.workoutname}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-            <label>
-              Video Link:
-              <input
-                type="url"
-                name="videolink"
-                value={formData.videolink}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-            <label>
-              Description:
-              <input
-                type="text"
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-            <label>
-              Muscle Group:
-              <input
-                type="text"
-                name="musclegroup"
-                value={formData.musclegroup}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-            <label>
+          <button className="aw-modal-close-btn" onClick={handleCloseModal}>×</button>
+          <br /><br />
+          <form className="aw-workout-form" onSubmit={addWorkout}>
+            <div className="aw-form-group">
+              <label style ={{ fontSize: '18px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'white' }} className="workout-label">
+                Workout Name:
+                <input
+                  className="aw-workout-input"
+                  type="text"
+                  name="workoutname"
+                  value={formData.workoutname}
+                  onChange={handleInputChange}
+                  required
+                />
+              </label>
+            </div>
+            <div className="aw-form-group">
+              <label style ={{ fontSize: '18px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'white' }} className="workout-label">
+                Video Link:
+                <input
+                  className="aw-workout-input"
+                  type="url"
+                  name="videolink"
+                  value={formData.videolink}
+                  onChange={handleInputChange}
+                  required
+                />
+              </label>
+            </div>
+            <div className="aw-form-group">
+              <label style ={{ fontSize: '18px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'white' }} className="workout-label">
+                Description:
+                <input
+                  className="aw-workout-input"
+                  type="text"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  required
+                />
+              </label>
+            </div>
+            <div className="aw-form-group">
+              <label style ={{ fontSize: '18px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'white' }} className="workout-label">
+                Muscle Group:
+                <input
+                  className="aw-workout-input"
+                  type="text"
+                  name="musclegroup"
+                  value={formData.musclegroup}
+                  onChange={handleInputChange}
+                  required
+                />
+              </label>
+            </div>
+            <div className="aw-form-group">
+              <label style ={{ fontSize: '18px', fontFamily: 'Copperplate, Papyrus, fantasy', color: 'white' }} className="workout-label">
               Equipment:
               <input
+                className="aw-workout-input"
                 type="text"
                 name="equipment"
                 value={formData.equipment}
@@ -279,55 +292,57 @@ const AdminWorkouts = () => {
                 required
               />
             </label>
-
-            <button type="submit">Submit</button>
-          </form>
-        </Modal>
+          </div>
+          <button className="aw-submit-workout-btn" type="submit">Submit</button>
+        </form>
+      </Modal>
+    </div>
+    <div className="aw-workout-listings">
+      <div id="activeWorkoutSection" className="aw-workout-section">
+        <p className="aw-section-title" style={{ marginLeft: '50px', fontFamily: 'Copperplate, Papyrus, fantasy', color: "white" }}> Active Workouts:</p>
+        {currentActiveWorkouts.map((workout) => (
+          <DisplayWorkout
+            className="aw-workout-display"
+            workout={workout}
+            type={"Deactivate"}
+            key={workout.workoutID}
+            deactivateButtonClass="deactivate-button"
+          />
+        ))}
       </div>
-
-      <div style={styles.all_workouts}>
-        <div id="activeworkout" style={styles.workoutsection}>
-          <p1 style={{ color: "white" }}> Active Workouts:</p1>
-          {currentActiveWorkouts.map((workout) => (
-            <DisplayWorkout
-              workout={workout}
-              type={"Deactivate"}
-              key={workout.workoutID}
-            />
-          ))}
-        </div>
-
-        <div id="deactiveworkout" style={styles.workoutsection}>
-          <p1 style={{ color: "white " }}>Deactive Workouts:</p1>
-          {currentDeactiveWorkouts.map((workout) => (
-            <DisplayWorkout
-              workout={workout}
-              type={"Activate"}
-              key={workout.workoutID}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div style={{ textAlign: "center" }}>
-        <button
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Previous Page
-        </button>
-        <span style={{ margin: "0 10px" }}>Page {currentPage}</span>
-        <button
-          onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={
-            currentPage * ITEMS_PER_PAGE >= activeWorkout.length &&
-            currentPage * ITEMS_PER_PAGE >= deactiveWorkout.length
-          }
-        >
-          Next Page
-        </button>
+      <div id="deactiveWorkoutSection" className="aw-workout-section">
+        <p className="aw-section-title" style={{ marginLeft: '50px', fontFamily: 'Copperplate, Papyrus, fantasy', color: "white " }}>Deactive Workouts:</p>
+        {currentDeactiveWorkouts.map((workout) => (
+          <DisplayWorkout
+            className="aw-workout-display"
+            workout={workout}
+            type={"Activate"}
+            key={workout.workoutID}
+          />
+        ))}
       </div>
     </div>
+    <div className="aw-pagination-controls" style={{ textAlign: "center" }}>
+      <button
+        className="aw-pagination-btn previous"
+        onClick={() => setCurrentPage(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
+        Previous Page
+      </button>
+      <span className="aw-current-page-indicator" style={{ color: 'white', margin: "0 10px" }}>Page {currentPage}</span>
+      <button
+        className="aw-pagination-btn next"
+        onClick={() => setCurrentPage(currentPage + 1)}
+        disabled={
+          currentPage * ITEMS_PER_PAGE >= activeWorkout.length &&
+          currentPage * ITEMS_PER_PAGE >= deactiveWorkout.length
+        }
+      >
+        Next Page
+      </button>
+    </div>
+  </div>
   );
 };
 const styles = {
@@ -359,13 +374,53 @@ const styles = {
   },
   name: {
     color: "#000",
-    fontFamily: "Saira Condensed, sans-serif",
+    fontFamily: "Copperplate, Papyrus, fantasy",
     fontSize: "12px",
     fontWeight: "700",
     lineHeight: "1.5",
     paddingTop: "10px",
     alignItems: "center",
     justifyContent: "center",
+    marginLeft: "20px"
+  },
+  workoutCard: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "20px",
+    margin: "10px",
+    background: "#f4f4f4",
+    borderRadius: "10px",
+  },
+  workoutDetails: {
+    flex: 1,
+    textAlign: "left",
+  },
+  workoutName: {
+    color: "#000",
+    fontFamily: "Copperplate, Papyrus, fantasy",
+    fontSize: "18px",
+    fontWeight: "700",
+    textDecoration: "underline"
+  },
+  detail: {
+    color: "#000",
+    fontFamily: "Arial, sans-serif",
+    fontSize: "14px",
+    margin: "5px 0",
+  },
+  description: {
+    flex: 2,
+    textAlign: "left",
+    marginLeft: "20px",
+  },
+  deactivateButton: {
+    backgroundColor: "red",
+    color: "white",
+  },
+  activateButton: {
+    backgroundColor: "green",
+    color: "white",
   },
 };
 export default AdminWorkouts;
