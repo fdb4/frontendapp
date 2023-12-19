@@ -59,9 +59,14 @@ button:disabled {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
-
+.cp-profile {
+  display: flex;
+  height: 100px;
+}
 .cp-left, .cp-middle, .cp-right {
   flex: 1;
+  width: auto;
+  margin: auto;
 }
 
 .cp-client-img {
