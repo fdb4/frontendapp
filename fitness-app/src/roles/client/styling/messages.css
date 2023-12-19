@@ -9,14 +9,6 @@
   flex-direction: column;
   overflow-x: hidden;
 }
-.messages {
-  width: 1079px;
-  height: 970px;
-  flex-shrink: 1;
-  border-radius: 70px;
-  background: #fff;
-  margin: 20px auto;
-}
 
 .content-area {
   margin: 40px auto;
@@ -32,8 +24,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #479090;
-  max-width: 85%px;
+  background: #6d8a8a;
+  max-width: 85%;
   border-radius: 4px;
   flex-shrink: 0;
 }
@@ -45,6 +37,7 @@
   max-height: 500px;
   overflow-y: auto;
   flex-grow: 1;
+  overflow-x:hidden;
 }
 
 .message {
@@ -61,7 +54,7 @@
   height: 60px;
   flex-shrink: 0;
   border-radius: 20px;
-  background: #FFF;
+  background: #8f5555;
   padding: 5px;
 }
 
@@ -71,14 +64,14 @@
   flex-shrink: 0;
   border-radius: 20px;
   background: #FFF;
-  background-color: lightskyblue;
+  background-color: rgb(0, 0, 0);
   text-align: left;
   padding-left: 15px;
 }
 
 .message .timestamp {
   font-size: 0.75em;
-  color: lightgreen;
+  color: rgb(9, 11, 9);
 }
 
 .message.sent .timestamp {
@@ -116,7 +109,6 @@
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 4px;
-  margin: 0 auto;
   max-height: auto;
   overflow-y: auto;
   flex: 0 0 40%;
@@ -157,8 +149,11 @@
   font-family: "Copperplate", "Papyrus", fantasy;
 }
 
+#enter {
+  margin: 5px 30px;
+}
 .content {
-  color: black;
+  color: rgb(249, 249, 249);
 }
 
 .timestamp {
