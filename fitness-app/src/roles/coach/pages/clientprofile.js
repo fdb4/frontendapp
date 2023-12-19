@@ -825,10 +825,10 @@ const ClientProfile = () => {
                     <div>
                       {logs.map((log, index) => (
                         <div key={index} className="workout-log">
-                          <p>Workout ID: {getWorkoutNameById(log.workoutID)}</p>
-                          <p>Sets: {log.sets}</p>
-                          <p>Reps: {log.reps}</p>
-                          <p>
+                          <p style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Workout ID: {getWorkoutNameById(log.workoutID)}</p>
+                          <p style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Sets: {log.sets}</p>
+                          <p style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>Reps: {log.reps}</p>
+                          <p style = {{ fontFamily: 'Copperplate, Papyrus, fantasy' }}>
                             Last Modified:{" "}
                             {new Date(log.lastmodified).toLocaleString()}
                           </p>
@@ -841,7 +841,7 @@ const ClientProfile = () => {
             )}
           </div>
           <div className="client-logs-section">
-            <h3>{client.firstname}'s Daily Logs</h3>
+            <h3 style = {{ fontSize: '40px', textDecoration: 'underline' }}>{client.firstname}'s Daily Logs</h3>
             <div className="graph-container">
               <Line data={calGraphData} />
             </div>
